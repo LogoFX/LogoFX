@@ -114,5 +114,5 @@ namespace LogoFX.UI.Bootstrapping
 
         }
         #endregion
-    }
+    }    
 }
