@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using System.Windows;
+using System.Windows.Controls;
 using Caliburn.Micro;
 using LogoFX.UI.Bootstraping.Contracts;
 using Solid.Practices.Composition.Desktop;
@@ -11,29 +14,90 @@ using Solid.Practices.Modularity;
 
 namespace LogoFX.UI.Bootstrapping
 {    
-    public class BootstrapperContainerBase<TRootViewModel, TIocContainer> : 
-        BootstrapperBase<TRootViewModel> 
+    public class BootstrapperContainerBase<TRootViewModel, TIocContainer> :
+#if !WinRT
+ BootstrapperBase
+#else
+        CaliburnApplication
+#endif
         where TRootViewModel : class
-        where TIocContainer : IIocContainer, IBootstrapperAdapter, new()
+        where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
     {
+        private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
         private IBootstrapperAdapter _bootstrapperAdapter;
         private object _defaultLifetimeScope;
         private TIocContainer _iocContainer;
 
+        protected BootstrapperContainerBase()
+        {
+            Initialize();
+        }
+
+        protected BootstrapperContainerBase(TIocContainer iocContainer)            
+        {
+            _iocContainer = iocContainer;
+            Initialize();
+        }
+
+        private void DisplayRootView()
+        {
+            DisplayRootViewFor(typeof(TRootViewModel));
+        }
+
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+            base.OnStartup(sender, e);
+            DisplayRootView();
+        }
+
         /// <summary>
-        /// Configures this instance.
+        /// Override to configure the framework and setup your <c>IoC</c> container.
         /// </summary>
         protected override void Configure()
         {
             base.Configure();
+            //overrided for performance reasons (Assembly caching)
+            ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
+            {
+                Debug.Assert(modelType != null && modelType.FullName != null);
+                var viewTypeName = modelType.FullName.Substring(0, modelType.FullName.IndexOf("`") < 0
+                    ? modelType.FullName.Length
+                    : modelType.FullName.IndexOf("`")
+                    ).Replace("Model", string.Empty);
+
+                if (context != null)
+                {
+                    viewTypeName = viewTypeName.Remove(viewTypeName.Length - 4, 4);
+                    viewTypeName = viewTypeName + "." + context;
+                }
+
+                Type viewType;
+                if (!_typedic.TryGetValue(viewTypeName, out viewType))
+                {
+                    _typedic[viewTypeName] = viewType = (from assmebly in AssemblySource.Instance
+                                                         from type in assmebly.GetExportedTypes()
+                                                         where type.FullName == viewTypeName
+                                                         select type).FirstOrDefault();
+                }
+
+                return viewType;
+            };
+            ViewLocator.LocateForModelType = (modelType, displayLocation, context) =>
+            {
+                var viewType = ViewLocator.LocateTypeForModelType(modelType, displayLocation, context);
+
+                return viewType == null
+                    ? new TextBlock { Text = string.Format("Cannot find view for\nModel: {0}\nContext: {1} .", modelType, context) }
+                    : ViewLocator.GetOrCreateViewType(viewType);
+            };
             _bootstrapperAdapter = _iocContainer;
 
             RegisterCommon(_iocContainer);
             RegisterViewsAndViewModels(_iocContainer);
             OnConfigure(_iocContainer);
-        }
+        }        
 
-        private void RegisterCommon(IIocContainer iocContainer)
+        private static void RegisterCommon(IIocContainer iocContainer)
         {
             iocContainer.RegisterSingleton<IWindowManager, WindowManager>();
             iocContainer.RegisterSingleton<TRootViewModel, TRootViewModel>();
@@ -67,7 +131,10 @@ namespace LogoFX.UI.Bootstrapping
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
-            _iocContainer = new TIocContainer();
+            if (_iocContainer == null)
+            {
+                _iocContainer = new TIocContainer();    
+            }            
             var initializationFacade = new BootstrapperInitializationFacade<TIocContainer>(GetType(), _iocContainer);
             initializationFacade.Initialize(ModulesPath);
             Modules = initializationFacade.Modules;

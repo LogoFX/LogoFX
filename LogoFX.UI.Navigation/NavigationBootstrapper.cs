@@ -11,7 +11,7 @@ namespace LogoFX.UI.Navigation
 {
     public class NavigationBootstrapper<TRootViewModel, TIocContainer> : 
         BootstrapperContainerBase<TRootViewModel, TIocContainer> 
-        where TRootViewModel : class where TIocContainer : IIocContainer, IBootstrapperAdapter, new()
+        where TRootViewModel : class where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
     {
         private NavigationService _navigationService = new NavigationService();        
         private INavigationService NavigationService
@@ -21,6 +21,12 @@ namespace LogoFX.UI.Navigation
 
         protected NavigationBootstrapper()
         {
+        }
+
+        protected NavigationBootstrapper(TIocContainer iocContainer)
+            :base(iocContainer)
+        {
+            
         }
 
         protected override void OnConfigure(TIocContainer container)
