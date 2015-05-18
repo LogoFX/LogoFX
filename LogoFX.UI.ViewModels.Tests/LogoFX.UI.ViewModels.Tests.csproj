@@ -53,7 +53,7 @@
       <Name>LogoFX.UI.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.UI.Tests.Infra\LogoFX.UI.Tests.Infra.csproj">
-      <Project>{67E5E2E9-A69E-438D-BD6D-E462A42D267C}</Project>
+      <Project>{67e5e2e9-a69e-438d-bd6d-e462a42d267c}</Project>
       <Name>LogoFX.UI.Tests.Infra</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.UI.ViewModels.Interfaces\LogoFX.UI.ViewModels.Interfaces.csproj">
