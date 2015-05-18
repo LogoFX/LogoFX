@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Reflection;
-using System.Windows;
 using Caliburn.Micro;
 using LogoFX.Core;
 using LogoFX.UI.Bootstraping.Contracts;
@@ -34,14 +33,9 @@ namespace LogoFX.UI.Navigation
         {
             base.OnConfigure(container);
             container.RegisterInstance(NavigationService);
-        }
-
-        protected override void OnStartup(object sender, StartupEventArgs e)
-        {
-            base.OnStartup(sender, e);            
             OnRegisterRoot(NavigationService);
             OnPrepareNavigation(NavigationService);
-        }
+        }        
 
         protected virtual void OnRegisterRoot(INavigationService navigationService)
         {
