@@ -28,12 +28,14 @@ namespace LogoFX.UI.Bootstrapping
         private object _defaultLifetimeScope;
         private TIocContainer _iocContainer;
 
-        protected BootstrapperContainerBase()
+        protected BootstrapperContainerBase(bool useApplication = true)
+            :base(useApplication)
         {
             Initialize();
         }
 
-        protected BootstrapperContainerBase(TIocContainer iocContainer)            
+        protected BootstrapperContainerBase(TIocContainer iocContainer, bool useApplication=true)            
+            :base(useApplication)
         {
             _iocContainer = iocContainer;
             Initialize();

@@ -1,7 +1,7 @@
 ﻿using Caliburn.Micro;
 using Solid.Fake.Core;
 using Solid.Practices.IoC;
-using Solid.Tests.NUnit;
+using Solid.Tests.Core;
 
 namespace LogoFX.UI.Tests.Core
 {

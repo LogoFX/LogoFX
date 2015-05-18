@@ -19,12 +19,13 @@ namespace LogoFX.UI.Navigation
             get { return _navigationService ?? (_navigationService = new NavigationService()); }
         }
 
-        protected NavigationBootstrapper()
+        protected NavigationBootstrapper(bool useApplication = true)
+            :base(useApplication)
         {
         }
 
-        protected NavigationBootstrapper(TIocContainer iocContainer)
-            :base(iocContainer)
+        protected NavigationBootstrapper(TIocContainer iocContainer, bool useApplication=true)
+            :base(iocContainer, useApplication)
         {
             
         }
