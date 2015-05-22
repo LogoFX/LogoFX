@@ -1,7 +1,7 @@
-﻿using Caliburn.Micro;
-using Solid.Fake.Core;
+﻿using Attest.Fake.Core;
+using Attest.Tests.Core;
+using Caliburn.Micro;
 using Solid.Practices.IoC;
-using Solid.Tests.Core;
 
 namespace LogoFX.UI.Tests.Core
 {

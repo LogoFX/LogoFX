@@ -30,6 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Attest.Fake.Core">
+      <HintPath>..\Lib\Attest\Attest.Fake.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Attest.Fake.Moq">
+      <HintPath>..\Lib\Attest\Attest.Fake.Moq.dll</HintPath>
+    </Reference>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
@@ -42,12 +48,6 @@
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Solid.Fake.Core">
-      <HintPath>..\Lib\Solid\Solid.Fake.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Solid.Fake.Moq">
-      <HintPath>..\Lib\Solid\Solid.Fake.Moq.dll</HintPath>
     </Reference>
     <Reference Include="Solid.Practices.IoC">
       <HintPath>..\Lib\Solid\Solid.Practices.IoC.dll</HintPath>

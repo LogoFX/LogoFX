@@ -30,24 +30,23 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Attest.Fake.Core">
+      <HintPath>..\Lib\Attest\Attest.Fake.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Attest.Tests.Core">
+      <HintPath>..\Lib\Attest\Attest.Tests.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Attest.Tests.NUnit">
+      <HintPath>..\Lib\Attest\Attest.Tests.NUnit.dll</HintPath>
+    </Reference>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
     <Reference Include="Caliburn.Micro.Platform">
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Fake.Core">
-      <HintPath>..\Lib\Solid\Solid.Fake.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Solid.Practices.IoC">
       <HintPath>..\Lib\Solid\Solid.Practices.IoC.dll</HintPath>
-    </Reference>
-    <Reference Include="Solid.Tests.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Solid\Solid.Tests.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Solid.Tests.NUnit">
-      <HintPath>..\Lib\Solid\Solid.Tests.NUnit.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
