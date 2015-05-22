@@ -20,6 +20,11 @@ namespace LogoFX.UI.Tests.Infra
             OnUiThread(action);
         }
 
+        public void InitializeDispatch()
+        {
+            
+        }
+
         public void BeginOnUiThread(DispatcherPriority prio, Action action)
         {
             OnUiThread(action);

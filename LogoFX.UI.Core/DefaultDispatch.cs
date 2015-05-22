@@ -8,6 +8,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 #endif
+using LogoFX.UI.Core;
 
 // ReSharper disable once CheckNamespace
 namespace System.Windows.Threading
@@ -23,6 +24,8 @@ namespace System.Windows.Threading
         /// <param name="priority">priority</param>
         /// <param name="action">The action to execute.</param>
         void OnUiThread(DispatcherPriority priority, Action action);
+
+        void InitializeDispatch();
     }
 
     public class DefaultDispatch : IDispatch
@@ -42,8 +45,7 @@ namespace System.Windows.Threading
                 throw new InvalidOperationException("Dispatch is not initialized correctly");
             }
         }
-
-        /// <summary>
+/// <summary>
         /// Initializes the framework using the current dispatcher.
         /// </summary>
         public void InitializeDispatch()
@@ -151,7 +153,7 @@ namespace System.Windows.Threading
             EnsureDispatch();
             s_dispatch(action, true,CoreDispatcherPriority.Normal);
 #else
-            BeginOnUiThread(DispatcherPriority.DataBind, action);
+            BeginOnUiThread(Consts.DispatcherPriority, action);
 #endif
         }
 #if SILVERLIGHT
@@ -178,7 +180,7 @@ namespace System.Windows.Threading
             EnsureDispatch();
             s_dispatch(action, false,CoreDispatcherPriority.Normal);
 #else
-            OnUiThread(DispatcherPriority.DataBind, action);
+            OnUiThread(Consts.DispatcherPriority, action);
 #endif
         }
 

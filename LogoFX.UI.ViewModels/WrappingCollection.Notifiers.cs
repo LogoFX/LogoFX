@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Threading;
 using LogoFX.Core;
+using LogoFX.UI.Core;
 
 namespace LogoFX.UI.ViewModels
 {
@@ -15,7 +16,7 @@ namespace LogoFX.UI.ViewModels
         private NotifyCollectionChangedEventHandler _weakHandler = null;
 
 #if !SILVERLIGHT && !WinRT
-        private DispatcherPriority _updatePriority = DispatcherPriority.DataBind;
+        private DispatcherPriority _updatePriority = Consts.DispatcherPriority;
         public DispatcherPriority UpdatePriority
         {
             get { return _updatePriority; }

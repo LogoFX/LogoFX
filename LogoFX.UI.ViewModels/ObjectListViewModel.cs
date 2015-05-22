@@ -45,6 +45,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Threading;
 using LogoFX.Core;
+using LogoFX.UI.Core;
 using LogoFX.UI.ViewModels.Interfaces;
 
 namespace LogoFX.UI.ViewModels
@@ -120,7 +121,7 @@ namespace LogoFX.UI.ViewModels
         private IObjectViewModel _loadingViewModel;
 
 #if !SILVERLIGHT && !WinRT
-        private DispatcherPriority _updatePriority = DispatcherPriority.DataBind;
+        private DispatcherPriority _updatePriority = Consts.DispatcherPriority;
 #endif
 
         /// <summary>

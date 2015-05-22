@@ -36,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommonProperties.cs" />
+    <Compile Include="Consts.cs" />
     <Compile Include="DefaultDispatch.cs" />
     <Compile Include="Dispatch.cs" />
     <Compile Include="NotifyPropertyChanged.cs" />

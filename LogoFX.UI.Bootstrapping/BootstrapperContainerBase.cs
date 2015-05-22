@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 using Caliburn.Micro;
 using LogoFX.UI.Bootstraping.Contracts;
 using Solid.Practices.Composition.Desktop;
@@ -58,6 +59,7 @@ namespace LogoFX.UI.Bootstrapping
         protected override void Configure()
         {
             base.Configure();
+            Dispatch.Current.InitializeDispatch();
             //overrided for performance reasons (Assembly caching)
             ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
             {

@@ -12,8 +12,7 @@ namespace System.Windows.Threading
 
         private static IDispatch CreateDefaultDispatch()
         {
-            DefaultDispatch dispatch = new DefaultDispatch();
-            dispatch.InitializeDispatch();
+            DefaultDispatch dispatch = new DefaultDispatch();            
             return dispatch;
         }
     }
