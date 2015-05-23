@@ -1,9 +1,9 @@
 ﻿using Attest.Fake.Core;
 using Attest.Tests.NUnit;
-using Caliburn.Micro;
+using LogoFX.UI.Tests.Shared;
 using Solid.Practices.IoC;
 
-namespace LogoFX.UI.Tests.Core
+namespace LogoFX.UI.Tests.NUnit
 {
     public abstract class TestsBase<TContainer,TFakeFactory,TRootViewModel, TBootstrapper> : 
         IntegrationTestsBase<TContainer,TFakeFactory,TRootViewModel, TBootstrapper> 
@@ -11,16 +11,16 @@ namespace LogoFX.UI.Tests.Core
         where TFakeFactory : IFakeFactory, new() 
         where TRootViewModel : class
     {
-        protected override TRootViewModel CreateRootObjectOverride(TRootViewModel rootObject)
+        protected override void SetupOverride()
         {
-            ScreenExtensions.TryActivate(rootObject);
-            return rootObject;
+            base.SetupOverride();
+            TestHelper.Setup();
         }
 
         protected override void TearDownOverride()
         {
             base.TearDownOverride();
-            AssemblySource.Instance.Clear();
+            TestHelper.Teardown();
         }
     }
 }
