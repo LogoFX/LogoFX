@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using LogoFX.Core;
+using System.Collections.ObjectModel;
 using LogoFX.UI.Model.Contracts;
 
 namespace LogoFX.UI.Model
 {
-    public class ConcurrentItemsDataService<TItem> : IItemsDataService<TItem>
+    public class ModelsCollection<TItem> : IModelsCollection<TItem>
     {
-        private readonly ConcurrentObservableCollection<TItem> _items = new ConcurrentObservableCollection<TItem>();
-        private ConcurrentObservableCollection<TItem> Items
+        private readonly ObservableCollection<TItem> _items = new ObservableCollection<TItem>();
+        private ObservableCollection<TItem> Items
         {
             get { return _items; }
         }
 
-        IEnumerable<TItem> IItemsDataProvider<TItem>.Items
+        IEnumerable<TItem> IReadModelsCollection<TItem>.Items
         {
             get { return Items; }
         }

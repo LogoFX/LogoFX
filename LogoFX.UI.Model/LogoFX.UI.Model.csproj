@@ -36,12 +36,12 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConcurrentItemsDataService.cs" />
+    <Compile Include="ConcurrentModelsCollection.cs" />
     <Compile Include="EditableList.cs" />
     <Compile Include="EditableModel.cs" />
     <Compile Include="EditableSingleAttribute.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="ItemsDataService.cs" />
+    <Compile Include="ModelsCollection.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="ObjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

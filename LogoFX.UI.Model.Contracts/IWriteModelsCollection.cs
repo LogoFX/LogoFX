@@ -2,7 +2,7 @@
 
 namespace LogoFX.UI.Model.Contracts
 {
-    public interface IItemsDataManager<TItem>
+    public interface IWriteModelsCollection<TItem>
     {
         void Add(TItem item);
         void Remove(TItem item);

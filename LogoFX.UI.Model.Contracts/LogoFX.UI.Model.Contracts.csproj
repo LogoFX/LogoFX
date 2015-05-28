@@ -39,10 +39,10 @@
     <Compile Include="ICopyable.cs" />
     <Compile Include="IEditableModel.cs" />
     <Compile Include="IHaveId.cs" />
-    <Compile Include="IItemsDataManager.cs" />
-    <Compile Include="IItemsDataProvider.cs" />
-    <Compile Include="IItemsDataService.cs" />
-    <Compile Include="IItemsInfoDataProvider.cs" />
+    <Compile Include="IWriteModelsCollection.cs" />
+    <Compile Include="IReadModelsCollection.cs" />
+    <Compile Include="IModelsCollection.cs" />
+    <Compile Include="IInfoModelsCollection.cs" />
     <Compile Include="IMergeable.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IObjectModel.cs" />

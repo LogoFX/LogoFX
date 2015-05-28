@@ -2,7 +2,7 @@
 
 namespace LogoFX.UI.Model.Contracts
 {
-    public interface IItemsDataProvider<TItem>
+    public interface IReadModelsCollection<TItem>
     {
         IEnumerable<TItem> Items { get; }
     }
