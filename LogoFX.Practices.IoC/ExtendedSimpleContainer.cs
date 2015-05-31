@@ -36,6 +36,8 @@ namespace LogoFX.Practices.IoC
             }
         }
 
+        private object _syncObject = new object();
+
         protected override object ActivateInstance(Type type, object[] args)
         {
             object result;
@@ -45,12 +47,15 @@ namespace LogoFX.Practices.IoC
             }
 
             RegisterAsKind kind;
-            if (!_types.TryGetValue(type, out kind))
-            {
-                kind = GetKind(type);
-                _types.Add(type, kind);
+            lock (_syncObject)
+            {                
+                if (!_types.TryGetValue(type, out kind))
+                {
+                    kind = GetKind(type);
+                    _types.Add(type, kind);
+                }    
             }
-
+            
             result = base.ActivateInstance(type, args);
 
             if (kind == RegisterAsKind.Singleton)
