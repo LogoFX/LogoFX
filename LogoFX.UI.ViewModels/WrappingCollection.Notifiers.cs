@@ -213,12 +213,35 @@ a);
                         });
                     }
                     break;
-
                 case NotifyCollectionChangedAction.Remove:
-
                     InvokeOnUiThread(() => e.OldItems.Cast<object>().ForEach(RemoveHandler));
                     break;
+                case NotifyCollectionChangedAction.Move:
+                    InvokeOnUiThread(() =>
+                    {
+                        e.OldItems.Cast<object>().ForEach(RemoveHandler);
 
+                        if (e.NewStartingIndex == -1)
+                        {
+                            InvokeOnUiThread(() => e.NewItems.Cast<object>().ForEach(AddHandler));
+                        }
+                        else
+                        {
+                            InvokeOnUiThread(() =>
+                            {
+                                int newindex = e.NewStartingIndex;
+                                e.NewItems.Cast<object>().ForEach((a) =>
+                                {
+                                    if (GetWrapper(sender, a) != null)
+                                        //already done by other party
+                                        return;
+                                    InsertHandler(a, newindex++);
+                                });
+                            });
+                        }
+                    });
+
+                    break;
                 case NotifyCollectionChangedAction.Replace:
 
                     InvokeOnUiThread(() =>
