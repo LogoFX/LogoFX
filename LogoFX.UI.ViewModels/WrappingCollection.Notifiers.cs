@@ -164,7 +164,7 @@ a);
             {
                 object o = GetWrapper(sender, a);
                 RemoveWrapper(sender, a);
-                InternalChildren.Remove(o);
+                _collectionManager.Remove(o);
                 if (o is IDisposable)
                     ((IDisposable)o).Dispose();
             };
@@ -172,7 +172,7 @@ a);
             {
                 object wrapper = CreateWrapper(a);
                 PutWrapper(sender, a, wrapper);
-                InternalChildren.Add(wrapper);
+                _collectionManager.Add(wrapper);
             };
             Action<object, int> InsertHandler = (a, index) =>
             {
@@ -181,12 +181,12 @@ a);
                 PutWrapperAt(sender, a, wrapper, index);
                 if(oldWrapper!=null)
                 {
-                    int oldIndex = InternalChildren.IndexOf(oldWrapper);
-                    InternalChildren.Insert(oldIndex, wrapper);
+                    int oldIndex = _collectionManager.IndexOf(oldWrapper);
+                    _collectionManager.Insert(oldIndex, wrapper);
                 }
                 else
                 {
-                    InternalChildren.Add(wrapper);
+                    _collectionManager.Add(wrapper);
                 }
             };
 

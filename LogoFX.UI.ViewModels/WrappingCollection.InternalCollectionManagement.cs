@@ -2,33 +2,41 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 using LogoFX.Core;
 
 namespace LogoFX.UI.ViewModels
 {
     partial class WrappingCollection
     {
-        internal class CollectionManagerFactory
+        private class CollectionManagerFactory
         {
-            ICollectionManager CreateRegularCollectionManager()
+            internal static ICollectionManager CreateRegularManager()
             {
                 return new RegularCollectionManager();
             }
 
-            ICollectionManager CreateRangeCollectionManager()
+            static ICollectionManager CreateRangeCollectionManager()
             {
                 return new RangeCollectionManager();
             }            
         }
 
-        internal interface ICollectionManager
+        private interface ICollectionManager
         {
             INotifyCollectionChanged CollectionChangedSource { get; }
             IEnumerator GetEnumerator();
+            int ItemsCount { get; }
             void Add(object item);
             void AddRange(IEnumerable<object> items);
             void Remove(object item);
             void RemoveRange(IEnumerable<object> items);
+            int IndexOf(object item);
+            void Insert(int index, object item);
+            object First();
+            bool Contains(object item);
+            object Find(object item);
+            IList AsList();
         }
 
         private class RegularCollectionManager : ICollectionManager
@@ -42,6 +50,11 @@ namespace LogoFX.UI.ViewModels
             public IEnumerator GetEnumerator()
             {
                 return _items.GetEnumerator();
+            }
+
+            public int ItemsCount
+            {
+                get { return _items.Count; }
             }
 
             public void Add(object item)
@@ -63,6 +76,36 @@ namespace LogoFX.UI.ViewModels
             {
                 items.ForEach(r => _items.Remove(r));
             }
+
+            public int IndexOf(object item)
+            {
+                return _items.IndexOf(item);
+            }
+
+            public void Insert(int index, object item)
+            {
+                _items.Insert(index, item);                
+            }
+
+            public object First()
+            {
+                return _items[0];
+            }
+
+            public bool Contains(object item)
+            {
+                return _items.Contains(item);
+            }
+
+            public object Find(object item)
+            {
+                return _items.FirstOrDefault(t => t.Equals(item));
+            }
+
+            public IList AsList()
+            {
+                return _items;
+            }
         }
 
         private class RangeCollectionManager : ICollectionManager
@@ -76,6 +119,11 @@ namespace LogoFX.UI.ViewModels
             public IEnumerator GetEnumerator()
             {
                 return _items.GetEnumerator();
+            }
+
+            public int ItemsCount
+            {
+                get { return _items.Count; }
             }
 
             public void Add(object item)
@@ -97,6 +145,41 @@ namespace LogoFX.UI.ViewModels
             {
                 _items.RemoveRange(items);
             }
+
+            public int IndexOf(object item)
+            {
+                return _items.IndexOf(item);
+            }
+
+            public void Insert(int index, object item)
+            {
+                _items.Insert(index, item);
+            }
+
+            public object First()
+            {
+                return _items[0];
+            }
+
+            public bool Contains(object item)
+            {
+                return _items.Contains(item);
+            }
+
+            public object Find(object item)
+            {
+                return _items.FirstOrDefault(t => t.Equals(item));
+            }
+
+            public IList AsList()
+            {
+                return _items;
+            }
+        }
+
+        internal IList AsList()
+        {
+            return _collectionManager.AsList();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace LogoFX.UI.ViewModels
     public partial class WrappingCollection:IEnumerable,INotifyCollectionChanged,IDisposable
     {
         private readonly ObservableCollection<IEnumerable> _sources = new ObservableCollection<IEnumerable>();
-        private readonly ObservableCollection<object> _items = new ObservableCollection<object>();
+        private readonly ICollectionManager _collectionManager = CollectionManagerFactory.CreateRegularManager();
         private Func<object, object> _factoryMethod;
         private Func<object,object> DefaultFactoryMethod =
             a => new { Model = a }
@@ -34,7 +34,7 @@ namespace LogoFX.UI.ViewModels
 
         public WrappingCollection()
         {
-            _items.CollectionChanged += OnCollectionChangedCore;
+            _collectionManager.CollectionChangedSource.CollectionChanged += OnCollectionChangedCore;
             _sources.CollectionChanged += SourcesCollectionChanged;
         }
 
@@ -44,13 +44,13 @@ namespace LogoFX.UI.ViewModels
             set
             {
 
-                if (value != null && InternalChildren.Count == 0)
+                if (value != null && _collectionManager.ItemsCount == 0)
                 {
-                    InternalChildren.Add(value);
+                    _collectionManager.Add(value);
                 }
                 else if (_loadingViewModel != null)
                 {
-                    InternalChildren.Remove(_loadingViewModel);
+                    _collectionManager.Remove(_loadingViewModel);
                 }
                 _loadingViewModel = value;
             }
@@ -89,15 +89,7 @@ namespace LogoFX.UI.ViewModels
         {
             HashSet<IEnumerable> hs = new HashSet<IEnumerable>(_sources);
             hs.ForEach(a => _sources.Remove(a));
-        }
-
-        internal ObservableCollection<object> InternalChildren
-        {
-            get
-            {
-                return _items;
-            }
-        }
+        }        
 
         public Func<object,object> FactoryMethod
         {
@@ -107,7 +99,7 @@ namespace LogoFX.UI.ViewModels
 
         public IEnumerator GetEnumerator()
         {
-            return InternalChildren.GetEnumerator();
+            return _collectionManager.GetEnumerator();
         }
 
         protected virtual object CreateWrapper(object obj)
@@ -119,7 +111,7 @@ namespace LogoFX.UI.ViewModels
         {
             if (args.Action != NotifyCollectionChangedAction.Reset && _loadingViewModel != null)
             {
-                InternalChildren.Remove(_loadingViewModel);
+                _collectionManager.Remove(_loadingViewModel);
             }
 
             try
@@ -138,13 +130,13 @@ namespace LogoFX.UI.ViewModels
 
         public event NotifyCollectionChangedEventHandler CollectionChanged
         {
-            add { InternalChildren.CollectionChanged += value; }
-            remove { InternalChildren.CollectionChanged -= value; }
+            add { _collectionManager.CollectionChangedSource.CollectionChanged += value; }
+            remove { _collectionManager.CollectionChangedSource.CollectionChanged -= value; }
         }
 
         public void Dispose()
         {
-            _items.CollectionChanged -= OnCollectionChangedCore;            
+            _collectionManager.CollectionChangedSource.CollectionChanged -= OnCollectionChangedCore;            
 
             Sources
                 .OfType<INotifyCollectionChanged>()

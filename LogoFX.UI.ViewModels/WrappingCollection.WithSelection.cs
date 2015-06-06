@@ -84,9 +84,9 @@ namespace LogoFX.UI.ViewModels
                         if (obj is ISelectable)
                             ((ISelectable)obj).IsSelected = false;
 
-                        if (IsSelectionRequired && _selectedItems.Count == 0 && InternalChildren.Count > 0)
+                        if (IsSelectionRequired && _selectedItems.Count == 0 && _collectionManager.ItemsCount > 0)
                         {
-                            _selectedItems.Add(InternalChildren[0]);
+                            _selectedItems.Add(_collectionManager.First());
                             if (obj is ISelectable)
                                 ((ISelectable)obj).IsSelected = true;
                         }
@@ -107,7 +107,7 @@ namespace LogoFX.UI.ViewModels
 #endif
  void InternalIsSelectedChanged(object o, PropertyChangedEventArgs args)
             {
-                if (o != null && !InternalChildren.Contains(o))
+                if (o != null && !_collectionManager.Contains(o))
                     ((INotifyPropertyChanged)o).PropertyChanged -= _internalSelectionHandler;
                 else if (args.PropertyName == "IsSelected" && o is ISelectable)
                     Dispatch.Current.OnUiThread(() => HandleItemSelectionChanged(o, ((ISelectable)o).IsSelected));
@@ -175,7 +175,7 @@ namespace LogoFX.UI.ViewModels
             /// <returns>old selected item if available</returns>
             public bool Select(object newSelection, bool notify = true)
             {
-                object item = InternalChildren.FirstOrDefault(i => i.Equals(newSelection));
+                object item = _collectionManager.Find(newSelection);
                 if (item != null)
                 {
                     return HandleItemSelectionChanged(item, true);

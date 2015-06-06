@@ -10,7 +10,7 @@ namespace LogoFX.UI.ViewModels
     {
         public static ListCollectionView AsView(this WrappingCollection collection)
         {
-            return new ListCollectionView(collection.InternalChildren);
+            return new ListCollectionView(collection.AsList());
         }
 
         public static ListCollectionView WithFiltering(this ListCollectionView collectionView, Predicate<object> filter) 
