@@ -52,6 +52,9 @@
     <Compile Include="WrappingCollection.IndexedDictionary.cs">
       <DependentUpon>WrappingCollection.cs</DependentUpon>
     </Compile>
+    <Compile Include="WrappingCollection.InternalCollectionManagement.cs">
+      <DependentUpon>WrappingCollection.cs</DependentUpon>
+    </Compile>
     <Compile Include="WrappingCollection.Notifiers.cs">
       <DependentUpon>WrappingCollection.cs</DependentUpon>
     </Compile>

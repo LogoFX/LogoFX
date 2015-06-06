@@ -91,7 +91,7 @@ namespace LogoFX.UI.ViewModels
             hs.ForEach(a => _sources.Remove(a));
         }
 
-        protected internal ObservableCollection<object> InternalChildren
+        internal ObservableCollection<object> InternalChildren
         {
             get
             {
