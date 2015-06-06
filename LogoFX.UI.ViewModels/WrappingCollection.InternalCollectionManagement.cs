@@ -9,14 +9,14 @@ namespace LogoFX.UI.ViewModels
 {
     partial class WrappingCollection
     {
-        private class CollectionManagerFactory
+        private static class CollectionManagerFactory
         {
             internal static ICollectionManager CreateRegularManager()
             {
                 return new RegularCollectionManager();
             }
 
-            static ICollectionManager CreateRangeCollectionManager()
+            internal static ICollectionManager CreateRangeManager()
             {
                 return new RangeCollectionManager();
             }            

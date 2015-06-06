@@ -24,6 +24,11 @@ namespace LogoFX.UI.ViewModels
 
         private IModelWrapper _loadingViewModel;
 
+        public WrappingCollection(bool isBulk = false) : this()
+        {
+            _collectionManager = isBulk
+                ? CollectionManagerFactory.CreateRegularManager() : CollectionManagerFactory.CreateRangeManager();
+        }
 
         public WrappingCollection(IEnumerable source):this()
         {
