@@ -168,11 +168,28 @@ a);
                 if (o is IDisposable)
                     ((IDisposable)o).Dispose();
             };
+            Action<IEnumerable<object>> RemoveRangeHandler = collection =>
+            {
+                var wrappers = collection.ForEach(r => GetWrapper(sender, r)).ToArray();
+                wrappers.ForEach(a => RemoveWrapper(sender, a));
+                _collectionManager.RemoveRange(wrappers);
+                wrappers.ForEach(o =>
+                {
+                    if (o is IDisposable)
+                        ((IDisposable) o).Dispose();
+                });
+            };
             Action<object> AddHandler = (a) =>
             {
                 object wrapper = CreateWrapper(a);
                 PutWrapper(sender, a, wrapper);
                 _collectionManager.Add(wrapper);
+            };
+            Action<IEnumerable<object>> AddRangeHandler = collection =>
+            {
+                var wrapperPairs = collection.Select(a => Tuple.Create(a, CreateWrapper(a))).ToArray();
+                wrapperPairs.ForEach(r => PutWrapper(sender, r.Item1, r.Item2));
+                _collectionManager.AddRange(wrapperPairs.Select(t => t.Item2));
             };
             Action<object, int> InsertHandler = (a, index) =>
             {
