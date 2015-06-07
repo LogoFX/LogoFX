@@ -170,7 +170,7 @@ a);
             };
             Action<IEnumerable<object>> RemoveRangeHandler = collection =>
             {
-                var wrappers = collection.ForEach(r => GetWrapper(sender, r)).ToArray();
+                var wrappers = collection.Select(r => GetWrapper(sender, r)).ToArray();
                 wrappers.ForEach(a => RemoveWrapper(sender, a));
                 _collectionManager.RemoveRange(wrappers);
                 wrappers.ForEach(o =>
@@ -248,7 +248,7 @@ a);
                     }
                     break;
                 case NotifyCollectionChangedAction.Remove:
-                    InvokeOnUiThread(() => e.OldItems.Cast<object>().ForEach(RemoveHandler));
+                    InvokeOnUiThread(() => RemoveRangeHandler(e.OldItems.Cast<object>()));
                     break;
                 case NotifyCollectionChangedAction.Move:
                     InvokeOnUiThread(() =>
