@@ -213,7 +213,7 @@ a);
                 case NotifyCollectionChangedAction.Add:                    
                     if (e.NewStartingIndex == -1)
                     {
-                        InvokeOnUiThread(() => e.NewItems.Cast<object>().ForEach(AddHandler));                        
+                        InvokeOnUiThread(() => AddRangeHandler(e.NewItems.Cast<object>()));                        
                     }
                     else
                     {

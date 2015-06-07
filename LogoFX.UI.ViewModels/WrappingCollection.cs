@@ -27,7 +27,7 @@ namespace LogoFX.UI.ViewModels
         public WrappingCollection(bool isBulk = false) : this()
         {
             _collectionManager = isBulk
-                ? CollectionManagerFactory.CreateRegularManager() : CollectionManagerFactory.CreateRangeManager();
+                ? CollectionManagerFactory.CreateRangeManager() : CollectionManagerFactory.CreateRegularManager();
         }
 
         public WrappingCollection(IEnumerable source):this()
