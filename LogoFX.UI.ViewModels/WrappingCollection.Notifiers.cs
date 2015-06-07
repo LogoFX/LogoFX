@@ -206,7 +206,30 @@ a);
                     _collectionManager.Add(wrapper);
                 }
             };
-
+            Action<IEnumerable<object>, int> InsertRangeHandler = (collection, index) =>
+            {
+                var initialIndex = index;
+                var wrappers = collection.Select(a => Tuple.Create(a, CreateWrapper(a), initialIndex++)).ToArray();                                
+                var rangeWrappers = new List<object>();
+                wrappers.ForEach(r =>
+                {
+                    var oldWrapper = GetWrapperAt(sender, r.Item3);
+                    PutWrapperAt(sender, r.Item1, r.Item2, r.Item3);
+                    if (oldWrapper != null)
+                    {
+                        int oldIndex = _collectionManager.IndexOf(oldWrapper);
+                        _collectionManager.Insert(oldIndex, r.Item2);
+                    }
+                    else
+                    {
+                        rangeWrappers.Add(r.Item2);
+                    }
+                });
+                if (rangeWrappers.Count > 0)
+                {
+                    _collectionManager.AddRange(rangeWrappers);
+                }
+            };
            
             switch (e.Action)
             {
@@ -220,13 +243,7 @@ a);
                         InvokeOnUiThread(() =>
                         {
                             int newindex = e.NewStartingIndex;
-                            e.NewItems.Cast<object>().ForEach((a) =>
-                            {
-                                if (GetWrapper(sender, a) != null)
-                                    //already done by other party
-                                    return;
-                                InsertHandler(a, newindex++);
-                            });
+                            InsertRangeHandler(e.NewItems.Cast<object>(), newindex);
                         });
                     }
                     break;
