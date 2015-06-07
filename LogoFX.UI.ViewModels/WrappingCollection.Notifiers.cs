@@ -293,8 +293,11 @@ a);
 
                     InvokeOnUiThread(() =>
                     {
-                        RemoveRangeHandler(listwrappers.Select(a => a.Key).ToList());                        
-                        listwrappers.Clear();                                                
+                        if (listwrappers.Count > 0)
+                        {
+                            RemoveRangeHandler(listwrappers.Select(a => a.Key).ToList());
+                            listwrappers.Clear();                                                    
+                        }                        
                     });
                     break;
                 default:

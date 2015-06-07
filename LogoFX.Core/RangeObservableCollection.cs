@@ -60,7 +60,7 @@ namespace LogoFX.Core
                 Remove(item);
             }            
             _suppressNotification = false;
-            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new List<T>(enumerable)));
+            OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, new List<T>(enumerable),0));
         }
     }
 }
