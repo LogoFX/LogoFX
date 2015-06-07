@@ -52,5 +52,29 @@ namespace LogoFX.UI.ViewModels.Tests.WrappingCollectionTests
             };
             source.RemoveRange(items);
         }
+
+        [Test]
+        public void
+            WhenCollectionIsCreatedWithRangeAndSourceIsCleared_ThenSingleNotificationIsRaisedWithAllWrappers
+            ()
+        {
+            var source = new RangeObservableCollection<object>();
+            var items = new[] { new object(), new object() };
+            var numberOfTimes = 0;
+
+            var collection = new WrappingCollection(isBulk: true)
+            {
+                FactoryMethod = o => o
+            };
+            collection.AddSource(source);            
+            source.AddRange(items);            
+            collection.CollectionChanged += (sender, args) =>
+            {
+                CollectionAssert.AreEquivalent(items, args.OldItems);
+                numberOfTimes++;
+                Assert.AreEqual(1, numberOfTimes);
+            };
+            source.Clear();
+        }
     }
 }
