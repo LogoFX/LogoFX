@@ -253,68 +253,50 @@ a);
                 case NotifyCollectionChangedAction.Move:
                     InvokeOnUiThread(() =>
                     {
-                        e.OldItems.Cast<object>().ForEach(RemoveHandler);
+                        RemoveRangeHandler(e.OldItems.Cast<object>());
 
                         if (e.NewStartingIndex == -1)
                         {
-                            InvokeOnUiThread(() => e.NewItems.Cast<object>().ForEach(AddHandler));
+                            InvokeOnUiThread(() => AddRangeHandler(e.NewItems.Cast<object>()));
                         }
                         else
                         {
                             InvokeOnUiThread(() =>
                             {
                                 int newindex = e.NewStartingIndex;
-                                e.NewItems.Cast<object>().ForEach((a) =>
-                                {
-                                    if (GetWrapper(sender, a) != null)
-                                        //already done by other party
-                                        return;
-                                    InsertHandler(a, newindex++);
-                                });
+                                InsertRangeHandler(e.NewItems.Cast<object>(), newindex);
                             });
                         }
                     });
-
                     break;
                 case NotifyCollectionChangedAction.Replace:
-
                     InvokeOnUiThread(() =>
                     {
-                        e.OldItems.Cast<object>().ForEach(RemoveHandler);
+                        RemoveRangeHandler(e.OldItems.Cast<object>());
 
                         if (e.NewStartingIndex == -1)
                         {
-                            InvokeOnUiThread(() => e.NewItems.Cast<object>().ForEach(AddHandler));
+                            InvokeOnUiThread(() => AddRangeHandler(e.NewItems.Cast<object>()));
                         }
                         else
                         {
                             InvokeOnUiThread(() =>
                             {
                                 int newindex = e.NewStartingIndex;
-                                e.NewItems.Cast<object>().ForEach((a) =>
-                                {
-                                    if (GetWrapper(sender, a) != null)
-                                        //already done by other party
-                                        return;
-                                    InsertHandler(a, newindex++);
-                                });
+                                InsertRangeHandler(e.NewItems.Cast<object>(), newindex);
                             });
                         }
                     });
-
                     break;
                 case NotifyCollectionChangedAction.Reset:
-
                     Dictionary<object, object> listwrappers = GetListWrappers(sender);
 
                     InvokeOnUiThread(() =>
                     {
-                        listwrappers.Select(a=>a.Key).ToList().ForEach(RemoveHandler);                        
+                        RemoveRangeHandler(listwrappers.Select(a => a.Key).ToList());                        
                         listwrappers.Clear();                                                
                     });
-
                     break;
-
                 default:
                     throw new ArgumentOutOfRangeException();
             }
