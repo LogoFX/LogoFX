@@ -39,15 +39,21 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WrappingCollectionTests\DataSourceCollectionChangedTests.cs" />
+    <Compile Include="WrappingCollectionTests\NotificationTests.cs" />
     <Compile Include="WrappingCollectionTests\SelectionTests.cs" />
     <Compile Include="WrappingCollectionTests\TestModel.cs" />
     <Compile Include="WrappingCollectionTests\TestViewModel.cs" />
     <Compile Include="WrappingCollectionTests\InitializationTests.cs" />
+    <Compile Include="WrappingCollectionTests\WrappingCollectionTestsBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
+      <Project>{1FC8C6D3-261A-416F-95B8-F3C334FB283A}</Project>
+      <Name>LogoFX.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.UI.Core\LogoFX.UI.Core.csproj">
       <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
       <Name>LogoFX.UI.Core</Name>
