@@ -189,7 +189,8 @@ namespace LogoFX.Practices.IoC
             var entry = GetEntry(service, key);
             if (entry != null)
             {
-                return entry.Single()(this);
+                //last registration always wins - this is a convention amongst ioc containers
+                return entry.Last()(this);
             }
 
             if (s_delegateType.IsAssignableFrom(service))
