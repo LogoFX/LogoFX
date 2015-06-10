@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using LogoFX.Core;
-using LogoFX.UI.Model.Contracts;
+using LogoFX.UI.ViewModels.Interfaces.Services;
 
-namespace LogoFX.UI.Model
+namespace LogoFX.UI.ViewModels.Services
 {
     public class ConcurrentModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>
     {

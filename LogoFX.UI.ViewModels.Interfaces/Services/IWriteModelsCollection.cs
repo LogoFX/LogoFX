@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace LogoFX.UI.Model.Contracts
+namespace LogoFX.UI.ViewModels.Interfaces.Services
 {
     public interface IWriteModelsCollection<TItem>
     {

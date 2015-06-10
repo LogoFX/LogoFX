@@ -45,6 +45,9 @@
     <Compile Include="SelectionChangedEventArgs.cs" />
     <Compile Include="SelectionMode.cs" />
     <Compile Include="SelectorViewModel.cs" />
+    <Compile Include="Services\ConcurrentModelsCollection.cs" />
+    <Compile Include="Services\ModelsCollection.cs" />
+    <Compile Include="Services\ModelsCollectionBase.cs" />
     <Compile Include="SimpleObjectsListViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="ViewModelCollection.cs" />

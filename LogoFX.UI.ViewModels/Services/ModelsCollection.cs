@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using LogoFX.UI.Model.Contracts;
+using LogoFX.UI.ViewModels.Interfaces.Services;
 
-namespace LogoFX.UI.Model
+namespace LogoFX.UI.ViewModels.Services
 {
     public class ModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>
     {

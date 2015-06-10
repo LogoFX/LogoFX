@@ -1,7 +1,7 @@
 ﻿using System;
-using LogoFX.UI.Model.Contracts;
+using LogoFX.UI.ViewModels.Interfaces.Services;
 
-namespace LogoFX.UI.Model
+namespace LogoFX.UI.ViewModels.Services
 {
     public abstract class ModelsCollectionBase : IInfoModelsCollection
     {
