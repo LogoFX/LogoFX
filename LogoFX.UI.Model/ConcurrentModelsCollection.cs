@@ -4,7 +4,7 @@ using LogoFX.UI.Model.Contracts;
 
 namespace LogoFX.UI.Model
 {
-    public class ConcurrentModelsCollection<TItem> : IModelsCollection<TItem>
+    public class ConcurrentModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>
     {
         private readonly ConcurrentObservableCollection<TItem> _items = new ConcurrentObservableCollection<TItem>();
         private ConcurrentObservableCollection<TItem> Items
@@ -17,16 +17,19 @@ namespace LogoFX.UI.Model
             get { return Items; }
         }
 
-        public int ItemsCount { get { return Items.Count; } }
-        public bool HasItems { get { return ItemsCount > 0; } }
+        public override int ItemsCount { get { return Items.Count; } }
+        public override bool HasItems { get { return ItemsCount > 0; } }       
+
         public void Add(TItem item)
-        {
+        {            
             Items.Add(item);
-        }
+            SafeRaiseHasItemsChanged();
+        }        
 
         public void Remove(TItem item)
         {
             Items.Remove(item);
+            SafeRaiseHasItemsChanged();
         }
 
         public void Update(IEnumerable<TItem> items)
@@ -36,11 +39,13 @@ namespace LogoFX.UI.Model
             {
                 Items.Add(item);
             }
+            SafeRaiseHasItemsChanged();
         }
 
         public void Clear()
         {
             Items.Clear();
-        }
+            SafeRaiseHasItemsChanged();
+        }      
     }
 }
