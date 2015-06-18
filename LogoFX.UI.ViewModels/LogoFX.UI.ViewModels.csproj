@@ -48,6 +48,7 @@
     <Compile Include="Services\ConcurrentModelsCollection.cs" />
     <Compile Include="Services\ModelsCollection.cs" />
     <Compile Include="Services\ModelsCollectionBase.cs" />
+    <Compile Include="Services\ModelsSelection.cs" />
     <Compile Include="SimpleObjectsListViewModel.cs" />
     <Compile Include="ViewModelBase.cs" />
     <Compile Include="ViewModelCollection.cs" />
