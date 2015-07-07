@@ -69,6 +69,10 @@ namespace LogoFX.Practices.IoC
                             (container) =>
                             {
                                 GC.Collect();
+                                if (LifetimeIsDead(wr))
+                                {
+                                    return null;
+                                }
                                 if (wr == null || !wr.IsAlive || singleton == null)
                                 {
                                     wr = new WeakReference(lifeTime());
@@ -76,6 +80,11 @@ namespace LogoFX.Practices.IoC
                                 }
                                 return singleton;
                             });
+        }
+
+        private static bool LifetimeIsDead(WeakReference wr)
+        {
+            return wr != null && wr.IsAlive == false;
         }
 
         /// <summary>

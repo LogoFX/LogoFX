@@ -50,6 +50,11 @@ namespace LogoFX.UI.Bootstrapping.SimpleContainer
             _container.RegisterHandler(service,key,handler);
         }
 
+        public void RegisterPerLifetime<TService, TImplementation>(Func<object> lifetimeScopeAccess)
+        {
+            _container.RegisterPerLifetime(lifetimeScopeAccess,typeof(TService), null, typeof(TImplementation));
+        }
+
         public TService GetInstance<TService>(Type serviceType) where TService : class
         {
             return (TService)_container.GetInstance(serviceType, null);
