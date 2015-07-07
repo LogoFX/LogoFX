@@ -156,6 +156,11 @@ namespace LogoFX.UI.Bootstrapping
             get { return "."; }
         }
 
+        public virtual object CurrentLifetimeScope
+        {
+            get { return _defaultLifetimeScope; }
+        }
+
         public IEnumerable<ICompositionModule> Modules { get; private set; }
 
         #region private implementation
