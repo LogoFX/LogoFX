@@ -2,7 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 
-namespace LogoFX.UI.ViewModels.Tests.WrappingCollectionTests
+namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
 {
     [TestFixture]
     class DataSourceCollectionChangedTests : WrappingCollectionTestsBase

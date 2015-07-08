@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.UI.ViewModels.ViewModelFactory.Unity")]
+[assembly: AssemblyTitle("LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.Unity")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LogoFX.UI.ViewModels.ViewModelFactory.Unity")]
+[assembly: AssemblyProduct("LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.Unity")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

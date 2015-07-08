@@ -1,8 +1,8 @@
 ﻿using System;
 using Autofac;
-using LogoFX.UI.ViewModels.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
-namespace LogoFX.UI.ViewModels.ViewModelFactory.Autofac
+namespace LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.Autofac
 {
     public class ViewModelFactory : IViewModelFactory
     {

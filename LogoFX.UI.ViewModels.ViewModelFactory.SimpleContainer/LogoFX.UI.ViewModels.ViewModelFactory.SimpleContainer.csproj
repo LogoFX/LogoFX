@@ -38,13 +38,13 @@
     <Compile Include="ViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
+      <Project>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</Project>
+      <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
       <Project>{c7ae389e-c13c-4d52-9926-be23e7ecaea7}</Project>
       <Name>LogoFX.Practices.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.ViewModels.Interfaces\LogoFX.UI.ViewModels.Interfaces.csproj">
-      <Project>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</Project>
-      <Name>LogoFX.UI.ViewModels.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

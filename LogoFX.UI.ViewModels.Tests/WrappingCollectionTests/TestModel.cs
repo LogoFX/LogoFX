@@ -1,4 +1,4 @@
-﻿namespace LogoFX.UI.ViewModels.Tests.WrappingCollectionTests
+﻿namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
 {
     class TestModel
     {

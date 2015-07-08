@@ -1,7 +1,7 @@
 ﻿using LogoFX.Core;
 using NUnit.Framework;
 
-namespace LogoFX.UI.ViewModels.Tests.WrappingCollectionTests
+namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
 {
     [TestFixture]
     class NotificationTests : WrappingCollectionTestsBase

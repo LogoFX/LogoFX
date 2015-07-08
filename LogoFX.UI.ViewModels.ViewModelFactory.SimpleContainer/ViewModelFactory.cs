@@ -1,7 +1,7 @@
 ﻿using System;
-using LogoFX.UI.ViewModels.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
-namespace LogoFX.UI.ViewModels.ViewModelFactory.SimpleContainer
+namespace LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.SimpleContainer
 {
     class ViewModelFactory : IViewModelFactory
     {

@@ -1,8 +1,8 @@
 ﻿using System;
-using LogoFX.UI.ViewModels.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 using Microsoft.Practices.Unity;
 
-namespace LogoFX.UI.ViewModels.ViewModelFactory.Unity
+namespace LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.Unity
 {
     class ViewModelFactory : IViewModelFactory
     {

@@ -2,7 +2,7 @@ using System.Windows.Threading;
 using LogoFX.UI.Tests.Infra;
 using NUnit.Framework;
 
-namespace LogoFX.UI.ViewModels.Tests.WrappingCollectionTests
+namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
 {
     abstract class WrappingCollectionTestsBase
     {
