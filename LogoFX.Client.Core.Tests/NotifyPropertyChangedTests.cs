@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using LogoFX.Client.Core;
 using NUnit.Framework;
 
-namespace LogoFX.UI.Core.Tests
+namespace LogoFX.Client.Core.Tests
 {
     abstract class TestClassBase : NotifyPropertyChangedBase<TestClassBase>
     {        

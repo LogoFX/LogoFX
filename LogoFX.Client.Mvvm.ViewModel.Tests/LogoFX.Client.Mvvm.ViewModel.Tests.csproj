@@ -7,8 +7,8 @@
     <ProjectGuid>{630502EE-979F-4E80-BE5D-C4B0A6163F1E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.ViewModels.Tests</RootNamespace>
-    <AssemblyName>LogoFX.UI.ViewModels.Tests</AssemblyName>
+    <RootNamespace>LogoFX.Client.Mvvm.ViewModel.Tests</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.ViewModel.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

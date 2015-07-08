@@ -1,7 +1,6 @@
-﻿using LogoFX.Client.Core;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
-namespace LogoFX.UI.Core.Tests
+namespace LogoFX.Client.Core.Tests
 {
     [TestFixture]
     public class ReentranceGuardTests

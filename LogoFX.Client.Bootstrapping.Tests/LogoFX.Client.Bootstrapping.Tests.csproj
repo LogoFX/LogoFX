@@ -7,8 +7,8 @@
     <ProjectGuid>{ED0F4E1F-CE9E-49A0-937F-B1D81F24774F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Bootstrapping.Tests</RootNamespace>
-    <AssemblyName>LogoFX.UI.Bootstrapping.Tests</AssemblyName>
+    <RootNamespace>LogoFX.Client.Bootstrapping.Tests</RootNamespace>
+    <AssemblyName>LogoFX.Client.Bootstrapping.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
