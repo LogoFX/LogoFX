@@ -13,8 +13,11 @@ namespace LogoFX.Core
         /// <param name="ie">The ie.</param>
         /// <param name="action">The action.</param>
         public static IEnumerable<T> ForEachByOne<T>(this IEnumerable<T> ie, Action<T> action)
-        {            
-            CodeContracts.Requires.NotNull(ie,"ie");
+        {
+            if (ie == null)
+            {
+                throw new ArgumentNullException("ie");
+            }            
             using (IEnumerator<T> enumerator = ie.GetEnumerator())
             {                
                 while (enumerator.MoveNext())
@@ -33,7 +36,10 @@ namespace LogoFX.Core
         /// <param name="action"></param>
         public static IEnumerable<T> ForEachByOne<T>(this IEnumerable<T> ie, Action<T, int> action)
         {
-            CodeContracts.Requires.NotNull(ie, "ie");
+            if (ie == null)
+            {
+                throw new ArgumentNullException("ie");
+            }  
             int index = 0;
             using (IEnumerator<T> enumerator = ie.GetEnumerator())
             {                
@@ -68,7 +74,10 @@ namespace LogoFX.Core
         /// <param name="action">The action.</param>
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> ie, Action<T> action)
         {
-            CodeContracts.Requires.NotNull(ie,"ie");
+            if (ie == null)
+            {
+                throw new ArgumentNullException("ie");
+            }  
             using (IEnumerator<T> enumerator = ie.GetEnumerator())
             {
                 while (enumerator.MoveNext())
@@ -87,7 +96,10 @@ namespace LogoFX.Core
         /// <param name="action"></param>
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> ie, Action<T, int> action)
         {
-            CodeContracts.Requires.NotNull(ie, "ie");
+            if (ie == null)
+            {
+                throw new ArgumentNullException("ie");
+            }  
             int index = 0;
             using (IEnumerator<T> enumerator = ie.GetEnumerator())
             {                

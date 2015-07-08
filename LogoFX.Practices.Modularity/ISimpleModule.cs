@@ -1,7 +1,7 @@
 ﻿using System;
 using LogoFX.Practices.IoC;
 
-namespace LogoFX.Practices.Composition
+namespace LogoFX.Practices.Modularity
 {
     /// <summary>
     /// Module for <see cref="SimpleContainer"/>
