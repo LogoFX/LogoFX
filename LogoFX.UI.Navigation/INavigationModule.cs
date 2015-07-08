@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using LogoFX.UI.Modularity;
+using LogoFX.Client.Modularity;
 
 namespace LogoFX.UI.Navigation
 {

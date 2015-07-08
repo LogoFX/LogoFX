@@ -87,6 +87,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Modularity\LogoFX.Client.Modularity.csproj">
+      <Project>{1930E259-7724-429F-9A28-F9D5DA64F5A1}</Project>
+      <Name>LogoFX.Client.Modularity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
       <Project>{1FC8C6D3-261A-416F-95B8-F3C334FB283A}</Project>
       <Name>LogoFX.Core</Name>
@@ -98,10 +102,6 @@
     <ProjectReference Include="..\LogoFX.UI.Bootstrapping\LogoFX.UI.Bootstrapping.csproj">
       <Project>{51322595-4423-46d9-8aad-7486fc87e15c}</Project>
       <Name>LogoFX.UI.Bootstrapping</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Modularity\LogoFX.UI.Modularity.csproj">
-      <Project>{1930E259-7724-429F-9A28-F9D5DA64F5A1}</Project>
-      <Name>LogoFX.UI.Modularity</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

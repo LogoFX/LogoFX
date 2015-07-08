@@ -1,7 +1,7 @@
 ﻿using System;
 using Solid.Practices.Modularity;
 
-namespace LogoFX.UI.Modularity
+namespace LogoFX.Client.Modularity
 {
     public interface IUiModule : ICompositionModule
     {        

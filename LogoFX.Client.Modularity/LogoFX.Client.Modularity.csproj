@@ -7,8 +7,8 @@
     <ProjectGuid>{1930E259-7724-429F-9A28-F9D5DA64F5A1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Modularity</RootNamespace>
-    <AssemblyName>LogoFX.UI.Modularity</AssemblyName>
+    <RootNamespace>LogoFX.Client.Modularity</RootNamespace>
+    <AssemblyName>LogoFX.Client.Modularity</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
