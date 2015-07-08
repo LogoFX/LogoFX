@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     internal sealed partial class NavigationService
     {

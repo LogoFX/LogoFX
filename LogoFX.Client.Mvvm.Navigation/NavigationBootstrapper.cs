@@ -6,7 +6,7 @@ using LogoFX.UI.Bootstraping.Contracts;
 using LogoFX.UI.Bootstrapping;
 using Solid.Practices.IoC;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     public class NavigationBootstrapper<TRootViewModel, TIocContainer> : 
         BootstrapperContainerBase<TRootViewModel, TIocContainer> 

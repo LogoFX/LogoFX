@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Interactivity;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     public sealed class NavigateAction : TriggerAction<UIElement>
     {

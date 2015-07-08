@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     internal sealed partial class NavigationService : PropertyChangedBase
     {

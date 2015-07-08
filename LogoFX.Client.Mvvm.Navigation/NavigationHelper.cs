@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     public static class NavigationHelper
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{6BE25F7E-97CE-448F-BFBD-A3E4A1B22A81}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Navigation</RootNamespace>
-    <AssemblyName>LogoFX.UI.Navigation</AssemblyName>
+    <RootNamespace>LogoFX.Client.Mvvm.Navigation</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.Navigation</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
     public sealed class NavigationSynonymAttribute : Attribute

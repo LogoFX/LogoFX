@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogoFX.UI.Navigation
+namespace LogoFX.Client.Mvvm.Navigation
 {
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public sealed class NavigationViewModelAttribute : Attribute

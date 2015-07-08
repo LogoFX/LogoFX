@@ -1,4 +1,4 @@
-﻿namespace LogoFX.UI.Navigation
+﻿namespace LogoFX.Client.Mvvm.Navigation
 {
     public interface INavigationConductor
     {
