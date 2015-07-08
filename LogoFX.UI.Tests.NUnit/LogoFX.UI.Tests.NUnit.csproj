@@ -45,9 +45,6 @@
     <Reference Include="Solid.Practices.IoC">
       <HintPath>..\Lib\Solid\Solid.Practices.IoC.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Scheduling">
-      <HintPath>..\Lib\Solid\Solid.Practices.Scheduling.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
