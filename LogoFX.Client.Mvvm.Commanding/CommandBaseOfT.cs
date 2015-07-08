@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 using System.Windows.Input;
 using LogoFX.Client.Core;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     public abstract class CommandBase<T>
         : IActionCommand

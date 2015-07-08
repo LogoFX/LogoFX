@@ -7,7 +7,7 @@
 
 using System;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     /// <summary>
     /// Base class for ICommand implementations

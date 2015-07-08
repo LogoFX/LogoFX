@@ -6,7 +6,7 @@
 using System;
 using System.Windows.Input;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     public interface ICommandCondition<T, out TRet> where TRet:ICommand
     {

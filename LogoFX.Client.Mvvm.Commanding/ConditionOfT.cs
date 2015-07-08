@@ -7,7 +7,7 @@
 
 using System;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     public class Condition<T> : ICommandCondition<T, ActionCommand<T>>
     {

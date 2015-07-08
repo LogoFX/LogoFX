@@ -5,7 +5,7 @@
 
 using System.ComponentModel;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     public interface IActionCommand
          : IReverseCommand, IReceiveEvent, IExtendedCommand, INotifyPropertyChanged

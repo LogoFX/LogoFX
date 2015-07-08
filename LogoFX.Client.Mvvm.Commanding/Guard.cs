@@ -8,7 +8,7 @@ using System;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     public static class Guard
     {

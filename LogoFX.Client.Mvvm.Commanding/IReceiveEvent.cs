@@ -5,7 +5,7 @@
 
 using System;
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     public interface IReceiveEvent
     {

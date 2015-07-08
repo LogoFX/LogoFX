@@ -7,8 +7,8 @@
     <ProjectGuid>{191305D7-4AD6-41BC-ABA6-B20780401E45}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.Client.Commanding</RootNamespace>
-    <AssemblyName>LogoFX.Client.Commanding</AssemblyName>
+    <RootNamespace>LogoFX.Client.Mvvm.Commanding</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.Commanding</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

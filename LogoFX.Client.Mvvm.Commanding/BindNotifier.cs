@@ -43,7 +43,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 #endif
 
-namespace LogoFX.Client.Commanding
+namespace LogoFX.Client.Mvvm.Commanding
 {
     /// <summary>
     /// <see cref="DependencyObject"/> based notifier on property change 
