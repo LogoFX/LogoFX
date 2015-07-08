@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using LogoFX.Client.Core;
 using NUnit.Framework;
 
 namespace LogoFX.UI.Core.Tests

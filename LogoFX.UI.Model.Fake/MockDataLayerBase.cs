@@ -13,7 +13,7 @@ using System.ComponentModel;
 using System.Threading;
 using System.Windows.Threading;
 using LogoFX.Async;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 
 namespace LogoFX.UI.Model.Fake
 {

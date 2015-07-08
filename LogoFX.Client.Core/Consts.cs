@@ -1,6 +1,6 @@
 ﻿using System.Windows.Threading;
 
-namespace LogoFX.UI.Core
+namespace LogoFX.Client.Core
 {
     public static class Consts
     {

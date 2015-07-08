@@ -44,13 +44,12 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Threading;
+using LogoFX.Client.Core;
 using LogoFX.Core;
-using LogoFX.UI.Core;
 using LogoFX.UI.ViewModels.Interfaces;
 
 namespace LogoFX.UI.ViewModels
 {
-
     /// <summary>
     /// Operation type
     /// </summary>

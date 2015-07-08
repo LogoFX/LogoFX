@@ -74,9 +74,9 @@
     <Compile Include="Xaml\SharedResourceDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.UI.Core\LogoFX.UI.Core.csproj">
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
       <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
-      <Name>LogoFX.UI.Core</Name>
+      <Name>LogoFX.Client.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

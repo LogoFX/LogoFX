@@ -1,5 +1,5 @@
 ﻿using System;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 using LogoFX.UI.Views.Infra.Localization;
 
 namespace LogoFX.UI.Views.Infra.MarkupExtensions

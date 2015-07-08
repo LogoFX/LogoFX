@@ -7,8 +7,8 @@
     <ProjectGuid>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Core</RootNamespace>
-    <AssemblyName>LogoFX.UI.Core</AssemblyName>
+    <RootNamespace>LogoFX.Client.Core</RootNamespace>
+    <AssemblyName>LogoFX.Client.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

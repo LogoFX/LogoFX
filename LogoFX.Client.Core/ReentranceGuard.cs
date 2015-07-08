@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogoFX.UI.Core
+namespace LogoFX.Client.Core
 {
     /// <summary>
     /// Represents a semaphore for locking user interface updating.

@@ -8,7 +8,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 #endif
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 
 // ReSharper disable once CheckNamespace
 namespace System.Windows.Threading

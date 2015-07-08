@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using LogoFX.Client.Core;
+using NUnit.Framework;
 
 namespace LogoFX.UI.Core.Tests
 {

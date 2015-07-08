@@ -68,13 +68,13 @@
     <Compile Include="WrappingCollectionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
+      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
+      <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
       <Project>{1fc8c6d3-261a-416f-95b8-f3c334fb283a}</Project>
       <Name>LogoFX.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Core\LogoFX.UI.Core.csproj">
-      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
-      <Name>LogoFX.UI.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.UI.ViewModels.Interfaces\LogoFX.UI.ViewModels.Interfaces.csproj">
       <Project>{e2ffa98b-e7d6-4c7a-8b3f-fca4cecdda49}</Project>

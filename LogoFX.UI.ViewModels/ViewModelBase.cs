@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 using LogoFX.UI.ViewModels.Interfaces;
 
 namespace LogoFX.UI.ViewModels

@@ -16,7 +16,7 @@ using System.Windows.Input;
 using System.Windows.Interactivity;
 using System.Windows.Markup;
 using System.Windows.Media;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 using EventTrigger = System.Windows.Interactivity.EventTrigger;
 #if !WinRT
 

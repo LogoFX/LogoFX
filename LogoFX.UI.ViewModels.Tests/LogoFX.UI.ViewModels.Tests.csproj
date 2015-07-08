@@ -50,13 +50,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
+      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
+      <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
       <Project>{1FC8C6D3-261A-416F-95B8-F3C334FB283A}</Project>
       <Name>LogoFX.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Core\LogoFX.UI.Core.csproj">
-      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
-      <Name>LogoFX.UI.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.UI.Tests.Infra\LogoFX.UI.Tests.Infra.csproj">
       <Project>{67e5e2e9-a69e-438d-bd6d-e462a42d267c}</Project>

@@ -9,7 +9,7 @@ using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Windows.Input;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 
 namespace LogoFX.UI.Commanding
 {

@@ -13,7 +13,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace LogoFX.UI.Core
+namespace LogoFX.Client.Core
 {
     #region NotifyPropertyChangedBase
 

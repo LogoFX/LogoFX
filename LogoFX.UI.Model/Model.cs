@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 using LogoFX.UI.Model.Contracts;
 
 namespace LogoFX.UI.Model

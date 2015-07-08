@@ -66,13 +66,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
+      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
+      <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.UI.Bootstraping.Contracts\LogoFX.UI.Bootstraping.Contracts.csproj">
       <Project>{51C997C0-087C-4D57-8B9E-39A58256CB35}</Project>
       <Name>LogoFX.UI.Bootstraping.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Core\LogoFX.UI.Core.csproj">
-      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
-      <Name>LogoFX.UI.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

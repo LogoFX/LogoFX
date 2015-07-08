@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace LogoFX.UI.Core
+namespace LogoFX.Client.Core
 {
     /// <summary>
     /// This is indended  to deal with missed visual and logical tree inheritance on some of badly designed controls

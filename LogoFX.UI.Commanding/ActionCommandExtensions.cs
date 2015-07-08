@@ -11,7 +11,7 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reactive.Linq;
 using System.Windows.Input;
-using LogoFX.UI.Core;
+using LogoFX.Client.Core;
 
 namespace LogoFX.UI.Commanding
 {
