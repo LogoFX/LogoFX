@@ -7,7 +7,7 @@
 
 using System;
 
-namespace LogoFX.UI.Commanding
+namespace LogoFX.Client.Commanding
 {
     public class ActionCommand<T>
          : CommandBase<T>

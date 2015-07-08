@@ -13,7 +13,7 @@ using System.Reactive.Linq;
 using System.Windows.Input;
 using LogoFX.Client.Core;
 
-namespace LogoFX.UI.Commanding
+namespace LogoFX.Client.Commanding
 {
     public static class ActionCommandExtensions
     {

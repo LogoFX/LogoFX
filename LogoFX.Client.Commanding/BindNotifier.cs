@@ -32,6 +32,7 @@
 //        nRoute
 // </remarks>
 // ====================================================================================//
+
 using System;
 using System.Collections.Generic;
 #if !WinRT
@@ -42,7 +43,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 #endif
 
-namespace LogoFX.UI.Commanding
+namespace LogoFX.Client.Commanding
 {
     /// <summary>
     /// <see cref="DependencyObject"/> based notifier on property change 

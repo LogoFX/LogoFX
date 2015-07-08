@@ -3,25 +3,25 @@
 // This source file is the part of LogoFX Framework http://logofx.codeplex.com
 // See accompanying licences and credits.
 
-
 // This code is based on foundings in http://nroute.codeplex.com/
 
 using System;
 
-namespace LogoFX.UI.Commanding
+namespace LogoFX.Client.Commanding
 {
-    public class Condition : ICommandCondition<ActionCommand>
+    public class CommandEventArgs
+		 : EventArgs
     {
-        private readonly Func<bool> _canExecute;
+        private readonly Object _commandParameter;
 
-        public Condition(Func<bool> canExecute)
+        public CommandEventArgs(Object commandParameter)
         {
-            _canExecute = canExecute;
+            _commandParameter = commandParameter;
         }
 
-        public ActionCommand Do(Action execute)
+        public Object CommandParameter
         {
-            return new ActionCommand(execute, _canExecute);
+            get { return _commandParameter; }
         }
     }
 }

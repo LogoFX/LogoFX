@@ -6,7 +6,7 @@
 using System;
 using System.Windows.Input;
 
-namespace LogoFX.UI.Commanding
+namespace LogoFX.Client.Commanding
 {
     /// <summary>
     /// Extended command with additional attributes

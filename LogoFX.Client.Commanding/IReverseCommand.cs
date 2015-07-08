@@ -6,7 +6,7 @@
 using System;
 using System.Windows.Input;
 
-namespace LogoFX.UI.Commanding
+namespace LogoFX.Client.Commanding
 {
     /// <summary>
     /// Represents an <see cref="ICommand">ICommand</see> who's execution can be handled in the View.
