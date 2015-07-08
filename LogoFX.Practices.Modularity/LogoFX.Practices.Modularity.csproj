@@ -7,8 +7,8 @@
     <ProjectGuid>{7EC22CB0-38F8-464C-A0C1-7D3F5DE9D29F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.Practices.Composition</RootNamespace>
-    <AssemblyName>LogoFX.Practices.Composition</AssemblyName>
+    <RootNamespace>LogoFX.Practices.Modularity</RootNamespace>
+    <AssemblyName>LogoFX.Practices.Modularity</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
