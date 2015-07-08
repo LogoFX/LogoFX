@@ -7,8 +7,8 @@
     <ProjectGuid>{28C459B3-0E33-4052-B8FE-EBD532D65AAB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.Client.Model.Contracts</RootNamespace>
-    <AssemblyName>LogoFX.Client.Model.Contracts</AssemblyName>
+    <RootNamespace>LogoFX.Client.Mvvm.Model.Contracts</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.Model.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

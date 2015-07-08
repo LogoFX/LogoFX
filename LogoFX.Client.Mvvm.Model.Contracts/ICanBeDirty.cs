@@ -1,4 +1,4 @@
-﻿namespace LogoFX.Client.Model.Contracts
+﻿namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     public interface ICanBeDirty
     {

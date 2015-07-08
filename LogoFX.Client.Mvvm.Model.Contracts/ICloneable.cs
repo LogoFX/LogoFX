@@ -1,4 +1,4 @@
-﻿namespace LogoFX.Client.Model.Contracts
+﻿namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     /// <summary>
     /// Represents cloneable instance

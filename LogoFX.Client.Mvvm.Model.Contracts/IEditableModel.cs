@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace LogoFX.Client.Model.Contracts
+namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     public interface IEditableModel : IEditableObject, ICanBeDirty
     {

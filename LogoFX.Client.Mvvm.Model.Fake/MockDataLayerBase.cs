@@ -15,7 +15,7 @@ using System.Windows.Threading;
 using LogoFX.Async;
 using LogoFX.Client.Core;
 
-namespace LogoFX.Client.Model.Fake
+namespace LogoFX.Client.Mvvm.Model.Fake
 {
     /// <summary>
     /// Helper class to implement simulation service layers. 

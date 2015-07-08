@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogoFX.Client.Model
+namespace LogoFX.Client.Mvvm.Model
 {
     public class EditableListAttribute:Attribute
     {

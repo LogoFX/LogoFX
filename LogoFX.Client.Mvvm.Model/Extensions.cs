@@ -8,9 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using LogoFX.Core;
-using LogoFX.Client.Model.Contracts;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
-namespace LogoFX.Client.Model
+namespace LogoFX.Client.Mvvm.Model
 {
     public static class Extensions
     {

@@ -3,7 +3,7 @@
 // This source file is the part of LogoFX Framework http://logofx.codeplex.com
 // See accompanying licences and credits.
 
-namespace LogoFX.Client.Model.Contracts
+namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     /// <summary>
     /// Denotes model that wraps foreign object

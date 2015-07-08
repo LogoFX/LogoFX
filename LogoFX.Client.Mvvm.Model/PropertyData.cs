@@ -39,9 +39,9 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using LogoFX.Client.Model.Contracts;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
-namespace LogoFX.Client.Model
+namespace LogoFX.Client.Mvvm.Model
 {
     class PropertyData<T> : IPropertyData where T:IEquatable<T>
     {

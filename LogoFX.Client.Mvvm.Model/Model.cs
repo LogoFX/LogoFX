@@ -12,9 +12,9 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using LogoFX.Client.Core;
-using LogoFX.Client.Model.Contracts;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
-namespace LogoFX.Client.Model
+namespace LogoFX.Client.Mvvm.Model
 {
     /// <summary>
     /// Represents model for domain use
