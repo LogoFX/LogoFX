@@ -62,13 +62,13 @@
       <Project>{83C4C216-4685-41D3-B93E-17C820724E25}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Tests.Infra\LogoFX.Client.Tests.Infra.csproj">
+      <Project>{67E5E2E9-A69E-438D-BD6D-E462A42D267C}</Project>
+      <Name>LogoFX.Client.Tests.Infra</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
       <Project>{1FC8C6D3-261A-416F-95B8-F3C334FB283A}</Project>
       <Name>LogoFX.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Tests.Infra\LogoFX.UI.Tests.Infra.csproj">
-      <Project>{67e5e2e9-a69e-438d-bd6d-e462a42d267c}</Project>
-      <Name>LogoFX.UI.Tests.Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

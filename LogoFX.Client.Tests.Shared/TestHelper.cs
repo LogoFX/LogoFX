@@ -1,9 +1,9 @@
 ﻿using System.Windows.Threading;
 using Caliburn.Micro;
-using LogoFX.UI.Tests.Infra;
+using LogoFX.Client.Tests.Infra;
 using Solid.Practices.Scheduling;
 
-namespace LogoFX.UI.Tests.Shared
+namespace LogoFX.Client.Tests.Shared
 {
     public static class TestHelper
     {

@@ -7,8 +7,8 @@
     <ProjectGuid>{67E5E2E9-A69E-438D-BD6D-E462A42D267C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Tests.Infra</RootNamespace>
-    <AssemblyName>LogoFX.UI.Tests.Infra</AssemblyName>
+    <RootNamespace>LogoFX.Client.Tests.Infra</RootNamespace>
+    <AssemblyName>LogoFX.Client.Tests.Infra</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

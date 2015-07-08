@@ -2,7 +2,7 @@ using Attest.Fake.Core;
 using Caliburn.Micro;
 using Solid.Practices.IoC;
 
-namespace LogoFX.UI.Tests.NUnit
+namespace LogoFX.Client.Tests.NUnit
 {
     public abstract class TestsBaseWithActivation<TContainer, TFakeFactory, TRootViewModel, TBootstrapper> :
         TestsBase<TContainer, TFakeFactory, TRootViewModel, TBootstrapper>

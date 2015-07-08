@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Threading;
 
-namespace LogoFX.UI.Tests.Infra
+namespace LogoFX.Client.Tests.Infra
 {
     public class SameThreadDispatch : IDispatch
     {

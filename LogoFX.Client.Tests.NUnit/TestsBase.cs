@@ -1,9 +1,9 @@
 ﻿using Attest.Fake.Core;
 using Attest.Tests.NUnit;
-using LogoFX.UI.Tests.Shared;
+using LogoFX.Client.Tests.Shared;
 using Solid.Practices.IoC;
 
-namespace LogoFX.UI.Tests.NUnit
+namespace LogoFX.Client.Tests.NUnit
 {
     public abstract class TestsBase<TContainer,TFakeFactory,TRootViewModel, TBootstrapper> : 
         IntegrationTestsBase<TContainer,TFakeFactory,TRootViewModel, TBootstrapper> 

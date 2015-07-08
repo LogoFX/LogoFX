@@ -1,5 +1,5 @@
 using System.Windows.Threading;
-using LogoFX.UI.Tests.Infra;
+using LogoFX.Client.Tests.Infra;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
