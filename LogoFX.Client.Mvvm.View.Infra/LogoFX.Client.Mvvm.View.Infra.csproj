@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{54150F60-E0F6-4A3E-8D6A-931935FF92E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogoFX.Client.Mvvm.View.Infra</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.View.Infra</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Bin\Client\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Annotations.cs" />
+    <Compile Include="Interactivity\Behaviors\PasswordHelper.cs" />
+    <Compile Include="Interactivity\Behaviors\SelectTextOnFocusBehavior.cs" />
+    <Compile Include="Interactivity\Behaviors\UpdateSourceOnChangeBehavior.cs" />
+    <Compile Include="Converters\EnumDescriptionConverter.cs" />
+    <Compile Include="Interactivity\Actions\ExecuteCommandAction.cs" />
+    <Compile Include="Interactivity\Actions\ExecuteNamedCommandAction.cs" />
+    <Compile Include="Interactivity\Actions\TargetedSetFocusAction.cs" />
+    <Compile Include="Interactivity\Triggers\XDataTrigger.cs" />
+    <Compile Include="Localization\AssemblyCollection.cs" />
+    <Compile Include="Localization\AssemblyLoaderService.cs" />
+    <Compile Include="Localization\AssemblyResourceHelperBase.cs" />
+    <Compile Include="Localization\AssemblyResourceLoader.cs" />
+    <Compile Include="Localization\AssemblyResourceSaver.cs" />
+    <Compile Include="Localization\AssemblyResourceUtility.cs" />
+    <Compile Include="Localization\AssemblySaverService.cs" />
+    <Compile Include="Localization\CultureInfoCollection.cs" />
+    <Compile Include="Localization\LocalAssemblyCollection.cs" />
+    <Compile Include="Localization\LocalizationManager.cs" />
+    <Compile Include="Localization\ResourceCollection.cs" />
+    <Compile Include="Localization\ResourceSetCollection.cs" />
+    <Compile Include="Localization\WinRes.cs" />
+    <Compile Include="MarkupExtensions\LocalizedStringMarkupExtension.cs" />
+    <Compile Include="MarkupExtensions\UpdatableMarkupExtension.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Xaml\SharedResourceDictionary.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
+      <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
+      <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
