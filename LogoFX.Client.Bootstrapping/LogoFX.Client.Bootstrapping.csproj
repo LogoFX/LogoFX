@@ -7,8 +7,8 @@
     <ProjectGuid>{51322595-4423-46D9-8AAD-7486FC87E15C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Bootstrapping</RootNamespace>
-    <AssemblyName>LogoFX.UI.Bootstrapping</AssemblyName>
+    <RootNamespace>LogoFX.Client.Bootstrapping</RootNamespace>
+    <AssemblyName>LogoFX.Client.Bootstrapping</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -66,13 +66,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Bootstraping.Contracts\LogoFX.Client.Bootstrapping.Contracts.csproj">
+      <Project>{51C997C0-087C-4D57-8B9E-39A58256CB35}</Project>
+      <Name>LogoFX.Client.Bootstrapping.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
       <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
       <Name>LogoFX.Client.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Bootstraping.Contracts\LogoFX.UI.Bootstraping.Contracts.csproj">
-      <Project>{51C997C0-087C-4D57-8B9E-39A58256CB35}</Project>
-      <Name>LogoFX.UI.Bootstraping.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

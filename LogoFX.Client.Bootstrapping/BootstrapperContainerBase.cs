@@ -8,12 +8,12 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using Caliburn.Micro;
-using LogoFX.UI.Bootstraping.Contracts;
+using LogoFX.Client.Bootstrapping.Contracts;
 using Solid.Practices.Composition.Desktop;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
-namespace LogoFX.UI.Bootstrapping
+namespace LogoFX.Client.Bootstrapping
 {    
     public class BootstrapperContainerBase<TRootViewModel, TIocContainer> :
 #if !WinRT

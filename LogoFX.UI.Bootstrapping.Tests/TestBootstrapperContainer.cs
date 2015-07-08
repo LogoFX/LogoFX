@@ -1,6 +1,6 @@
-﻿using LogoFX.UI.Bootstrapping.SimpleContainer;
+﻿using LogoFX.Client.Bootstrapping.SimpleContainer;
 
-namespace LogoFX.UI.Bootstrapping.Tests
+namespace LogoFX.Client.Bootstrapping.Tests
 {
     internal class TestBootstrapperContainer : BootstrapperContainerBase<TestViewModel, ExtendedSimpleIocContainer>
     {

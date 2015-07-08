@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
 using Caliburn.Micro;
+using LogoFX.Client.Bootstrapping;
+using LogoFX.Client.Bootstrapping.Contracts;
 using LogoFX.Core;
-using LogoFX.UI.Bootstraping.Contracts;
-using LogoFX.UI.Bootstrapping;
 using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation

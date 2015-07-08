@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using LogoFX.UI.Bootstraping.Contracts;
+using LogoFX.Client.Bootstrapping.Contracts;
 using SimpleInjector;
 using Solid.Practices.IoC;
 
-namespace LogoFX.UI.Bootstrapping.SimpleInjector
+namespace LogoFX.Client.Bootstrapping.SimpleInjector
 {
     public class SimpleInjectorContainer : IIocContainer, IBootstrapperAdapter
     {

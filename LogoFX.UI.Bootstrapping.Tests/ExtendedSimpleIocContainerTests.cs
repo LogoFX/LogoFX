@@ -1,7 +1,7 @@
-﻿using LogoFX.UI.Bootstrapping.SimpleContainer;
+﻿using LogoFX.Client.Bootstrapping.SimpleContainer;
 using NUnit.Framework;
 
-namespace LogoFX.UI.Bootstrapping.Tests
+namespace LogoFX.Client.Bootstrapping.Tests
 {
     [TestFixture]
     class ExtendedSimpleIocContainerTests

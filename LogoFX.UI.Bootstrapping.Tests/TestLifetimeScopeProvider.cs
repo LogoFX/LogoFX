@@ -1,4 +1,4 @@
-﻿namespace LogoFX.UI.Bootstrapping.Tests
+﻿namespace LogoFX.Client.Bootstrapping.Tests
 {
     class TestLifetimeScopeProvider
     {

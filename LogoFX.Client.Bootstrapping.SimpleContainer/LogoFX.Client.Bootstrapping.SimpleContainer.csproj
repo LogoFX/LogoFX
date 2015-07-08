@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51C997C0-087C-4D57-8B9E-39A58256CB35}</ProjectGuid>
+    <ProjectGuid>{87AA42D8-A9F2-432B-B6DC-8FD61A2E92C5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.Bootstraping.Contracts</RootNamespace>
-    <AssemblyName>LogoFX.UI.Bootstraping.Contracts</AssemblyName>
+    <RootNamespace>LogoFX.Client.Bootstrapping.SimpleContainer</RootNamespace>
+    <AssemblyName>LogoFX.Client.Bootstrapping.SimpleContainer</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Caliburn.Micro.Platform, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+    </Reference>
+    <Reference Include="Solid.Practices.IoC">
+      <HintPath>..\Lib\Solid\Solid.Practices.IoC.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBootstrapperAdapter.cs" />
+    <Compile Include="ExtendedSimpleIocContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleBootstrapper.cs" />
+    <Compile Include="SimpleIocContainer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Bootstraping.Contracts\LogoFX.Client.Bootstrapping.Contracts.csproj">
+      <Project>{51C997C0-087C-4D57-8B9E-39A58256CB35}</Project>
+      <Name>LogoFX.Client.Bootstrapping.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Bootstrapping\LogoFX.Client.Bootstrapping.csproj">
+      <Project>{51322595-4423-46D9-8AAD-7486FC87E15C}</Project>
+      <Name>LogoFX.Client.Bootstrapping</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
+      <Project>{C7AE389E-C13C-4D52-9926-BE23E7ECAEA7}</Project>
+      <Name>LogoFX.Practices.IoC</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

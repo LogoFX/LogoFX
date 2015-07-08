@@ -3,7 +3,7 @@ using Attest.Fake.Moq;
 using Caliburn.Micro;
 using NUnit.Framework;
 
-namespace LogoFX.UI.Bootstrapping.Tests
+namespace LogoFX.Client.Bootstrapping.Tests
 {
     [TestFixture]
     public class BootstrapperContainerTests

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using LogoFX.UI.Bootstraping.Contracts;
+using LogoFX.Client.Bootstrapping.Contracts;
 using Microsoft.Practices.Unity;
 using Solid.Practices.IoC;
 
-namespace LogoFX.UI.Bootstrapping.Unity
+namespace LogoFX.Client.Bootstrapping.Unity
 {
     public class UnityIocContainer : IIocContainer, IBootstrapperAdapter
     {

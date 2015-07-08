@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LogoFX.UI.Bootstraping.Contracts
+namespace LogoFX.Client.Bootstrapping.Contracts
 {
     public interface IBootstrapperAdapter
     {

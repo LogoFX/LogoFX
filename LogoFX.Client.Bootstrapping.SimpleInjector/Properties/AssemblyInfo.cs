@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.UI.Bootstrapping")]
+[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping.SimpleInjector")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LogoFX.UI.Bootstrapping")]
+[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping.SimpleInjector")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b523c69f-5d08-4af1-9517-d75fa9586374")]
+[assembly: Guid("4a881e9e-3c8c-41ea-86a7-8113cf03a7ad")]
 
 // Version information for an assembly consists of the following four values:
 //

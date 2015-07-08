@@ -70,21 +70,21 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Bootstraping.Contracts\LogoFX.Client.Bootstrapping.Contracts.csproj">
+      <Project>{51C997C0-087C-4D57-8B9E-39A58256CB35}</Project>
+      <Name>LogoFX.Client.Bootstrapping.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Bootstrapping.SimpleContainer\LogoFX.Client.Bootstrapping.SimpleContainer.csproj">
+      <Project>{87AA42D8-A9F2-432B-B6DC-8FD61A2E92C5}</Project>
+      <Name>LogoFX.Client.Bootstrapping.SimpleContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Bootstrapping\LogoFX.Client.Bootstrapping.csproj">
+      <Project>{51322595-4423-46D9-8AAD-7486FC87E15C}</Project>
+      <Name>LogoFX.Client.Bootstrapping</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
       <Project>{c7ae389e-c13c-4d52-9926-be23e7ecaea7}</Project>
       <Name>LogoFX.Practices.IoC</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Bootstraping.Contracts\LogoFX.UI.Bootstraping.Contracts.csproj">
-      <Project>{51c997c0-087c-4d57-8b9e-39a58256cb35}</Project>
-      <Name>LogoFX.UI.Bootstraping.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Bootstrapping.SimpleContainer\LogoFX.UI.Bootstrapping.SimpleContainer.csproj">
-      <Project>{87aa42d8-a9f2-432b-b6dc-8fd61a2e92c5}</Project>
-      <Name>LogoFX.UI.Bootstrapping.SimpleContainer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.UI.Bootstrapping\LogoFX.UI.Bootstrapping.csproj">
-      <Project>{51322595-4423-46d9-8aad-7486fc87e15c}</Project>
-      <Name>LogoFX.UI.Bootstrapping</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
