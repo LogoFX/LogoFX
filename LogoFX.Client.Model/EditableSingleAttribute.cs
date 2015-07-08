@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogoFX.UI.Model
+namespace LogoFX.Client.Model
 {
     public class EditableSingleAttribute : Attribute
     {

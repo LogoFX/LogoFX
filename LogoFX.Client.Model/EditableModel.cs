@@ -10,9 +10,9 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using LogoFX.Core;
-using LogoFX.UI.Model.Contracts;
+using LogoFX.Client.Model.Contracts;
 
-namespace LogoFX.UI.Model
+namespace LogoFX.Client.Model
 {
     public class EditableModel<T> : Model<T>, IEditableModel
         where T : IEquatable<T>

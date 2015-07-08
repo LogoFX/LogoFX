@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.UI.Model.Fake")]
+[assembly: AssemblyTitle("LogoFX.Client.Model")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LogoFX.UI.Model.Fake")]
+[assembly: AssemblyProduct("LogoFX.Client.Model")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d4be8565-cbeb-4183-8218-873cc10bde51")]
+[assembly: Guid("1f68b624-439c-498b-a8e2-2fe6152083f5")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,4 +1,4 @@
-﻿namespace LogoFX.UI.Model.Contracts
+﻿namespace LogoFX.Client.Model.Contracts
 {
     /// <summary>
     /// 

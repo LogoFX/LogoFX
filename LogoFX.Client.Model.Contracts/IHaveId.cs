@@ -5,7 +5,7 @@
 
 using System;
 
-namespace LogoFX.UI.Model.Contracts
+namespace LogoFX.Client.Model.Contracts
 {
     public interface IHaveId<T> where T:IEquatable<T>
     {

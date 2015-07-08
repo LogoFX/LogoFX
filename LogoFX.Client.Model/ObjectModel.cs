@@ -5,9 +5,9 @@
 
 using System;
 using System.Diagnostics;
-using LogoFX.UI.Model.Contracts;
+using LogoFX.Client.Model.Contracts;
 
-namespace LogoFX.UI.Model
+namespace LogoFX.Client.Model
 {
     /// <summary>
     /// represents model that wraps foreign object
