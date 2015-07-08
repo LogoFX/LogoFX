@@ -2,7 +2,7 @@
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 using Microsoft.Practices.Unity;
 
-namespace LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.Unity
+namespace LogoFX.Client.Mvvm.ViewModelFactory.Unity
 {
     class ViewModelFactory : IViewModelFactory
     {

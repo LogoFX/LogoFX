@@ -2,7 +2,7 @@
 using Autofac;
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
-namespace LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.Autofac
+namespace LogoFX.Client.Mvvm.ViewModelFactory.Autofac
 {
     public class ViewModelFactory : IViewModelFactory
     {

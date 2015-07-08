@@ -78,7 +78,7 @@
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
       <Project>{e2ffa98b-e7d6-4c7a-8b3f-fca4cecdda49}</Project>
-      <Name>LogoFX.UI.ViewModels.Interfaces</Name>
+      <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B4E59990-EA10-451D-982C-8736E333A26A}</ProjectGuid>
+    <ProjectGuid>{50E9F62A-75DC-4BA0-8C35-712E64A1D16B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.UI.ViewModels.ViewModelFactory.Unity</RootNamespace>
-    <AssemblyName>LogoFX.UI.ViewModels.ViewModelFactory.Unity</AssemblyName>
+    <RootNamespace>LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,12 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Unity.Configuration">
-      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -44,12 +38,13 @@
     <Compile Include="ViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
       <Project>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
+      <Project>{c7ae389e-c13c-4d52-9926-be23e7ecaea7}</Project>
+      <Name>LogoFX.Practices.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

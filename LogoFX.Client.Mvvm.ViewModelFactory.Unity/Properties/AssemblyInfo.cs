@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.SimpleContainer")]
+[assembly: AssemblyTitle("LogoFX.Client.Mvvm.ViewModelFactory.Unity")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LogoFX.Client.Mvvm.ViewModel.ViewModelFactory.SimpleContainer")]
+[assembly: AssemblyProduct("LogoFX.Client.Mvvm.ViewModelFactory.Unity")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7b64ece2-7bc6-45d6-a895-ec54708142a3")]
+[assembly: Guid("9f408e50-255d-4206-aec5-72a06264a8e3")]
 
 // Version information for an assembly consists of the following four values:
 //
