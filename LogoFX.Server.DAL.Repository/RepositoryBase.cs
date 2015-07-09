@@ -325,7 +325,7 @@ namespace LogoFX.Server.DAL.Repository
 
                 result = true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 var entry = SetEntry(entity);
                 entry.State = EntityState.Unchanged;
@@ -368,7 +368,7 @@ namespace LogoFX.Server.DAL.Repository
 
                 result = true;
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 var entry = SetEntry(entity);
 
