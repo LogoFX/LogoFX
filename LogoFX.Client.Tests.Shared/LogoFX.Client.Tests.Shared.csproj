@@ -40,7 +40,7 @@
     </Reference>
     <Reference Include="Solid.Practices.Scheduling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Solid\Solid.Practices.Scheduling.dll</HintPath>
+      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.4\lib\net451\Solid.Practices.Scheduling.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

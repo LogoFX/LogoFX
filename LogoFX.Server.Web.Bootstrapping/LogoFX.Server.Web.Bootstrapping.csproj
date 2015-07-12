@@ -32,14 +32,15 @@
   <ItemGroup>
     <Reference Include="Solid.Practices.Composition, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Solid\Solid.Practices.Composition.dll</HintPath>
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.4\lib\net451\Solid.Practices.Composition.dll</HintPath>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Web">
-      <HintPath>..\Lib\Solid\Solid.Practices.Composition.Web.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Solid.Practices.Composition.Web.1.0.4\lib\net451\Solid.Practices.Composition.Web.dll</HintPath>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Lib\Solid\Solid.Practices.IoC.dll</HintPath>
+      <HintPath>..\packages\Solid.Practices.IoC.1.0.4\lib\net451\Solid.Practices.IoC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +61,9 @@
       <Project>{0D23BD5A-70AE-4D0A-8634-8055E1A55FA6}</Project>
       <Name>LogoFX.Server.Web.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

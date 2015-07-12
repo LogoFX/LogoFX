@@ -31,10 +31,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Core">
-      <HintPath>..\Lib\Attest\Attest.Fake.Core.dll</HintPath>
+      <HintPath>..\packages\Attest.Fake.Core.1.0.4\lib\net451\Attest.Fake.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Fake.Moq">
-      <HintPath>..\Lib\Attest\Attest.Fake.Moq.dll</HintPath>
+      <HintPath>..\packages\Attest.Fake.Moq.1.0.4\lib\net451\Attest.Fake.Moq.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
@@ -43,14 +45,15 @@
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Moq">
-      <HintPath>..\packages\Moq.4.2.1502.0911\lib\net40\Moq.dll</HintPath>
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Solid.Practices.IoC">
-      <HintPath>..\Lib\Solid\Solid.Practices.IoC.dll</HintPath>
+      <HintPath>..\packages\Solid.Practices.IoC.1.0.4\lib\net451\Solid.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -67,6 +70,7 @@
     <Compile Include="TestViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,9 @@
 ﻿using Attest.Fake.Core;
-using Attest.Tests.Specflow;
+using Attest.Tests.SpecFlow;
 using LogoFX.Client.Tests.Shared;
 using Solid.Practices.IoC;
 
-namespace LogoFX.Client.Tests.Specflow
+namespace LogoFX.Client.Tests.SpecFlow
 {
     public abstract class TestsBase<TContainer, TFakeFactory, TRootViewModel, TBootstrapper> :
         IntegrationTestsBase<TContainer, TFakeFactory, TRootViewModel, TBootstrapper>
