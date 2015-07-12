@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
@@ -25,8 +24,7 @@ namespace LogoFX.Client.Bootstrapping
         where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
     {
         private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
-        private IBootstrapperAdapter _bootstrapperAdapter;
-        private object _defaultLifetimeScope;
+        private IBootstrapperAdapter _bootstrapperAdapter;        
         private TIocContainer _iocContainer;
 
         protected BootstrapperContainerBase(bool useApplication = true)
@@ -52,18 +50,14 @@ namespace LogoFX.Client.Bootstrapping
             base.OnStartup(sender, e);
             DisplayRootView();
         }
-
-        /// <summary>
-        /// Override to configure the framework and setup your <c>IoC</c> container.
-        /// </summary>
+        
         protected override void Configure()
         {
             base.Configure();
             Dispatch.Current.InitializeDispatch();
-            //overrided for performance reasons (Assembly caching)
+            //overriden for performance reasons (Assembly caching)
             ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
-            {
-                Debug.Assert(modelType != null && modelType.FullName != null);
+            {                
                 var viewTypeName = modelType.FullName.Substring(0, modelType.FullName.IndexOf("`") < 0
                     ? modelType.FullName.Length
                     : modelType.FullName.IndexOf("`")
@@ -78,8 +72,8 @@ namespace LogoFX.Client.Bootstrapping
                 Type viewType;
                 if (!_typedic.TryGetValue(viewTypeName, out viewType))
                 {
-                    _typedic[viewTypeName] = viewType = (from assmebly in AssemblySource.Instance
-                                                         from type in assmebly.GetExportedTypes()
+                    _typedic[viewTypeName] = viewType = (from assembly in AssemblySource.Instance
+                                                         from type in assembly.GetExportedTypes()
                                                          where type.FullName == viewTypeName
                                                          select type).FirstOrDefault();
                 }
@@ -107,16 +101,10 @@ namespace LogoFX.Client.Bootstrapping
             iocContainer.RegisterSingleton<TRootViewModel, TRootViewModel>();
             iocContainer.RegisterInstance(iocContainer);
         }
-
-        /// <summary>
-        /// Called on configure.
-        /// </summary>
-        /// <param name="container">The container.</param>
+        
         protected virtual void OnConfigure(TIocContainer container)
         {
         }
-
-        #region Overrides
 
         protected override object GetInstance(Type service, string key)
         {
@@ -145,17 +133,12 @@ namespace LogoFX.Client.Bootstrapping
             return initializationFacade.AssembliesResolver.GetAssemblies();
         }
 
-        #endregion
-
-        /// <summary>
-        /// Gets the modules path that MEF need to search.
-        /// </summary>
-        /// <value>The modules path.</value>
         public virtual string ModulesPath
         {
             get { return "."; }
         }
 
+        private readonly object _defaultLifetimeScope = new object();
         public virtual object CurrentLifetimeScope
         {
             get { return _defaultLifetimeScope; }
@@ -163,32 +146,14 @@ namespace LogoFX.Client.Bootstrapping
 
         public IEnumerable<ICompositionModule> Modules { get; private set; }
 
-        #region private implementation
-        private void RegisterViewsAndViewModels(IIocContainer iocContainer)
-        {
-            //  register view models
+        private static void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
+        {            
             AssemblySource.Instance.ToArray()
-              .SelectMany(ass => ass.GetTypes())
-                //  must be a type that ends with ViewModel
-              .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))
-                //  must be in a namespace ending with ViewModels
-              .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))
-                //  must implement INotifyPropertyChanged (deriving from PropertyChangedBase will statisfy this)
+              .SelectMany(ass => ass.GetTypes())         
+              .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
+              .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
               .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
-                //  registered as self
-              .Apply(a => iocContainer.RegisterTransient(a, a));
-
-            ////  register views
-            //AssemblySource.Instance.ToArray()
-            //  .SelectMany(ass => ass.GetTypes())
-            //    //  must be a type that ends with View
-            //  .Where(type => type.Name.EndsWith("View"))
-            //    //  must be in a namespace ending with ViewModels
-            //  .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("Views"))
-            //    //  registered as self
-            //  .Apply(a => _iocContainer.RegisterPerRequest(a, null, a));
-
+              .Apply(a => iocContainer.RegisterTransient(a, a));            
         }
-        #endregion
     }    
 }
