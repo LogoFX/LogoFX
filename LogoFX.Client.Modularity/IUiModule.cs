@@ -4,7 +4,9 @@ using Solid.Practices.Modularity;
 namespace LogoFX.Client.Modularity
 {
     public interface IUiModule : ICompositionModule
-    {        
+    {
+        string Id { get; }
+
         string Name { get; }
 
         int Order { get; }                
