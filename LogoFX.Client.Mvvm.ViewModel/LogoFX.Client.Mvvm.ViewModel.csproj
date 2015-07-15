@@ -33,9 +33,11 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Linq" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditableObjectViewModel.cs" />
     <Compile Include="EnumViewModel.cs" />
     <Compile Include="ObjectListViewModel.cs" />
     <Compile Include="ObjectViewModel.cs" />
@@ -71,6 +73,14 @@
     <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
       <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
       <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Commanding\LogoFX.Client.Mvvm.Commanding.csproj">
+      <Project>{191305D7-4AD6-41BC-ABA6-B20780401E45}</Project>
+      <Name>LogoFX.Client.Mvvm.Commanding</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.csproj">
+      <Project>{28C459B3-0E33-4052-B8FE-EBD532D65AAB}</Project>
+      <Name>LogoFX.Client.Mvvm.Model.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
       <Project>{1fc8c6d3-261a-416f-95b8-f3c334fb283a}</Project>

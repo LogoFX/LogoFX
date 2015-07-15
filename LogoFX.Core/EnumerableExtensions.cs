@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -6,6 +7,23 @@ namespace LogoFX.Core
 {    
     public static class EnumerableExtensions
     {
+        /// <summary>
+        /// Returns the first element of the sequence, or a default value if
+        /// the sequence contains mo elements.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <returns></returns>
+        public static object FirstOrDefault(this IEnumerable source)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+
+            IEnumerator enumerator = source.GetEnumerator();
+            enumerator.Reset();
+            return enumerator.MoveNext() ? enumerator.Current : null;
+        }
+
         /// <summary>
         /// Applies the action to the input collection one by one
         /// </summary>
