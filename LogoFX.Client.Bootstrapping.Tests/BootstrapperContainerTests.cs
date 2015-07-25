@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using Attest.Fake.Moq;
 using Caliburn.Micro;
+using LogoFX.Client.Bootstrapping.SimpleContainer;
+using LogoFX.Practices.IoC;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Bootstrapping.Tests
@@ -22,7 +24,7 @@ namespace LogoFX.Client.Bootstrapping.Tests
         {
             var mockWindowManager = _fakeFactory.CreateFake<IWindowManager>();
 
-            var bootstrapperContainerUnderTest = new TestBootstrapperContainer();
+            var bootstrapperContainerUnderTest = new TestBootstrapperContainer(new ExtendedSimpleIocContainer(new ExtendedSimpleContainer()));
 
             mockWindowManager.VerifyCall(
                 t => t.ShowWindow(It.IsAny<object>(), It.IsAny<object>(), It.IsAny<IDictionary<string, object>>()));

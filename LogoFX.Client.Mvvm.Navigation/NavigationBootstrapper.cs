@@ -16,12 +16,7 @@ namespace LogoFX.Client.Mvvm.Navigation
         private INavigationService NavigationService
         {
             get { return _navigationService ?? (_navigationService = new NavigationService()); }
-        }
-
-        protected NavigationBootstrapper(bool useApplication = true)
-            :base(useApplication)
-        {
-        }
+        }        
 
         protected NavigationBootstrapper(TIocContainer iocContainer, bool useApplication=true)
             :base(iocContainer, useApplication)

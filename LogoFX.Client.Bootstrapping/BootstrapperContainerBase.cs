@@ -25,14 +25,8 @@ namespace LogoFX.Client.Bootstrapping
     {
         private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
         private IBootstrapperAdapter _bootstrapperAdapter;        
-        private TIocContainer _iocContainer;
-
-        protected BootstrapperContainerBase(bool useApplication = true)
-            :base(useApplication)
-        {
-            Initialize();
-        }
-
+        private readonly TIocContainer _iocContainer;
+        
         protected BootstrapperContainerBase(TIocContainer iocContainer, bool useApplication=true)            
             :base(useApplication)
         {
