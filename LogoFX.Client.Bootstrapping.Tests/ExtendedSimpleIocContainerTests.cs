@@ -1,5 +1,4 @@
 ﻿using LogoFX.Client.Bootstrapping.SimpleContainer;
-using LogoFX.Practices.IoC;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Bootstrapping.Tests
@@ -10,7 +9,7 @@ namespace LogoFX.Client.Bootstrapping.Tests
         [Test]
         public void Given_WhenDependencyIsRegisteredPerLifetimeAndDependencyIsResolved_ThenResolvedDependencyIsNotNull()
         {
-            var container = new ExtendedSimpleIocContainer(new ExtendedSimpleContainer());
+            var container = new ExtendedSimpleIocContainer();
             container.RegisterPerLifetime<ITestDependency, TestDependency>(() => TestLifetimeScopeProvider.Current);
             TestLifetimeScopeProvider.Current = new TestObject();
             var dependency = container.Resolve<ITestDependency>();
@@ -21,7 +20,7 @@ namespace LogoFX.Client.Bootstrapping.Tests
         [Test]
         public void Given_WhenDependencyIsRegisteredPerLifetimeAndDependencyIsResolvedAndLifetimeChangesAndDependencyIsResolved_ThenResolvedDependenciesAreDifferent()
         {
-            var container = new ExtendedSimpleIocContainer(new ExtendedSimpleContainer());
+            var container = new ExtendedSimpleIocContainer();
             container.RegisterPerLifetime<ITestDependency, TestDependency>(() => TestLifetimeScopeProvider.Current);
             TestLifetimeScopeProvider.Current = new TestObject();
             var dependency1 = container.Resolve<ITestDependency>();
@@ -34,7 +33,7 @@ namespace LogoFX.Client.Bootstrapping.Tests
         [Test]
         public void Given_WhenDependencyIsRegisteredPerLifetimeAndDependencyIsResolvedAndLifetimeIsSetToNullAndDependencyIsResolved_ThenResolvedDependencyIsNull()
         {
-            var container = new ExtendedSimpleIocContainer(new ExtendedSimpleContainer());
+            var container = new ExtendedSimpleIocContainer();
             container.RegisterPerLifetime<ITestDependency, TestDependency>(() => TestLifetimeScopeProvider.Current);
             TestLifetimeScopeProvider.Current = new TestObject();
             var dependency = container.Resolve<ITestDependency>();

@@ -21,12 +21,18 @@ namespace LogoFX.Client.Bootstrapping
         CaliburnApplication
 #endif
         where TRootViewModel : class
-        where TIocContainer : class, IIocContainer, IBootstrapperAdapter
+        where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
     {
         private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
         private IBootstrapperAdapter _bootstrapperAdapter;        
         private readonly TIocContainer _iocContainer;
-        
+
+        protected BootstrapperContainerBase(bool useApplication = true)
+            : this(new TIocContainer(), useApplication)
+        {
+           
+        }
+
         protected BootstrapperContainerBase(TIocContainer iocContainer, bool useApplication=true)            
             :base(useApplication)
         {

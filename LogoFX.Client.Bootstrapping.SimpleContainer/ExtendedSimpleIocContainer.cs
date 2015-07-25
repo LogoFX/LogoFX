@@ -8,11 +8,11 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
 {
     public class ExtendedSimpleIocContainer : IIocContainer, IBootstrapperAdapter
     {
-        private readonly ExtendedSimpleContainer _container;
+        private readonly ExtendedSimpleContainer _container = new ExtendedSimpleContainer();
 
-        public ExtendedSimpleIocContainer(ExtendedSimpleContainer container)
+        public ExtendedSimpleIocContainer()
         {
-            _container = container;            
+            _container.RegisterInstance(typeof(ExtendedSimpleContainer), null, _container);
         }
         
         public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
