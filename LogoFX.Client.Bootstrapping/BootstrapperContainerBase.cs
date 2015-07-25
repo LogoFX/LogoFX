@@ -21,7 +21,7 @@ namespace LogoFX.Client.Bootstrapping
         CaliburnApplication
 #endif
         where TRootViewModel : class
-        where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
+        where TIocContainer : class, IIocContainer, IBootstrapperAdapter
     {
         private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
         private IBootstrapperAdapter _bootstrapperAdapter;        
@@ -122,11 +122,7 @@ namespace LogoFX.Client.Bootstrapping
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies()
-        {
-            if (_iocContainer == null)
-            {
-                _iocContainer = new TIocContainer();    
-            }            
+        {                     
             var initializationFacade = new BootstrapperInitializationFacade<TIocContainer>(GetType(), _iocContainer);
             initializationFacade.Initialize(ModulesPath);
             Modules = initializationFacade.Modules;

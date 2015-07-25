@@ -8,7 +8,12 @@ namespace LogoFX.Client.Bootstrapping.Unity
 {
     public class UnityIocContainer : IIocContainer, IBootstrapperAdapter
     {
-        private readonly UnityContainer _container = new UnityContainer();
+        private readonly UnityContainer _container;
+
+        public UnityIocContainer(UnityContainer unityContainer)
+        {
+            _container = unityContainer;
+        }        
 
         public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
         {

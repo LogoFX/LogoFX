@@ -13,7 +13,7 @@ namespace LogoFX.Practices.IoC
     {
         #region Nested Types
 
-        private class ContainerEntry : List<Func<SimpleContainer, object>>
+        private class ContainerEntry : List<Func<SimpleContainer, IParameter[], object>>
         {
             public string Key { get; set; }
             public Type Service { get; set; }
@@ -66,7 +66,7 @@ namespace LogoFX.Practices.IoC
             WeakReference wr = null;
             object singleton = null;
             RegisterHandler(service, key,
-                            (container) =>
+                            (container, args) =>
                             {
                                 GC.Collect();
                                 if (LifetimeIsDead(wr))
@@ -95,7 +95,7 @@ namespace LogoFX.Practices.IoC
         /// <param name = "implementation">The implementation.</param>
         public void RegisterInstance(Type service, string key, object implementation)
         {
-            RegisterHandler(service, key, container => implementation);
+            RegisterHandler(service, key, (container, args) => implementation);
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace LogoFX.Practices.IoC
         /// <param name = "implementation">The implementation.</param>
         public void RegisterPerRequest(Type service, string key, Type implementation)
         {
-            RegisterHandler(service, key, container => container.BuildInstance(implementation));
+            RegisterHandler(service, key, (container, args) => container.BuildInstance(implementation, args));
         }
 
         /// <summary>
@@ -118,7 +118,7 @@ namespace LogoFX.Practices.IoC
         public void RegisterSingleton(Type service, string key, Type implementation)
         {
             object singleton = null;
-            RegisterHandler(service, key, container => singleton ?? (singleton = container.BuildInstance(implementation)));
+            RegisterHandler(service, key, (container, args) => singleton ?? (singleton = container.BuildInstance(implementation)));
         }
 
         /// <summary>
@@ -127,11 +127,10 @@ namespace LogoFX.Practices.IoC
         /// <param name = "service">The service.</param>
         /// <param name = "key">The key.</param>
         /// <param name = "handler">The handler.</param>
-        public void RegisterHandler(Type service, string key, Func<SimpleContainer, object> handler)
+        public void RegisterHandler(Type service, string key, Func<SimpleContainer, IParameter[], object> handler)
         {
             GetOrCreateEntry(service, key).Add(handler);
         }
-
 
 #if WinRT
         /// <summary>
@@ -199,7 +198,49 @@ namespace LogoFX.Practices.IoC
             if (entry != null)
             {
                 //last registration always wins - this is a convention amongst ioc containers
-                return entry.Last()(this);
+                return entry.Last()(this,null);
+            }
+
+            if (s_delegateType.IsAssignableFrom(service))
+            {
+                var typeToCreate = service.GetGenericArguments()[0];
+                var factoryFactoryType = typeof(FactoryFactory<>).MakeGenericType(typeToCreate);
+                var factoryFactoryHost = Activator.CreateInstance(factoryFactoryType);
+                var factoryFactoryMethod = factoryFactoryType.GetMethod("Create");
+                return factoryFactoryMethod.Invoke(factoryFactoryHost, new object[] { this });
+            }
+
+            if (s_enumerableType.IsAssignableFrom(service))
+            {
+                var listType = service.GetGenericArguments()[0];
+                var instances = GetAllInstances(listType).ToList();
+                var array = Array.CreateInstance(listType, instances.Count);
+
+                for (var i = 0; i < array.Length; i++)
+                {
+                    array.SetValue(instances[i], i);
+                }
+
+                return array;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        ///   Requests an instance.
+        /// </summary>
+        /// <param name = "service">The service.</param>
+        /// <param name = "key">The key.</param>
+        /// <param name="parameters">optional dynamically injected parameters</param>
+        /// <returns>The instance, or null if a handler is not found.</returns>
+        public object GetInstance(Type service, string key, params IParameter[] parameters)
+        {
+            var entry = GetEntry(service, key);
+            if (entry != null)
+            {
+                //last registration always wins - this is a convention amongst ioc containers
+                return entry.Last()(this, parameters);
             }
 
             if (s_delegateType.IsAssignableFrom(service))
@@ -237,7 +278,7 @@ namespace LogoFX.Practices.IoC
         public IEnumerable<object> GetAllInstances(Type service)
         {
             var entry = GetEntry(service, null);
-            return entry != null ? entry.Select(x => x(this)) : new object[0];
+            return entry != null ? entry.Select(x => x(this, null)) : new object[0];
         }
 
         /// <summary>
@@ -291,10 +332,11 @@ namespace LogoFX.Practices.IoC
         ///   Actually does the work of creating the instance and satisfying it's constructor dependencies.
         /// </summary>
         /// <param name = "type">The type.</param>
+        /// <param name="parameters">dynamically injected parameters</param>
         /// <returns></returns>
-        protected object BuildInstance(Type type)
+        protected object BuildInstance(Type type, params IParameter[] parameters)
         {
-            var args = DetermineConstructorArgs(type);
+            var args = DetermineConstructorArgs(type, parameters);
             return ActivateInstance(type, args);
         }
 
@@ -343,15 +385,29 @@ namespace LogoFX.Practices.IoC
             return _entries.FirstOrDefault(x => x.Service == service && x.Key == key);
         }
 
-        private object[] DetermineConstructorArgs(Type implementation)
+        private object[] DetermineConstructorArgs(Type implementation, params IParameter[] parameters)
         {
             var args = new List<object>();
             var constructor = SelectEligibleConstructor(implementation);
 
             if (constructor != null)
-                args.AddRange(constructor.GetParameters().Select(info => GetInstance(info.ParameterType, null)));
+                args.AddRange(constructor.GetParameters().Select(info => CreateArgument(info, parameters)));
 
             return args.ToArray();
+        }
+
+        private object CreateArgument(ParameterInfo info, IParameter[] parameters)
+        {            
+            if (parameters != null)
+            {
+                //only match by name                
+                var match = parameters.OfType<NamedParameter>().FirstOrDefault(t => t.ParameterName == info.Name);
+                if (match != null)
+                {
+                    return match.ParameterValue;
+                }
+            }           
+            return GetInstance(info.ParameterType, null);
         }
 
 #if WinRT

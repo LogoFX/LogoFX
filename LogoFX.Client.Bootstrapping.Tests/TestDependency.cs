@@ -7,5 +7,5 @@
 
     class TestDependency : ITestDependency
     {
-    }
+    }    
 }

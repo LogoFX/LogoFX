@@ -36,7 +36,7 @@ namespace LogoFX.Practices.IoC
             }
         }
 
-        private object _syncObject = new object();
+        private readonly object _syncObject = new object();
 
         protected override object ActivateInstance(Type type, object[] args)
         {

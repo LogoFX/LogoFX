@@ -8,8 +8,13 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
 {
     public class ExtendedSimpleIocContainer : IIocContainer, IBootstrapperAdapter
     {
-        private readonly ExtendedSimpleContainer _container = new ExtendedSimpleContainer();
+        private readonly ExtendedSimpleContainer _container;
 
+        public ExtendedSimpleIocContainer(ExtendedSimpleContainer container)
+        {
+            _container = container;            
+        }
+        
         public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
         {
             _container.RegisterPerRequest(typeof(TService), null, typeof(TImplementation));
@@ -47,7 +52,7 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
 
         public void RegisterHandler(Type service, string key, Func<Practices.IoC.SimpleContainer, object> handler)
         {
-            _container.RegisterHandler(service,key,handler);
+            _container.RegisterHandler(service,key,(container,args) => handler);
         }
 
         public void RegisterPerLifetime<TService, TImplementation>(Func<object> lifetimeScopeAccess)
