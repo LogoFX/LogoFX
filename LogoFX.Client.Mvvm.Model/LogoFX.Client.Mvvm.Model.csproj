@@ -36,6 +36,7 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientModel.cs" />
     <Compile Include="EditableList.cs" />
     <Compile Include="EditableModel.cs" />
     <Compile Include="EditableSingleAttribute.cs" />
