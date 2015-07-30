@@ -30,32 +30,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogoFX.Async, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Async.1.0.0\lib\net451\LogoFX.Async.dll</HintPath>
+    <Reference Include="LogoFX.Client.Core">
+      <HintPath>..\packages\LogoFX.Client.Core.1.0.3\lib\net451\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.0\lib\net451\LogoFX.Client.Core.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.Commanding">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.0.3\lib\net451\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Commanding, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.0.0\lib\net451\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.Model">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.0\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.0\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model.Fake, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.0\lib\net451\LogoFX.Client.Mvvm.Model.Fake.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Core">
-      <HintPath>..\packages\LogoFX.Core.1.0.1\lib\net451\LogoFX.Core.dll</HintPath>
+    <Reference Include="LogoFX.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.0.3\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework" />
