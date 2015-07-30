@@ -46,7 +46,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Annotations.cs" />
+    <Compile Include="Annotations.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Interactivity\Behaviors\PasswordHelper.cs" />
     <Compile Include="Interactivity\Behaviors\SelectTextOnFocusBehavior.cs" />
     <Compile Include="Interactivity\Behaviors\UpdateSourceOnChangeBehavior.cs" />
@@ -77,6 +79,10 @@
     <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
       <Project>{E84A106C-3F18-4FB3-B3B8-61C3760AC548}</Project>
       <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
+      <Project>{1FC8C6D3-261A-416F-95B8-F3C334FB283A}</Project>
+      <Name>LogoFX.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

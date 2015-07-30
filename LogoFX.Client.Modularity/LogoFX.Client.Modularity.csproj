@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Solid.Practices.IoC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Solid.Practices.IoC.1.0.4\lib\net451\Solid.Practices.IoC.dll</HintPath>
-    </Reference>
     <Reference Include="Solid.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Solid.Practices.Modularity.1.0.4\lib\net451\Solid.Practices.Modularity.dll</HintPath>
