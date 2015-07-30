@@ -16,7 +16,7 @@ namespace LogoFX.Client.Mvvm.ViewModel
     public partial class WrappingCollection:IEnumerable,INotifyCollectionChanged,IDisposable
     {
         private readonly ObservableCollection<IEnumerable> _sources = new ObservableCollection<IEnumerable>();
-        private readonly ICollectionManager _collectionManager = CollectionManagerFactory.CreateRegularManager();
+        private readonly ICollectionManager _collectionManager;
         private Func<object, object> _factoryMethod;
         private Func<object,object> DefaultFactoryMethod =
             a => new { Model = a }
@@ -24,21 +24,16 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
         private IModelWrapper _loadingViewModel;
 
-        public WrappingCollection(bool isBulk = false) : this()
+        public WrappingCollection()
+            :this(isBulk:false)
+        {
+            
+        }
+
+        public WrappingCollection(bool isBulk = false)
         {
             _collectionManager = isBulk
                 ? CollectionManagerFactory.CreateRangeManager() : CollectionManagerFactory.CreateRegularManager();
-        }
-
-        public WrappingCollection(IEnumerable source):this()
-        {
-            if(source == null)
-                throw new ArgumentNullException("source");
-            _sources.Add(source);
-        }
-
-        public WrappingCollection()
-        {
             _collectionManager.CollectionChangedSource.CollectionChanged += OnCollectionChangedCore;
             _sources.CollectionChanged += SourcesCollectionChanged;
         }

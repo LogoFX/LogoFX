@@ -27,13 +27,14 @@ namespace LogoFX.Client.Mvvm.ViewModel
             private Action<object, SelectionChangingEventArgs> _selectionHandler;
             private PropertyChangedEventHandler _internalSelectionHandler;
 
-            public WithSelection(IEnumerable source, SelectionMode selectionMode = DefaultSelectionMode)
-                : base(source)
+            public WithSelection()
+                :this(selectionMode: DefaultSelectionMode, isBulk: false)
             {
-                _selectionMode = selectionMode;
+                
             }
 
-            public WithSelection(SelectionMode selectionMode = DefaultSelectionMode)
+            public WithSelection(SelectionMode selectionMode = DefaultSelectionMode, bool isBulk = false)
+                : base(isBulk)
             {
                 _selectionMode = selectionMode;
                 _selectedItems.CollectionChanged += (a, b) => OnSelectionChanged();
