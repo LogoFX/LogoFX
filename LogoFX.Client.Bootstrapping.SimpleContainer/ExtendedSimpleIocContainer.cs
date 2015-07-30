@@ -52,7 +52,7 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
 
         public void RegisterHandler(Type service, string key, Func<Practices.IoC.SimpleContainer, object> handler)
         {
-            _container.RegisterHandler(service,key,(container,args) => handler);
+            _container.RegisterHandler(service,key,(container,args) => handler(container));
         }
 
         public void RegisterPerLifetime<TService, TImplementation>(Func<object> lifetimeScopeAccess)

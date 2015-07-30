@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Linq;
+using NUnit.Framework;
 
 namespace LogoFX.Client.Bootstrapping.SimpleContainer.Tests
 {
@@ -41,5 +42,20 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer.Tests
 
             Assert.IsNull(dependency);
         }
-    }
+
+        [Test]
+        public void
+            GivenThereAreMultipleSameTypedDependencies_WhenDependencyIsRegisteredByHandlerAndDependencyIsRegisteredByHandler_ThenResolutionOfDependenciesCollectionIsCorrect
+            ()
+        {
+            var modules = new ITestModule[] { new TestModule { Name = "1" }, new TestModule { Name = "2" } };
+
+            var container = new ExtendedSimpleIocContainer();
+            container.RegisterHandler(typeof(ITestModule), null, (c) => modules[0]);
+            container.RegisterHandler(typeof(ITestModule), null, (c) => modules[1]);
+            var actualModules = container.GetAllInstances(typeof(ITestModule)).ToArray();
+
+            CollectionAssert.AreEqual(modules, actualModules);
+        }
+    }    
 }
