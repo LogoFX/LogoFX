@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ExtendedSimpleContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestModule.cs" />
     <Compile Include="TestParameterDependency.cs" />
   </ItemGroup>
   <ItemGroup>
