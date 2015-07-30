@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Core", "LogoFX.Core\LogoFX.Core.csproj", "{1FC8C6D3-261A-416F-95B8-F3C334FB283A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E534B559-5905-4F1F-9EA3-50358E7707EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Core.Tests", "LogoFX.Core.Tests\LogoFX.Core.Tests.csproj", "{81ADAC97-8F6D-4841-B9DE-4471C50757E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{2A39DB70-BA27-47BE-940A-97F0A7DFCBC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FC8C6D3-261A-416F-95B8-F3C334FB283A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FC8C6D3-261A-416F-95B8-F3C334FB283A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FC8C6D3-261A-416F-95B8-F3C334FB283A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FC8C6D3-261A-416F-95B8-F3C334FB283A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81ADAC97-8F6D-4841-B9DE-4471C50757E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81ADAC97-8F6D-4841-B9DE-4471C50757E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81ADAC97-8F6D-4841-B9DE-4471C50757E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81ADAC97-8F6D-4841-B9DE-4471C50757E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1FC8C6D3-261A-416F-95B8-F3C334FB283A} = {2A39DB70-BA27-47BE-940A-97F0A7DFCBC7}
+		{81ADAC97-8F6D-4841-B9DE-4471C50757E3} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
+	EndGlobalSection
+EndGlobal
