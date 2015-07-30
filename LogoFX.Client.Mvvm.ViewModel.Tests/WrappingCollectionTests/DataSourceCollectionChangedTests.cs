@@ -92,5 +92,24 @@ namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
 
             CollectionAssert.IsEmpty(wrappingCollection);
         }
+
+        [Test]
+        public void DataSourcesCollectionChanged_DataSourceIsAddedThenAllModelsAreRemovedThenModelIsAdded_ViewModelIsAdded()
+        {
+            var models = new[] { new TestModel(1), new TestModel(2), new TestModel(3)};
+            var newModel = new TestModel(4);
+            var originalDataSource =
+                new ObservableCollection<TestModel>(models);            
+
+            var wrappingCollection = new WrappingCollection { FactoryMethod = o => new TestViewModel((TestModel)o) };
+            wrappingCollection.AddSource(originalDataSource);
+            originalDataSource.Remove(models[0]);
+            originalDataSource.Remove(models[1]);
+            originalDataSource.Remove(models[2]);
+            originalDataSource.Add(newModel);
+
+            var expectedModels = new[] {newModel};            
+            CollectionAssert.AreEqual(expectedModels, wrappingCollection.OfType<TestViewModel>().Select(t => t.Model).ToArray());
+        }
     }
 }

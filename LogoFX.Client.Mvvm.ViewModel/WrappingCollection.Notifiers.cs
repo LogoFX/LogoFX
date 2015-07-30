@@ -214,11 +214,11 @@ a);
                 wrappers.ForEach(r =>
                 {
                     var oldWrapper = GetWrapperAt(sender, r.Item3);
+                    int oldIndex = _collectionManager.IndexOf(oldWrapper);
                     PutWrapperAt(sender, r.Item1, r.Item2, r.Item3);
-                    if (oldWrapper != null)
+                    if (oldWrapper != null && oldIndex >= 0)
                     {
-                        int oldIndex = _collectionManager.IndexOf(oldWrapper);
-                        _collectionManager.Insert(oldIndex, r.Item2);
+                        _collectionManager.Insert(oldIndex, r.Item2);                      
                     }
                     else
                     {
