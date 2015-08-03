@@ -30,11 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogoFX.Client.Bootstrapping">
+    <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.Core.2.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Platform, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping.Contracts">
+    <Reference Include="LogoFX.Client.Bootstrapping.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -48,6 +56,10 @@
     </Reference>
     <Reference Include="LogoFX.Practices.IoC, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.Modularity.1.0.3\lib\net451\LogoFX.Practices.Modularity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Composition, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -68,10 +80,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedSimpleIocContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleBootstrapper.cs" />
     <Compile Include="SimpleIocContainer.cs" />
   </ItemGroup>
   <ItemGroup>

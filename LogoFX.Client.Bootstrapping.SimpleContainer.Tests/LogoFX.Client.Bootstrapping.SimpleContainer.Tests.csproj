@@ -58,6 +58,10 @@
       <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.Modularity.1.0.3\lib\net451\LogoFX.Practices.Modularity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -79,16 +83,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedSimpleIocContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleBootstrapperTests.cs" />
     <Compile Include="TestDependency.cs" />
     <Compile Include="TestLifetimeScopeProvider.cs" />
     <Compile Include="TestModule.cs" />
     <Compile Include="TestObject.cs" />
+    <Compile Include="TestSimpleModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -7,5 +7,5 @@
     internal class TestModule : ITestModule
     {
         public string Name { get; set; }
-    }
+    }   
 }

@@ -13,6 +13,7 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
         public ExtendedSimpleIocContainer()
         {
             _container.RegisterInstance(typeof(ExtendedSimpleContainer), null, _container);
+            _container.RegisterInstance(typeof(Practices.IoC.SimpleContainer), null, _container);
         }
         
         public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
