@@ -114,7 +114,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         #endregion
 
-        #region Fields        
+        #region Fields
 
         private Snapshot _undoBuffer;        
 
@@ -208,22 +208,6 @@ namespace LogoFX.Client.Mvvm.Model
             RestoreFromUndoBuffer();
         }
 
-        public void Apply()
-        {
-            ClearUndoBuffer();
-        }
-
-        public void CancelApply()
-        {
-            if (_undoBuffer == null || CanUndo)
-            {
-                return;
-            }
-            
-            CanUndo = true;
-            IsDirty = true;
-        }
-        
         public virtual void MakeDirty()
         {
             if (IsDirty && CanUndo)

@@ -39,6 +39,7 @@
     <Compile Include="ICloneable.cs" />
     <Compile Include="ICopyable.cs" />
     <Compile Include="IEditableModel.cs" />
+    <Compile Include="IHaveErrors.cs" />
     <Compile Include="IHaveId.cs" />
     <Compile Include="IMergeable.cs" />
     <Compile Include="IModel.cs" />

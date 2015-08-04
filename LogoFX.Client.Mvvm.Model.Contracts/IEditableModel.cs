@@ -2,15 +2,9 @@
 
 namespace LogoFX.Client.Mvvm.Model.Contracts
 {
-    public interface IEditableModel : IEditableObject, ICanBeDirty
+    public interface IEditableModel : IEditableObject, ICanBeDirty, IHaveErrors
     {
-        void Undo();
-
-        void Apply();
-
-        void CancelApply();
-
-        bool HasErrors { get; }
+        void Undo();               
 
         void MakeDirty();
 
