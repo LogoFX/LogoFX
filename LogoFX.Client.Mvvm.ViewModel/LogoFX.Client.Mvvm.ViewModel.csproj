@@ -35,18 +35,22 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Commanding">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.0.3\lib\net451\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Commanding.1.0.3.1\lib\net451\LogoFX.Client.Mvvm.Commanding.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Mvvm.Core">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.3\lib\net451\LogoFX.Client.Mvvm.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Model">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4.1\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Model.Contracts">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4.1\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="LogoFX.Core">
       <HintPath>..\packages\LogoFX.Core.1.0.3\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
@@ -54,19 +58,19 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Linq" />
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Reactive.Core">
       <HintPath>..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Reactive.Interfaces">
       <HintPath>..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Reactive.Linq">
       <HintPath>..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="System.Reactive.PlatformServices">
       <HintPath>..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>

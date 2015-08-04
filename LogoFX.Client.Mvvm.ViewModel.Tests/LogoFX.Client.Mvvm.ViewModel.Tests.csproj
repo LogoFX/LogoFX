@@ -42,12 +42,11 @@
       <HintPath>..\packages\LogoFX.Client.Core.1.0.3\lib\net451\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Infra, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.0\lib\net451\LogoFX.Client.Tests.Infra.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="LogoFX.Client.Tests.Infra">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Infra.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.0\lib\net451\LogoFX.Client.Tests.Shared.dll</HintPath>
+    <Reference Include="LogoFX.Client.Tests.Shared">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
