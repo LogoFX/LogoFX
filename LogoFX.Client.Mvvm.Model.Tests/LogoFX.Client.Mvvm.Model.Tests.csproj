@@ -44,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClientModelValidationTests.cs" />
+    <Compile Include="EditableModelValidationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimpleEditableModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

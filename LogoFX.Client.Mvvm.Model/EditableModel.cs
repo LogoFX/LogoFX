@@ -3,18 +3,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using LogoFX.Core;
 using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model
 {
-    public class EditableModel<T> : Model<T>, IEditableModel
+    public partial class EditableModel<T> : Model<T>, IEditableModel
         where T : IEquatable<T>
     {
         #region Nested Types
@@ -117,20 +114,26 @@ namespace LogoFX.Client.Mvvm.Model
 
         #endregion
 
-        #region Fields
+        #region Fields        
 
-        private readonly Stack<Snapshot> _editStack = new Stack<Snapshot>();
+        private Snapshot _undoBuffer;        
 
-        private Snapshot _undoBuffer;
-
-        //private bool _undoBufferIsClear;
-
-        private bool _isDirty;
-
-        private readonly Dictionary<string, string> _errors =
-            new Dictionary<string, string>();
+        private bool _isDirty;        
 
         #endregion
+
+        public EditableModel()
+        {
+            var props = GetType().GetProperties().ToArray();
+            foreach (var propertyInfo in props)
+            {
+                var validationAttr = propertyInfo.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>().ToArray();
+                if (validationAttr.Length > 0)
+                {
+                    _withAttr.Add(propertyInfo.Name, new Tuple<PropertyInfo, ValidationAttribute[]>(propertyInfo, validationAttr));
+                }
+            }  
+        }
 
         #region Protected Methods
 
@@ -147,21 +150,7 @@ namespace LogoFX.Client.Mvvm.Model
         protected virtual void OnCancelEdit()
         {
 
-        }
-
-        protected void SetError(string error, [CallerMemberName] string propertyName = null)
-        {
-            if (String.IsNullOrEmpty(error))
-            {
-                _errors.Remove(propertyName);
-            }
-            else
-            {
-                _errors[propertyName] = error;
-            }
-
-            NotifyOfPropertyChange(() => HasErrors);
-        }
+        }        
 
         #endregion
 
@@ -169,68 +158,23 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void SetUndoBuffer(Snapshot snapshot)
         {
-            _undoBuffer = snapshot;
-            //_undoBufferIsClear = false;
+            _undoBuffer = snapshot;            
             CanUndo = true;
         }
 
         private void RestoreFromUndoBuffer()
-        {
-            //Debug.Assert(!_undoBufferIsClear);
-            Debug.Assert(CanUndo);
+        {                        
             _undoBuffer.Restore(this);
             ClearUndoBuffer();
         }
 
         private void ClearUndoBuffer()
-        {
-            //_undoBufferIsClear = true;
+        {         
             CanUndo = false;
             ClearDirty();
         }
 
-        #endregion
-
-        #region Overrides
-
-        public override string this[string columnName]
-        {
-            get
-            {
-                if (_errors.ContainsKey(columnName))
-                {
-                    return _errors[columnName];
-                }
-
-                return String.Empty;
-            }
-        }
-
-        #endregion
-
-        #region IEditableObject
-
-        void IEditableObject.BeginEdit()
-        {
-            var snapshot = new Snapshot(this);
-            _editStack.Push(snapshot);
-            OnBeginEdit();
-        }
-
-        void IEditableObject.EndEdit()
-        {
-            var snapshot = _editStack.Pop();
-            SetUndoBuffer(snapshot);
-            OnEndEdit();
-        }
-
-        void IEditableObject.CancelEdit()
-        {
-            OnCancelEdit();
-            _editStack.Pop().Restore(this);
-        }
-
-        #endregion
+        #endregion              
 
         #region ICanBeDirty
 
@@ -275,17 +219,11 @@ namespace LogoFX.Client.Mvvm.Model
             {
                 return;
             }
-
-            //_undoBufferIsClear = false;
+            
             CanUndo = true;
             IsDirty = true;
         }
-
-        public bool HasErrors
-        {
-            get { return _errors.Count > 0; }
-        }
-
+        
         public virtual void MakeDirty()
         {
             if (IsDirty && CanUndo)

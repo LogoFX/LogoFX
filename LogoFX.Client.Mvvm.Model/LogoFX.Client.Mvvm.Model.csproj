@@ -47,6 +47,12 @@
     <Compile Include="ClientModel.cs" />
     <Compile Include="EditableList.cs" />
     <Compile Include="EditableModel.cs" />
+    <Compile Include="EditableModel.EditingLifecycle.cs">
+      <DependentUpon>EditableModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EditableModel.Errors.cs">
+      <DependentUpon>EditableModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditableSingleAttribute.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Model.cs" />
