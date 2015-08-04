@@ -12,6 +12,7 @@ using System.Linq.Expressions;
 using System.Reactive.Linq;
 using System.Windows.Input;
 using LogoFX.Client.Core;
+using LogoFX.Client.Mvvm.Core;
 
 namespace LogoFX.Client.Mvvm.Commanding
 {
