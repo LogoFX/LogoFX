@@ -8,7 +8,7 @@ namespace LogoFX.Client.Mvvm.Model
 {
     using ValidationInfoDictionary = Dictionary<string, Tuple<PropertyInfo, ValidationAttribute[]>>;
 
-    static partial class TypeInformationProvider
+    partial class TypeInformationProvider
     {
         private static readonly Dictionary<Type, ValidationInfoDictionary> ValidationInfoSource =
             new Dictionary<Type, ValidationInfoDictionary>();
