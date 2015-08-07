@@ -118,12 +118,15 @@ namespace LogoFX.Client.Mvvm.Model
 
         private Snapshot _undoBuffer;        
 
-        private bool _isDirty;        
+        private bool _isDirty;
+
+        private Type _type;
 
         #endregion
 
         public EditableModel()
-        {            
+        {
+            _type = GetType();
             InitErrorListener();
         }
 

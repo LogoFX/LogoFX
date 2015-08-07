@@ -27,11 +27,11 @@ namespace LogoFX.Client.Mvvm.Model
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var changedPropertyName = e.PropertyName;
-            if (TypeInformationProvider.ContainsProperty(GetType(), changedPropertyName) == false)
+            if (TypeInformationProvider.ContainsProperty(_type, changedPropertyName) == false)
             {
                 return;
             }
-            var propertyValue = TypeInformationProvider.GetValue(GetType(), changedPropertyName, this);
+            var propertyValue = TypeInformationProvider.GetValue(_type, changedPropertyName, this);
             if (propertyValue != null)
             {
                 propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
@@ -55,7 +55,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private string GetInternalValidationErrorByPropertyName(string propertyName)
         {
-            var validationInfo = TypeInformationProvider.GetValidationInfo(GetType(), propertyName);
+            var validationInfo = TypeInformationProvider.GetValidationInfo(_type, propertyName);
             if (validationInfo == null)
             {
                 return null;
@@ -78,7 +78,7 @@ namespace LogoFX.Client.Mvvm.Model
             get 
             {               
                 var ownError = CalculateOwnError();
-                var childrenErrors = TypeInformationProvider.GetValuesUnboxed(GetType(), this).Select(t => t.Error).ToArray();
+                var childrenErrors = TypeInformationProvider.GetValuesUnboxed(_type, this).Select(t => t.Error).ToArray();
                 var stringBuilder = new StringBuilder();
                 AppendErrorIfNeeded(ownError, stringBuilder);
 
@@ -93,7 +93,7 @@ namespace LogoFX.Client.Mvvm.Model
         private string CalculateOwnError()
         {
             var stringBuilder = new StringBuilder();
-            foreach (var entry in TypeInformationProvider.GetValidationInfoCollection(GetType()))
+            foreach (var entry in TypeInformationProvider.GetValidationInfoCollection(_type))
             {
                 var propError = GetErrorByPropertyName(entry.Key);
                 stringBuilder.Append(propError);
