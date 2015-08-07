@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 
@@ -13,6 +15,17 @@ namespace LogoFX.Client.Mvvm.Model
 
         private readonly Dictionary<string, Tuple<PropertyInfo, ValidationAttribute[]>> _withAttr =
             new Dictionary<string, Tuple<PropertyInfo, ValidationAttribute[]>>();
+
+        private Dictionary<string, PropertyInfo> _dataErrorInfoProps;
+
+        private void InitErrorListener()
+        {
+            var type = GetType();
+            var props = type.GetProperties();
+            _dataErrorInfoProps =
+                props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(IDataErrorInfo)))
+                    .ToDictionary(t => t.Name, t => t);
+        }
 
         public override string this[string columnName]
         {

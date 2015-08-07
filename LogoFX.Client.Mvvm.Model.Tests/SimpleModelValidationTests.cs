@@ -5,67 +5,48 @@ namespace LogoFX.Client.Mvvm.Model.Tests
     [TestFixture]
     class SimpleModelValidationTests
     {
-        private const string InvalidName = "in$valid name";
-        private const string ValidName = "valid name";
-
         [Test]
         public void SimpleModelIsValid_ErrorIsNull()
         {
-            var model = new SimpleEditableModel(ValidName, 5);
+            var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
 
-            AssertModelHasErrorIsFalse(model);
+            AssertHelper.AssertModelHasErrorIsFalse(model);
         }
 
         [Test]
         public void SimpleModelIsInvalid_ErrorIsNotNull()
         {            
-            var model = new SimpleEditableModel(InvalidName, 5);
+            var model = new SimpleEditableModel(DataGenerator.InvalidName, 5);
 
-            AssertModelHasErrorIsTrue(model);
+            AssertHelper.AssertModelHasErrorIsTrue(model);
         }
 
         [Test]
         public void SimpleModelIsValidExternalErrorIsSet_ErrorIsNotNull()
         {
-            var model = new SimpleEditableModel(ValidName, 5);
+            var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
             model.SetError("external error", "Name");
 
-            AssertModelHasErrorIsTrue(model);   
+            AssertHelper.AssertModelHasErrorIsTrue(model);   
         }
 
         [Test]
         public void SimpleModelIsValidExternalErrorIsSetAndErrorIsRemoved_ErrorIsNull()
         {
-            var model = new SimpleEditableModel(ValidName, 5);
+            var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
             model.SetError("external error", "Name");
             model.ClearError("Name");
 
-            AssertModelHasErrorIsFalse(model);
+            AssertHelper.AssertModelHasErrorIsFalse(model);
         }
 
         [Test]
         public void SimpleModelIsValidAndModelBecomesInvalid_ErrorIsNotNull()
         {
-            var model = new SimpleEditableModel(ValidName, 5);
-            model.Name = InvalidName;
+            var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
+            model.Name = DataGenerator.InvalidName;
 
-            AssertModelHasErrorIsTrue(model);
-        }
-
-        private static void AssertModelHasErrorIsTrue(EditableModel model)
-        {
-            var error = model.Error;
-            var hasErrors = model.HasErrors;
-            Assert.IsNotNullOrEmpty(error);
-            Assert.IsTrue(hasErrors);
-        }
-
-        private static void AssertModelHasErrorIsFalse(EditableModel model)
-        {
-            var error = model.Error;
-            var hasErrors = model.HasErrors;
-            Assert.IsNullOrEmpty(error);
-            Assert.IsFalse(hasErrors);
+            AssertHelper.AssertModelHasErrorIsTrue(model);
         }
     }
 }

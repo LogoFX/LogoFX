@@ -132,7 +132,9 @@ namespace LogoFX.Client.Mvvm.Model
                 {
                     _withAttr.Add(propertyInfo.Name, new Tuple<PropertyInfo, ValidationAttribute[]>(propertyInfo, validationAttr));
                 }
-            }  
+            }
+            InitErrorListener();
+
         }
 
         #region Protected Methods
