@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using LogoFX.Client.Mvvm.Core;
@@ -42,8 +41,7 @@ namespace LogoFX.Client.Mvvm.Model
         {
             get
             {
-                var externalError = _externalErrors.ContainsKey(columnName) ? _externalErrors[columnName] : string.Empty;
-                return string.Concat(externalError, GetInternalValidationErrorByPropertyName(columnName));
+                return GetErrorByPropertyName(columnName);
             }
         }
 
@@ -53,26 +51,11 @@ namespace LogoFX.Client.Mvvm.Model
             return string.Concat(externalError, GetInternalValidationErrorByPropertyName(columnName));
         }
 
-        private string GetInternalValidationErrorByPropertyName(string propertyName)
+        private string GetInternalValidationErrorByPropertyName(string columnName)
         {
-            var validationInfo = TypeInformationProvider.GetValidationInfo(_type, propertyName);
-            if (validationInfo == null)
-            {
-                return null;
-            }
-            var stringBuilder = new StringBuilder();
-            var propInfo = validationInfo.Item1;
-            foreach (var validationAttribute in validationInfo.Item2)
-            {
-                var validationResult = validationAttribute.GetValidationResult(propInfo.GetValue(this), new ValidationContext(propertyName));
-                if (validationResult != null)
-                {
-                    stringBuilder.Append(validationResult.ErrorMessage);
-                }
-            }
-            return stringBuilder.ToString();
+            return ErrorService.GetValidationErrorByPropertyName(_type, columnName, this);
         }
-
+        
         public override string Error
         {
             get 

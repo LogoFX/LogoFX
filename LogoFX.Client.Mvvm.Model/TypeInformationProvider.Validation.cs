@@ -15,12 +15,23 @@ namespace LogoFX.Client.Mvvm.Model
 
         internal static Tuple<PropertyInfo, ValidationAttribute[]> GetValidationInfo(Type type, string propertyName)
         {
+            return GetValidationInfoImpl(type, propertyName);
+        }
+
+        internal static object GetValidationInfoValue(Type type, string propertyName, object propertyContainer)
+        {
+            var validationInfo = GetValidationInfoImpl(type, propertyName);
+            return validationInfo.Item1.GetValue(propertyContainer);
+        }
+
+        private static Tuple<PropertyInfo, ValidationAttribute[]> GetValidationInfoImpl(Type type, string propertyName)
+        {
             if (ValidationInfoSource.ContainsKey(type) == false)
             {
                 AddValidationInfoDictionary(type);
             }
             return ValidationInfoSource[type][propertyName];
-        }
+        }        
 
         internal static ValidationInfoDictionary GetValidationInfoCollection(Type type)
         {
