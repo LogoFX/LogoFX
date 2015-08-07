@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using LogoFX.Client.Core;
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
@@ -11,9 +12,8 @@ namespace LogoFX.Client.Mvvm.ViewModel
     /// Base class for <c>ViewModels</c>
     /// </summary>
     public abstract class ViewModelBase : NotifyPropertyChangedBase<ViewModelBase>, IDisposable, IViewModel
-#if SILVERLIGHT
         , INotifyDataErrorInfo
-#endif
+
     {
         #region IsEnabled property
 
@@ -304,13 +304,11 @@ namespace LogoFX.Client.Mvvm.ViewModel
         void FireErrorsChanged(string property)
 // ReSharper restore UnusedParameter.Local
         {
-#if SILVERLIGHT
             if (ErrorsChanged != null)
             {
                 ErrorsChanged(this, new DataErrorsChangedEventArgs(property));
             }
-#endif
-            OnPropertyChanged(()=>HasErrors);
+            OnPropertyChanged(()=> HasErrors);
         }
 
         /// <summary>
@@ -340,8 +338,6 @@ namespace LogoFX.Client.Mvvm.ViewModel
             FireErrorsChanged(property);
         }
 
-#if SILVERLIGHT
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-#endif
     }
 }
