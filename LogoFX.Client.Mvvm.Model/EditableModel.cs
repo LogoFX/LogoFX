@@ -134,7 +134,6 @@ namespace LogoFX.Client.Mvvm.Model
                 }
             }
             InitErrorListener();
-
         }
 
         #region Protected Methods

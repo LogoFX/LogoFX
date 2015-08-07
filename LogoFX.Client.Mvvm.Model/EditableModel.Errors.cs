@@ -5,6 +5,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using LogoFX.Client.Mvvm.Core;
+using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {
@@ -25,6 +27,26 @@ namespace LogoFX.Client.Mvvm.Model
             _dataErrorInfoProps =
                 props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(IDataErrorInfo)))
                     .ToDictionary(t => t.Name, t => t);
+            ListenToPropertyChange();
+        }
+
+        private void ListenToPropertyChange()
+        {
+            PropertyChanged += WeakDelegate.From(OnPropertyChanged);
+        }
+
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var changedPropertyName = e.PropertyName;
+            if (_dataErrorInfoProps.ContainsKey(changedPropertyName) == false)
+            {
+                return;
+            }
+            var propertyValue = _dataErrorInfoProps[changedPropertyName].GetValue(this);
+            if (propertyValue != null)
+            {
+                propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
+            }
         }
 
         public override string this[string columnName]
@@ -63,15 +85,37 @@ namespace LogoFX.Client.Mvvm.Model
 
         public override string Error
         {
-            get
-            {
+            get 
+            {               
+                var ownError = CalculateOwnError();
+                var childrenErrors = _dataErrorInfoProps.Select(t => (t.Value.GetValue(this) as IDataErrorInfo).Error);
                 var stringBuilder = new StringBuilder();
-                foreach (var tuple in _withAttr)
+                AppendErrorIfNeeded(ownError, stringBuilder);
+
+                foreach (var childError in childrenErrors)
                 {
-                    var propError = GetErrorByPropertyName(tuple.Key);
-                    stringBuilder.Append(propError);
+                    AppendErrorIfNeeded(childError, stringBuilder);
                 }
                 return stringBuilder.ToString();
+            }
+        }
+
+        private string CalculateOwnError()
+        {
+            var stringBuilder = new StringBuilder();
+            foreach (var tuple in _withAttr)
+            {
+                var propError = GetErrorByPropertyName(tuple.Key);
+                stringBuilder.Append(propError);
+            }
+            return stringBuilder.ToString();
+        }
+
+        private static void AppendErrorIfNeeded(string ownError, StringBuilder stringBuilder)
+        {
+            if (string.IsNullOrWhiteSpace(ownError) == false)
+            {
+                stringBuilder.AppendLine(ownError);
             }
         }
 
@@ -111,5 +155,14 @@ namespace LogoFX.Client.Mvvm.Model
             }
             NotifyOfPropertyChange(() => HasErrors);
         }
+    }
+
+    //use this attribute to mark the properties
+    //that should contibute to the Error property
+    //of the containing object
+    [AttributeUsage(AttributeTargets.Property)]
+    class IncludeErrorAttribute : Attribute
+    {
+
     }
 }
