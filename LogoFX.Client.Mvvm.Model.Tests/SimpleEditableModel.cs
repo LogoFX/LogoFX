@@ -5,7 +5,7 @@
         public SimpleEditableModel(string name, int age)
             : this()
         {
-            Name = name;
+            _name = name;
             Age = age;
         }
 
@@ -21,7 +21,8 @@
             get { return _name; }
             set
             {
-                _name = value;
+                MakeDirty();
+                _name = value;                
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange(() => Error);
             }

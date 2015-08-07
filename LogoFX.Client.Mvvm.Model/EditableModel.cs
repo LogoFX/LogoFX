@@ -106,7 +106,7 @@ namespace LogoFX.Client.Mvvm.Model
 #else
                 model.NotifyOfPropertyChange(() => model.Error);
 #endif
-                model.IsDirty = IsDirty;
+                model.OwnDirty = IsDirty;
             }
 
             #endregion
@@ -116,11 +116,9 @@ namespace LogoFX.Client.Mvvm.Model
 
         #region Fields
 
-        private Snapshot _undoBuffer;        
+        private Snapshot _undoBuffer;
 
-        private bool _isDirty;
-
-        private Type _type;
+        private readonly Type _type;
 
         #endregion
 
@@ -128,6 +126,7 @@ namespace LogoFX.Client.Mvvm.Model
         {
             _type = GetType();
             InitErrorListener();
+            InitDirtyListener();
         }
 
         #region Protected Methods
@@ -169,32 +168,7 @@ namespace LogoFX.Client.Mvvm.Model
             ClearDirty();
         }
 
-        #endregion              
-
-        #region ICanBeDirty
-
-        public virtual bool IsDirty
-        {
-            get { return _isDirty; }
-            private set
-            {
-                if (_isDirty == value)
-                {
-                    return;
-                }
-
-                _isDirty = value;
-                OnPropertyChanged(() => IsDirty);
-            }
-        }
-
-        public virtual void ClearDirty()
-        {
-            IsDirty = false;
-            CanUndo = false;
-        }
-
-        #endregion
+        #endregion                      
 
         #region IEditableModel
 
@@ -205,12 +179,12 @@ namespace LogoFX.Client.Mvvm.Model
 
         public virtual void MakeDirty()
         {
-            if (IsDirty && CanUndo)
+            if (OwnDirty && CanUndo)
             {
                 return;
             }
 
-            IsDirty = true;
+            OwnDirty = true;
             SetUndoBuffer(new Snapshot(this));
         }
 
@@ -234,7 +208,7 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
     }
 
-    public class EditableModel : EditableModel<int>
+    public partial class EditableModel : EditableModel<int>
     {
         
     }

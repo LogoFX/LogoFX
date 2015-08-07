@@ -3,6 +3,6 @@
     public interface ICanBeDirty
     {
         bool IsDirty { get; }
-        void ClearDirty();
+        void ClearDirty(bool forceClearChildren = false);
     }
 }
