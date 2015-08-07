@@ -27,11 +27,11 @@ namespace LogoFX.Client.Mvvm.Model
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var changedPropertyName = e.PropertyName;
-            if (TypeInformationProvider.ContainsProperty(_type, changedPropertyName) == false)
+            if (TypeInformationProvider.IsPropertyDataErrorInfoSource(_type, changedPropertyName) == false)
             {
                 return;
             }
-            var propertyValue = TypeInformationProvider.GetValue(_type, changedPropertyName, this);
+            var propertyValue = TypeInformationProvider.GetDataErrorInfoSourceValue(_type, changedPropertyName, this);
             if (propertyValue != null)
             {
                 propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
@@ -78,7 +78,7 @@ namespace LogoFX.Client.Mvvm.Model
             get 
             {               
                 var ownError = CalculateOwnError();
-                var childrenErrors = TypeInformationProvider.GetValuesUnboxed(_type, this).Select(t => t.Error).ToArray();
+                var childrenErrors = TypeInformationProvider.GetDataErrorInfoSourceValuesUnboxed(_type, this).Select(t => t.Error).ToArray();
                 var stringBuilder = new StringBuilder();
                 AppendErrorIfNeeded(ownError, stringBuilder);
 

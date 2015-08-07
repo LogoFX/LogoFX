@@ -13,12 +13,12 @@ namespace LogoFX.Client.Mvvm.Model
         private static readonly Dictionary<Type, DataErrorInfoDictionary> DataErrorInfoSource =
             new Dictionary<Type, DataErrorInfoDictionary>(); 
 
-        internal static bool ContainsProperty(Type type, string propertyName)
+        internal static bool IsPropertyDataErrorInfoSource(Type type, string propertyName)
         {
-            return ContainsPropertyImpl(type, propertyName);
+            return IsPropertyDataErrorInfoSourceImpl(type, propertyName);
         }
 
-        private static bool ContainsPropertyImpl(Type type, string propertyName)
+        private static bool IsPropertyDataErrorInfoSourceImpl(Type type, string propertyName)
         {
             if (DataErrorInfoSource.ContainsKey(type) == false)
             {
@@ -27,9 +27,9 @@ namespace LogoFX.Client.Mvvm.Model
             return DataErrorInfoSource[type].ContainsKey(propertyName);
         }
 
-        internal static object GetValue(Type type, string propertyName, object propertyContainer)
+        internal static object GetDataErrorInfoSourceValue(Type type, string propertyName, object propertyContainer)
         {
-            var containsProperty = ContainsPropertyImpl(type, propertyName);
+            var containsProperty = IsPropertyDataErrorInfoSourceImpl(type, propertyName);
             if (containsProperty == false)
             {
                 //TODO: consider throwing an exception
@@ -37,11 +37,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
             else
             {
-                return CalculateValueBoxed(type, propertyName, propertyContainer);
+                return CalculateDataErrorInfoSourceValueBoxed(type, propertyName, propertyContainer);
             }
         }
 
-        internal static IEnumerable<IDataErrorInfo> GetValuesUnboxed(Type type, object propertyContainer)
+        internal static IEnumerable<IDataErrorInfo> GetDataErrorInfoSourceValuesUnboxed(Type type, object propertyContainer)
         {
             if (DataErrorInfoSource.ContainsKey(type) == false)
             {
@@ -52,7 +52,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static IDataErrorInfo GetValueUnboxed(Type type, string propertyName, object propertyContainer)
         {
-            var containsProperty = ContainsPropertyImpl(type, propertyName);
+            var containsProperty = IsPropertyDataErrorInfoSourceImpl(type, propertyName);
             if (containsProperty == false)
             {
                 //TODO: consider throwing an exception
@@ -60,11 +60,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
             else
             {
-                return (IDataErrorInfo)CalculateValueBoxed(type, propertyName, propertyContainer);
+                return (IDataErrorInfo)CalculateDataErrorInfoSourceValueBoxed(type, propertyName, propertyContainer);
             }
         }
 
-        private static object CalculateValueBoxed(Type type, string propertyName, object propertyContainer)
+        private static object CalculateDataErrorInfoSourceValueBoxed(Type type, string propertyName, object propertyContainer)
         {
             return DataErrorInfoSource[type][propertyName].GetValue(propertyContainer);
         }
