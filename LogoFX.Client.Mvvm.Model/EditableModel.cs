@@ -123,16 +123,7 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
 
         public EditableModel()
-        {
-            var props = GetType().GetProperties().ToArray();
-            foreach (var propertyInfo in props)
-            {
-                var validationAttr = propertyInfo.GetCustomAttributes(typeof(ValidationAttribute), true).Cast<ValidationAttribute>().ToArray();
-                if (validationAttr.Length > 0)
-                {
-                    _withAttr.Add(propertyInfo.Name, new Tuple<PropertyInfo, ValidationAttribute[]>(propertyInfo, validationAttr));
-                }
-            }
+        {            
             InitErrorListener();
         }
 

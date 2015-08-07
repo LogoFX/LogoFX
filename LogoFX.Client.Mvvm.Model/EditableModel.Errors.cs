@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using LogoFX.Client.Mvvm.Core;
 using LogoFX.Core;
@@ -15,18 +14,8 @@ namespace LogoFX.Client.Mvvm.Model
         private readonly Dictionary<string, string> _externalErrors =
             new Dictionary<string, string>();
 
-        private readonly Dictionary<string, Tuple<PropertyInfo, ValidationAttribute[]>> _withAttr =
-            new Dictionary<string, Tuple<PropertyInfo, ValidationAttribute[]>>();
-
-        private Dictionary<string, PropertyInfo> _dataErrorInfoProps;
-
         private void InitErrorListener()
-        {
-            var type = GetType();
-            var props = type.GetProperties();
-            _dataErrorInfoProps =
-                props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(IDataErrorInfo)))
-                    .ToDictionary(t => t.Name, t => t);
+        {            
             ListenToPropertyChange();
         }
 
@@ -38,11 +27,11 @@ namespace LogoFX.Client.Mvvm.Model
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var changedPropertyName = e.PropertyName;
-            if (_dataErrorInfoProps.ContainsKey(changedPropertyName) == false)
+            if (TypeInformationProvider.ContainsProperty(GetType(), changedPropertyName) == false)
             {
                 return;
             }
-            var propertyValue = _dataErrorInfoProps[changedPropertyName].GetValue(this);
+            var propertyValue = TypeInformationProvider.GetValue(GetType(), changedPropertyName, this);
             if (propertyValue != null)
             {
                 propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
@@ -66,13 +55,14 @@ namespace LogoFX.Client.Mvvm.Model
 
         private string GetInternalValidationErrorByPropertyName(string propertyName)
         {
-            if (_withAttr.ContainsKey(propertyName) == false)
+            var validationInfo = TypeInformationProvider.GetValidationInfo(GetType(), propertyName);
+            if (validationInfo == null)
             {
                 return null;
             }
             var stringBuilder = new StringBuilder();
-            var propInfo = _withAttr[propertyName].Item1;
-            foreach (var validationAttribute in _withAttr[propertyName].Item2)
+            var propInfo = validationInfo.Item1;
+            foreach (var validationAttribute in validationInfo.Item2)
             {
                 var validationResult = validationAttribute.GetValidationResult(propInfo.GetValue(this), new ValidationContext(propertyName));
                 if (validationResult != null)
@@ -88,7 +78,7 @@ namespace LogoFX.Client.Mvvm.Model
             get 
             {               
                 var ownError = CalculateOwnError();
-                var childrenErrors = _dataErrorInfoProps.Select(t => (t.Value.GetValue(this) as IDataErrorInfo).Error);
+                var childrenErrors = TypeInformationProvider.GetValuesUnboxed(GetType(), this).Select(t => t.Error).ToArray();
                 var stringBuilder = new StringBuilder();
                 AppendErrorIfNeeded(ownError, stringBuilder);
 
@@ -103,9 +93,9 @@ namespace LogoFX.Client.Mvvm.Model
         private string CalculateOwnError()
         {
             var stringBuilder = new StringBuilder();
-            foreach (var tuple in _withAttr)
+            foreach (var entry in TypeInformationProvider.GetValidationInfoCollection(GetType()))
             {
-                var propError = GetErrorByPropertyName(tuple.Key);
+                var propError = GetErrorByPropertyName(entry.Key);
                 stringBuilder.Append(propError);
             }
             return stringBuilder.ToString();
