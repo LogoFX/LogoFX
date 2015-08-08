@@ -153,7 +153,7 @@ namespace LogoFX.Client.Mvvm.Model
         private void SetUndoBuffer(Snapshot snapshot)
         {
             _undoBuffer = snapshot;            
-            CanRejectChanges = true;
+            CanCancelChanges = true;
         }
 
         private void RestoreFromUndoBuffer()
@@ -164,7 +164,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void ClearUndoBuffer()
         {         
-            CanRejectChanges = false;
+            CanCancelChanges = false;
             ClearDirty();
         }
 
@@ -172,14 +172,14 @@ namespace LogoFX.Client.Mvvm.Model
 
         #region IEditableModel
 
-        public void RejectChanges()
+        public void CancelChanges()
         {
             RestoreFromUndoBuffer();
         }
 
         public virtual void MakeDirty()
         {
-            if (OwnDirty && CanRejectChanges)
+            if (OwnDirty && CanCancelChanges)
             {
                 return;
             }
@@ -188,19 +188,19 @@ namespace LogoFX.Client.Mvvm.Model
             SetUndoBuffer(new Snapshot(this));
         }
 
-        private bool _canRejectChanges;
+        private bool _canCancelChanges;
 
-        public bool CanRejectChanges
+        public bool CanCancelChanges
         {
-            get { return _canRejectChanges; }
+            get { return _canCancelChanges; }
             set
             {
-                if (_canRejectChanges == value)
+                if (_canCancelChanges == value)
                 {
                     return;
                 }
 
-                _canRejectChanges = value;
+                _canCancelChanges = value;
                 NotifyOfPropertyChange();
             }
         }

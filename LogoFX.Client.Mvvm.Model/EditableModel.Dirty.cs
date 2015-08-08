@@ -30,7 +30,7 @@ namespace LogoFX.Client.Mvvm.Model
         public virtual void ClearDirty(bool forceClearChildren = false)
         {
             OwnDirty = false;
-            CanRejectChanges = false;
+            CanCancelChanges = false;
             if (forceClearChildren)
             {
                 var children = TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this);
