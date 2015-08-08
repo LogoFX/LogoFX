@@ -4,10 +4,10 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     public interface IEditableModel : IEditableObject, ICanBeDirty, IHaveErrors
     {
-        void Undo();               
+        void RejectChanges();               
 
         void MakeDirty();
 
-        bool CanUndo { get; set; }
+        bool CanRejectChanges { get; set; }
     }
 }
