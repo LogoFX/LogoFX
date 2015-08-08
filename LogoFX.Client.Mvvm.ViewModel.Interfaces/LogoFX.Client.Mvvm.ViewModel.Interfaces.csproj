@@ -36,7 +36,6 @@
   <ItemGroup>
     <Compile Include="ICanBeBusy.cs" />
     <Compile Include="ICurrent.cs" />
-    <Compile Include="IEditableViewModel.cs" />
     <Compile Include="IHaveCurrentItem.cs" />
     <Compile Include="IHaveDisplayName.cs" />
     <Compile Include="IHaveSelectedItem.cs" />
