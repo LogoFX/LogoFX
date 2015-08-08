@@ -40,10 +40,18 @@ namespace LogoFX.Client.Mvvm.Model.Tests
 
     class NameValidationAttribute : ValidationAttribute
     {
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var str = value as string;
-            return str != null && str.Contains("$") == false;
+            var isValid = str != null && str.Contains("$") == false;
+            if (isValid)
+            {
+                return ValidationResult.Success;
+            }
+            else
+            {
+                return new ValidationResult("Name is invalid");
+            }
         }
     }
 }
