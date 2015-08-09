@@ -6,7 +6,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
     {        
         Task<bool> SaveAsync();
 
-        void Undo();
+        void CancelChanges();
 
         bool IsDirty { get; }
         bool HasErrors { get; }
