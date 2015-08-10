@@ -96,6 +96,7 @@
     <Compile Include="EditableObjectViewModel.cs" />
     <Compile Include="EditableScreenObjectViewModel.cs" />
     <Compile Include="IEditableViewModel.cs" />
+    <Compile Include="MessageResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultEventArgs.cs" />
     <Compile Include="ScreenObjectViewModel.cs" />
