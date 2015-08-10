@@ -100,7 +100,6 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             OnSaved(result);
             return result;
         }
-
         protected virtual void OnSaving()
         {
             var handler = Saving;
@@ -121,6 +120,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        protected abstract Task<MessageResult> OnSaveChangesPrompt();
+
+        protected abstract Task OnSaveChangesWithErrors();
+
         private void CancelChanges()
         {
             if (Model.CanCancelChanges)
@@ -138,6 +141,43 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         protected virtual void OnChangesCanceled()
         {
 
+        }
+
+        public override async void CanClose(Action<bool> callback)
+        {
+            if (IsDirty)
+            {
+                MessageResult retVal = await OnSaveChangesPrompt();
+
+                switch (retVal)
+                {
+                    case MessageResult.Cancel:
+                        callback(false);
+                        return;
+                    case MessageResult.Yes:
+                        if (HasErrors)
+                        {
+                            await OnSaveChangesWithErrors();
+                            callback(false);
+                            return;
+                        }
+
+                        var successful = await SaveAsync();
+                        if (successful == false)
+                        {
+                            callback(false);
+                            return;
+                        }
+                        break;
+                    case MessageResult.No:
+                        CancelChangesCommand.Execute(null);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+
+            base.CanClose(callback);
         }
 
         #endregion
