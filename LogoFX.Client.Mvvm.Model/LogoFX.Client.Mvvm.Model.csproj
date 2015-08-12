@@ -74,6 +74,9 @@
     <Compile Include="TypeInformationProvider.Error.cs">
       <DependentUpon>TypeInformationProvider.cs</DependentUpon>
     </Compile>
+    <Compile Include="TypeInformationProvider.Snapshot.cs">
+      <DependentUpon>TypeInformationProvider.cs</DependentUpon>
+    </Compile>
     <Compile Include="TypeInformationProvider.Validation.cs">
       <DependentUpon>TypeInformationProvider.cs</DependentUpon>
     </Compile>

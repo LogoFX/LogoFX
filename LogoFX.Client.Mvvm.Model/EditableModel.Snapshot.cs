@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,8 +12,6 @@ namespace LogoFX.Client.Mvvm.Model
     {
         protected sealed class Snapshot
         {
-            #region Fields
-
             private readonly IList<ValidationResult> _validationErrors;
 
             private readonly IDictionary<PropertyInfo, object> _state = new Dictionary<PropertyInfo, object>();
@@ -23,26 +20,9 @@ namespace LogoFX.Client.Mvvm.Model
 
             private readonly bool _isDirty;
 
-            #endregion
-
-            #region Constructors
-
             public Snapshot(EditableModel<T> model)
             {
-                var modelType = model.GetType();
-                HashSet<PropertyInfo> storableProperties = new HashSet<PropertyInfo>();
-                var modelProperties = GetStorableCandidates(modelType).ToArray();
-                foreach (var modelProperty in modelProperties)
-                {
-                    storableProperties.Add(modelProperty);
-                }
-                var declaredInterfaces = modelType.GetInterfaces();
-                var explicitProperties = declaredInterfaces.SelectMany(GetStorableCandidates);
-                foreach (var explicitProperty in explicitProperties)
-                {
-                    storableProperties.Add(explicitProperty);
-                }
-
+                var storableProperties = TypeInformationProvider.GetStorableProperties(model.GetType());                
                 foreach (PropertyInfo propertyInfo in storableProperties)
                 {
                     if (propertyInfo.IsDefined(typeof(EditableListAttribute), true) &&
@@ -61,23 +41,10 @@ namespace LogoFX.Client.Mvvm.Model
                 _isDirty = model.IsDirty;
             }
 
-            private static IEnumerable<PropertyInfo> GetStorableCandidates(Type modelType)
-            {
-                return modelType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
-            }
-
-            #endregion
-
-            #region Public Properties
-
             public bool IsDirty
             {
                 get { return _isDirty; }
             }
-
-            #endregion
-
-            #region Public Methods
 
             public static Snapshot Take(EditableModel<T> model)
             {
@@ -88,7 +55,7 @@ namespace LogoFX.Client.Mvvm.Model
             {
                 foreach (KeyValuePair<PropertyInfo, object> result in _state)
                 {
-                    if (result.Key.GetCustomAttributes(typeof(EditableSingleAttribute), true).Count() > 0 && result.Value is ICloneable<object>)
+                    if (result.Key.GetCustomAttributes(typeof(EditableSingleAttribute), true).Any() && result.Value is ICloneable<object>)
                     {
                         result.Key.SetValue(model, (result.Value as ICloneable<object>).Clone(), null);
                     }
@@ -116,8 +83,6 @@ namespace LogoFX.Client.Mvvm.Model
 #endif
                 model.OwnDirty = IsDirty;
             }
-
-            #endregion
         }
     }
 }
