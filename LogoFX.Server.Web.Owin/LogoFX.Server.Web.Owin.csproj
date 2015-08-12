@@ -66,8 +66,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppBuilderProxy.cs" />
-    <Compile Include="IAppBuilderProxy.cs" />
     <Compile Include="OwinBootstrapper.cs" />
     <Compile Include="OwinHttpConfigurationProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

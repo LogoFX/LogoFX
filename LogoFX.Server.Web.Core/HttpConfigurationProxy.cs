@@ -8,12 +8,7 @@ namespace LogoFX.Server.Web.Core
         public HttpConfigurationProxy(HttpConfiguration httpConfiguration)
         {
             HttpConfiguration = httpConfiguration;
-        }
-
-        public IHttpConfigurationProxy UseCompression()
-        {
-            throw new NotImplementedException();
-        }
+        }        
 
         public IHttpConfigurationProxy MapHttpRoutes()
         {
