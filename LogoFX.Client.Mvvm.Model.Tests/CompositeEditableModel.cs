@@ -1,11 +1,26 @@
-﻿namespace LogoFX.Client.Mvvm.Model.Tests
+﻿using System.Collections.Generic;
+
+namespace LogoFX.Client.Mvvm.Model.Tests
 {
-    class CompositeEditableModel : EditableModel
+    interface ICompositeEditableModel
+    {
+        [EditableList]
+        IEnumerable<int> Phones { get; } 
+    }
+
+    class CompositeEditableModel : EditableModel, ICompositeEditableModel
     {       
         public CompositeEditableModel(string location)
         {                                      
             Location = location; 
             Person = new SimpleEditableModel();           
+        }
+
+        public CompositeEditableModel(string location, IEnumerable<int> phones)
+        {
+            Location = location;
+            Person = new SimpleEditableModel();
+            Phones.AddRange(phones);
         }
 
         public string Location { get; private set; }
@@ -20,6 +35,24 @@
                 _person = value;
                 NotifyOfPropertyChange();
             }
+        }
+
+        private List<int> _phones;
+        
+        IEnumerable<int> ICompositeEditableModel.Phones
+        {
+            get { return _phones; }
+        }
+
+        private List<int> Phones
+        {
+            get { return _phones ?? (_phones = new List<int>()); }
+        }
+
+        public void AddPhone(int number)
+        {
+            MakeDirty();
+            _phones.Add(number);
         }
     }    
 }

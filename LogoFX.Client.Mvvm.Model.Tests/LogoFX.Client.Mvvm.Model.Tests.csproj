@@ -54,6 +54,7 @@
     <Compile Include="AssertHelper.cs" />
     <Compile Include="ClientModelValidationTests.cs" />
     <Compile Include="CompositeEditableModel.cs" />
+    <Compile Include="CompositeModelCancelChangesTests.cs" />
     <Compile Include="CompositeModelDirtyTests.cs" />
     <Compile Include="CompositeModelValidationTests.cs" />
     <Compile Include="DataGenerator.cs" />

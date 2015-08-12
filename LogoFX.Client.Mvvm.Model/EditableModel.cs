@@ -34,7 +34,21 @@ namespace LogoFX.Client.Mvvm.Model
 
             public Snapshot(EditableModel<T> model)
             {
-                foreach (PropertyInfo propertyInfo in model.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy))
+                var modelType = model.GetType();
+                HashSet<PropertyInfo> storableProperties = new HashSet<PropertyInfo>();
+                var modelProperties = GetStorableCandidates(modelType).ToArray();
+                foreach (var modelProperty in modelProperties)
+                {
+                    storableProperties.Add(modelProperty);
+                }                
+                var declaredInterfaces = modelType.GetInterfaces();                
+                var explicitProperties = declaredInterfaces.SelectMany(GetStorableCandidates);
+                foreach (var explicitProperty in explicitProperties)
+                {
+                    storableProperties.Add(explicitProperty);
+                }
+                
+                foreach (PropertyInfo propertyInfo in storableProperties)
                 {
                     if (propertyInfo.IsDefined(typeof(EditableListAttribute), true) &&
                         typeof(IList).IsAssignableFrom(propertyInfo.GetValue(model, null).GetType()))
@@ -55,6 +69,11 @@ namespace LogoFX.Client.Mvvm.Model
                 //}
                 _validationErrors = model.ValidationErrors;
                 _isDirty = model.IsDirty;
+            }
+
+            private static IEnumerable<PropertyInfo> GetStorableCandidates(Type modelType)
+            {
+                return modelType.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.FlattenHierarchy);
             }
 
             #endregion
