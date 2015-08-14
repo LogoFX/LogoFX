@@ -30,12 +30,40 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Attest.Fake.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Core.1.0.4\lib\net451\Attest.Fake.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Attest.Fake.Moq, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Moq.1.0.5\lib\net451\Attest.Fake.Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Attest.Tests.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.Core.1.0.4\lib\net451\Attest.Tests.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Attest.Tests.NUnit, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.NUnit.1.0.4\lib\net451\Attest.Tests.NUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro.Platform, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Bootstrapping.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Bootstrapping.SimpleContainer, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.SimpleContainer.1.0.3.2\lib\net451\LogoFX.Client.Bootstrapping.SimpleContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -62,8 +90,32 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.1\lib\net451\LogoFX.Client.Mvvm.ViewModel.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Client.Tests.Infra, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Infra.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Tests.NUnit, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.NUnit.1.0.3\lib\net451\LogoFX.Client.Tests.NUnit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Tests.Shared, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Core.1.0.3\lib\net451\LogoFX.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Practices.IoC, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.Modularity.1.0.3\lib\net451\LogoFX.Practices.Modularity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Moq, Version=4.2.1507.118, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -73,6 +125,26 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework">
       <HintPath>..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.1\PresentationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.4\lib\net451\Solid.Practices.Composition.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.4\lib\net451\Solid.Practices.Composition.Desktop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.IoC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.IoC.1.0.4\lib\net451\Solid.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Modularity.1.0.4\lib\net451\Solid.Practices.Modularity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Scheduling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.4\lib\net451\Solid.Practices.Scheduling.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -92,9 +164,7 @@
     <Compile Include="NameValidationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleEditableModel.cs" />
-    <Compile Include="TestEditableScreenObjectView.xaml.cs">
-      <DependentUpon>TestEditableScreenObjectView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="TestBootstrapper.cs" />
     <Compile Include="TestEditableScreenObjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,12 +175,6 @@
       <Project>{52314b3b-ddb3-48fd-a735-3adcf70d4014}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModel.Extensions</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="TestEditableScreenObjectView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

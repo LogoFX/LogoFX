@@ -1,59 +1,57 @@
-﻿using Caliburn.Micro;
+﻿using Attest.Fake.Moq;
+using LogoFX.Client.Bootstrapping.SimpleContainer;
+using LogoFX.Client.Tests.NUnit;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [TestFixture]
-    class EditableScreenObjectViewModelTests
-    {
-        [Test]
-        [RequiresSTA]
+    class EditableScreenObjectViewModelTests : TestsBaseWithActivation<ExtendedSimpleIocContainer,FakeFactory,TestConductorViewModel,TestBootstrapper>
+    {        
+        [Test]        
         public void ModelIsChanged_WhenViewModelIsClosed_MessageBoxIsDisplayed()
         {
             var simpleModel = new SimpleEditableModel();
             var mockMessageService = new FakeMessageService();
 
-            var rootObject = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
-            var windowManager = new FakeWindowManager();
-            var window = windowManager.CreateWindow(rootObject);
-            ScreenExtensions.TryActivate(rootObject);
+            var rootObject = CreateRootObject();
+            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            rootObject.ActivateItem(screenObjectViewModel);            
             simpleModel.Name = DataGenerator.ValidName;
-            window.Close();
+            screenObjectViewModel.CloseCommand.Execute(null);
 
             var wasCalled = mockMessageService.WasCalled;
             Assert.IsTrue(wasCalled);
         }
 
-        [Test]
-        [RequiresSTA]
+        [Test]        
         public void ModelIsNotChanged_WhenViewModelIsClosed_MessageBoxIsNotDisplayed()
         {
             var simpleModel = new SimpleEditableModel();
             var mockMessageService = new FakeMessageService();
 
-            var rootObject = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
-            simpleModel.Name = DataGenerator.ValidName;
-            rootObject.TryClose();
+            var rootObject = CreateRootObject();
+            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            rootObject.ActivateItem(screenObjectViewModel);            
+            screenObjectViewModel.CloseCommand.Execute(null);
 
             var wasCalled = mockMessageService.WasCalled;
             Assert.IsFalse(wasCalled);
         }
 
-        [Test]
-        [RequiresSTA]
+        [Test]        
         public void ModelIsChanged_WhenViewModelIsClosedAndMessageResultIsYes_ModelIsSaved()
         {
             var simpleModel = new SimpleEditableModel();
             var mockMessageService = new FakeMessageService();
             mockMessageService.SetMessageResult(MessageResult.Yes);
 
-            var rootObject = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
-            var windowManager = new FakeWindowManager();
-            var window = windowManager.CreateWindow(rootObject);
-            ScreenExtensions.TryActivate(rootObject);
+            var rootObject = CreateRootObject();
+            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            rootObject.ActivateItem(screenObjectViewModel);
             const string expectedValue = DataGenerator.ValidName;
             simpleModel.Name = expectedValue;
-            window.Close();
+            screenObjectViewModel.CloseCommand.Execute(null);
 
             var isDirty = simpleModel.IsDirty;
             Assert.False(isDirty);
@@ -68,14 +66,14 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             string initialValue = string.Empty;
             var simpleModel = new SimpleEditableModel(initialValue,20);
             var mockMessageService = new FakeMessageService();
-            mockMessageService.SetMessageResult(MessageResult.No);            
+            mockMessageService.SetMessageResult(MessageResult.No);
+            RegisterService<IMessageService>(mockMessageService);
 
-            var rootObject = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
-            var windowManager = new FakeWindowManager();
-            var window = windowManager.CreateWindow(rootObject);
-            ScreenExtensions.TryActivate(rootObject);            
+            var rootObject = CreateRootObject();         
+            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            rootObject.ActivateItem(screenObjectViewModel);                        
             simpleModel.Name = DataGenerator.ValidName;
-            window.Close();
+            screenObjectViewModel.CloseCommand.Execute(null);
 
             var isDirty = simpleModel.IsDirty;
             Assert.False(isDirty);
@@ -93,12 +91,11 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var mockMessageService = new FakeMessageService();
             mockMessageService.SetMessageResult(MessageResult.Cancel);
 
-            var rootObject = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
-            var windowManager = new FakeWindowManager();
-            var window = windowManager.CreateWindow(rootObject);
-            ScreenExtensions.TryActivate(rootObject);
+            var rootObject = CreateRootObject();
+            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            rootObject.ActivateItem(screenObjectViewModel);
             simpleModel.Name = newValue;
-            window.Close();
+            screenObjectViewModel.CloseCommand.Execute(null);            
 
             var isDirty = simpleModel.IsDirty;
             Assert.True(isDirty);

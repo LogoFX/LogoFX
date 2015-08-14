@@ -59,6 +59,17 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private ICommand _closeCommand;
+
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return _closeCommand ?? (_closeCommand = ActionCommand.When(() => IsBusy == false).Do(() => TryClose())
+                    .RequeryOnPropertyChanged(this, () => IsBusy));
+            }
+        }
+
         #endregion
 
         #region Public Properties

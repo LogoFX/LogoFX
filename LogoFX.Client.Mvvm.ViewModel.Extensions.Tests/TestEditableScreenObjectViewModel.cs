@@ -1,7 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Caliburn.Micro;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
+    class TestConductorViewModel : Conductor<object>.Collection.OneActive
+    {
+        
+    }
+
     class TestEditableScreenObjectViewModel : EditableScreenObjectViewModel<SimpleEditableModel>
     {
         private readonly IMessageService _messageService;
