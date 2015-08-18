@@ -79,13 +79,25 @@ namespace LogoFX.Client.Mvvm.Model
             DirtySource.Add(type, dirtySourceDictionary);
         }
 
-        internal static IEnumerable<PropertyInfo> GetPropertyDirtySourceCollections(Type type, object instance)
+        private static readonly Dictionary<Type, IEnumerable<PropertyInfo>> DirtySourceCollection =
+            new Dictionary<Type, IEnumerable<PropertyInfo>>();
+
+        internal static IEnumerable<PropertyInfo> GetPropertyDirtySourceCollections(Type type, object properyContainer)
+        {
+            if (DirtySourceCollection.ContainsKey(type) == false)
+            {
+                DirtySourceCollection.Add(type, CalculateDirtySourceCollectionProperties(type, properyContainer));
+            }
+            return DirtySourceCollection[type];
+        }
+
+        private static IEnumerable<PropertyInfo> CalculateDirtySourceCollectionProperties(Type type, object propertyContainer)
         {
             var props = type.GetProperties();
             // ReSharper disable once LoopCanBeConvertedToQuery - Becomes unreadable
             foreach (var prop in props)
             {
-                var isDirtySourceCollection = IsPropertyDirtySourceCollection(prop, instance);
+                var isDirtySourceCollection = IsPropertyDirtySourceCollection(prop, propertyContainer);
                 if (isDirtySourceCollection)
                 {
                     yield return prop;
@@ -93,18 +105,28 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
-        private static bool IsPropertyDirtySourceCollection(PropertyInfo propertyInfo, object instance)
+        internal static IEnumerable<ICanBeDirty> GetDirtySourceCollectionsUnboxed(Type type, object propertyContainer)
+        {
+            if (DirtySourceCollection.ContainsKey(type) == false)
+            {
+                DirtySourceCollection.Add(type, CalculateDirtySourceCollectionProperties(type, propertyContainer));
+            }
+            return DirtySourceCollection[type]
+                .Select(propertyInfo => propertyInfo.GetValue(propertyContainer)).OfType<IEnumerable<IEditableModel>>()
+                .SelectMany(dirtySourceCollection => dirtySourceCollection.ToArray());
+        }
+
+        private static bool IsPropertyDirtySourceCollection(PropertyInfo propertyInfo, object propertyContainer)
         {
             var isEnumerable = typeof (IEnumerable<IEditableModel>).IsAssignableFrom(propertyInfo.PropertyType);
             if (isEnumerable == false)
             {
                 return false;
             }
-            var actualValue = propertyInfo.GetValue(instance);
+            var actualValue = propertyInfo.GetValue(propertyContainer);
             var isTraceable = actualValue is INotifyCollectionChanged;                             
             return isTraceable;
 
         }
-    }
-    
+    }    
 }

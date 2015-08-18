@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using LogoFX.Client.Mvvm.Core;
-using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -27,10 +25,9 @@ namespace LogoFX.Client.Mvvm.Model
 
         private bool SourceCollectionsAreDirty()
         {
-            var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(_type, this).ToArray();
-            return propertyInfos
-                .Select(propertyInfo => propertyInfo.GetValue(this)).OfType<IEnumerable<IEditableModel>>()
-                .Any(dirtySourceCollection => dirtySourceCollection.Any(t => t.IsDirty));
+            return
+                TypeInformationProvider.GetDirtySourceCollectionsUnboxed(_type, this)
+                    .Any(dirtySource => dirtySource.IsDirty);
         }
 
         private bool OwnDirty

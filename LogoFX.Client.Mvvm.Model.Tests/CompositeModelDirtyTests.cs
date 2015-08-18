@@ -87,8 +87,8 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             var compositeModel = new CompositeEditableModel("location", new[] { simpleEditableModel });
             compositeModel.RemoveSimpleItem(simpleEditableModel);
             compositeModel.ClearDirty(true);
-            simpleEditableModel.Name = DataGenerator.InvalidName;
-
+            simpleEditableModel.Name = DataGenerator.InvalidName;    
+            
             Assert.IsFalse(compositeModel.IsDirty);
         }
     }
