@@ -1,11 +1,17 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
-    interface ICompositeEditableModel
+    interface ICompositeEditableModel : IEditableModel
     {
         [EditableList]
-        IEnumerable<int> Phones { get; } 
+        IEnumerable<int> Phones { get; }
+
+        SimpleEditableModel Person { get; set; }
+
+        IEnumerable<SimpleEditableModel> SimpleCollection { get; } 
     }
 
     class CompositeEditableModel : EditableModel, ICompositeEditableModel
@@ -23,6 +29,16 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             Phones.AddRange(phones);
         }
 
+        public CompositeEditableModel(string location, IEnumerable<SimpleEditableModel> simpleCollection)
+        {
+            Location = location;
+            Person = new SimpleEditableModel();
+            foreach (var simpleEditableModel in simpleCollection)
+            {
+                _simpleCollection.Add(simpleEditableModel);
+            }            
+        }
+
         public string Location { get; private set; }
 
         private SimpleEditableModel _person;        
@@ -37,22 +53,34 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             }
         }
 
-        private List<int> _phones;
+        private readonly ObservableCollection<SimpleEditableModel> _simpleCollection = new ObservableCollection<SimpleEditableModel>();        
+
+        public IEnumerable<SimpleEditableModel> SimpleCollection
+        {
+            get { return _simpleCollection; }
+        }
+
+        private readonly List<int> _phones = new List<int>();
         
         IEnumerable<int> ICompositeEditableModel.Phones
         {
             get { return _phones; }
-        }
-
+        }        
         private List<int> Phones
         {
-            get { return _phones ?? (_phones = new List<int>()); }
+            get { return _phones; }
         }
 
         public void AddPhone(int number)
         {
             MakeDirty();
             _phones.Add(number);
+        }
+
+        public void RemoveSimpleItem(SimpleEditableModel item)
+        {
+            MakeDirty();
+            _simpleCollection.Remove(item);
         }
     }    
 }

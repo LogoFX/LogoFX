@@ -1,6 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using LogoFX.Client.Mvvm.Core;
+using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -13,8 +16,21 @@ namespace LogoFX.Client.Mvvm.Model
         {
             get
             {                
-                return OwnDirty || TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this).Any(dirtySource => dirtySource.IsDirty);
+                return OwnDirty || SourceValuesAreDirty() || SourceCollectionsAreDirty();
             }
+        }
+
+        private bool SourceValuesAreDirty()
+        {
+            return TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this).Any(dirtySource => dirtySource.IsDirty);
+        }        
+
+        private bool SourceCollectionsAreDirty()
+        {
+            var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(_type, this).ToArray();
+            return propertyInfos
+                .Select(propertyInfo => propertyInfo.GetValue(this)).OfType<IEnumerable<IEditableModel>>()
+                .Any(dirtySourceCollection => dirtySourceCollection.Any(t => t.IsDirty));
         }
 
         private bool OwnDirty
@@ -44,6 +60,26 @@ namespace LogoFX.Client.Mvvm.Model
         private void InitDirtyListener()
         {
             ListenToDirtyPropertyChange();
+            //will be moved to another method:
+            var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(_type, this).ToArray();
+            foreach (var propertyInfo in propertyInfos)
+            {
+                var notifyCollectionChanged = propertyInfo.GetValue(this) as INotifyCollectionChanged;
+                if (notifyCollectionChanged != null)
+                {
+                    notifyCollectionChanged.CollectionChanged += WeakDelegate.From(NotifyCollectionChangedOnCollectionChanged);
+                }
+            }
+        }
+
+        private void NotifyCollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
+        {
+            switch (notifyCollectionChangedEventArgs.Action)
+            {
+                default :
+                    NotifyOfPropertyChange(() => IsDirty);
+                    break;
+            }
         }
 
         private void ListenToDirtyPropertyChange()
