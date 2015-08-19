@@ -17,5 +17,16 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             var phones = ((ICompositeEditableModel)compositeModel).Phones.ToArray();
             CollectionAssert.AreEqual(expectedPhones, phones);
         }
+
+        [Test]
+        public void InnerModelInsideCollectionIsRemoved_CanCancelChangesIsTrue()
+        {
+            var simpleEditableModel = new SimpleEditableModel();
+            var compositeModel = new CompositeEditableModel("location", new[] { simpleEditableModel });
+            var deepHierarchyModel = new DeepHierarchyEditableModel(new[] {compositeModel});
+            compositeModel.RemoveSimpleItem(simpleEditableModel);
+
+            Assert.IsTrue(deepHierarchyModel.CanCancelChanges);
+        }
     }
 }

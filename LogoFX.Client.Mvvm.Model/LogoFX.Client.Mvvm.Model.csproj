@@ -60,6 +60,9 @@
     <Compile Include="EditableModel.Errors.cs">
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditableModel.Restore.cs">
+      <DependentUpon>EditableModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="EditableSingleAttribute.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="Extensions.cs" />

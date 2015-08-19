@@ -18,6 +18,23 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        private bool _canCancelChanges = true;
+
+        public bool CanCancelChanges
+        {
+            get { return _canCancelChanges && (SourceValuesAreDirty() || SourceCollectionsAreDirty()); }
+            set
+            {
+                if (_canCancelChanges == value)
+                {
+                    return;
+                }
+
+                _canCancelChanges = value;
+                NotifyOfPropertyChange();
+            }
+        }
+
         private bool SourceValuesAreDirty()
         {
             return TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this).Any(dirtySource => dirtySource.IsDirty);
@@ -37,13 +54,29 @@ namespace LogoFX.Client.Mvvm.Model
             {
                 _isDirty = value;
                 NotifyOfPropertyChange(() => IsDirty);
+                NotifyOfPropertyChange(() => CanCancelChanges);
             }
         }
 
+        public void CancelChanges()
+        {
+            RestoreFromUndoBuffer();
+        }
+
+        public virtual void MakeDirty()
+        {
+            if (OwnDirty && CanCancelChanges)
+            {
+                return;
+            }
+
+            OwnDirty = true;
+            SetUndoBuffer(new Snapshot(this));
+        }   
+
         public virtual void ClearDirty(bool forceClearChildren = false)
         {
-            OwnDirty = false;
-            CanCancelChanges = false;
+            OwnDirty = false;            
             if (forceClearChildren)
             {
                 var children = TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this);
@@ -75,6 +108,7 @@ namespace LogoFX.Client.Mvvm.Model
             {
                 default :
                     NotifyOfPropertyChange(() => IsDirty);
+                    NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
             }
         }
@@ -95,6 +129,7 @@ namespace LogoFX.Client.Mvvm.Model
             if (propertyValue != null)
             {
                 propertyValue.NotifyOn("IsDirty", (o, o1) => NotifyOfPropertyChange(() => IsDirty));
+                propertyValue.NotifyOn("CanCancelChanges", (o, o1) => NotifyOfPropertyChange(() => CanCancelChanges));
             }
         }
     }
