@@ -67,13 +67,24 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             simpleEditableModel.Name = DataGenerator.InvalidName;            
 
             Assert.IsTrue(compositeModel.IsDirty);
-        }
+        }        
 
         [Test]
         public void InnerModelInsideCollectionIsRemovedAndMadeDirty_IsDirtyIsTrue()
         {
             var simpleEditableModel = new SimpleEditableModel();
             var compositeModel = new CompositeEditableModel("location", new[] { simpleEditableModel });
+            compositeModel.RemoveSimpleItem(simpleEditableModel);
+            simpleEditableModel.Name = DataGenerator.InvalidName;
+
+            Assert.IsTrue(compositeModel.IsDirty);
+        }
+
+        [Test]
+        public void GivenInnerModelIsExplicitlyObservable_InnerModelInsideCollectionIsRemovedAndMadeDirty_IsDirtyIsTrue()
+        {
+            var simpleEditableModel = new SimpleEditableModel();
+            var compositeModel = new ExplicitCompositeEditableModel("location", new[] { simpleEditableModel });
             compositeModel.RemoveSimpleItem(simpleEditableModel);
             simpleEditableModel.Name = DataGenerator.InvalidName;
 

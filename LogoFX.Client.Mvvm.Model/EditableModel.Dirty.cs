@@ -89,8 +89,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void InitDirtyListener()
         {
-            ListenToDirtyPropertyChange();
-            //will be moved to another method:
+            ListenToDirtyPropertyChange();            
             var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(_type, this).ToArray();
             foreach (var propertyInfo in propertyInfos)
             {
