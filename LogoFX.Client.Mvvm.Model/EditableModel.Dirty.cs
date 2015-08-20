@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
@@ -10,6 +11,49 @@ namespace LogoFX.Client.Mvvm.Model
 {
     partial class EditableModel<T>
     {
+        private interface IInnerChangesSubscriber
+        {
+            void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate, Action isCanCancelChangesChangedDelegate);
+        }
+
+        private class PropertyChangedInnerChangesSubscriber : IInnerChangesSubscriber
+        {
+            public void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate,
+                Action isCanCancelChangesChangedDelegate)
+            {
+                var propertyChangedSource = notifyingObject as INotifyPropertyChanged;
+                if (propertyChangedSource != null)
+                {
+                    propertyChangedSource.PropertyChanged += (sender, args) =>
+                    {
+                        if (args.PropertyName == "IsDirty")
+                        {
+                            isDirtyChangedDelegate.Invoke();
+                        }
+                        if (args.PropertyName == "CanCancelChanges")
+                        {
+                            isCanCancelChangesChangedDelegate.Invoke();
+                        }
+                    };
+                }
+            }
+        }
+
+        private class BindNotifierInnerChangesSubscriber : IInnerChangesSubscriber
+        {
+            public void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate,
+                Action isCanCancelChangesChangedDelegate)
+            {
+                notifyingObject.NotifyOn("IsDirty", (o, o1) =>
+                {
+                    isDirtyChangedDelegate();
+                });
+                notifyingObject.NotifyOn("CanCancelChanges", (o, o1) => isCanCancelChangesChangedDelegate());
+            }
+        }
+
+        private readonly IInnerChangesSubscriber _innerChangesSubscriber = new PropertyChangedInnerChangesSubscriber();
+
         private bool _isDirty;
 
         public virtual bool IsDirty
@@ -130,11 +174,11 @@ namespace LogoFX.Client.Mvvm.Model
                     NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
                     case NotifyCollectionChangedAction.Remove:
-                    var removedItems = notifyCollectionChangedEventArgs.OldItems;
-                    foreach (var removedItem in removedItems)
-                    {
-                        UnNotifyOnInnerChange(removedItem);
-                    }
+                    //var removedItems = notifyCollectionChangedEventArgs.OldItems;
+                    //foreach (var removedItem in removedItems)
+                    //{
+                    //    UnNotifyOnInnerChange(removedItem);
+                    //}
                     NotifyOfPropertyChange(() => IsDirty);
                     NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
@@ -155,16 +199,7 @@ namespace LogoFX.Client.Mvvm.Model
         private void OnDirtyPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var changedPropertyName = e.PropertyName;
-            if (changedPropertyName == "IsDirty")
-            {                
-                if (IsDirty)
-                {
-                    if (_undoBuffer == null)
-                    {
-                        SetUndoBuffer(new Snapshot(this));
-                    }    
-                }                
-            }
+            
             if (TypeInformationProvider.IsPropertyDirtySource(_type, changedPropertyName) == false)
             {
                 return;
@@ -179,14 +214,15 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void NotifyOnInnerChange(object notifyingObject)
         {
-            notifyingObject.NotifyOn("IsDirty", (o, o1) => NotifyOfPropertyChange(() => IsDirty));
-            notifyingObject.NotifyOn("CanCancelChanges", (o, o1) => NotifyOfPropertyChange(() => CanCancelChanges));
-        }
-
-        private void UnNotifyOnInnerChange(object notifyingObject)
-        {
-            notifyingObject.UnNotifyOn("IsDirty");
-            notifyingObject.UnNotifyOn("CanCancelChanges");
-        }
+            _innerChangesSubscriber.SubscribeToNotifyingObjectChanges(notifyingObject, () =>
+            {
+                var dirtySource = notifyingObject as ICanBeDirty;
+                if (dirtySource != null && _undoBuffer == null && dirtySource.IsDirty)
+                {
+                    MakeDirty();
+                }
+                NotifyOfPropertyChange(() => IsDirty);
+            }, () => NotifyOfPropertyChange(() => CanCancelChanges));            
+        }       
     }
 }

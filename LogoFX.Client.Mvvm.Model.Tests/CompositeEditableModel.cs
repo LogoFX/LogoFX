@@ -19,20 +19,20 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         public CompositeEditableModel(string location)
         {                                      
             Location = location; 
-            Person = new SimpleEditableModel();           
+            _person = new SimpleEditableModel();           
         }
 
         public CompositeEditableModel(string location, IEnumerable<int> phones)
         {
             Location = location;
-            Person = new SimpleEditableModel();
+            _person = new SimpleEditableModel();
             Phones.AddRange(phones);
         }
 
         public CompositeEditableModel(string location, IEnumerable<SimpleEditableModel> simpleCollection)
         {
             Location = location;
-            Person = new SimpleEditableModel();
+            _person = new SimpleEditableModel();
             foreach (var simpleEditableModel in simpleCollection)
             {
                 _simpleCollection.Add(simpleEditableModel);
@@ -48,6 +48,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             get { return _person; }
             set
             {
+                MakeDirty();
                 _person = value;
                 NotifyOfPropertyChange();
             }
@@ -94,20 +95,20 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         public ExplicitCompositeEditableModel(string location)
         {
             Location = location;
-            Person = new SimpleEditableModel();
+            _person = new SimpleEditableModel();
         }
 
         public ExplicitCompositeEditableModel(string location, IEnumerable<int> phones)
         {
             Location = location;
-            Person = new SimpleEditableModel();
+            _person = new SimpleEditableModel();
             Phones.AddRange(phones);
         }
 
         public ExplicitCompositeEditableModel(string location, IEnumerable<SimpleEditableModel> simpleCollection)
         {
             Location = location;
-            Person = new SimpleEditableModel();
+            _person = new SimpleEditableModel();
             foreach (var simpleEditableModel in simpleCollection)
             {
                 _simpleCollection.Add(simpleEditableModel);
