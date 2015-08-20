@@ -102,5 +102,35 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             
             Assert.IsFalse(compositeModel.IsDirty);
         }
+
+        [Test]
+        public void GivenInnerModelIsExplicitlyObservable_InnerModelInsideCollectionIsRemovedAndModelDirtyIsClearedAndMadeDirty_IsDirtyIsFalse()
+        {
+            var simpleEditableModel = new SimpleEditableModel();
+            var compositeModel = new ExplicitCompositeEditableModel("location", new[] { simpleEditableModel });
+            compositeModel.RemoveSimpleItem(simpleEditableModel);
+            compositeModel.ClearDirty(true);
+            simpleEditableModel.Name = DataGenerator.InvalidName;
+
+            Assert.IsFalse(compositeModel.IsDirty);
+        }
+
+        [Test]
+        public void GivenInnerModelIsExplicitlyObservable_InnerModelInsideCollectionIsRemoved_NotificationIsThrown()
+        {
+            var simpleEditableModel = new SimpleEditableModel();
+            var compositeModel = new ExplicitCompositeEditableModel("location", new[] { simpleEditableModel });
+            var flag = false;
+            compositeModel.PropertyChanged += (sender, args) =>
+            {
+                if (args.PropertyName == "IsDirty")
+                {
+                    flag = true;
+                }
+            };
+            compositeModel.RemoveSimpleItem(simpleEditableModel);            
+
+            Assert.IsTrue(flag);
+        }
     }
 }
