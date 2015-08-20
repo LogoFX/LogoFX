@@ -26,5 +26,20 @@ namespace LogoFX.Client.Mvvm.Model
             OnCancelEdit();
             _editStack.Pop().Restore(this);
         }
+
+        protected virtual void OnBeginEdit()
+        {
+
+        }
+
+        protected virtual void OnEndEdit()
+        {
+
+        }
+
+        protected virtual void OnCancelEdit()
+        {
+
+        }
     }
 }

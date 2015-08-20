@@ -15,24 +15,7 @@ namespace LogoFX.Client.Mvvm.Model
             _type = GetType();
             InitErrorListener();
             InitDirtyListener();
-        }
-
-        protected virtual void OnBeginEdit()
-        {
-
-        }
-
-        protected virtual void OnEndEdit()
-        {
-
-        }
-
-        protected virtual void OnCancelEdit()
-        {
-
-        }
-
-        
+        }                
     }
 
     public partial class EditableModel : EditableModel<int>
