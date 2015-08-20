@@ -7,7 +7,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
     class CompositeModelCancelChangesTests
     {
         [Test]
-        public void InnerModelIsMadeDirtyThenCancelChangesIsCalled_ModelDataIsRestored()
+        public void InnerModelIsMadeDirtyThenCancelChangesIsCalled_ModelDataIsRestoredAndIsDirtyIsFalse()
         {
             var expectedPhones = new[] {546, 432};
             var compositeModel = new CompositeEditableModel("Here", expectedPhones);
@@ -16,6 +16,8 @@ namespace LogoFX.Client.Mvvm.Model.Tests
 
             var phones = ((ICompositeEditableModel)compositeModel).Phones.ToArray();
             CollectionAssert.AreEqual(expectedPhones, phones);
+            var isCompositeDirty = compositeModel.IsDirty;
+            Assert.IsFalse(isCompositeDirty);
         }
 
         [Test]
@@ -27,6 +29,22 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             compositeModel.RemoveSimpleItem(simpleEditableModel);
 
             Assert.IsTrue(deepHierarchyModel.CanCancelChanges);
+        }
+
+        [Test]
+        public void InnerModelInsideCollectionIsRemovedAndCancelChangesIsCalled_ModelIsRestored()
+        {
+            var simpleEditableModel = new SimpleEditableModel();
+            var compositeModel = new CompositeEditableModel("location");
+            var deepHierarchyModel = new DeepHierarchyEditableModel();
+            compositeModel.AddSimpleModelImpl(simpleEditableModel);
+            deepHierarchyModel.AddCompositeItemImpl(compositeModel);
+            compositeModel.RemoveSimpleItem(simpleEditableModel);
+            deepHierarchyModel.CancelChanges();
+
+            Assert.IsFalse(deepHierarchyModel.CanCancelChanges);
+            Assert.IsFalse(deepHierarchyModel.IsDirty);
+            CollectionAssert.AreEquivalent(new[] {compositeModel}, deepHierarchyModel.CompositeModels);
         }
     }
 }

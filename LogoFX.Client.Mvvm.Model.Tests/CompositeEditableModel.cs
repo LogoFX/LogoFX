@@ -82,6 +82,11 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             MakeDirty();
             _simpleCollection.Remove(item);
         }
+
+        public void AddSimpleModelImpl(SimpleEditableModel simpleEditableModel)
+        {
+            _simpleCollection.Add(simpleEditableModel);
+        }
     }
 
     class ExplicitCompositeEditableModel : EditableModel, ICompositeEditableModel

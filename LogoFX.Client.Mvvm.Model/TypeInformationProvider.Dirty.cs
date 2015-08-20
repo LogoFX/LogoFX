@@ -119,8 +119,10 @@ namespace LogoFX.Client.Mvvm.Model
         private static bool IsPropertyDirtySourceCollection(PropertyInfo propertyInfo, object propertyContainer)
         {
             var isEnumerable = typeof (IEnumerable<ICanBeDirty>).IsAssignableFrom(propertyInfo.PropertyType);
-            return isEnumerable;
-            //
+            if (isEnumerable == false)
+            {
+                return false;
+            }            
             var actualValue = propertyInfo.GetValue(propertyContainer);
             var isTraceable = actualValue is INotifyCollectionChanged;                             
             return isTraceable;

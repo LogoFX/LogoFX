@@ -1,7 +1,9 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using LogoFX.Client.Mvvm.Core;
+using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -60,7 +62,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         public void CancelChanges()
         {
-            RestoreFromUndoBuffer();
+            RestoreFromUndoBuffer();                        
         }
 
         public virtual void MakeDirty()
@@ -68,8 +70,7 @@ namespace LogoFX.Client.Mvvm.Model
             if (OwnDirty && CanCancelChanges)
             {
                 return;
-            }
-
+            }            
             OwnDirty = true;
             SetUndoBuffer(new Snapshot(this));
         }   
@@ -79,10 +80,15 @@ namespace LogoFX.Client.Mvvm.Model
             OwnDirty = false;            
             if (forceClearChildren)
             {
-                var children = TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this);
-                foreach (var dirtyChild in children)
+                var dirtyProperties = TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this);
+                foreach (var dirtyProperty in dirtyProperties)
                 {
-                    dirtyChild.ClearDirty(true);
+                    dirtyProperty.ClearDirty(true);
+                }
+                var dirtyCollectionItems = TypeInformationProvider.GetDirtySourceCollectionsUnboxed(_type, this);
+                foreach (var dirtyCollectionItem in dirtyCollectionItems)
+                {
+                    dirtyCollectionItem.ClearDirty(true);
                 }
             }
         }
@@ -93,10 +99,19 @@ namespace LogoFX.Client.Mvvm.Model
             var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(_type, this).ToArray();
             foreach (var propertyInfo in propertyInfos)
             {
-                var notifyCollectionChanged = propertyInfo.GetValue(this) as INotifyCollectionChanged;
+                var actualValue = propertyInfo.GetValue(this); 
+                var notifyCollectionChanged = actualValue as INotifyCollectionChanged;
                 if (notifyCollectionChanged != null)
                 {
                     notifyCollectionChanged.CollectionChanged += WeakDelegate.From(NotifyCollectionChangedOnCollectionChanged);
+                }
+                var enumerable = actualValue as IEnumerable<ICanBeDirty>;
+                if (enumerable != null)
+                {
+                    foreach (var canBeDirty in enumerable)
+                    {
+                        NotifyOnInnerChange(canBeDirty);
+                    }
                 }
             }
         }
@@ -105,10 +120,30 @@ namespace LogoFX.Client.Mvvm.Model
         {
             switch (notifyCollectionChangedEventArgs.Action)
             {
-                default :
+                    case NotifyCollectionChangedAction.Add:
+                    var addedItems = notifyCollectionChangedEventArgs.NewItems;
+                    foreach (var addedItem in addedItems)
+                    {
+                        NotifyOnInnerChange(addedItem);
+                    }
                     NotifyOfPropertyChange(() => IsDirty);
                     NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
+                    case NotifyCollectionChangedAction.Remove:
+                    var removedItems = notifyCollectionChangedEventArgs.OldItems;
+                    foreach (var removedItem in removedItems)
+                    {
+                        UnNotifyOnInnerChange(removedItem);
+                    }
+                    NotifyOfPropertyChange(() => IsDirty);
+                    NotifyOfPropertyChange(() => CanCancelChanges);
+                    break;
+                    case NotifyCollectionChangedAction.Reset:
+                    NotifyOfPropertyChange(() => IsDirty);
+                    NotifyOfPropertyChange(() => CanCancelChanges);
+                    break;
+                    case NotifyCollectionChangedAction.Move: case NotifyCollectionChangedAction.Replace:                    
+                    break;                    
             }
         }
 
@@ -120,16 +155,38 @@ namespace LogoFX.Client.Mvvm.Model
         private void OnDirtyPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var changedPropertyName = e.PropertyName;
+            if (changedPropertyName == "IsDirty")
+            {                
+                if (IsDirty)
+                {
+                    if (_undoBuffer == null)
+                    {
+                        SetUndoBuffer(new Snapshot(this));
+                    }    
+                }                
+            }
             if (TypeInformationProvider.IsPropertyDirtySource(_type, changedPropertyName) == false)
             {
                 return;
             }
+            
             var propertyValue = TypeInformationProvider.GetDirtySourceValue(_type, changedPropertyName, this);
             if (propertyValue != null)
             {
-                propertyValue.NotifyOn("IsDirty", (o, o1) => NotifyOfPropertyChange(() => IsDirty));
-                propertyValue.NotifyOn("CanCancelChanges", (o, o1) => NotifyOfPropertyChange(() => CanCancelChanges));
+                NotifyOnInnerChange(propertyValue);
             }
+        }
+
+        private void NotifyOnInnerChange(object notifyingObject)
+        {
+            notifyingObject.NotifyOn("IsDirty", (o, o1) => NotifyOfPropertyChange(() => IsDirty));
+            notifyingObject.NotifyOn("CanCancelChanges", (o, o1) => NotifyOfPropertyChange(() => CanCancelChanges));
+        }
+
+        private void UnNotifyOnInnerChange(object notifyingObject)
+        {
+            notifyingObject.UnNotifyOn("IsDirty");
+            notifyingObject.UnNotifyOn("CanCancelChanges");
         }
     }
 }

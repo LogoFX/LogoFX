@@ -17,7 +17,7 @@
 
         private void ClearUndoBuffer()
         {
-            ClearDirty();
+            ClearDirty(forceClearChildren:true);
         }
     }
 }

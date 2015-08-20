@@ -7,6 +7,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
     {        
 
         public DeepHierarchyEditableModel(IEnumerable<CompositeEditableModel> compositeModels)
+            :this()
         {
             foreach (var compositeModel in compositeModels)
             {
@@ -14,17 +15,28 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             }
         }
 
-        private readonly ObservableCollection<CompositeEditableModel> _compositeModels = new ObservableCollection<CompositeEditableModel>();
+        public DeepHierarchyEditableModel()
+        {
 
+        }
+
+        private readonly ObservableCollection<CompositeEditableModel> _compositeModels = new ObservableCollection<CompositeEditableModel>();        
+
+        [EditableList]
         public IEnumerable<CompositeEditableModel> CompositeModels
         {
             get { return _compositeModels;}
         }
 
-        public void RemoveCompositeItem(CompositeEditableModel item)
+        public void AddCompositeItem(CompositeEditableModel item)
         {
             MakeDirty();
-            _compositeModels.Remove(item);
+            AddCompositeItemImpl(item);
+        }
+
+        internal void AddCompositeItemImpl(CompositeEditableModel item)
+        {
+            _compositeModels.Add(item);
         }
     }
 }
