@@ -21,7 +21,7 @@ namespace LogoFX.Client.Mvvm.Model
             private readonly bool _isDirty;
 
             public Snapshot(EditableModel<T> model)
-            {
+            {                
                 var storableProperties = TypeInformationProvider.GetStorableProperties(model.GetType());                
                 foreach (PropertyInfo propertyInfo in storableProperties)
                 {
@@ -39,16 +39,6 @@ namespace LogoFX.Client.Mvvm.Model
                 }
                 _validationErrors = model.ValidationErrors;
                 _isDirty = model.IsDirty;
-            }
-
-            public bool IsDirty
-            {
-                get { return _isDirty; }
-            }
-
-            public static Snapshot Take(EditableModel<T> model)
-            {
-                return new Snapshot(model);
             }
 
             public void Restore(EditableModel<T> model)
@@ -81,11 +71,11 @@ namespace LogoFX.Client.Mvvm.Model
 #else
                 model.NotifyOfPropertyChange(() => model.Error);
 #endif
-                model.OwnDirty = IsDirty;
+                model.OwnDirty = _isDirty;
             }
         }
 
-        private sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
+        protected sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
         {
             private readonly Snapshot _snapshot;
 
