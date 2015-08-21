@@ -3,7 +3,7 @@
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     interface ISimpleEditableModel : IEditableModel
-    {
+    {        
         string Name { get; set; }
     }
 
