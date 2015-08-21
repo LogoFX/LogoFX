@@ -14,16 +14,23 @@ namespace LogoFX.Client.Mvvm.Model
         private interface IInnerChangesSubscriber
         {
             void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate, Action isCanCancelChangesChangedDelegate);
+            void UnsubscribeToNotifyingObjectChanges(object notifyingObject);
         }
 
         private class PropertyChangedInnerChangesSubscriber : IInnerChangesSubscriber
         {
+            private Action _isDirtyChangedDelegate;
+            private Action _isCanCancelChangesChangedDelegate;
+
             public void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate,
                 Action isCanCancelChangesChangedDelegate)
             {
+                _isDirtyChangedDelegate = isDirtyChangedDelegate;
+                _isCanCancelChangesChangedDelegate = isCanCancelChangesChangedDelegate;
                 var propertyChangedSource = notifyingObject as INotifyPropertyChanged;
                 if (propertyChangedSource != null)
                 {
+                    propertyChangedSource.PropertyChanged += PropertyChangedSourceOnPropertyChanged;
                     propertyChangedSource.PropertyChanged += (sender, args) =>
                     {
                         if (args.PropertyName == "IsDirty")
@@ -35,6 +42,27 @@ namespace LogoFX.Client.Mvvm.Model
                             isCanCancelChangesChangedDelegate.Invoke();
                         }
                     };
+                }
+            }
+
+            public void UnsubscribeToNotifyingObjectChanges(object notifyingObject)
+            {
+                var propertyChangedSource = notifyingObject as INotifyPropertyChanged;
+                if (propertyChangedSource != null)
+                {
+                    propertyChangedSource.PropertyChanged -= PropertyChangedSourceOnPropertyChanged;
+                }
+            }
+
+            private void PropertyChangedSourceOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+            {
+                if (propertyChangedEventArgs.PropertyName == "IsDirty")
+                {
+                    _isDirtyChangedDelegate.Invoke();
+                }
+                if (propertyChangedEventArgs.PropertyName == "CanCancelChanges")
+                {
+                    _isCanCancelChangesChangedDelegate.Invoke();
                 }
             }
         }
@@ -49,6 +77,12 @@ namespace LogoFX.Client.Mvvm.Model
                     isDirtyChangedDelegate();
                 });
                 notifyingObject.NotifyOn("CanCancelChanges", (o, o1) => isCanCancelChangesChangedDelegate());
+            }
+
+            public void UnsubscribeToNotifyingObjectChanges(object notifyingObject)
+            {
+                notifyingObject.UnNotifyOn("IsDirty");
+                notifyingObject.UnNotifyOn("CanCancelChanges");
             }
         }
 
@@ -174,11 +208,11 @@ namespace LogoFX.Client.Mvvm.Model
                     NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
                     case NotifyCollectionChangedAction.Remove:
-                    //var removedItems = notifyCollectionChangedEventArgs.OldItems;
-                    //foreach (var removedItem in removedItems)
-                    //{
-                    //    UnNotifyOnInnerChange(removedItem);
-                    //}
+                    var removedItems = notifyCollectionChangedEventArgs.OldItems;
+                    foreach (var removedItem in removedItems)
+                    {
+                        UnNotifyOnInnerChange(removedItem);
+                    }
                     NotifyOfPropertyChange(() => IsDirty);
                     NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
@@ -223,6 +257,11 @@ namespace LogoFX.Client.Mvvm.Model
                 }
                 NotifyOfPropertyChange(() => IsDirty);
             }, () => NotifyOfPropertyChange(() => CanCancelChanges));            
-        }       
+        }
+
+        private void UnNotifyOnInnerChange(object removedItem)
+        {
+            _innerChangesSubscriber.UnsubscribeToNotifyingObjectChanges(removedItem);
+        }
     }
 }
