@@ -10,7 +10,12 @@ namespace LogoFX.Client.Mvvm.Model
 {
     public partial class EditableModel<T>
     {
-        protected sealed class Snapshot
+        interface ISnapshot
+        {
+            void Restore(EditableModel<T> model);
+        }
+
+        protected sealed class Snapshot : ISnapshot
         {
             private readonly IList<ValidationResult> _validationErrors;
 
@@ -73,15 +78,78 @@ namespace LogoFX.Client.Mvvm.Model
 #endif
                 model.OwnDirty = _isDirty;
             }
+        }        
+
+        protected sealed class HierarchicalSnapshot : ISnapshot
+        {            
+            private readonly IDictionary<PropertyInfo, object> _state = new Dictionary<PropertyInfo, object>();
+
+            private readonly IDictionary<PropertyInfo, IList<object>> _listsState = new Dictionary<PropertyInfo, IList<object>>();
+
+            public HierarchicalSnapshot(EditableModel<T> model)
+            {                
+                var storableProperties = TypeInformationProvider.GetStorableProperties(model.GetType());                
+                foreach (PropertyInfo propertyInfo in storableProperties)
+                {                    
+                    if (propertyInfo.IsDefined(typeof(EditableListAttribute), true) )
+                    {
+                        var value = propertyInfo.GetValue(model, null);
+                        if (typeof(IList).IsAssignableFrom(value.GetType()))
+                        {
+                            if (value is IEnumerable<EditableModel<T>>)
+                            {
+                                var unboxedValue = value as IEnumerable<EditableModel<T>>;
+                                var serializedList =
+                                    unboxedValue.Select(
+                                        t => (t is ICloneable<object>) ? ((ICloneable<object>) t).Clone() : t).ToArray();
+                                _listsState.Add(new KeyValuePair<PropertyInfo, IList<object>>(propertyInfo,
+                                    serializedList));
+                            }
+                            else
+                            {
+                                _listsState.Add(new KeyValuePair<PropertyInfo, IList<object>>(propertyInfo,
+                                    new List<object>(((IList) value).OfType<object>())));
+                            }
+                        }
+                    }
+                    else if (propertyInfo.CanWrite && propertyInfo.CanRead && propertyInfo.GetSetMethod() != null)
+                    {
+                        _state.Add(new KeyValuePair<PropertyInfo, object>(propertyInfo,
+                                                                          propertyInfo.GetValue(model, null)));
+                    }
+                }               
+            }
+
+            public void Restore(EditableModel<T> model)
+            {
+                foreach (KeyValuePair<PropertyInfo, object> result in _state)
+                {
+                    if (result.Key.GetCustomAttributes(typeof(EditableSingleAttribute), true).Any() && result.Value is ICloneable<object>)
+                    {
+                        result.Key.SetValue(model, (result.Value as ICloneable<object>).Clone(), null);
+                    }
+                    else
+                    {
+                        result.Key.SetValue(model, result.Value, null);
+                    }
+                }
+
+                foreach (KeyValuePair<PropertyInfo, IList<object>> result in _listsState)
+                {
+                    IList list = (IList)result.Key.GetValue(model, null);                    
+                    list.Clear();
+                    result.Value.ForEach(a => list.Add(a));                    
+                }               
+            }
         }
 
         protected sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
         {
-            private readonly Snapshot _snapshot;
+            private readonly ISnapshot _snapshot;
 
             internal SnapshotMementoAdapter(EditableModel<T> model)
             {
-                _snapshot = new Snapshot(model);
+                _snapshot = new HierarchicalSnapshot(model);
             }
 
             public IMemento<EditableModel<T>> Restore(EditableModel<T> target)

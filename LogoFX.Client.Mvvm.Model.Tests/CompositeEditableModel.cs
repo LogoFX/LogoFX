@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using LogoFX.Client.Mvvm.Model.Contracts;
 
@@ -14,7 +15,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         IEnumerable<SimpleEditableModel> SimpleCollection { get; } 
     }
 
-    class CompositeEditableModel : EditableModel, ICompositeEditableModel
+    class CompositeEditableModel : EditableModel, ICompositeEditableModel, ICloneable<object>, IEquatable<CompositeEditableModel>
     {       
         public CompositeEditableModel(string location)
         {                                      
@@ -87,6 +88,26 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         public void AddSimpleModelImpl(SimpleEditableModel simpleEditableModel)
         {
             _simpleCollection.Add(simpleEditableModel);
+        }
+
+        public object Clone()
+        {
+            var composite = new CompositeEditableModel(Location, Phones);
+            composite.Id = composite.Id;
+            foreach (var simpleEditableModel in SimpleCollection)
+            {
+                composite.AddSimpleModelImpl(simpleEditableModel);
+            }
+            return composite;
+        }
+
+        public bool Equals(CompositeEditableModel other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return other.Id == Id;
         }
     }
 

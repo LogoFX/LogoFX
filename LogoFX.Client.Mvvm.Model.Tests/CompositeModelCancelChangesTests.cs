@@ -45,7 +45,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             Assert.IsFalse(deepHierarchyModel.CanCancelChanges);
             Assert.IsFalse(deepHierarchyModel.IsDirty);
             CollectionAssert.AreEquivalent(new[] {compositeModel}, deepHierarchyModel.CompositeModels);
-            CollectionAssert.AreEquivalent(new[] {simpleEditableModel}, compositeModel.SimpleCollection);
+            CollectionAssert.AreEquivalent(new[] { simpleEditableModel }, deepHierarchyModel.CompositeModels.First().SimpleCollection);
         }
     }
 }
