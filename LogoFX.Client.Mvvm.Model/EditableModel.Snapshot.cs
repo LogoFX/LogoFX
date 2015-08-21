@@ -96,9 +96,9 @@ namespace LogoFX.Client.Mvvm.Model
                         var value = propertyInfo.GetValue(model, null);
                         if (typeof(IList).IsAssignableFrom(value.GetType()))
                         {
-                            if (value is IEnumerable<EditableModel<T>>)
+                            if (value is IEnumerable<IEditableModel>)
                             {
-                                var unboxedValue = value as IEnumerable<EditableModel<T>>;
+                                var unboxedValue = value as IEnumerable<IEditableModel>;
                                 var serializedList =
                                     unboxedValue.Select(
                                         t => (t is ICloneable<object>) ? ((ICloneable<object>) t).Clone() : t).ToArray();

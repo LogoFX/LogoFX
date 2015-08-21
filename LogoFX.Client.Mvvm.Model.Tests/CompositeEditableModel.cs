@@ -10,9 +10,9 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         [EditableList]
         IEnumerable<int> Phones { get; }
 
-        SimpleEditableModel Person { get; set; }
+        ISimpleEditableModel Person { get; set; }
 
-        IEnumerable<SimpleEditableModel> SimpleCollection { get; } 
+        IEnumerable<ISimpleEditableModel> SimpleCollection { get; } 
     }
 
     class CompositeEditableModel : EditableModel, ICompositeEditableModel, ICloneable<object>, IEquatable<CompositeEditableModel>
@@ -42,9 +42,9 @@ namespace LogoFX.Client.Mvvm.Model.Tests
 
         public string Location { get; private set; }
 
-        private SimpleEditableModel _person;        
+        private ISimpleEditableModel _person;        
 
-        public SimpleEditableModel Person
+        public ISimpleEditableModel Person
         {
             get { return _person; }
             set
@@ -55,11 +55,16 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             }
         }
 
-        private readonly ObservableCollection<SimpleEditableModel> _simpleCollection = new ObservableCollection<SimpleEditableModel>();        
+        private readonly ObservableCollection<SimpleEditableModel> _simpleCollection = new ObservableCollection<SimpleEditableModel>();
 
-        public IEnumerable<SimpleEditableModel> SimpleCollection
+        private ObservableCollection<SimpleEditableModel> SimpleCollectionImpl
         {
             get { return _simpleCollection; }
+        }
+
+        public IEnumerable<ISimpleEditableModel> SimpleCollection
+        {
+            get { return SimpleCollectionImpl; }
         }
 
         private readonly List<int> _phones = new List<int>();
@@ -94,7 +99,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         {
             var composite = new CompositeEditableModel(Location, Phones);
             composite.Id = composite.Id;
-            foreach (var simpleEditableModel in SimpleCollection)
+            foreach (var simpleEditableModel in SimpleCollectionImpl)
             {
                 composite.AddSimpleModelImpl(simpleEditableModel);
             }
@@ -138,9 +143,9 @@ namespace LogoFX.Client.Mvvm.Model.Tests
 
         public string Location { get; private set; }
 
-        private SimpleEditableModel _person;
+        private ISimpleEditableModel _person;
 
-        public SimpleEditableModel Person
+        public ISimpleEditableModel Person
         {
             get { return _person; }
             set
@@ -152,7 +157,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
 
         private readonly ObservableCollection<SimpleEditableModel> _simpleCollection = new ObservableCollection<SimpleEditableModel>();
 
-        IEnumerable<SimpleEditableModel> ICompositeEditableModel.SimpleCollection
+        IEnumerable<ISimpleEditableModel> ICompositeEditableModel.SimpleCollection
         {
             get { return _simpleCollection; }
         }

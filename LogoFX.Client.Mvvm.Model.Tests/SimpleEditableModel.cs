@@ -1,6 +1,13 @@
-﻿namespace LogoFX.Client.Mvvm.Model.Tests
+﻿using LogoFX.Client.Mvvm.Model.Contracts;
+
+namespace LogoFX.Client.Mvvm.Model.Tests
 {
-    class SimpleEditableModel : EditableModel
+    interface ISimpleEditableModel : IEditableModel
+    {
+        string Name { get; set; }
+    }
+
+    class SimpleEditableModel : EditableModel, ISimpleEditableModel
     {
         public SimpleEditableModel(string name, int age)
             : this()
