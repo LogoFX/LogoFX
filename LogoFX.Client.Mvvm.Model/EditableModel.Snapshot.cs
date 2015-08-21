@@ -85,11 +85,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
-        protected internal sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
+        private sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
         {
             private readonly Snapshot _snapshot;
 
-            private SnapshotMementoAdapter(EditableModel<T> model)
+            internal SnapshotMementoAdapter(EditableModel<T> model)
             {
                 _snapshot = new Snapshot(model);
             }

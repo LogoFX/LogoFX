@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model
 {
-    public partial class EditableModel<T> : IEditableObject
+    public partial class EditableModel<T>
     {
-        private readonly Stack<Snapshot> _editStack = new Stack<Snapshot>();
+        private readonly Stack<IMemento<EditableModel<T>>> _editStack = new Stack<IMemento<EditableModel<T>>>();
 
         void IEditableObject.BeginEdit()
         {
-            var snapshot = new Snapshot(this);
-            _editStack.Push(snapshot);
+            var memento = new SnapshotMementoAdapter(this);
+            _editStack.Push(memento);
             OnBeginEdit();
         }
 
         void IEditableObject.EndEdit()
         {
-            var snapshot = _editStack.Pop();
-            SetUndoBuffer(snapshot);
+            var memento = _editStack.Pop();
+            SetUndoBuffer(memento);
             OnEndEdit();
         }
 

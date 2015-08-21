@@ -116,7 +116,7 @@ namespace LogoFX.Client.Mvvm.Model
                 return;
             }            
             OwnDirty = true;
-            SetUndoBuffer(new Snapshot(this));
+            SetUndoBuffer(new SnapshotMementoAdapter(this));
         }   
 
         public virtual void ClearDirty(bool forceClearChildren = false)

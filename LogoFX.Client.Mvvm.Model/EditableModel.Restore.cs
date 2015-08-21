@@ -1,12 +1,14 @@
-﻿namespace LogoFX.Client.Mvvm.Model
+﻿using LogoFX.Client.Mvvm.Model.Contracts;
+
+namespace LogoFX.Client.Mvvm.Model
 {
     partial class EditableModel<T>
     {
-        private Snapshot _undoBuffer;
+        private IMemento<EditableModel<T>> _undoBuffer;
 
-        private void SetUndoBuffer(Snapshot snapshot)
+        private void SetUndoBuffer(IMemento<EditableModel<T>> memento)
         {
-            _undoBuffer = snapshot;
+            _undoBuffer = memento;
         }
 
         private void RestoreFromUndoBuffer()
