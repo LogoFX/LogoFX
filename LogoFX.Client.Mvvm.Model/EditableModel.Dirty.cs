@@ -30,18 +30,7 @@ namespace LogoFX.Client.Mvvm.Model
                 var propertyChangedSource = notifyingObject as INotifyPropertyChanged;
                 if (propertyChangedSource != null)
                 {
-                    propertyChangedSource.PropertyChanged += PropertyChangedSourceOnPropertyChanged;
-                    propertyChangedSource.PropertyChanged += (sender, args) =>
-                    {
-                        if (args.PropertyName == "IsDirty")
-                        {
-                            isDirtyChangedDelegate.Invoke();
-                        }
-                        if (args.PropertyName == "CanCancelChanges")
-                        {
-                            isCanCancelChangesChangedDelegate.Invoke();
-                        }
-                    };
+                    propertyChangedSource.PropertyChanged += PropertyChangedSourceOnPropertyChanged;                   
                 }
             }
 
@@ -88,7 +77,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private readonly IInnerChangesSubscriber _innerChangesSubscriber = new PropertyChangedInnerChangesSubscriber();
 
-        private bool _isDirty;
+        private bool _isOwnDirty;
 
         public virtual bool IsDirty
         {
@@ -102,7 +91,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         public bool CanCancelChanges
         {
-            get { return _canCancelChanges && (SourceValuesAreDirty() || SourceCollectionsAreDirty()); }
+            get { return _canCancelChanges && IsDirty; }
             set
             {
                 if (_canCancelChanges == value)
@@ -129,10 +118,10 @@ namespace LogoFX.Client.Mvvm.Model
 
         private bool OwnDirty
         {
-            get { return _isDirty; }
+            get { return _isOwnDirty; }
             set
             {
-                _isDirty = value;
+                _isOwnDirty = value;
                 NotifyOfPropertyChange(() => IsDirty);
                 NotifyOfPropertyChange(() => CanCancelChanges);
             }
