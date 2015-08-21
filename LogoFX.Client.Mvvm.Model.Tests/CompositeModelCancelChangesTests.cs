@@ -47,5 +47,28 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             CollectionAssert.AreEquivalent(new[] {compositeModel}, deepHierarchyModel.CompositeModels);
             CollectionAssert.AreEquivalent(new[] { simpleEditableModel }, deepHierarchyModel.CompositeModels.First().SimpleCollection);
         }
+
+        [Test]
+        public void InnerCollectionItemIsRemovedAndCancelChangesIsCalledAndInnerModelInsideCollectionIsRemovedAndCancelChangesIsCalled_ModelIsRestored()
+        {
+            var simpleEditableModelOne = new SimpleEditableModel(); 
+            var simpleEditableModelTwo = new SimpleEditableModel();
+            var compositeModel = new CompositeEditableModel("location");
+            var deepHierarchyModel = new DeepHierarchyEditableModel();
+            compositeModel.AddSimpleModelImpl(simpleEditableModelOne);
+            compositeModel.AddSimpleModelImpl(simpleEditableModelTwo);
+            deepHierarchyModel.AddCompositeItemImpl(compositeModel);
+
+            deepHierarchyModel.RemoveCompositeModel(compositeModel);
+            deepHierarchyModel.CancelChanges();
+            ((CompositeEditableModel)deepHierarchyModel.CompositeModels.First()).RemoveSimpleItem(simpleEditableModelOne);
+            deepHierarchyModel.CancelChanges();
+
+            Assert.IsFalse(deepHierarchyModel.CanCancelChanges);
+            Assert.IsFalse(deepHierarchyModel.IsDirty);
+            CollectionAssert.AreEquivalent(new[] { compositeModel }, deepHierarchyModel.CompositeModels);
+            CollectionAssert.AreEquivalent(new[] {simpleEditableModelOne, simpleEditableModelTwo},
+                deepHierarchyModel.CompositeModels.First().SimpleCollection);
+        }
     }
 }

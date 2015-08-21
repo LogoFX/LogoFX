@@ -11,12 +11,22 @@ namespace LogoFX.Client.Mvvm.Model
 {
     partial class EditableModel<T>
     {
+        /// <summary>
+        /// Represents an API for subscribing and unsubscribing to inner property notifications
+        /// </summary>
         private interface IInnerChangesSubscriber
         {
             void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate, Action isCanCancelChangesChangedDelegate);
             void UnsubscribeToNotifyingObjectChanges(object notifyingObject);
         }
 
+        //TODO
+        /// <summary>
+        /// An implementation of inner changes subscriber which is based on explicit INPC subscription
+        /// This implementation does NOT use Weak Delegates internally due to the 
+        /// fact that such an implementation fails to work and it is therefore necessary
+        /// to explicitly unsubscribe from the notifications - potential source of leaks
+        /// </summary>
         private class PropertyChangedInnerChangesSubscriber : IInnerChangesSubscriber
         {
             private Action _isDirtyChangedDelegate;
@@ -56,6 +66,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// An implementation of inner changes subscriber which is based on bind notifier mechanism
+        /// it is more efficient than the INPC-based one but it uses weak events internally
+        /// and fails to work in the real application 
+        /// </summary>
         private class BindNotifierInnerChangesSubscriber : IInnerChangesSubscriber
         {
             public void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate,
@@ -79,6 +94,9 @@ namespace LogoFX.Client.Mvvm.Model
 
         private bool _isOwnDirty;
 
+        /// <summary>
+        /// Returns the Dirty state of the Model
+        /// </summary>
         public virtual bool IsDirty
         {
             get
@@ -89,6 +107,11 @@ namespace LogoFX.Client.Mvvm.Model
 
         private bool _canCancelChanges = true;
 
+        /// <summary>
+        /// Returns the value that denotes whether the model's changes can be cancelled
+        /// Setting this value explicitly to false will disable changes cancellation
+        /// independently of the Dirty state of the Model
+        /// </summary>
         public bool CanCancelChanges
         {
             get { return _canCancelChanges && IsDirty; }
@@ -116,6 +139,10 @@ namespace LogoFX.Client.Mvvm.Model
                     .Any(dirtySource => dirtySource.IsDirty);
         }
 
+        /// <summary>
+        /// This state is used to store the information about the Model's own Dirty state
+        /// The overall Dirty state is influenced by this value as well as by the singular and collections Dirty states
+        /// </summary>
         private bool OwnDirty
         {
             get { return _isOwnDirty; }
@@ -127,11 +154,17 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Cancels the current changes in the Model
+        /// </summary>
         public void CancelChanges()
         {
             RestoreFromUndoBuffer();                        
         }
 
+        /// <summary>
+        /// Marks the Model as Dirty and stores its copy for possible restore
+        /// </summary>
         public virtual void MakeDirty()
         {
             if (OwnDirty && CanCancelChanges)
@@ -142,6 +175,10 @@ namespace LogoFX.Client.Mvvm.Model
             SetUndoBuffer(new SnapshotMementoAdapter(this));
         }   
 
+        /// <summary>
+        /// Clears the Dirty state of the Model
+        /// </summary>
+        /// <param name="forceClearChildren"></param>
         public virtual void ClearDirty(bool forceClearChildren = false)
         {
             OwnDirty = false;            
@@ -183,6 +220,13 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// The internal Dirty Source Collections might change from time to time
+        /// In order to keep track of Dirty state changes in their items
+        /// we must listen to the INCC events and subscribe/unsubscribe accordingly
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="notifyCollectionChangedEventArgs"></param>
         private void NotifyCollectionChangedOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs notifyCollectionChangedEventArgs)
         {
             switch (notifyCollectionChangedEventArgs.Action)
@@ -235,12 +279,18 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Subscribes to the Dirty state changes of the potential Dirty Source 
+        /// </summary>
+        /// <param name="notifyingObject"></param>
         private void NotifyOnInnerChange(object notifyingObject)
         {
             _innerChangesSubscriber.SubscribeToNotifyingObjectChanges(notifyingObject, () =>
             {
+                //This is the case where an inner Model reports a change in its Dirty state
+                //If the current Model is not Dirty yet it should be marked as one
                 var dirtySource = notifyingObject as ICanBeDirty;
-                if (dirtySource != null && _undoBuffer == null && dirtySource.IsDirty)
+                if (dirtySource != null && OwnDirty == false && dirtySource.IsDirty)
                 {
                     MakeDirty();
                 }
@@ -248,9 +298,13 @@ namespace LogoFX.Client.Mvvm.Model
             }, () => NotifyOfPropertyChange(() => CanCancelChanges));            
         }
 
-        private void UnNotifyOnInnerChange(object removedItem)
+        /// <summary>
+        /// Unsubscribes from the Dirty state changes of the potential Dirty Source 
+        /// </summary>
+        /// <param name="notifyingObject"></param>
+        private void UnNotifyOnInnerChange(object notifyingObject)
         {
-            _innerChangesSubscriber.UnsubscribeToNotifyingObjectChanges(removedItem);
+            _innerChangesSubscriber.UnsubscribeToNotifyingObjectChanges(notifyingObject);
         }
     }
 }

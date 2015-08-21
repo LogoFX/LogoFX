@@ -20,6 +20,7 @@ namespace LogoFX.Client.Mvvm.Model
         private void ClearUndoBuffer()
         {
             ClearDirty(forceClearChildren:true);
+            _undoBuffer = null;
         }
     }
 }

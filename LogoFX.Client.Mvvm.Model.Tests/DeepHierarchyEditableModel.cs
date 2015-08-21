@@ -1,11 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
-    class DeepHierarchyEditableModel : EditableModel
-    {        
+    internal interface IDeepHierarchyEditableModel : IEditableModel
+    {
+        IEnumerable<ICompositeEditableModel> CompositeModels { get; }
+    }
 
+    class DeepHierarchyEditableModel : EditableModel, IDeepHierarchyEditableModel
+    {        
         public DeepHierarchyEditableModel(IEnumerable<CompositeEditableModel> compositeModels)
             :this()
         {
@@ -23,7 +28,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         private readonly ObservableCollection<CompositeEditableModel> _compositeModels = new ObservableCollection<CompositeEditableModel>();        
 
         [EditableList]
-        public IEnumerable<CompositeEditableModel> CompositeModels
+        public IEnumerable<ICompositeEditableModel> CompositeModels
         {
             get { return _compositeModels;}
         }
@@ -37,6 +42,12 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         internal void AddCompositeItemImpl(CompositeEditableModel item)
         {
             _compositeModels.Add(item);
+        }
+
+        public void RemoveCompositeModel(CompositeEditableModel compositeModel)
+        {
+            MakeDirty();
+            _compositeModels.Remove(compositeModel);
         }
     }
 }
