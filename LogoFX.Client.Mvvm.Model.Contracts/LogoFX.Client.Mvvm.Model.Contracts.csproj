@@ -41,6 +41,7 @@
     <Compile Include="IEditableModel.cs" />
     <Compile Include="IHaveErrors.cs" />
     <Compile Include="IHaveId.cs" />
+    <Compile Include="IMemento.cs" />
     <Compile Include="IMergeable.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IObjectModel.cs" />

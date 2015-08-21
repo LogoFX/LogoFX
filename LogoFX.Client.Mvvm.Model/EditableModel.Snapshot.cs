@@ -84,5 +84,22 @@ namespace LogoFX.Client.Mvvm.Model
                 model.OwnDirty = IsDirty;
             }
         }
+
+        protected internal sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
+        {
+            private readonly Snapshot _snapshot;
+
+            private SnapshotMementoAdapter(EditableModel<T> model)
+            {
+                _snapshot = new Snapshot(model);
+            }
+
+            public IMemento<EditableModel<T>> Restore(EditableModel<T> target)
+            {
+                IMemento<EditableModel<T>> inverse = new SnapshotMementoAdapter(target);
+                _snapshot.Restore(target);
+                return inverse;
+            }
+        }
     }
 }
