@@ -29,18 +29,19 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         private class PropertyChangedInnerChangesSubscriber : IInnerChangesSubscriber
         {
-            private Action _isDirtyChangedDelegate;
-            private Action _isCanCancelChangesChangedDelegate;
+            private readonly WeakKeyDictionary<object, Tuple<Action, Action>> _handlers = new WeakKeyDictionary<object, Tuple<Action, Action>>();            
 
             public void SubscribeToNotifyingObjectChanges(object notifyingObject, Action isDirtyChangedDelegate,
                 Action isCanCancelChangesChangedDelegate)
             {
-                _isDirtyChangedDelegate = isDirtyChangedDelegate;
-                _isCanCancelChangesChangedDelegate = isCanCancelChangesChangedDelegate;
+                if (_handlers.ContainsKey(notifyingObject) == false)
+                {
+                    _handlers.Add(notifyingObject, new Tuple<Action, Action>(isDirtyChangedDelegate, isCanCancelChangesChangedDelegate));
+                }
                 var propertyChangedSource = notifyingObject as INotifyPropertyChanged;
                 if (propertyChangedSource != null)
                 {
-                    propertyChangedSource.PropertyChanged += PropertyChangedSourceOnPropertyChanged;                   
+                    propertyChangedSource.PropertyChanged += PropertyChangedSourceOnPropertyChanged;                                              
                 }
             }
 
@@ -50,19 +51,25 @@ namespace LogoFX.Client.Mvvm.Model
                 if (propertyChangedSource != null)
                 {
                     propertyChangedSource.PropertyChanged -= PropertyChangedSourceOnPropertyChanged;
+                    _handlers.Remove(notifyingObject);
                 }
             }
 
             private void PropertyChangedSourceOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
             {
-                if (propertyChangedEventArgs.PropertyName == "IsDirty")
+                var containsEntry = _handlers.ContainsKey(sender);
+                if (_handlers.ContainsKey(sender))
                 {
-                    _isDirtyChangedDelegate.Invoke();
-                }
-                if (propertyChangedEventArgs.PropertyName == "CanCancelChanges")
-                {
-                    _isCanCancelChangesChangedDelegate.Invoke();
-                }
+                    var delegates = _handlers[sender];
+                    if (propertyChangedEventArgs.PropertyName == "IsDirty")
+                    {
+                        delegates.Item1.Invoke();
+                    }
+                    if (propertyChangedEventArgs.PropertyName == "CanCancelChanges")
+                    {
+                        delegates.Item2.Invoke();
+                    }
+                }                
             }
         }
 
@@ -290,9 +297,9 @@ namespace LogoFX.Client.Mvvm.Model
                 //This is the case where an inner Model reports a change in its Dirty state
                 //If the current Model is not Dirty yet it should be marked as one
                 var dirtySource = notifyingObject as ICanBeDirty;
-                if (dirtySource != null && OwnDirty == false && dirtySource.IsDirty)
+                if (dirtySource != null && _undoBuffer == null && dirtySource.IsDirty)
                 {
-                    MakeDirty();
+                    SetUndoBuffer(new SnapshotMementoAdapter(this));
                 }
                 NotifyOfPropertyChange(() => IsDirty);
             }, () => NotifyOfPropertyChange(() => CanCancelChanges));            

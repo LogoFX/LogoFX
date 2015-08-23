@@ -86,6 +86,8 @@ namespace LogoFX.Client.Mvvm.Model
 
             private readonly IDictionary<PropertyInfo, IList<object>> _listsState = new Dictionary<PropertyInfo, IList<object>>();
 
+            private readonly bool _isOwnDirty;
+
             public HierarchicalSnapshot(EditableModel<T> model)
             {                
                 var storableProperties = TypeInformationProvider.GetStorableProperties(model.GetType());                
@@ -117,7 +119,8 @@ namespace LogoFX.Client.Mvvm.Model
                         _state.Add(new KeyValuePair<PropertyInfo, object>(propertyInfo,
                                                                           propertyInfo.GetValue(model, null)));
                     }
-                }               
+                }
+                _isOwnDirty = model.OwnDirty;
             }
 
             public void Restore(EditableModel<T> model)
@@ -139,7 +142,8 @@ namespace LogoFX.Client.Mvvm.Model
                     IList list = (IList)result.Key.GetValue(model, null);                    
                     list.Clear();
                     result.Value.ForEach(a => list.Add(a));                    
-                }               
+                }
+                model.OwnDirty = _isOwnDirty;
             }
         }
 

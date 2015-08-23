@@ -106,12 +106,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         
         protected async Task<bool> SaveAsync()
         {
-            OnSaving();
+            await OnSaving();
             bool result = await SaveMethod(Model);
-            OnSaved(result);
+            await OnSaved(result);
             return result;
         }
-        protected virtual void OnSaving()
+        protected async virtual Task OnSaving()
         {
             var handler = Saving;
 
@@ -121,7 +121,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        protected virtual void OnSaved(bool successfull)
+        protected async virtual Task OnSaved(bool successfull)
         {
             var handler = Saved;
 
@@ -135,23 +135,45 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         protected abstract Task OnSaveChangesWithErrors();
 
-        private void CancelChanges()
+        private async void CancelChanges()
         {
-            if (Model.CanCancelChanges)
+            try
             {
-                Model.CancelChanges();
+                await OnChangesCanceling();
             }
-            else
-            {
-                Model.ClearDirty();
+            catch (Exception ex)
+            {                
+                throw ex;
             }
 
-            OnChangesCanceled();
+            try
+            {
+                if (Model.CanCancelChanges)
+                {
+                    Model.CancelChanges();
+                }
+                else
+                {
+                    Model.ClearDirty();
+                }
+            }
+            catch (Exception)
+            {
+                //TODO: add proper rollback
+                throw;
+            }
+            
+            await OnChangesCanceled();
         }
 
-        protected virtual void OnChangesCanceled()
+        protected virtual Task OnChangesCanceling()
         {
+            return Task.Run(() => { });
+        }
 
+        protected virtual Task OnChangesCanceled()
+        {
+            return Task.Run(() => { });
         }
 
         public override async void CanClose(Action<bool> callback)
@@ -245,6 +267,6 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             get { return null; }
         }
 
-        #endregion
+        #endregion        
     }
 }

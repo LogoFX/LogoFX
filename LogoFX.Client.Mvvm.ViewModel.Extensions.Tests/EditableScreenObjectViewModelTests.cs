@@ -102,5 +102,25 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var actualValue = simpleModel.Name;
             Assert.AreEqual(DataGenerator.ValidName, actualValue);
         }
+
+        [Test]
+        [RequiresSTA]
+        public void ModelIsChanged_WhenViewModelIsClosedAndMessageResultIsNo_ThenOnChangesCancelingIsCalled()
+        {
+            string initialValue = string.Empty;
+            var simpleModel = new SimpleEditableModel(initialValue, 20);
+            var mockMessageService = new FakeMessageService();
+            mockMessageService.SetMessageResult(MessageResult.No);
+            RegisterService<IMessageService>(mockMessageService);
+
+            var rootObject = CreateRootObject();
+            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            rootObject.ActivateItem(screenObjectViewModel);
+            simpleModel.Name = DataGenerator.ValidName;
+            screenObjectViewModel.CloseCommand.Execute(null);
+
+            var wasCalled = screenObjectViewModel.WasCancelingChangesCalled;
+            Assert.True(wasCalled);
+        }
     }
 }
