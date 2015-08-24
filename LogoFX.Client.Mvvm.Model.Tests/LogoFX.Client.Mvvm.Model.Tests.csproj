@@ -59,6 +59,7 @@
     <Compile Include="CompositeModelValidationTests.cs" />
     <Compile Include="DataGenerator.cs" />
     <Compile Include="DeepHierarchyEditableModel.cs" />
+    <Compile Include="DeepHierarchyEditableModelCancelChangesTests.cs" />
     <Compile Include="SimpleModelDirtyTests.cs" />
     <Compile Include="SimpleModelValidationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

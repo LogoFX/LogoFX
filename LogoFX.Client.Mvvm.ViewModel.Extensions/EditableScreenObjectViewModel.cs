@@ -103,8 +103,8 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         #region Protected Members
 
         protected abstract Task<bool> SaveMethod(T model);
-        
-        protected async Task<bool> SaveAsync()
+
+        private async Task<bool> SaveAsync()
         {
             await OnSaving();
             bool result = await SaveMethod(Model);

@@ -79,11 +79,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.4.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4.5\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4.6\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.0.4.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4.5\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.4.6\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel">
