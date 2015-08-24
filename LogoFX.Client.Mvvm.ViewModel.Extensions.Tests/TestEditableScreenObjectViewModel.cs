@@ -25,7 +25,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 
         protected override Task<bool> SaveMethod(SimpleEditableModel model)
         {
-            model.ClearDirty();
+            model.ClearDirty(forceClearChildren:true);
             return Task.FromResult(true);
         }
 

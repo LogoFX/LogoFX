@@ -53,7 +53,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 return _canCancelChangesCommand ??
                        (_canCancelChangesCommand = ActionCommand
                            .When(() => CanCancelChanges && IsDirty)
-                           .Do(CancelChanges)
+                           .Do(CancelChangesAsync)
                            .RequeryOnPropertyChanged(this, () => CanCancelChanges)
                            .RequeryOnPropertyChanged(this, () => IsDirty));
             }
@@ -135,7 +135,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         protected abstract Task OnSaveChangesWithErrors();
 
-        private async void CancelChanges()
+        private async void CancelChangesAsync()
         {
             try
             {
@@ -235,7 +235,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         void IEditableViewModel.CancelChanges()
         {
-            CancelChanges();
+            CancelChangesAsync();
         }
 
         Task<bool> IEditableViewModel.SaveAsync()
