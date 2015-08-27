@@ -1,13 +1,13 @@
-﻿namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
+﻿using LogoFX.Client.Mvvm.Model;
+
+namespace LogoFX.Client.Mvvm.ViewModel.Tests.WrappingCollectionTests
 {
-    class TestModel
+    class TestModel : Model<int>
     {
         public TestModel(int id)
         {
             Id = id;
-        }
-
-        public int Id { get; private set; }
+        }        
 
         public override int GetHashCode()
         {
