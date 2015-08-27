@@ -15,7 +15,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         IEnumerable<ISimpleEditableModel> SimpleCollection { get; } 
     }
 
-    class CompositeEditableModel : EditableModel, ICompositeEditableModel, ICloneable<object>, IEquatable<CompositeEditableModel>
+    class CompositeEditableModel : EditableModel, ICompositeEditableModel, ICloneable<CompositeEditableModel>, IEquatable<CompositeEditableModel>
     {       
         public CompositeEditableModel(string location)
         {                                      
@@ -95,7 +95,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             _simpleCollection.Add(simpleEditableModel);
         }
 
-        public object Clone()
+        public CompositeEditableModel Clone()
         {
             var composite = new CompositeEditableModel(Location, Phones);
             composite.Id = composite.Id;
