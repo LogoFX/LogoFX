@@ -50,6 +50,7 @@
     <Compile Include="IPropertyData.cs" />
     <Compile Include="IReadModelsCollection.cs" />
     <Compile Include="IWriteModelsCollection.cs" />
+    <Compile Include="IWriteRangeModelsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

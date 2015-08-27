@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {
-    public class ConcurrentModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>, IWriteRangeModelsCollection<TItem>
+    public class RangeModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>, IWriteRangeModelsCollection<TItem>
     {
-        private readonly ConcurrentObservableCollection<TItem> _items = new ConcurrentObservableCollection<TItem>();
-        private ConcurrentObservableCollection<TItem> Items
+        private readonly RangeObservableCollection<TItem> _items = new RangeObservableCollection<TItem>();
+        private RangeObservableCollection<TItem> Items
         {
             get { return _items; }
         }
@@ -18,13 +18,12 @@ namespace LogoFX.Client.Mvvm.Model
         }
 
         public override int ItemsCount { get { return Items.Count; } }
-        public override bool HasItems { get { return ItemsCount > 0; } }       
-
+        public override bool HasItems { get { return ItemsCount > 0; } }
         public void Add(TItem item)
-        {            
+        {
             Items.Add(item);
             SafeRaiseHasItemsChanged();
-        }        
+        }
 
         public void Remove(TItem item)
         {
@@ -35,16 +34,13 @@ namespace LogoFX.Client.Mvvm.Model
         public void Update(IEnumerable<TItem> items)
         {
             Items.Clear();
-            foreach (var item in items)
-            {
-                Items.Add(item);
-            }
+            Items.AddRange(items);
             SafeRaiseHasItemsChanged();
         }
 
         public void Clear()
         {
-            Items.Clear();
+            Items.Clear();            
             SafeRaiseHasItemsChanged();
         }
 
