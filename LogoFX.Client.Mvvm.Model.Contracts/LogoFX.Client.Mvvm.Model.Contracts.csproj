@@ -41,11 +41,15 @@
     <Compile Include="IEditableModel.cs" />
     <Compile Include="IHaveErrors.cs" />
     <Compile Include="IHaveId.cs" />
+    <Compile Include="IInfoModelsCollection.cs" />
     <Compile Include="IMemento.cs" />
     <Compile Include="IMergeable.cs" />
     <Compile Include="IModel.cs" />
+    <Compile Include="IModelsCollection.cs" />
     <Compile Include="IObjectModel.cs" />
     <Compile Include="IPropertyData.cs" />
+    <Compile Include="IReadModelsCollection.cs" />
+    <Compile Include="IWriteModelsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
