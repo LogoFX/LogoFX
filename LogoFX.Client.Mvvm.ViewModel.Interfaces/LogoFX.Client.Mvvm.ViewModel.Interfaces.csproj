@@ -54,10 +54,6 @@
     <Compile Include="IViewModelsCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectionChangingEventArgs.cs" />
-    <Compile Include="Services\IInfoModelsCollection.cs" />
-    <Compile Include="Services\IModelsCollection.cs" />
-    <Compile Include="Services\IReadModelsCollection.cs" />
-    <Compile Include="Services\IWriteModelsCollection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
