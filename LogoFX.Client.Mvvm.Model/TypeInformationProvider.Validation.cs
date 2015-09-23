@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace LogoFX.Client.Mvvm.Model
 
     partial class TypeInformationProvider
     {
-        private static readonly Dictionary<Type, ValidationInfoDictionary> ValidationInfoSource =
-            new Dictionary<Type, ValidationInfoDictionary>();
+        private static readonly ConcurrentDictionary<Type, ValidationInfoDictionary> ValidationInfoSource =
+            new ConcurrentDictionary<Type, ValidationInfoDictionary>();
 
         internal static Tuple<PropertyInfo, ValidationAttribute[]> GetValidationInfo(Type type, string propertyName)
         {
@@ -58,7 +59,7 @@ namespace LogoFX.Client.Mvvm.Model
                         new Tuple<PropertyInfo, ValidationAttribute[]>(propertyInfo, validationAttr));
                 }
             }
-            ValidationInfoSource.Add(type, validationInfoDictionary);
+            ValidationInfoSource.TryAdd(type, validationInfoDictionary);
         }
     }
 }

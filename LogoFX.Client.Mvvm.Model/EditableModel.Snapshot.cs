@@ -78,9 +78,9 @@ namespace LogoFX.Client.Mvvm.Model
 #endif
                 model.OwnDirty = _isDirty;
             }
-        }        
+        }
 
-        protected sealed class HierarchicalSnapshot : ISnapshot
+        sealed class HierarchicalSnapshot : ISnapshot
         {            
             private readonly IDictionary<PropertyInfo, object> _state = new Dictionary<PropertyInfo, object>();
 
@@ -147,7 +147,7 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
-        protected sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
+        sealed class SnapshotMementoAdapter : IMemento<EditableModel<T>>
         {
             private readonly ISnapshot _snapshot;
 

@@ -131,7 +131,7 @@ namespace LogoFX.Client.Mvvm.Model
     }
 
     //use this attribute to mark the properties
-    //that should contibute to the Error property
+    //that should contribute to the Error property
     //of the containing object
     [AttributeUsage(AttributeTargets.Property)]
     class IncludeErrorAttribute : Attribute

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,8 +11,8 @@ namespace LogoFX.Client.Mvvm.Model
 
     partial class TypeInformationProvider
     {
-        private static readonly Dictionary<Type, DataErrorInfoDictionary> DataErrorInfoSource =
-            new Dictionary<Type, DataErrorInfoDictionary>(); 
+        private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> DataErrorInfoSource =
+            new ConcurrentDictionary<Type, DataErrorInfoDictionary>(); 
 
         internal static bool IsPropertyDataErrorInfoSource(Type type, string propertyName)
         {
@@ -75,7 +76,7 @@ namespace LogoFX.Client.Mvvm.Model
             var dataErrorInfoDictionary =
                 props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(IDataErrorInfo)))
                     .ToDictionary(t => t.Name, t => t);
-            DataErrorInfoSource.Add(type, dataErrorInfoDictionary);
+            DataErrorInfoSource.TryAdd(type, dataErrorInfoDictionary);
         }
     }
 }

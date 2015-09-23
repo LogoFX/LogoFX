@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,19 +8,12 @@ namespace LogoFX.Client.Mvvm.Model
 {
     partial class TypeInformationProvider
     {
-        private static readonly Dictionary<Type,PropertyInfo[]> InnerDictionary = new Dictionary<Type, PropertyInfo[]>(); 
+        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> InnerDictionary = new ConcurrentDictionary<Type, PropertyInfo[]>(); 
         private static readonly object SyncObject = new object();
 
         internal static PropertyInfo[] GetStorableProperties(Type type)
         {
-            lock (SyncObject)
-            {
-                if (InnerDictionary.ContainsKey(type) == false)
-                {
-                    InnerDictionary.Add(type, GetStorablePropertiesImpl(type));
-                }    
-            }
-            
+            InnerDictionary.TryAdd(type, GetStorablePropertiesImpl(type));                              
             return InnerDictionary[type];
         }
 

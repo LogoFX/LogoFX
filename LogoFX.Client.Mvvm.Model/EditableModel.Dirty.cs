@@ -57,7 +57,6 @@ namespace LogoFX.Client.Mvvm.Model
 
             private void PropertyChangedSourceOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
             {
-                var containsEntry = _handlers.ContainsKey(sender);
                 if (_handlers.ContainsKey(sender))
                 {
                     var delegates = _handlers[sender];
@@ -185,7 +184,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// <summary>
         /// Clears the Dirty state of the Model
         /// </summary>
-        /// <param name="forceClearChildren"></param>
+        /// <param name="forceClearChildren">true, if the children's state should be cleared, false otherwise</param>
         public virtual void ClearDirty(bool forceClearChildren = false)
         {
             OwnDirty = false;            
@@ -239,26 +238,26 @@ namespace LogoFX.Client.Mvvm.Model
             switch (notifyCollectionChangedEventArgs.Action)
             {
                     case NotifyCollectionChangedAction.Add:
-                    var addedItems = notifyCollectionChangedEventArgs.NewItems;
-                    foreach (var addedItem in addedItems)
-                    {
-                        NotifyOnInnerChange(addedItem);
-                    }
-                    NotifyOfPropertyChange(() => IsDirty);
-                    NotifyOfPropertyChange(() => CanCancelChanges);
+                        var addedItems = notifyCollectionChangedEventArgs.NewItems;
+                        foreach (var addedItem in addedItems)
+                        {
+                            NotifyOnInnerChange(addedItem);
+                        }
+                        NotifyOfPropertyChange(() => IsDirty);
+                        NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
                     case NotifyCollectionChangedAction.Remove:
-                    var removedItems = notifyCollectionChangedEventArgs.OldItems;
-                    foreach (var removedItem in removedItems)
-                    {
-                        UnNotifyOnInnerChange(removedItem);
-                    }
-                    NotifyOfPropertyChange(() => IsDirty);
-                    NotifyOfPropertyChange(() => CanCancelChanges);
+                        var removedItems = notifyCollectionChangedEventArgs.OldItems;
+                        foreach (var removedItem in removedItems)
+                        {
+                            UnNotifyOnInnerChange(removedItem);
+                        }
+                        NotifyOfPropertyChange(() => IsDirty);
+                        NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
                     case NotifyCollectionChangedAction.Reset:
-                    NotifyOfPropertyChange(() => IsDirty);
-                    NotifyOfPropertyChange(() => CanCancelChanges);
+                        NotifyOfPropertyChange(() => IsDirty);
+                        NotifyOfPropertyChange(() => CanCancelChanges);
                     break;
                     case NotifyCollectionChangedAction.Move: case NotifyCollectionChangedAction.Replace:                    
                     break;                    

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -6,13 +7,13 @@ using System.Reflection;
 using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model
-{    
-     using DataErrorInfoDictionary = Dictionary<string, PropertyInfo>;
+{
+    using DataErrorInfoDictionary = Dictionary<string, PropertyInfo>;
 
     partial class TypeInformationProvider
     {
-        private static readonly Dictionary<Type, DataErrorInfoDictionary> DirtySource =
-            new Dictionary<Type, DataErrorInfoDictionary>(); 
+        private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> DirtySource =
+            new ConcurrentDictionary<Type, DataErrorInfoDictionary>(); 
 
         internal static bool IsPropertyDirtySource(Type type, string propertyName)
         {
@@ -76,17 +77,17 @@ namespace LogoFX.Client.Mvvm.Model
             var dirtySourceDictionary =
                 props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(ICanBeDirty)))
                     .ToDictionary(t => t.Name, t => t);
-            DirtySource.Add(type, dirtySourceDictionary);
+            DirtySource.TryAdd(type, dirtySourceDictionary);
         }
 
-        private static readonly Dictionary<Type, IEnumerable<PropertyInfo>> DirtySourceCollection =
-            new Dictionary<Type, IEnumerable<PropertyInfo>>();
+        private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> DirtySourceCollection =
+            new ConcurrentDictionary<Type, IEnumerable<PropertyInfo>>();
 
         internal static IEnumerable<PropertyInfo> GetPropertyDirtySourceCollections(Type type, object properyContainer)
         {
             if (DirtySourceCollection.ContainsKey(type) == false)
             {
-                DirtySourceCollection.Add(type, CalculateDirtySourceCollectionProperties(type, properyContainer));
+                DirtySourceCollection.TryAdd(type, CalculateDirtySourceCollectionProperties(type, properyContainer));
             }
             return DirtySourceCollection[type];
         }
@@ -109,7 +110,7 @@ namespace LogoFX.Client.Mvvm.Model
         {
             if (DirtySourceCollection.ContainsKey(type) == false)
             {
-                DirtySourceCollection.Add(type, CalculateDirtySourceCollectionProperties(type, propertyContainer));
+                DirtySourceCollection.TryAdd(type, CalculateDirtySourceCollectionProperties(type, propertyContainer));
             }
             return DirtySourceCollection[type]
                 .Select(propertyInfo => propertyInfo.GetValue(propertyContainer)).OfType<IEnumerable<IEditableModel>>()
