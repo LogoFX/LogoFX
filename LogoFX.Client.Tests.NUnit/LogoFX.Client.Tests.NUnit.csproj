@@ -30,21 +30,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Attest.Fake.Builders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Builders.1.0.5\lib\net451\Attest.Fake.Builders.dll</HintPath>
+    <Reference Include="Attest.Fake.Builders">
+      <HintPath>..\packages\Attest.Fake.Builders.1.0.7\lib\net451\Attest.Fake.Builders.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Attest.Fake.Core.1.0.4\lib\net451\Attest.Fake.Core.dll</HintPath>
+    <Reference Include="Attest.Fake.Core">
+      <HintPath>..\packages\Attest.Fake.Core.1.0.7\lib\net451\Attest.Fake.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.Core">
-      <HintPath>..\packages\Attest.Tests.Core.1.0.4\lib\net451\Attest.Tests.Core.dll</HintPath>
+      <HintPath>..\packages\Attest.Tests.Core.1.0.7\lib\net451\Attest.Tests.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.NUnit">
-      <HintPath>..\packages\Attest.Tests.NUnit.1.0.4\lib\net451\Attest.Tests.NUnit.dll</HintPath>
+      <HintPath>..\packages\Attest.Tests.NUnit.1.0.7\lib\net451\Attest.Tests.NUnit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro">

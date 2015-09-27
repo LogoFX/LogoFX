@@ -50,8 +50,8 @@
       <HintPath>..\packages\LogoFX.Client.Core.1.0.3\lib\net451\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.3\lib\net451\LogoFX.Core.dll</HintPath>
+    <Reference Include="LogoFX.Core">
+      <HintPath>..\packages\LogoFX.Core.1.0.3.1\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.IoC, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -62,8 +62,8 @@
       <HintPath>..\packages\LogoFX.Practices.Modularity.1.0.3\lib\net451\LogoFX.Practices.Modularity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.1.0.4\lib\net451\Solid.Practices.Composition.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition">
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.4.1\lib\net451\Solid.Practices.Composition.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
