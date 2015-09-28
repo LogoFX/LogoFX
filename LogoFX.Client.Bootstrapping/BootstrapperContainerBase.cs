@@ -8,18 +8,26 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Contracts;
+using Solid.Practices.Composition;
 using Solid.Practices.Composition.Desktop;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
 {    
+    /// <summary>
+    /// Base class for application and test boostrappers.
+    /// Used when no navigation or special IoC containers are neeeded.
+    /// </summary>
+    /// <typeparam name="TRootViewModel">Type of Root ViewModel</typeparam>
+    /// <typeparam name="TIocContainer">Type of IoC container</typeparam>
     public class BootstrapperContainerBase<TRootViewModel, TIocContainer> :
 #if !WinRT
  BootstrapperBase
 #else
         CaliburnApplication
 #endif
+        , ICompositionModulesProvider
         where TRootViewModel : class
         where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
     {
@@ -27,12 +35,28 @@ namespace LogoFX.Client.Bootstrapping
         private IBootstrapperAdapter _bootstrapperAdapter;        
         private readonly TIocContainer _iocContainer;
 
+        /// <summary>
+        /// This ctor is used when the container is not created outside the bootstrapper.
+        /// This approach is not recommended.
+        /// </summary>
+        /// <param name="useApplication">
+        /// True if there is an actual WPF application, false otherwise. 
+        /// Use false value for tests.
+        /// </param>
         protected BootstrapperContainerBase(bool useApplication = true)
             : this(new TIocContainer(), useApplication)
         {
            
         }
 
+        /// <summary>
+        /// This is the recommended ctor.
+        /// </summary>
+        /// <param name="iocContainer">IoC container</param>
+        /// <param name="useApplication">
+        /// True if there is an actual WPF application, false otherwise. 
+        /// Use false value for tests.
+        /// </param>
         protected BootstrapperContainerBase(TIocContainer iocContainer, bool useApplication=true)            
             :base(useApplication)
         {
