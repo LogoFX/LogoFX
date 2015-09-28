@@ -24,11 +24,17 @@ namespace LogoFX.Practices.IoC
             switch (kind)
             {
                 case RegisterAsKind.PerRequest:
-                    _types.Add(implementation, RegisterAsKind.PerRequest);
+                    lock (_syncObject)
+                    {
+                        _types.Add(implementation, RegisterAsKind.PerRequest);    
+                    }                    
                     RegisterPerRequest(service, key, implementation);
                     break;
                 case RegisterAsKind.Singleton:
-                    _types.Add(implementation, RegisterAsKind.Singleton);
+                    lock (_syncObject)
+                    {
+                        _types.Add(implementation, RegisterAsKind.Singleton);                        
+                    }
                     RegisterSingleton(service, key, implementation);
                     break;
                 default:

@@ -5,15 +5,15 @@ using Solid.Practices.Modularity;
 namespace LogoFX.Practices.Modularity
 {
     /// <summary>
-    /// Module for <see cref="SimpleContainer"/>
+    /// Composition module for <see cref="SimpleContainer"/>
     /// </summary>; 
     public interface ISimpleModule : ICompositionModule
     {
         /// <summary>
-        /// Registers the module.
+        /// Registers the composition module into the <see cref="SimpleContainer"/>
         /// </summary>
-        /// <param name="container">The container.</param>
-        /// <param name="lifetimeScopeAccess">The lifetime scope access.</param>
+        /// <param name="container">The simple container.</param>
+        /// <param name="lifetimeScopeAccess">The lifetime scope access lambda expression</param>
         void RegisterModule(SimpleContainer container, Func<object> lifetimeScopeAccess);
     }    
 }

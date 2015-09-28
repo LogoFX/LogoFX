@@ -7,7 +7,7 @@ using System.Reflection;
 namespace LogoFX.Practices.IoC
 {
     /// <summary>
-    ///   A simple IoC container.
+    ///  A simple IoC container.
     /// </summary>
     public class SimpleContainer
     {
@@ -88,45 +88,45 @@ namespace LogoFX.Practices.IoC
         }
 
         /// <summary>
-        ///   Registers the instance.
+        /// Registers the instance of dependency
         /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <param name = "key">The key.</param>
-        /// <param name = "implementation">The implementation.</param>
+        /// <param name="service">Type of dependency</param>
+        /// <param name="key">Optional dependency key, provide null if not needed</param>
+        /// <param name="implementation">The instance of dependency</param>
         public void RegisterInstance(Type service, string key, object implementation)
         {
             RegisterHandler(service, key, (container, args) => implementation);
         }
 
         /// <summary>
-        ///   Registers the class so that a new instance is created on every request.
+        /// Registers the dependency so that a new instance is created on every request.
         /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <param name = "key">The key.</param>
-        /// <param name = "implementation">The implementation.</param>
+        /// <param name="service">Type of dependency declaration</param>
+        /// <param name="key">Optional dependency key, provide null if not needed</param>
+        /// <param name="implementation">Type of dependency implementation</param>
         public void RegisterPerRequest(Type service, string key, Type implementation)
         {
             RegisterHandler(service, key, (container, args) => container.BuildInstance(implementation, args));
         }
 
         /// <summary>
-        ///   Registers the class so that it is created once, on first request, and the same instance is returned to all requestors thereafter.
+        /// Registers dependency as singleton
         /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <param name = "key">The key.</param>
-        /// <param name = "implementation">The implementation.</param>
+        /// <param name="service">Type of dependency declaration</param>
+        /// <param name="key">Optional dependency key, provide null if not needed</param>
+        /// <param name="implementation">Type of dependency implementation</param>
         public void RegisterSingleton(Type service, string key, Type implementation)
         {
             object singleton = null;
             RegisterHandler(service, key, (container, args) => singleton ?? (singleton = container.BuildInstance(implementation)));
         }
 
-        /// <summary>
-        ///   Registers a custom handler for serving requests from the container.
-        /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <param name = "key">The key.</param>
-        /// <param name = "handler">The handler.</param>
+       /// <summary>
+       /// Registers a custom handler for resolving dependencies from the container.
+       /// </summary>
+       /// <param name="service">Type of dependency declaration</param>
+       /// <param name="key">Optional dependency key, provide null if not needed</param>
+       /// <param name="handler">Resolution handler</param>
         public void RegisterHandler(Type service, string key, Func<SimpleContainer, IParameter[], object> handler)
         {
             GetOrCreateEntry(service, key).Add(handler);
@@ -176,22 +176,22 @@ namespace LogoFX.Practices.IoC
         }
 #else
         /// <summary>
-        /// Determines if a handler for the service/key has previously been registered.
+        /// Determines if a handler for the dependency/key has previously been registered.
         /// </summary>
-        /// <param name="service">The service.</param>
-        /// <param name="key">The key.</param>
-        /// <returns>True if a handler is registere; false otherwise.</returns>
+        /// <param name="service">Type of dependency</param>
+        /// <param name="key">Optional dependency key, provide null if not needed</param>
+        /// <returns>True if a handler is registered, false otherwise.</returns>
         public bool HasHandler(Type service, string key)
         {
             return GetEntry(service, key) != null;
         }
 
         /// <summary>
-        ///   Requests an instance.
+        /// Resolves the dependency by its type/key
         /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <param name = "key">The key.</param>
-        /// <returns>The instance, or null if a handler is not found.</returns>
+        /// <param name="service">Type of dependency</param>
+        /// <param name="key">Optional dependency key, provide null if not needed</param>
+        /// <returns>The instance of dependency, or null if it cannot be resolved</returns>
         public object GetInstance(Type service, string key)
         {
             var entry = GetEntry(service, key);
@@ -228,12 +228,12 @@ namespace LogoFX.Practices.IoC
         }
 
         /// <summary>
-        ///   Requests an instance.
+        /// Resolves the dependency by its type/key and optional parameters
         /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <param name = "key">The key.</param>
-        /// <param name="parameters">optional dynamically injected parameters</param>
-        /// <returns>The instance, or null if a handler is not found.</returns>
+        /// <param name="service">Type of dependency</param>
+        /// <param name="key">Optional dependency key, provide null if not needed</param>
+        /// <param name="parameters">optional dynamically injected resolution parameters</param>
+        /// <returns>The instance of dependency, or null if it cannot be resolved</returns>
         public object GetInstance(Type service, string key, params IParameter[] parameters)
         {
             var entry = GetEntry(service, key);
@@ -271,10 +271,10 @@ namespace LogoFX.Practices.IoC
 #endif
 
         /// <summary>
-        ///   Requests all instances of a given type.
+        /// Resolves all instances of given dependency type
         /// </summary>
-        /// <param name = "service">The service.</param>
-        /// <returns>All the instances or an empty enumerable if none are found.</returns>
+        /// <param name="service">Type of dependency</param>
+        /// <returns>All the instances or an empty enumerable if none can be resolved.</returns>
         public IEnumerable<object> GetAllInstances(Type service)
         {
             var entry = GetEntry(service, null);
@@ -282,9 +282,9 @@ namespace LogoFX.Practices.IoC
         }
 
         /// <summary>
-        ///   Pushes dependencies into an existing instance based on interface properties with setters.
+        /// Pushes dependencies into an existing instance based on interface properties with setters.
         /// </summary>
-        /// <param name = "instance">The instance.</param>
+        /// <param name="instance">The instance.</param>
         public void BuildUp(object instance)
         {
 #if WinRT
@@ -307,7 +307,7 @@ namespace LogoFX.Practices.IoC
         }
 
         /// <summary>
-        /// Creates a child container.
+        /// Creates a child simple container.
         /// </summary>
         /// <returns>A new container.</returns>
         public SimpleContainer CreateChildContainer()
@@ -320,7 +320,7 @@ namespace LogoFX.Practices.IoC
         #region Events
 
         /// <summary>
-        ///   Occurs when a new instance is created.
+        /// Occurs when a new instance is created.
         /// </summary>
         public event Action<object> Activated = delegate { };
 
@@ -329,7 +329,7 @@ namespace LogoFX.Practices.IoC
         #region Protected
 
         /// <summary>
-        ///   Actually does the work of creating the instance and satisfying it's constructor dependencies.
+        ///  Actually does the work of creating the instance and satisfying its constructor dependencies.
         /// </summary>
         /// <param name = "type">The type.</param>
         /// <param name="parameters">dynamically injected parameters</param>
@@ -424,6 +424,5 @@ namespace LogoFX.Practices.IoC
         }
 #endif
         #endregion
-
     }
 }
