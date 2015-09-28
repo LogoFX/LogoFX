@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Core", "LogoFX.Core\LogoFX.Core.csproj", "{1FC8C6D3-261A-416F-95B8-F3C334FB283A}"
 EndProject
@@ -122,6 +122,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Practices.IoC.Tests", "LogoFX.Practices.IoC.Tests\LogoFX.Practices.IoC.Tests.csproj", "{4960E05A-C2E6-4EB1-A1AC-88198D752DCC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer.Tests", "LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer.Tests\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer.Tests.csproj", "{35EECDC6-B183-4116-AE92-CD7A74F8A792}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C2F9A8A4-009B-49EC-895A-C12F5BA0DB33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.Core", "LogoFX.Client.Mvvm.Core\LogoFX.Client.Mvvm.Core.csproj", "{BD03B159-9C44-4E27-961B-97A63E383FEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -285,6 +289,10 @@ Global
 		{35EECDC6-B183-4116-AE92-CD7A74F8A792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35EECDC6-B183-4116-AE92-CD7A74F8A792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35EECDC6-B183-4116-AE92-CD7A74F8A792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD03B159-9C44-4E27-961B-97A63E383FEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD03B159-9C44-4E27-961B-97A63E383FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD03B159-9C44-4E27-961B-97A63E383FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD03B159-9C44-4E27-961B-97A63E383FEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -344,5 +352,7 @@ Global
 		{AFE013BB-1FAC-4266-A441-61EAB2B50867} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
 		{4960E05A-C2E6-4EB1-A1AC-88198D752DCC} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
 		{35EECDC6-B183-4116-AE92-CD7A74F8A792} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
+		{C2F9A8A4-009B-49EC-895A-C12F5BA0DB33} = {0F03A1A6-30CD-4E9C-AB39-02BBE1784345}
+		{BD03B159-9C44-4E27-961B-97A63E383FEF} = {C2F9A8A4-009B-49EC-895A-C12F5BA0DB33}
 	EndGlobalSection
 EndGlobal
