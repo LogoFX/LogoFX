@@ -41,16 +41,30 @@ using System.ComponentModel;
 
 namespace LogoFX.Client.Mvvm.Model.Contracts
 {
-    public interface IModel<T> : INotifyPropertyChanged,IHaveId<T> where T:IEquatable<T>
+    /// <summary>
+    /// Represents model with basic support for property notifications and built-in Id
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public interface IModel<T> : INotifyPropertyChanged, IHaveId<T> where T:IEquatable<T>
     {
+        /// <summary>
+        /// Model name
+        /// </summary>
         string Name { get; set; }
+
+        /// <summary>
+        /// Model description
+        /// </summary>
         string Description { get; set; }
+
+        [Obsolete]
         bool IsReadOnly { get;}
+
+        [Obsolete]
         IEnumerable<IPropertyData> Properties { get; }
     }
 
-    public interface IModel:IModel<int>
+    public interface IModel: IModel<int>
     {
     }
-
 }

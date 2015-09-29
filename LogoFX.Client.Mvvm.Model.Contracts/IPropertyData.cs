@@ -5,6 +5,9 @@
 
 namespace LogoFX.Client.Mvvm.Model.Contracts
 {
+    /// <summary>
+    /// Represents property data
+    /// </summary>
     public interface IPropertyData
     {
         object Value { get; set; } //data

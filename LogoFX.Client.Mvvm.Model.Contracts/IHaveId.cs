@@ -7,6 +7,10 @@ using System;
 
 namespace LogoFX.Client.Mvvm.Model.Contracts
 {
+    /// <summary>
+    /// Represents object with an id
+    /// </summary>
+    /// <typeparam name="T">Type of id</typeparam>
     public interface IHaveId<T> where T:IEquatable<T>
     {
         T Id { get; set; }
