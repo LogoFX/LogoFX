@@ -9,6 +9,9 @@ using System;
 
 namespace LogoFX.Client.Mvvm.Commanding
 {
+    /// <summary>
+    /// Command implementation which allows custom notifications, composite execution predicates, etc.
+    /// </summary>
     public class ActionCommand
          : CommandBase
     {
@@ -47,15 +50,24 @@ namespace LogoFX.Client.Mvvm.Commanding
 
         #endregion
 
+        /// <summary>
+        /// Specifies when the condition that must be satisfied for command execution
+        /// </summary>
+        /// <param name="condition">Condition to be satisfied</param>
+        /// <returns>Command condition</returns>
         public static ICommandCondition<ActionCommand> When(Func<bool> condition)
         {
             return new Condition(condition);
         }
 
+        /// <summary>
+        /// Specifies the action to be run on command execution
+        /// </summary>
+        /// <param name="execute">Action to be run</param>
+        /// <returns>Extended command</returns>
         public static IExtendedCommand Do(Action execute)
         {
             return new ActionCommand(execute, () => true);
         }
-
     }
 }

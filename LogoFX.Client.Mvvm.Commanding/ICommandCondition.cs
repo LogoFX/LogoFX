@@ -8,12 +8,12 @@ using System.Windows.Input;
 
 namespace LogoFX.Client.Mvvm.Commanding
 {
-    public interface ICommandCondition<T, out TRet> where TRet:ICommand
+    public interface ICommandCondition<T, out TRet> where TRet: ICommand
     {
         TRet Do(Action<T> execute);
     }
 
-    public interface ICommandCondition<out TRet> where TRet : ICommand
+    public interface ICommandCondition<out TRet> where TRet: ICommand
     {
 
         TRet Do(Action execute);
