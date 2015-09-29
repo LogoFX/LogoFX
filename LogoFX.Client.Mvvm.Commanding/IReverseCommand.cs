@@ -9,7 +9,7 @@ using System.Windows.Input;
 namespace LogoFX.Client.Mvvm.Commanding
 {
     /// <summary>
-    /// Represents an <see cref="ICommand">ICommand</see> who's execution can be handled in the View.
+    /// Represents an <see cref="ICommand">ICommand</see> whose execution can be handled in the View.
     /// </summary>
     public interface IReverseCommand
 		 : ICommand

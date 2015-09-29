@@ -8,14 +8,22 @@ using System.Windows.Input;
 
 namespace LogoFX.Client.Mvvm.Commanding
 {
-    public interface ICommandCondition<T, out TRet> where TRet: ICommand
+    /// <summary>
+    /// Represents command with parameter after it has been setup with execution condition
+    /// </summary>
+    /// <typeparam name="TParameter">Type of command parameter</typeparam>
+    /// <typeparam name="TCommand">Type of command</typeparam>
+    public interface ICommandCondition<TParameter, out TCommand> where TCommand: ICommand
     {
-        TRet Do(Action<T> execute);
+        TCommand Do(Action<TParameter> execute);
     }
 
-    public interface ICommandCondition<out TRet> where TRet: ICommand
+    /// <summary>
+    /// Represents command after it has been setup with execution condition
+    /// </summary>
+    /// <typeparam name="TCommand">Type of command</typeparam>
+    public interface ICommandCondition<out TCommand> where TCommand: ICommand
     {
-
-        TRet Do(Action execute);
+        TCommand Do(Action execute);
     }
 }

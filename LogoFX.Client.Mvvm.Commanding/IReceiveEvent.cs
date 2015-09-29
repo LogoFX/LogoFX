@@ -7,6 +7,9 @@ using System;
 
 namespace LogoFX.Client.Mvvm.Commanding
 {
+    /// <summary>
+    /// Represents an object that is able to receive weak events
+    /// </summary>
     public interface IReceiveEvent
     {
         bool ReceiveWeakEvent(EventArgs e);

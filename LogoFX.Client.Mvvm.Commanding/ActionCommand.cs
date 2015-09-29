@@ -51,7 +51,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         #endregion
 
         /// <summary>
-        /// Specifies when the condition that must be satisfied for command execution
+        /// Specifies the condition that must be satisfied for command execution
         /// </summary>
         /// <param name="condition">Condition to be satisfied</param>
         /// <returns>Command condition</returns>

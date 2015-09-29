@@ -11,7 +11,7 @@ namespace LogoFX.Client.Mvvm.Commanding
     /// <summary>
     /// Extended command with additional attributes
     /// </summary>
-    public interface IExtendedCommand:ICommand
+    public interface IExtendedCommand: ICommand
     {
         /// <summary>
         /// Gets or sets the name.

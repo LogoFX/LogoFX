@@ -13,6 +13,10 @@ using LogoFX.Client.Core;
 
 namespace LogoFX.Client.Mvvm.Commanding
 {
+    /// <summary>
+    /// Base class for <see cref="IActionCommand"/> with parameter implementations
+    /// </summary>
+    /// <typeparam name="T">Type of command parameter</typeparam>
     public abstract class CommandBase<T>
         : IActionCommand
     {
@@ -151,10 +155,10 @@ namespace LogoFX.Client.Mvvm.Commanding
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void NotifyPropertyChanged<P>(Expression<Func<P>> propertySelector)
+        protected void NotifyPropertyChanged<TProperty>(Expression<Func<TProperty>> propertySelector)
         {
             Guard.ArgumentNotNull(propertySelector, "propertySelector");
-            PropertyChanged.Notify<P>(propertySelector);
+            PropertyChanged.Notify(propertySelector);
         }
 
         #endregion

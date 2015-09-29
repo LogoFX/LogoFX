@@ -12,14 +12,14 @@ namespace LogoFX.Client.Mvvm.Commanding
     public class CommandEventArgs
 		 : EventArgs
     {
-        private readonly Object _commandParameter;
+        private readonly object _commandParameter;
 
-        public CommandEventArgs(Object commandParameter)
+        public CommandEventArgs(object commandParameter)
         {
             _commandParameter = commandParameter;
         }
 
-        public Object CommandParameter
+        public object CommandParameter
         {
             get { return _commandParameter; }
         }

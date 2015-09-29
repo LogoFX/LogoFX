@@ -41,7 +41,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         }
 
         [DebuggerStepThrough]
-        public static void ArgumentNotNull<T>(T value, string parameterName, string messageFormat, params Object[] messageArgs)
+        public static void ArgumentNotNull<T>(T value, string parameterName, string messageFormat, params object[] messageArgs)
             where T
                 : class
         {
@@ -53,7 +53,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         [DebuggerStepThrough]
         public static void ArgumentNotDefault<T>(T value, string parameterName)
         {
-            if (Object.Equals(value, default(T)))
+            if (object.Equals(value, default(T)))
             {
                 throw new ArgumentNullException(parameterName);
             }
@@ -62,14 +62,14 @@ namespace LogoFX.Client.Mvvm.Commanding
         [DebuggerStepThrough]
         public static void ArgumentNotDefault<T>(T value, string parameterName, string message)
         {
-            if (Object.Equals(value, default(T)))
+            if (object.Equals(value, default(T)))
             {
                 throw new ArgumentNullException(parameterName, message);
             }
         }
 
         [DebuggerStepThrough]
-        public static void ArgumentNotDefault<T>(T value, string parameterName, string messageFormat, params Object[] messageArgs)
+        public static void ArgumentNotDefault<T>(T value, string parameterName, string messageFormat, params object[] messageArgs)
         {
             ArgumentNotDefault<T>(value, parameterName, string.Format(CultureInfo.CurrentCulture, messageFormat, messageArgs));
         }
@@ -93,7 +93,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         }
 
         [DebuggerStepThrough]
-        public static void ArgumentNotNullOrEmpty(string value, string parameterName, string messageFormat, params Object[] messageArgs)
+        public static void ArgumentNotNullOrEmpty(string value, string parameterName, string messageFormat, params object[] messageArgs)
         {
             ArgumentNotNullOrEmpty(value, parameterName, string.Format(CultureInfo.CurrentCulture, messageFormat, messageArgs));
         }
@@ -117,7 +117,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         }
 
         [DebuggerStepThrough]
-        public static void ArgumentNotNullOrWhiteSpace(string value, string parameterName, string messageFormat, params Object[] messageArgs)
+        public static void ArgumentNotNullOrWhiteSpace(string value, string parameterName, string messageFormat, params object[] messageArgs)
         {
             ArgumentNotNullOrWhiteSpace(value, parameterName, string.Format(CultureInfo.CurrentCulture, messageFormat, messageArgs));
         }
@@ -143,7 +143,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         }
 
         [DebuggerStepThrough]
-        public static void ArgumentOutOfRange(bool outOfRange, string parameterName, string messageFormat, params Object[] messageArgs)
+        public static void ArgumentOutOfRange(bool outOfRange, string parameterName, string messageFormat, params object[] messageArgs)
         {
             ArgumentOutOfRange(outOfRange, parameterName, string.Format(CultureInfo.CurrentCulture, messageFormat, messageArgs));
         }
@@ -168,7 +168,7 @@ namespace LogoFX.Client.Mvvm.Commanding
 
         [DebuggerStepThrough]
         public static void ArgumentIsType(object argument, Type type, string parameterName, string messageFormat,
-            params Object[] messageArgs)
+            params object[] messageArgs)
         {
             ArgumentIsType(argument, type, parameterName, string.Format(CultureInfo.CurrentCulture, messageFormat, messageArgs));
         }
@@ -192,7 +192,7 @@ namespace LogoFX.Client.Mvvm.Commanding
         }
 
         [DebuggerStepThrough]
-        public static void ArgumentValue(bool throwException, string parameterName, string messageFormat, params Object[] messageArgs)
+        public static void ArgumentValue(bool throwException, string parameterName, string messageFormat, params object[] messageArgs)
         {
             ArgumentValue(throwException, parameterName, string.Format(CultureInfo.CurrentCulture, messageFormat, messageArgs));
         }

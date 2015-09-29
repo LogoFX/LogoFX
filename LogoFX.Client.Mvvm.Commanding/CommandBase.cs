@@ -5,15 +5,13 @@
 
 // This code is based on foundings in http://nroute.codeplex.com/
 
-using System;
-
 namespace LogoFX.Client.Mvvm.Commanding
 {
     /// <summary>
     /// Base class for ICommand implementations
     /// </summary>
     public abstract class CommandBase
-        : CommandBase<Object>
+        : CommandBase<object>
     {
         public CommandBase() : this(true) { }
 
