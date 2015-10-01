@@ -4,6 +4,10 @@ using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {
+    /// <summary>
+    /// Thread-safe models collection
+    /// </summary>
+    /// <typeparam name="TItem">Type of model</typeparam>
     public class ConcurrentModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>, IWriteRangeModelsCollection<TItem>
     {
         private readonly ConcurrentObservableCollection<TItem> _items = new ConcurrentObservableCollection<TItem>();

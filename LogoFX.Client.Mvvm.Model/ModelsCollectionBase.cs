@@ -3,6 +3,9 @@ using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model
 {
+    /// <summary>
+    /// Base class for collection of models, supporting collection change notifications
+    /// </summary>
     public abstract class ModelsCollectionBase : IInfoModelsCollection
     {
         public abstract int ItemsCount { get; }

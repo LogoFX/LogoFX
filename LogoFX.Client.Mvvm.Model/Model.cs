@@ -19,7 +19,7 @@ namespace LogoFX.Client.Mvvm.Model
     /// <summary>
     /// Represents model for domain use
     /// </summary>
-    /// <typeparam name="T">type of model identifier</typeparam>
+    /// <typeparam name="T">Type of model identifier</typeparam>
     [DataContract]
     public class Model<T> : NotifyPropertyChangedBase<Model<T>>, IModel<T>,
 #if !SILVERLIGHT && !WinRT
@@ -27,7 +27,7 @@ namespace LogoFX.Client.Mvvm.Model
 #else
         INotifyDataErrorInfo 
 #endif
-        where T:IEquatable<T> 
+        where T : IEquatable<T> 
     {
         /// <summary>
         /// Metadata info class
@@ -289,6 +289,7 @@ namespace LogoFX.Client.Mvvm.Model
         }
 
         #endregion
+
 #if !SILVERLIGHT && !WinRT
         public virtual string this[string columnName]
         {
@@ -327,7 +328,7 @@ namespace LogoFX.Client.Mvvm.Model
     }
 
     [DataContract]
-    public class Model:Model<int>,IModel
+    public class Model : Model<int>, IModel
     {
         public Model()
         {            

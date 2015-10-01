@@ -2,23 +2,24 @@
 
 namespace LogoFX.Client.Mvvm.Model
 {
-    public class EditableListAttribute:Attribute
+    /// <summary>
+    /// Determines whether a collection should be stored during snapshot creation
+    /// </summary>
+    public class EditableListAttribute : Attribute
     {
-        private bool _cloneItems = false;
-
         public EditableListAttribute()
         {
-            
+            CloneItems = false;
         }
 
-        public EditableListAttribute(bool cloneItemsToo)
+        public EditableListAttribute(bool cloneItems)
         {
-            _cloneItems = cloneItemsToo;
+            CloneItems = cloneItems;
         }
-        public bool CloneItems
-        {
-            set { _cloneItems = value; }
-            get { return _cloneItems; }
-        }
+
+        /// <summary>
+        /// True if child items should be cloned during snapshot creation, false otherwise
+        /// </summary>
+        public bool CloneItems { set; get; }
     }
 }

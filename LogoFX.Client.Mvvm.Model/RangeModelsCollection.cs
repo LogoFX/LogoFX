@@ -4,6 +4,11 @@ using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {
+    /// <summary>
+    /// Represents collection of models, supporting collection change notifications. 
+    /// Supports bulk operations efficiently.
+    /// </summary>
+    /// <typeparam name="TItem">Type of model</typeparam>
     public class RangeModelsCollection<TItem> : ModelsCollectionBase, IModelsCollection<TItem>, IWriteRangeModelsCollection<TItem>
     {
         private readonly RangeObservableCollection<TItem> _items = new RangeObservableCollection<TItem>();
