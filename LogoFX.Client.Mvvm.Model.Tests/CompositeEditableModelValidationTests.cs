@@ -3,7 +3,7 @@
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     [TestFixture]
-    class CompositeModelValidationTests
+    class CompositeEditableModelValidationTests
     {
         [Test]
         public void InnerModelIsValid_ErrorIsNull()

@@ -3,7 +3,7 @@
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     [TestFixture]
-    class SimpleModelDirtyTests
+    class SimpleEditableModelDirtyTests
     {
         [Test]
         public void SimpleModelIsNotMadeDirty_IsDirtyIsFalse()

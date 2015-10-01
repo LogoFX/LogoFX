@@ -3,7 +3,7 @@
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     [TestFixture]
-    class SimpleModelValidationTests
+    class SimpleEditableModelValidationTests
     {
         [Test]
         public void SimpleModelIsValid_ErrorIsNull()

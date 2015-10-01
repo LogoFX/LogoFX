@@ -3,7 +3,7 @@ using NUnit.Framework;
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     [TestFixture]
-    class CompositeModelDirtyTests
+    class CompositeEditableModelDirtyTests
     {
         [Test]
         public void InnerModelIsNotMadeDirty_IsDirtyIsFalse()
