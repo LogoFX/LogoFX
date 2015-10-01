@@ -42,7 +42,6 @@
     <Compile Include="IHaveErrors.cs" />
     <Compile Include="IHaveId.cs" />
     <Compile Include="IInfoModelsCollection.cs" />
-    <Compile Include="IMemento.cs" />
     <Compile Include="IMergeable.cs" />
     <Compile Include="IModel.cs" />
     <Compile Include="IModelsCollection.cs" />

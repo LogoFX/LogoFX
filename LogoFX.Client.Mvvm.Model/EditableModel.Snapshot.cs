@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
+using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {

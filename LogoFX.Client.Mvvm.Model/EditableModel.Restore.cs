@@ -1,4 +1,4 @@
-﻿using LogoFX.Client.Mvvm.Model.Contracts;
+﻿using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {
