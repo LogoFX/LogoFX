@@ -3,35 +3,35 @@
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     [TestFixture]
-    class SimpleEditableModelValidationTests
+    class SimpleModelValidationTests
     {
         [Test]
-        public void SimpleEditableModelIsValid_ErrorIsNull()
+        public void SimpleModelIsValid_ErrorIsNull()
         {
-            var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
+            var model = new SimpleModel(DataGenerator.ValidName, 5);
 
             AssertHelper.AssertModelHasErrorIsFalse(model);
         }
 
         [Test]
-        public void SimpleEditableModelIsInvalid_ErrorIsNotNull()
-        {            
+        public void SimpleModelIsInvalid_ErrorIsNotNull()
+        {
             var model = new SimpleEditableModel(DataGenerator.InvalidName, 5);
 
             AssertHelper.AssertModelHasErrorIsTrue(model);
         }
 
         [Test]
-        public void SimpleEditableModelIsValidExternalErrorIsSet_ErrorIsNotNull()
+        public void SimpleModelIsValidExternalErrorIsSet_ErrorIsNotNull()
         {
             var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
             model.SetError("external error", "Name");
 
-            AssertHelper.AssertModelHasErrorIsTrue(model);   
+            AssertHelper.AssertModelHasErrorIsTrue(model);
         }
 
         [Test]
-        public void SimpleEditableModelIsValidExternalErrorIsSetAndErrorIsRemoved_ErrorIsNull()
+        public void SimpleModelIsValidExternalErrorIsSetAndErrorIsRemoved_ErrorIsNull()
         {
             var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
             model.SetError("external error", "Name");
@@ -41,7 +41,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         }
 
         [Test]
-        public void SimpleEditableModelIsValidAndModelBecomesInvalid_ErrorIsNotNull()
+        public void SimpleModelIsValidAndModelBecomesInvalid_ErrorIsNotNull()
         {
             var model = new SimpleEditableModel(DataGenerator.ValidName, 5);
             model.Name = DataGenerator.InvalidName;

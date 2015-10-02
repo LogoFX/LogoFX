@@ -1,22 +1,22 @@
 ﻿using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model.Tests
-{    
-    interface ISimpleEditableModel : IEditableModel, ISimpleModel
-    {        
-        
+{
+    interface ISimpleModel : IModel
+    {
+        new string Name { get; set; }
     }
 
-    class SimpleEditableModel : EditableModel, ISimpleEditableModel
+    class SimpleModel : Model, ISimpleModel
     {
-        public SimpleEditableModel(string name, int age)
+        public SimpleModel(string name, int age)
             : this()
         {
             _name = name;
             Age = age;
         }
 
-        public SimpleEditableModel()
+        public SimpleModel()
         {
             
         }
@@ -27,8 +27,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         {
             get { return _name; }
             set
-            {
-                MakeDirty();
+            {                
                 _name = value;                
                 NotifyOfPropertyChange();
                 NotifyOfPropertyChange(() => Error);

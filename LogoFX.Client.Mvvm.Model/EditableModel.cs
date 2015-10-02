@@ -8,12 +8,11 @@ namespace LogoFX.Client.Mvvm.Model
     public partial class EditableModel<T> : Model<T>, IEditableModel
         where T : IEquatable<T>
     {        
-        private readonly Type _type;
+        //private readonly Type Type;
 
         public EditableModel()
         {
-            _type = GetType();
-            InitErrorListener();
+            //Type = GetType();            
             InitDirtyListener();
         }                
     }

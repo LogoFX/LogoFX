@@ -64,6 +64,8 @@
     <Compile Include="SimpleEditableModelValidationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleEditableModel.cs" />
+    <Compile Include="SimpleModel.cs" />
+    <Compile Include="SimpleModelValidationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

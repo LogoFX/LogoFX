@@ -62,9 +62,6 @@
     <Compile Include="EditableModel.EditingLifecycle.cs">
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditableModel.Errors.cs">
-      <DependentUpon>EditableModel.cs</DependentUpon>
-    </Compile>
     <Compile Include="EditableModel.Restore.cs">
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
@@ -72,6 +69,9 @@
     <Compile Include="ErrorService.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="Model.Errors.cs">
+      <DependentUpon>Model.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelsCollection.cs" />
     <Compile Include="ModelsCollectionBase.cs" />
     <Compile Include="ObjectModel.cs" />

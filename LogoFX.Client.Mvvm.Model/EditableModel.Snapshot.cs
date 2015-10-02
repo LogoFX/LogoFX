@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 using LogoFX.Client.Mvvm.Model.Contracts;
@@ -18,8 +17,6 @@ namespace LogoFX.Client.Mvvm.Model
 
         protected sealed class Snapshot : ISnapshot
         {
-            private readonly IList<ValidationResult> _validationErrors;
-
             private readonly IDictionary<PropertyInfo, object> _state = new Dictionary<PropertyInfo, object>();
 
             private readonly IDictionary<PropertyInfo, IList<object>> _listsState = new Dictionary<PropertyInfo, IList<object>>();
@@ -42,8 +39,7 @@ namespace LogoFX.Client.Mvvm.Model
                         _state.Add(new KeyValuePair<PropertyInfo, object>(propertyInfo,
                                                                           propertyInfo.GetValue(model, null)));
                     }
-                }
-                _validationErrors = model.ValidationErrors;
+                }                
                 _isDirty = model.IsDirty;
             }
 
@@ -71,7 +67,6 @@ namespace LogoFX.Client.Mvvm.Model
                     else
                         result.Value.ForEach(a => il.Add(a));                    
                 }
-                model.ValidationErrors = _validationErrors;
 #if SILVERLIGHT
                 model.NotifyOfErrorsChanged(new DataErrorsChangedEventArgs(null));
 #else

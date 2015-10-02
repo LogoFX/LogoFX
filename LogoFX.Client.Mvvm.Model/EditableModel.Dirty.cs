@@ -135,13 +135,13 @@ namespace LogoFX.Client.Mvvm.Model
 
         private bool SourceValuesAreDirty()
         {
-            return TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this).Any(dirtySource => dirtySource.IsDirty);
+            return TypeInformationProvider.GetDirtySourceValuesUnboxed(Type, this).Any(dirtySource => dirtySource.IsDirty);
         }        
 
         private bool SourceCollectionsAreDirty()
         {
             return
-                TypeInformationProvider.GetDirtySourceCollectionsUnboxed(_type, this)
+                TypeInformationProvider.GetDirtySourceCollectionsUnboxed(Type, this)
                     .Any(dirtySource => dirtySource.IsDirty);
         }
 
@@ -190,12 +190,12 @@ namespace LogoFX.Client.Mvvm.Model
             OwnDirty = false;            
             if (forceClearChildren)
             {
-                var dirtyProperties = TypeInformationProvider.GetDirtySourceValuesUnboxed(_type, this);
+                var dirtyProperties = TypeInformationProvider.GetDirtySourceValuesUnboxed(Type, this);
                 foreach (var dirtyProperty in dirtyProperties)
                 {
                     dirtyProperty.ClearDirty(true);
                 }
-                var dirtyCollectionItems = TypeInformationProvider.GetDirtySourceCollectionsUnboxed(_type, this);
+                var dirtyCollectionItems = TypeInformationProvider.GetDirtySourceCollectionsUnboxed(Type, this);
                 foreach (var dirtyCollectionItem in dirtyCollectionItems)
                 {
                     dirtyCollectionItem.ClearDirty(true);
@@ -206,7 +206,7 @@ namespace LogoFX.Client.Mvvm.Model
         private void InitDirtyListener()
         {
             ListenToDirtyPropertyChange();            
-            var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(_type, this).ToArray();
+            var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(Type, this).ToArray();
             foreach (var propertyInfo in propertyInfos)
             {
                 var actualValue = propertyInfo.GetValue(this); 
@@ -273,12 +273,12 @@ namespace LogoFX.Client.Mvvm.Model
         {
             var changedPropertyName = e.PropertyName;
             
-            if (TypeInformationProvider.IsPropertyDirtySource(_type, changedPropertyName) == false)
+            if (TypeInformationProvider.IsPropertyDirtySource(Type, changedPropertyName) == false)
             {
                 return;
             }
             
-            var propertyValue = TypeInformationProvider.GetDirtySourceValue(_type, changedPropertyName, this);
+            var propertyValue = TypeInformationProvider.GetDirtySourceValue(Type, changedPropertyName, this);
             if (propertyValue != null)
             {
                 NotifyOnInnerChange(propertyValue);

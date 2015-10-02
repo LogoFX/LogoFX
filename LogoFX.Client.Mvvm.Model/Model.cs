@@ -5,7 +5,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,12 +20,7 @@ namespace LogoFX.Client.Mvvm.Model
     /// </summary>
     /// <typeparam name="T">Type of model identifier</typeparam>
     [DataContract]
-    public class Model<T> : NotifyPropertyChangedBase<Model<T>>, IModel<T>,
-#if !SILVERLIGHT && !WinRT
-        IDataErrorInfo 
-#else
-        INotifyDataErrorInfo 
-#endif
+    public partial class Model<T> : NotifyPropertyChangedBase<Model<T>>, IModel<T>, IDataErrorInfo, IHaveErrors
         where T : IEquatable<T> 
     {
         /// <summary>
@@ -121,12 +115,15 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        protected readonly Type Type;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Model&lt;T&gt;"/> class.
         /// </summary>
         public Model()
         {
-
+            Type = GetType();
+            InitErrorListener();
         }
 
         /// <summary>
@@ -134,6 +131,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         /// <param name="other">The other model</param>
         public Model(IModel<T> other)
+            :this()
         {
             _id = other.Id;
             _name = other.Name;
@@ -258,8 +256,6 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         private bool _isReadOnly;
 
-        private IList<ValidationResult> _validationErrors;
-
         public virtual bool IsReadOnly
         {
             get { return _isReadOnly; }
@@ -285,46 +281,10 @@ namespace LogoFX.Client.Mvvm.Model
 
         public override string ToString()
         {
-            return String.IsNullOrWhiteSpace(Name)?base.ToString():Name;
+            return string.IsNullOrWhiteSpace(Name)?base.ToString():Name;
         }
 
         #endregion
-
-#if !SILVERLIGHT && !WinRT
-        public virtual string this[string columnName]
-        {
-            get { return null; }
-        }
-
-        public virtual string Error
-        {
-            get { return null; }
-        }
-#else
-        public virtual IEnumerable GetErrors(string propertyName)
-        {
-            return null;
-        }
-
-        public bool HasErrors
-        {
-            get { return false; }
-        }
-
-        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-
-        protected void NotifyOfErrorsChanged(DataErrorsChangedEventArgs e)
-        {
-            EventHandler<DataErrorsChangedEventArgs> handler = ErrorsChanged;
-            if (handler != null) handler(this, e);
-        }
-#endif
-        protected internal IList<ValidationResult> ValidationErrors
-        {
-            get { return _validationErrors ?? (_validationErrors = new ObservableCollection<ValidationResult>()); }
-            internal set { _validationErrors = value; }
-        }
-      
     }
 
     [DataContract]
