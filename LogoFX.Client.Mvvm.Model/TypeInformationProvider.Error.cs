@@ -14,6 +14,12 @@ namespace LogoFX.Client.Mvvm.Model
         private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> DataErrorInfoSource =
             new ConcurrentDictionary<Type, DataErrorInfoDictionary>(); 
 
+        /// <summary>
+        /// Determines whether property is an error source
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyName">Property name</param>
+        /// <returns>True if property is an error source, false otherwise</returns>
         internal static bool IsPropertyDataErrorInfoSource(Type type, string propertyName)
         {
             return IsPropertyDataErrorInfoSourceImpl(type, propertyName);
@@ -28,6 +34,13 @@ namespace LogoFX.Client.Mvvm.Model
             return DataErrorInfoSource[type].ContainsKey(propertyName);
         }
 
+        /// <summary>
+        /// Retrieves property value for error source properties
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyName">Property name</param>
+        /// <param name="propertyContainer">Property container</param>
+        /// <returns>Property value if found, null otherwise</returns>
         internal static object GetDataErrorInfoSourceValue(Type type, string propertyName, object propertyContainer)
         {
             var containsProperty = IsPropertyDataErrorInfoSourceImpl(type, propertyName);
@@ -42,6 +55,12 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Retrieves collection of error sources from the given property container
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyContainer">Property container</param>
+        /// <returns>Collection of error sources</returns>
         internal static IEnumerable<IDataErrorInfo> GetDataErrorInfoSourceValuesUnboxed(Type type, object propertyContainer)
         {
             if (DataErrorInfoSource.ContainsKey(type) == false)

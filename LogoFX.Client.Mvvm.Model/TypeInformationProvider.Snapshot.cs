@@ -8,9 +8,13 @@ namespace LogoFX.Client.Mvvm.Model
 {
     partial class TypeInformationProvider
     {
-        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> InnerDictionary = new ConcurrentDictionary<Type, PropertyInfo[]>(); 
-        private static readonly object SyncObject = new object();
+        private static readonly ConcurrentDictionary<Type, PropertyInfo[]> InnerDictionary = new ConcurrentDictionary<Type, PropertyInfo[]>();
 
+        /// <summary>
+        /// Retrieves collection of storable properties for the given type
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <returns>Collection of storable properties</returns>
         internal static PropertyInfo[] GetStorableProperties(Type type)
         {
             InnerDictionary.TryAdd(type, GetStorablePropertiesImpl(type));                              

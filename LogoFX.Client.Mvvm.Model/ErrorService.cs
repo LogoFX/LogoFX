@@ -26,9 +26,12 @@ namespace LogoFX.Client.Mvvm.Model
             var stringBuilder = new StringBuilder();            
             foreach (var validationAttribute in validationInfo.Item2)
             {
-                var validationResult =
-                    validationAttribute.GetValidationResult(
-                        TypeInformationProvider.GetValidationInfoValue(type, propertyName, propertyContainer),
+                var validationInfoValue = TypeInformationProvider.GetValidationInfoValue(type, propertyName,
+                    propertyContainer);
+                var validationResult = validationInfoValue == null
+                    ? null
+                    : validationAttribute.GetValidationResult(
+                        validationInfoValue,
                         new ValidationContext(propertyName));
                 if (validationResult != null)
                 {

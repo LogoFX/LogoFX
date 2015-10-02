@@ -15,6 +15,12 @@ namespace LogoFX.Client.Mvvm.Model
         private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> DirtySource =
             new ConcurrentDictionary<Type, DataErrorInfoDictionary>(); 
 
+        /// <summary>
+        /// Determines whether property is a dirty source
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyName">Property name</param>
+        /// <returns>True if property is a dirty source, false otherwise</returns>
         internal static bool IsPropertyDirtySource(Type type, string propertyName)
         {
             return IsPropertyDirtySourceImpl(type, propertyName);
@@ -22,13 +28,17 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static bool IsPropertyDirtySourceImpl(Type type, string propertyName)
         {
-            if (DirtySource.ContainsKey(type) == false)
-            {
-                AddDirtyDictionary(type);
-            }
+            AddTypeIfMissing(type);
             return DirtySource[type].ContainsKey(propertyName);
         }
 
+        /// <summary>
+        /// Retrieves property value for dirty source properties
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyName">Property name</param>
+        /// <param name="propertyContainer">Property container</param>
+        /// <returns>Property value if found, null otherwise</returns>
         internal static object GetDirtySourceValue(Type type, string propertyName, object propertyContainer)
         {
             var containsProperty = IsPropertyDirtySourceImpl(type, propertyName);
@@ -43,14 +53,17 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Retrieves collection of dirty sources from the given property container
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyContainer">Property container</param>
+        /// <returns>Collection of dirty sources</returns>
         internal static IEnumerable<ICanBeDirty> GetDirtySourceValuesUnboxed(Type type, object propertyContainer)
         {
-            if (DirtySource.ContainsKey(type) == false)
-            {
-                AddDirtyDictionary(type);
-            }
+            AddTypeIfMissing(type);
             return DirtySource[type].Select(entry => GetDirtySourceValueUnboxed(type, entry.Key, propertyContainer));
-        }
+        }        
 
         private static ICanBeDirty GetDirtySourceValueUnboxed(Type type, string propertyName, object propertyContainer)
         {
@@ -83,6 +96,12 @@ namespace LogoFX.Client.Mvvm.Model
         private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> DirtySourceCollection =
             new ConcurrentDictionary<Type, IEnumerable<PropertyInfo>>();
 
+        /// <summary>
+        /// Retrieves collection of dirty source collections from the given property container
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="properyContainer">Property container</param>
+        /// <returns>Collection of dirty source collections</returns>
         internal static IEnumerable<PropertyInfo> GetPropertyDirtySourceCollections(Type type, object properyContainer)
         {
             if (DirtySourceCollection.ContainsKey(type) == false)
@@ -106,6 +125,12 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Retrieves dirty source collections' values from the given property container in the format of flat list
+        /// </summary>
+        /// <param name="type">Type of property container</param>
+        /// <param name="propertyContainer">Property container</param>
+        /// <returns>Dirty source values that originate in dirty source collections</returns>
         internal static IEnumerable<ICanBeDirty> GetDirtySourceCollectionsUnboxed(Type type, object propertyContainer)
         {
             if (DirtySourceCollection.ContainsKey(type) == false)
@@ -127,6 +152,14 @@ namespace LogoFX.Client.Mvvm.Model
             var actualValue = propertyInfo.GetValue(propertyContainer);
             var isTraceable = actualValue is INotifyCollectionChanged;                             
             return isTraceable;
+        }
+
+        private static void AddTypeIfMissing(Type type)
+        {
+            if (DirtySource.ContainsKey(type) == false)
+            {
+                AddDirtyDictionary(type);
+            }
         }
     }    
 }
