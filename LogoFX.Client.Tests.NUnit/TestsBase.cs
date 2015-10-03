@@ -7,9 +7,9 @@ namespace LogoFX.Client.Tests.NUnit
 {
     public abstract class TestsBase<TContainer,TFakeFactory,TRootViewModel, TBootstrapper> : 
         IntegrationTestsBase<TContainer,TFakeFactory,TRootViewModel, TBootstrapper> 
-        where TContainer : IIocContainer, new() 
+        where TContainer : IIocContainer, new()        
         where TFakeFactory : IFakeFactory, new() 
-        where TRootViewModel : class
+        where TRootViewModel : class 
     {
         protected override void SetupOverride()
         {
