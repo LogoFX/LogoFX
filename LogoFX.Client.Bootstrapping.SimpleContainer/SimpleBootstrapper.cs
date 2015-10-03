@@ -5,14 +5,14 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
 {
     public class SimpleBootstrapper<TRootViewModel> : BootstrapperContainerBase<TRootViewModel,ExtendedSimpleIocContainer> where TRootViewModel : class
     {
-        public SimpleBootstrapper(ExtendedSimpleIocContainer container, bool useApplication = true)
-            :base(container, useApplication)
+        public SimpleBootstrapper(ExtendedSimpleIocContainer container, bool useApplication = true, bool reuseCompositionInformation = false)
+            :base(container, useApplication, reuseCompositionInformation)
         {
             
         }
 
-        public SimpleBootstrapper(bool useApplication = true)
-            :base(useApplication)
+        public SimpleBootstrapper(bool useApplication = true, bool reuseCompositionInformation = false)
+            :base(useApplication, reuseCompositionInformation)
         {
             
         }

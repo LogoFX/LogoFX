@@ -38,8 +38,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.3\lib\net451\LogoFX.Client.Core.dll</HintPath>
+    <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Core.1.0.3.1\lib\net451\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Scheduling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

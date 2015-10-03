@@ -34,6 +34,7 @@ namespace LogoFX.Client.Bootstrapping
         private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
         private IBootstrapperAdapter _bootstrapperAdapter;        
         private readonly TIocContainer _iocContainer;
+        private readonly bool _reuseCompositionInformation;
 
         /// <summary>
         /// This ctor is used when the container is not created outside the bootstrapper.
@@ -43,8 +44,11 @@ namespace LogoFX.Client.Bootstrapping
         /// True if there is an actual WPF application, false otherwise. 
         /// Use false value for tests.
         /// </param>
-        protected BootstrapperContainerBase(bool useApplication = true)
-            : this(new TIocContainer(), useApplication)
+        /// <param name="reuseCompositionInformation">
+        /// True if the composition information should be reused, false otherwise.
+        /// Use 'true' to boost the tests. Pay attention to cross-thread calls.</param>
+        protected BootstrapperContainerBase(bool useApplication = true, bool reuseCompositionInformation = false)
+            : this(new TIocContainer(), useApplication, reuseCompositionInformation)
         {
            
         }
@@ -57,10 +61,17 @@ namespace LogoFX.Client.Bootstrapping
         /// True if there is an actual WPF application, false otherwise. 
         /// Use false value for tests.
         /// </param>
-        protected BootstrapperContainerBase(TIocContainer iocContainer, bool useApplication=true)            
+        /// <param name="reuseCompositionInformation">
+        /// True if the composition information should be reused, false otherwise.
+        /// Use 'true' to boost the tests. Pay attention to cross-thread calls.</param>
+        protected BootstrapperContainerBase(
+            TIocContainer iocContainer, 
+            bool useApplication = true, 
+            bool reuseCompositionInformation = false)            
             :base(useApplication)
         {
             _iocContainer = iocContainer;
+            _reuseCompositionInformation = reuseCompositionInformation;
             Initialize();
         }
 
@@ -148,9 +159,23 @@ namespace LogoFX.Client.Bootstrapping
         }
 
         protected override IEnumerable<Assembly> SelectAssemblies()
-        {                     
+        {
+            var rootPath = Environment.CurrentDirectory + ModulesPath;
+            if (_reuseCompositionInformation)
+            {                
+                var existingCompositionInfo = CompositionInfoManager.GetCompositionInfo(rootPath);
+                if (existingCompositionInfo != null)
+                {
+                    Modules = existingCompositionInfo.Modules;
+                    return existingCompositionInfo.AssembliesResolver.GetAssemblies();
+                }
+            }
             var initializationFacade = new CompositionInitializationFacade(GetType());
             initializationFacade.Initialize(ModulesPath,Prefixes);
+            if (_reuseCompositionInformation)
+            {
+                CompositionInfoManager.AddCompositionInfo(rootPath, initializationFacade);
+            }
             Modules = initializationFacade.Modules;
             return initializationFacade.AssembliesResolver.GetAssemblies();
         }
