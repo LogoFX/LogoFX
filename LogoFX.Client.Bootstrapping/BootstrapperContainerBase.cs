@@ -116,6 +116,8 @@ namespace LogoFX.Client.Bootstrapping
 
             RegisterCommon(_iocContainer);
             RegisterViewsAndViewModels(_iocContainer);
+            var moduleRegistrator = new ModuleRegistrator(Modules);
+            moduleRegistrator.RegisterModules(_iocContainer);
             OnConfigure(_iocContainer);
         }        
 
@@ -147,7 +149,7 @@ namespace LogoFX.Client.Bootstrapping
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {                     
-            var initializationFacade = new BootstrapperInitializationFacade<TIocContainer>(GetType(), _iocContainer);
+            var initializationFacade = new CompositionInitializationFacade(GetType());
             initializationFacade.Initialize(ModulesPath,Prefixes);
             Modules = initializationFacade.Modules;
             return initializationFacade.AssembliesResolver.GetAssemblies();

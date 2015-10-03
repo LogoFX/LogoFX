@@ -5,6 +5,7 @@ using System.Web.Http.Dispatcher;
 using LogoFX.Server.Web.Core;
 using Solid.Practices.Composition.Web;
 using Solid.Practices.IoC;
+using Solid.Practices.Modularity;
 
 namespace LogoFX.Server.Web.Bootstrapping
 {
@@ -68,8 +69,10 @@ namespace LogoFX.Server.Web.Bootstrapping
         {            
             DirectoryInfo directoryInfo = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
             string path = Path.Combine(directoryInfo.FullName, ModulesPath);
-            var initializationFacade = new BootstrapperInitializationFacade<IIocContainer>(_iocContainer);  
+            var initializationFacade = new CompositionInitializationFacade();  
             initializationFacade.Initialize(path);
+            var moduleRegistrator = new ModuleRegistrator(initializationFacade.Modules);
+            moduleRegistrator.RegisterModules(_iocContainer);
             //code smell
             _assembliesResolver = initializationFacade.AssembliesResolver as IAssembliesResolver;
             _typeResolver = new HttpControllerTypeResolver();

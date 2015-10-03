@@ -38,7 +38,7 @@
       <HintPath>..\packages\Attest.Fake.Core.1.0.7\lib\net451\Attest.Fake.Core.dll</HintPath>
     </Reference>
     <Reference Include="Attest.Tests.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.Core.1.0.7.3\lib\net451\Attest.Tests.Core.dll</HintPath>
+      <HintPath>..\packages\Attest.Tests.Core.1.0.7.4\lib\net451\Attest.Tests.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.SpecFlow, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
