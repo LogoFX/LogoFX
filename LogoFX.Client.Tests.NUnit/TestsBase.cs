@@ -1,4 +1,5 @@
 ﻿using Attest.Fake.Core;
+using Attest.Tests.Core;
 using Attest.Tests.NUnit;
 using LogoFX.Client.Tests.Shared;
 using Solid.Practices.IoC;
@@ -11,6 +12,14 @@ namespace LogoFX.Client.Tests.NUnit
         where TFakeFactory : IFakeFactory, new() 
         where TRootViewModel : class 
     {
+        private readonly InitializationParametersResolutionStyle _resolutionStyle;
+
+        protected TestsBase(InitializationParametersResolutionStyle resolutionStyle = InitializationParametersResolutionStyle.PerRequest)
+            :base(resolutionStyle)
+        {
+            _resolutionStyle = resolutionStyle;
+        }
+
         protected override void SetupOverride()
         {
             base.SetupOverride();
@@ -20,7 +29,10 @@ namespace LogoFX.Client.Tests.NUnit
         protected override void TearDownOverride()
         {
             base.TearDownOverride();
-            TestHelper.Teardown();
+            if (_resolutionStyle == InitializationParametersResolutionStyle.PerRequest)
+            {
+                TestHelper.Teardown();
+            }
         }
     }
 }
