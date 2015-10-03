@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Solid.Practices.Composition, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.1.0.4.1\lib\net451\Solid.Practices.Composition.dll</HintPath>
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.4.2\lib\net451\Solid.Practices.Composition.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Composition.Web, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

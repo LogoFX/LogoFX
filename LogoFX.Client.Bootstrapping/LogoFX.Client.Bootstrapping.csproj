@@ -42,8 +42,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Solid.Practices.Composition">
-      <HintPath>..\packages\Solid.Practices.Composition.1.0.4.1\lib\net451\Solid.Practices.Composition.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.4.2\lib\net451\Solid.Practices.Composition.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

@@ -148,7 +148,7 @@ namespace LogoFX.Client.Bootstrapping
         protected override IEnumerable<Assembly> SelectAssemblies()
         {                     
             var initializationFacade = new BootstrapperInitializationFacade<TIocContainer>(GetType(), _iocContainer);
-            initializationFacade.Initialize(ModulesPath);
+            initializationFacade.Initialize(ModulesPath,Prefixes);
             Modules = initializationFacade.Modules;
             return initializationFacade.AssembliesResolver.GetAssemblies();
         }
@@ -156,6 +156,11 @@ namespace LogoFX.Client.Bootstrapping
         public virtual string ModulesPath
         {
             get { return "."; }
+        }
+
+        public virtual string[] Prefixes
+        {
+            get { return new string[]{}; }
         }
 
         private readonly object _defaultLifetimeScope = new object();
