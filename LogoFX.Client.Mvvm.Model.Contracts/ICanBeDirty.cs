@@ -11,6 +11,11 @@
         bool IsDirty { get; }
 
         /// <summary>
+        /// Marks object as dirty
+        /// </summary>
+        void MakeDirty();
+
+        /// <summary>
         /// Clears dirty state of the object, optionally propagating the change to its children
         /// </summary>
         /// <param name="forceClearChildren">True, if children dirty state should be cleared too, false otherwise</param>

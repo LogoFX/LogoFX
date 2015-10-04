@@ -35,6 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ICanBeDirty.cs" />
+    <Compile Include="ICanCancelChanges.cs" />
     <Compile Include="IClientModel.cs" />
     <Compile Include="ICloneable.cs" />
     <Compile Include="ICopyable.cs" />
