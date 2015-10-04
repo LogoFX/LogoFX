@@ -2,7 +2,7 @@
 
 namespace LogoFX.Client.Mvvm.Model.Contracts
 {
-    public interface IEditableModel : IEditableObject, ICanBeDirty, IHaveErrors, IDataErrorInfo
+    public interface IEditableModel : IEditableObject, ICanBeDirty, IHaveErrors, IHaveExternalErrors, IDataErrorInfo
     {
         /// <summary>
         /// Cancels all changes and rolls back to the initial object state
