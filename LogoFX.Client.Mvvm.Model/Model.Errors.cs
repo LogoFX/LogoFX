@@ -41,19 +41,31 @@ namespace LogoFX.Client.Mvvm.Model
         {
             get
             {
-                return GetErrorByPropertyName(columnName);
+                var errors = GetErrorsByPropertyName(columnName);
+                return CreateErrorsPresentation(errors);              
             }
         }
 
-        private string GetErrorByPropertyName(string columnName)
+        private IEnumerable<string> GetErrorsByPropertyName(string columnName)
         {
             var externalError = _externalErrors.ContainsKey(columnName) ? _externalErrors[columnName] : string.Empty;
-            return string.Concat(externalError, GetInternalValidationErrorByPropertyName(columnName));
+            if (string.IsNullOrEmpty(externalError) == false)
+            {
+                yield return externalError;
+            }
+            var validationErrors = GetInternalValidationErrorsByPropertyName(columnName);
+            if (validationErrors != null)
+            {
+                foreach (var validationError in validationErrors)
+                {
+                    yield return validationError;
+                }
+            }            
         }
 
-        private string GetInternalValidationErrorByPropertyName(string columnName)
+        private IEnumerable<string> GetInternalValidationErrorsByPropertyName(string columnName)
         {
-            return ErrorService.GetValidationErrorByPropertyName(Type, columnName, this);
+            return ErrorService.GetValidationErrorsByPropertyName(Type, columnName, this);
         }
 
         public virtual string Error
@@ -75,13 +87,24 @@ namespace LogoFX.Client.Mvvm.Model
 
         private string CalculateOwnError()
         {
-            var stringBuilder = new StringBuilder();
+            var ownErrors = CalculateOwnErrors();
+            return CreateErrorsPresentation(ownErrors);
+        }
+
+        private IEnumerable<string> CalculateOwnErrors()
+        {            
+            // ReSharper disable once LoopCanBeConvertedToQuery
             foreach (var entry in TypeInformationProvider.GetValidationInfoCollection(Type))
             {
-                var propError = GetErrorByPropertyName(entry.Key);
-                stringBuilder.Append(propError);
-            }
-            return stringBuilder.ToString();
+                var propErrors = GetErrorsByPropertyName(entry.Key);
+                if (propErrors != null)
+                {
+                    foreach (var propError in propErrors)
+                    {
+                        yield return propError;
+                    }
+                }
+            }            
         }
 
         private static void AppendErrorIfNeeded(string ownError, StringBuilder stringBuilder)
@@ -127,6 +150,20 @@ namespace LogoFX.Client.Mvvm.Model
                 _externalErrors.Remove(propertyName);
             }
             NotifyOfPropertyChange(() => HasErrors);
+        }
+
+        private static string CreateErrorsPresentation(IEnumerable<string> errors)
+        {
+            if (errors == null)
+            {
+                return null;
+            }
+            var stringBuilder = new StringBuilder();
+            foreach (var error in errors)
+            {
+                stringBuilder.Append(error);
+            }
+            return stringBuilder.ToString();
         }
     }
 }
