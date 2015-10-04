@@ -72,23 +72,11 @@ namespace LogoFX.Client.Mvvm.Model
         {
             get
             {
-                var ownError = CalculateOwnError();
+                var ownErrors = CalculateOwnErrors();
                 var childrenErrors = TypeInformationProvider.GetDataErrorInfoSourceValuesUnboxed(Type, this).Select(t => t.Error).ToArray();
-                var stringBuilder = new StringBuilder();
-                AppendErrorIfNeeded(ownError, stringBuilder);
-
-                foreach (var childError in childrenErrors)
-                {
-                    AppendErrorIfNeeded(childError, stringBuilder);
-                }
-                return stringBuilder.ToString();
+                var errors = ownErrors == null ? childrenErrors : ownErrors.Concat(childrenErrors);
+                return CreateErrorsPresentation(errors);                
             }
-        }
-
-        private string CalculateOwnError()
-        {
-            var ownErrors = CalculateOwnErrors();
-            return CreateErrorsPresentation(ownErrors);
         }
 
         private IEnumerable<string> CalculateOwnErrors()
@@ -105,14 +93,6 @@ namespace LogoFX.Client.Mvvm.Model
                     }
                 }
             }            
-        }
-
-        private static void AppendErrorIfNeeded(string ownError, StringBuilder stringBuilder)
-        {
-            if (string.IsNullOrWhiteSpace(ownError) == false)
-            {
-                stringBuilder.AppendLine(ownError);
-            }
         }
 
         public bool HasErrors
@@ -161,9 +141,17 @@ namespace LogoFX.Client.Mvvm.Model
             var stringBuilder = new StringBuilder();
             foreach (var error in errors)
             {
-                stringBuilder.Append(error);
+                AppendErrorIfNeeded(error, stringBuilder);
             }
             return stringBuilder.ToString();
+        }
+
+        private static void AppendErrorIfNeeded(string error, StringBuilder stringBuilder)
+        {
+            if (string.IsNullOrWhiteSpace(error) == false)
+            {
+                stringBuilder.AppendLine(error);
+            }
         }
     }
 }
