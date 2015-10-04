@@ -45,7 +45,7 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     /// Represents model with basic support for property notifications and built-in Id
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IModel<T> : INotifyPropertyChanged, IHaveId<T> where T:IEquatable<T>
+    public interface IModel<T> : INotifyPropertyChanged, IHaveId<T>, IDataErrorInfo where T:IEquatable<T>
     {
         /// <summary>
         /// Model name
