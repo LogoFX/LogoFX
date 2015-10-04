@@ -20,7 +20,7 @@ namespace LogoFX.Client.Mvvm.Model
     /// </summary>
     /// <typeparam name="T">Type of model identifier</typeparam>
     [DataContract]
-    public partial class Model<T> : NotifyPropertyChangedBase<Model<T>>, IModel<T>, IDataErrorInfo, IHaveErrors
+    public partial class Model<T> : NotifyPropertyChangedBase<Model<T>>, IModel<T>        
         where T : IEquatable<T> 
     {
         /// <summary>

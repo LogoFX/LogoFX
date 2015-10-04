@@ -1,15 +1,10 @@
 ﻿namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     /// <summary>
-    /// Represents object that allows managing collection of errors
+    /// Represents object that allows managing collection of external errors
     /// </summary>
-    public interface IHaveErrors
+    public interface IHaveExternalErrors
     {
-        /// <summary>
-        /// True if object has errors, false otherwise
-        /// </summary>
-        bool HasErrors { get; }
-
         /// <summary>
         /// Sets external error to the specific property
         /// </summary>
@@ -22,5 +17,16 @@
         /// </summary>
         /// <param name="propertyName">Property name</param>
         void ClearError(string propertyName);
+    }
+
+    /// <summary>
+    /// Represents object that allows managing collection of errors
+    /// </summary>
+    public interface IHaveErrors
+    {
+        /// <summary>
+        /// True if object has errors, false otherwise
+        /// </summary>
+        bool HasErrors { get; }        
     }
 }

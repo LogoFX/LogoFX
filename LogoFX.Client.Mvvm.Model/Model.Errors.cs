@@ -3,11 +3,12 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using LogoFX.Client.Mvvm.Core;
+using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {
-    partial class Model<T>
+    partial class Model<T> : IDataErrorInfo, IHaveErrors, IHaveExternalErrors
     {
         private readonly Dictionary<string, string> _externalErrors =
             new Dictionary<string, string>();
