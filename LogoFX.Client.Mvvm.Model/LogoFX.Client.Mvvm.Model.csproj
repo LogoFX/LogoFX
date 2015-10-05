@@ -66,6 +66,7 @@
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
     <Compile Include="EditableSingleAttribute.cs" />
+    <Compile Include="ErrorInfoExtractionStrategy.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ErrorInfoManager.cs" />
