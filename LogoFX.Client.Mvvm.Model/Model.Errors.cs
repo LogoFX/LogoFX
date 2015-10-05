@@ -99,9 +99,7 @@ namespace LogoFX.Client.Mvvm.Model
         {
             get
             {
-                var ownErrors = CalculateOwnErrors();
-                var childrenErrors = _errorInfoExtractionStrategy.ExtractChildrenErrors(Type, this);
-                var errors = ownErrors == null ? childrenErrors : ownErrors.Concat(childrenErrors);
+                var errors = GetAllErrors();
                 return CreateErrorsPresentation(errors);                
             }
         }
@@ -124,7 +122,15 @@ namespace LogoFX.Client.Mvvm.Model
 
         public IEnumerable GetErrors(string propertyName)
         {
-            return GetErrorsByPropertyName(propertyName);
+            return string.IsNullOrEmpty(propertyName) ? GetAllErrors() : GetErrorsByPropertyName(propertyName);
+        }
+
+        private IEnumerable<string> GetAllErrors()
+        {
+            var ownErrors = CalculateOwnErrors();
+            var childrenErrors = _errorInfoExtractionStrategy.ExtractChildrenErrors(Type, this);
+            var errors = ownErrors == null ? childrenErrors : ownErrors.Concat(childrenErrors);
+            return errors;
         }
 
         public bool HasErrors
