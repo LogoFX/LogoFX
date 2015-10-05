@@ -68,6 +68,7 @@
     <Compile Include="EditableSingleAttribute.cs" />
     <Compile Include="ErrorService.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="ErrorInfoManager.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Model.Errors.cs">
       <DependentUpon>Model.cs</DependentUpon>
