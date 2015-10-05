@@ -49,6 +49,7 @@ namespace LogoFX.Client.Mvvm.Model
             var propertyValue = TypeInformationProvider.GetDataErrorInfoSourceValue(Type, changedPropertyName, this);
             if (propertyValue != null)
             {
+                NotifyOfPropertyChange(() => Error);
                 propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
             }
         }
@@ -182,12 +183,13 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static string CreateErrorsPresentation(IEnumerable<string> errors)
         {
-            if (errors == null)
+            var errorsArray = errors == null ? null : errors.ToArray();
+            if (errorsArray == null || errorsArray.Length == 0)
             {
                 return null;
             }
             var stringBuilder = new StringBuilder();
-            foreach (var error in errors)
+            foreach (var error in errorsArray)
             {
                 AppendErrorIfNeeded(error, stringBuilder);
             }

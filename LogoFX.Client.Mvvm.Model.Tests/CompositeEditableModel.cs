@@ -51,7 +51,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             {
                 MakeDirty();
                 _person = value;
-                NotifyOfPropertyChange();
+                NotifyOfPropertyChange();                
             }
         }
 
