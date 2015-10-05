@@ -86,16 +86,12 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static object CalculateDataErrorInfoSourceValueBoxed(Type type, string propertyName, object propertyContainer)
         {
-            return DataErrorInfoSource[type][propertyName].GetValue(propertyContainer);
+            return CalculateErrorInfoSourceValueBoxedInternal(type, propertyName, propertyContainer, DataErrorInfoSource);
         }
 
         private static void AddDataErrorInfoDictionary(Type type)
         {
-            var props = type.GetProperties();
-            var dataErrorInfoDictionary =
-                props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(IDataErrorInfo)))
-                    .ToDictionary(t => t.Name, t => t);
-            DataErrorInfoSource.TryAdd(type, dataErrorInfoDictionary);
+            AddErrorInfoDictionaryInternal<IDataErrorInfo>(type, DataErrorInfoSource);
         }
     }
 }
