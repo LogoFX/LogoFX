@@ -1,12 +1,11 @@
 using System.ComponentModel;
-using LogoFX.Client.Mvvm.Model.Contracts;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
     static class AssertHelper
     {
-        internal static void AssertModelHasErrorIsFalse<T>(T model) where T : IHaveErrors, IDataErrorInfo
+        internal static void AssertModelHasErrorIsFalse<T>(T model) where T : INotifyDataErrorInfo, IDataErrorInfo
         {
             var error = model.Error;
             var hasErrors = model.HasErrors;
@@ -14,7 +13,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             Assert.IsFalse(hasErrors);
         }
 
-        internal static void AssertModelHasErrorIsTrue<T>(T model) where T : IHaveErrors, IDataErrorInfo
+        internal static void AssertModelHasErrorIsTrue<T>(T model) where T : INotifyDataErrorInfo, IDataErrorInfo
         {
             var error = model.Error;
             var hasErrors = model.HasErrors;

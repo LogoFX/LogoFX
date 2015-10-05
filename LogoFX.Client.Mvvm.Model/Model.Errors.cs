@@ -10,7 +10,7 @@ using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {    
-    partial class Model<T> : INotifyDataErrorInfo
+    partial class Model<T>
     {
         private readonly Dictionary<string, string> _externalErrors =
             new Dictionary<string, string>();

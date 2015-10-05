@@ -49,7 +49,8 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
         INotifyPropertyChanged, 
         IHaveId<T>, 
         IDataErrorInfo,
-        IHaveErrors, IHaveExternalErrors
+        INotifyDataErrorInfo,
+        IHaveExternalErrors
         where T:IEquatable<T>
     {
         /// <summary>
