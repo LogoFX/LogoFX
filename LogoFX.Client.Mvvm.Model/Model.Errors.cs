@@ -139,6 +139,10 @@ namespace LogoFX.Client.Mvvm.Model
             get { return string.IsNullOrWhiteSpace(Error) == false; }
         }
 
+        /// <summary>
+        /// Fires ErrorsChanged event from the INotifyDataErrorInfo interface
+        /// </summary>
+        /// <param name="name"></param>
         protected void RaiseErrorsChanged([CallerMemberName] string name = "")
         {
             if (ErrorsChanged != null)
