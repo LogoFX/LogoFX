@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Reflection;
 
 namespace LogoFX.Client.Mvvm.Model
-{
-    using DataErrorInfoDictionary = Dictionary<string, PropertyInfo>;
-
+{    
     partial class TypeInformationProvider
     {
-        private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> DataErrorInfoSource =
-            new ConcurrentDictionary<Type, DataErrorInfoDictionary>(); 
+        private static readonly IErrorInfoManager DataErrorInfoSource =
+            new ConcurrentErrorInfoManager(); 
 
         /// <summary>
         /// Determines whether property is an error source

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 
 namespace LogoFX.Client.Mvvm.Model
-{
-    using DataErrorInfoDictionary = Dictionary<string, PropertyInfo>;
-
+{        
     partial class TypeInformationProvider
     {
-        private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> NotifyDataErrorInfoSource =
-            new ConcurrentDictionary<Type, DataErrorInfoDictionary>();
+        private static readonly IErrorInfoManager NotifyDataErrorInfoSource =
+            new ConcurrentErrorInfoManager();
 
         /// <summary>
         /// Determines whether property is an error source
@@ -61,48 +57,60 @@ namespace LogoFX.Client.Mvvm.Model
                 NotifyDataErrorInfoSource);
         }
 
-        private static IEnumerable<TErrorInfo> GetErrorInfoSourceValuesUnboxedInternal<TErrorInfo>(Type type, object propertyContainer, ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
+        private static IEnumerable<TErrorInfo> GetErrorInfoSourceValuesUnboxedInternal<TErrorInfo>(
+            Type type, 
+            object propertyContainer, 
+            IErrorInfoManager errorInfoManager)
         {
-            if (dictionary.ContainsKey(type) == false)
+            if (errorInfoManager.ContainsType(type) == false)
             {
-                AddErrorInfoDictionaryInternal<TErrorInfo>(type, dictionary);
+                AddErrorInfoDictionaryInternal<TErrorInfo>(type, errorInfoManager);
             }
             return
-                dictionary[type].Select(
-                    entry => GetValueUnboxedInternal<TErrorInfo>(type, entry.Key, propertyContainer, dictionary));
+                errorInfoManager[type].Select(
+                    entry => GetValueUnboxedInternal<TErrorInfo>(type, entry.Key, propertyContainer, errorInfoManager));
         }
 
-        private static bool IsPropertyErrorInfoSourceInternal<TErrorInfo>(Type type, string propertyName, ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
+        private static bool IsPropertyErrorInfoSourceInternal<TErrorInfo>(Type type, string propertyName, IErrorInfoManager errorInfoManager)
         {
-            if (dictionary.ContainsKey(type) == false)
+            if (errorInfoManager.ContainsType(type) == false)
             {
-                AddErrorInfoDictionaryInternal<TErrorInfo>(type,dictionary);
+                AddErrorInfoDictionaryInternal<TErrorInfo>(type,errorInfoManager);
             }
-            return dictionary[type].ContainsKey(propertyName);
+            return errorInfoManager[type].ContainsKey(propertyName);
         }
 
-        private static TErrorInfo GetValueUnboxedInternal<TErrorInfo>(Type type, string propertyName, object propertyContainer, ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
+        private static TErrorInfo GetValueUnboxedInternal<TErrorInfo>(
+            Type type, 
+            string propertyName, 
+            object propertyContainer, 
+            IErrorInfoManager errorInfoManager)
         {
-            var containsProperty = IsPropertyErrorInfoSourceInternal<TErrorInfo>(type, propertyName, dictionary);
+            var containsProperty = IsPropertyErrorInfoSourceInternal<TErrorInfo>(type, propertyName, errorInfoManager);
             return containsProperty == false
                 ? default(TErrorInfo)
                 : (TErrorInfo)
-                    CalculateErrorInfoSourceValueBoxedInternal(type, propertyName, propertyContainer, dictionary);
+                    CalculateErrorInfoSourceValueBoxedInternal(type, propertyName, propertyContainer, errorInfoManager);
         }
 
-        private static object CalculateErrorInfoSourceValueBoxedInternal(Type type, string propertyName, object propertyContainer, ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
+        private static object CalculateErrorInfoSourceValueBoxedInternal(
+            Type type, 
+            string propertyName, 
+            object propertyContainer, 
+            IErrorInfoManager errorInfoManager
+            )
         {
-            return dictionary[type][propertyName].GetValue(propertyContainer);
+            return errorInfoManager[type][propertyName].GetValue(propertyContainer);
         }
 
         private static void AddErrorInfoDictionaryInternal<TErrorInfo>(Type type,
-            ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
+            IErrorInfoManager errorInfoManager)
         {
             var props = type.GetProperties();
             var dataErrorInfoDictionary =
                 props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(TErrorInfo)))
                     .ToDictionary(t => t.Name, t => t);
-            dictionary.TryAdd(type, dataErrorInfoDictionary);
+            errorInfoManager.Add(type, dataErrorInfoDictionary);
         }
     }
 }
