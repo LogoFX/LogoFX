@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using LogoFX.Client.Mvvm.Core;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
 {    
-    partial class Model<T>
+    partial class Model<T> : INotifyDataErrorInfo
     {
         private readonly Dictionary<string, string> _externalErrors =
             new Dictionary<string, string>();
@@ -108,10 +111,25 @@ namespace LogoFX.Client.Mvvm.Model
             }            
         }
 
+        public IEnumerable GetErrors(string propertyName)
+        {
+            return GetErrorsByPropertyName(propertyName);
+        }
+
         public bool HasErrors
         {
             get { return string.IsNullOrWhiteSpace(Error) == false; }
         }
+
+        protected void RaiseErrorsChanged([CallerMemberName] string name = "")
+        {
+            if (ErrorsChanged != null)
+            {
+                ErrorsChanged(this, new DataErrorsChangedEventArgs(name));
+            }
+        }
+
+        public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
         public void SetError(string error, string propertyName)
         {
