@@ -67,7 +67,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var simpleModel = new SimpleEditableModel(initialValue,20);
             var mockMessageService = new FakeMessageService();
             mockMessageService.SetMessageResult(MessageResult.No);
-            RegisterService<IMessageService>(mockMessageService);
+            RegisterInstance<IMessageService>(mockMessageService);
 
             var rootObject = CreateRootObject();         
             var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
@@ -111,7 +111,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var simpleModel = new SimpleEditableModel(initialValue, 20);
             var mockMessageService = new FakeMessageService();
             mockMessageService.SetMessageResult(MessageResult.No);
-            RegisterService<IMessageService>(mockMessageService);
+            RegisterInstance<IMessageService>(mockMessageService);
 
             var rootObject = CreateRootObject();
             var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
