@@ -105,7 +105,9 @@
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
     <None Include="packages.config" />
-    <Compile Include="TypeInformationProvider.NotifyDataErrorInfo.cs" />
+    <Compile Include="TypeInformationProvider.NotifyDataErrorInfo.cs">
+      <DependentUpon>TypeInformationProvider.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
