@@ -48,6 +48,34 @@ namespace LogoFX.Client.Mvvm.Model
         private static IEnumerable<string> GetValidationErrorsByPropertyNameInternal(Type type, string propertyName,
             object propertyContainer)
         {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                var validationInfoCollection = TypeInformationProvider.GetValidationInfoCollection(type);
+                foreach (var validationInfo in validationInfoCollection)
+                {
+                    var validationResults = GetValidationErrorsByPropertyNameInternal(type, validationInfo.Key,
+                        propertyContainer);
+                    if (validationResults != null)
+                    {
+                        foreach (var validationResult in validationResults)
+                        {
+                            yield return validationResult;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var validationResults = GetValidationResultsInternal(type, propertyName, propertyContainer);
+                foreach (var validationResult in validationResults)
+                {
+                    yield return validationResult;
+                }
+            }            
+        }
+
+        private static IEnumerable<string> GetValidationResultsInternal(Type type, string propertyName, object propertyContainer)
+        {
             var validationInfo = TypeInformationProvider.GetValidationInfo(type, propertyName);
             if (validationInfo == null)
             {

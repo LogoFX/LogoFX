@@ -64,11 +64,22 @@ namespace LogoFX.Client.Mvvm.Model
 
         private IEnumerable<string> GetErrorsByPropertyName(string columnName)
         {
-            var externalError = _externalErrors.ContainsKey(columnName) ? _externalErrors[columnName] : string.Empty;
-            if (string.IsNullOrEmpty(externalError) == false)
+            if (string.IsNullOrEmpty(columnName))
             {
-                yield return externalError;
+                foreach (var error in _externalErrors.Values)
+                {
+                    yield return error;
+                }
             }
+            else
+            {
+                var externalError = _externalErrors.ContainsKey(columnName) ? _externalErrors[columnName] : string.Empty;
+                if (string.IsNullOrEmpty(externalError) == false)
+                {
+                    yield return externalError;
+                }    
+            }
+            
             var validationErrors = GetInternalValidationErrorsByPropertyName(columnName);
             if (validationErrors != null)
             {
@@ -89,7 +100,7 @@ namespace LogoFX.Client.Mvvm.Model
             get
             {
                 var ownErrors = CalculateOwnErrors();
-                var childrenErrors = TypeInformationProvider.GetDataErrorInfoSourceValuesUnboxed(Type, this).Select(t => t.Error).ToArray();
+                var childrenErrors = _errorInfoExtractionStrategy.ExtractChildrenErrors(Type, this);
                 var errors = ownErrors == null ? childrenErrors : ownErrors.Concat(childrenErrors);
                 return CreateErrorsPresentation(errors);                
             }
