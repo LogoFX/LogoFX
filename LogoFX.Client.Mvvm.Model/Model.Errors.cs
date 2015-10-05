@@ -3,19 +3,32 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using LogoFX.Client.Mvvm.Core;
-using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
-{
-    partial class Model<T> : IDataErrorInfo, IHaveErrors, IHaveExternalErrors
+{    
+    partial class Model<T>
     {
         private readonly Dictionary<string, string> _externalErrors =
             new Dictionary<string, string>();
 
+        private IErrorInfoExtractionStrategy _errorInfoExtractionStrategy;
+
         private void InitErrorListener()
         {
             ListenToPropertyChange();
+            var interfaces = Type.GetInterfaces();
+            //TODO: Add Chain-Of-Command
+            if (interfaces.Contains(typeof(INotifyDataErrorInfo)))
+            {
+                _errorInfoExtractionStrategy = new NotifyDataErrorInfoExtractionStrategy();
+                return;
+            }
+            if (interfaces.Contains(typeof(IDataErrorInfo)))
+            {
+                _errorInfoExtractionStrategy = new DataErrorInfoExtractionStrategy();
+                return;
+            }            
         }
 
         private void ListenToPropertyChange()
