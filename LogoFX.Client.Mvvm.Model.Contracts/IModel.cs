@@ -50,6 +50,7 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
         IHaveId<T>, 
         IDataErrorInfo,
         INotifyDataErrorInfo,
+        IHaveErrors,
         IHaveExternalErrors
         where T:IEquatable<T>
     {
