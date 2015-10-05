@@ -2,7 +2,6 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Reflection;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -22,16 +21,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// <returns>True if property is an error source, false otherwise</returns>
         internal static bool IsPropertyDataErrorInfoSource(Type type, string propertyName)
         {
-            return IsPropertyDataErrorInfoSourceImpl(type, propertyName);
-        }
-
-        private static bool IsPropertyDataErrorInfoSourceImpl(Type type, string propertyName)
-        {
-            if (DataErrorInfoSource.ContainsKey(type) == false)
-            {
-                AddDataErrorInfoDictionary(type);
-            }
-            return DataErrorInfoSource[type].ContainsKey(propertyName);
+            return IsPropertyErrorInfoSourceInternal<IDataErrorInfo>(type, propertyName, DataErrorInfoSource);
         }
 
         /// <summary>
@@ -43,16 +33,8 @@ namespace LogoFX.Client.Mvvm.Model
         /// <returns>Property value if found, null otherwise</returns>
         internal static object GetDataErrorInfoSourceValue(Type type, string propertyName, object propertyContainer)
         {
-            var containsProperty = IsPropertyDataErrorInfoSourceImpl(type, propertyName);
-            if (containsProperty == false)
-            {
-                //TODO: consider throwing an exception
-                return null;
-            }
-            else
-            {
-                return CalculateDataErrorInfoSourceValueBoxed(type, propertyName, propertyContainer);
-            }
+            var containsProperty = IsPropertyErrorInfoSourceInternal<IDataErrorInfo>(type, propertyName, DataErrorInfoSource);
+            return containsProperty == false ? null : CalculateDataErrorInfoSourceValueBoxed(type, propertyName, propertyContainer);
         }
 
         /// <summary>
@@ -63,35 +45,12 @@ namespace LogoFX.Client.Mvvm.Model
         /// <returns>Collection of error sources</returns>
         internal static IEnumerable<IDataErrorInfo> GetDataErrorInfoSourceValuesUnboxed(Type type, object propertyContainer)
         {
-            if (DataErrorInfoSource.ContainsKey(type) == false)
-            {
-                AddDataErrorInfoDictionary(type);
-            }
-            return DataErrorInfoSource[type].Select(entry => GetValueUnboxed(type, entry.Key, propertyContainer));
-        }
-
-        private static IDataErrorInfo GetValueUnboxed(Type type, string propertyName, object propertyContainer)
-        {
-            var containsProperty = IsPropertyDataErrorInfoSourceImpl(type, propertyName);
-            if (containsProperty == false)
-            {
-                //TODO: consider throwing an exception
-                return null;
-            }
-            else
-            {
-                return (IDataErrorInfo)CalculateDataErrorInfoSourceValueBoxed(type, propertyName, propertyContainer);
-            }
+            return GetErrorInfoSourceValuesUnboxedInternal<IDataErrorInfo>(type, propertyContainer, DataErrorInfoSource);
         }
 
         private static object CalculateDataErrorInfoSourceValueBoxed(Type type, string propertyName, object propertyContainer)
         {
             return CalculateErrorInfoSourceValueBoxedInternal(type, propertyName, propertyContainer, DataErrorInfoSource);
-        }
-
-        private static void AddDataErrorInfoDictionary(Type type)
-        {
-            AddErrorInfoDictionaryInternal<IDataErrorInfo>(type, DataErrorInfoSource);
         }
     }
 }

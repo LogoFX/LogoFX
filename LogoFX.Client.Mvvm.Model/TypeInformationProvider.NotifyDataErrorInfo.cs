@@ -51,13 +51,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// <returns>Collection of error sources</returns>
         internal static IEnumerable<INotifyDataErrorInfo> GetNotifyDataErrorInfoSourceValuesUnboxed(Type type, object propertyContainer)
         {
-            return GetErrorInfoSourceValuesUnboxed<INotifyDataErrorInfo>(type, propertyContainer,
-                NotifyDataErrorInfoSource);
-        }
-
-        private static INotifyDataErrorInfo GetNotifyValueUnboxed(Type type, string propertyName, object propertyContainer)
-        {
-            return GetValueUnboxedInternal<INotifyDataErrorInfo>(type, propertyName, propertyContainer,
+            return GetErrorInfoSourceValuesUnboxedInternal<INotifyDataErrorInfo>(type, propertyContainer,
                 NotifyDataErrorInfoSource);
         }
 
@@ -67,12 +61,7 @@ namespace LogoFX.Client.Mvvm.Model
                 NotifyDataErrorInfoSource);
         }
 
-        private static void AddNotifyDataErrorInfoDictionary(Type type)
-        {
-            AddErrorInfoDictionaryInternal<INotifyDataErrorInfo>(type, NotifyDataErrorInfoSource);
-        }
-
-        internal static IEnumerable<TErrorInfo> GetErrorInfoSourceValuesUnboxed<TErrorInfo>(Type type, object propertyContainer, ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
+        private static IEnumerable<TErrorInfo> GetErrorInfoSourceValuesUnboxedInternal<TErrorInfo>(Type type, object propertyContainer, ConcurrentDictionary<Type, DataErrorInfoDictionary> dictionary)
         {
             if (dictionary.ContainsKey(type) == false)
             {
