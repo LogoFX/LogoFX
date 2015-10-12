@@ -9,7 +9,7 @@ namespace LogoFX.Practices.IoC
     /// <summary>
     ///  A simple IoC container.
     /// </summary>
-    public class SimpleContainer
+    public class SimpleContainer : IDisposable
     {
         #region Nested Types
 
@@ -424,5 +424,10 @@ namespace LogoFX.Practices.IoC
         }
 #endif
         #endregion
+
+        public virtual void Dispose()
+        {
+            
+        }
     }
 }

@@ -69,5 +69,10 @@ namespace LogoFX.Client.Bootstrapping.Unity
         {
             _container.BuildUp(instance);
         }
+
+        public void Dispose()
+        {
+            ((IDisposable) _container).Dispose();
+        }
     }
 }

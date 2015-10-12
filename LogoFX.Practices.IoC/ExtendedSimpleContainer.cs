@@ -83,5 +83,18 @@ namespace LogoFX.Practices.IoC
 
             return RegisterAsKind.PerRequest;
         }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            foreach (var singleton in _singletones)
+            {
+                var disposable = singleton.Value as IDisposable;
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
     }    
 }

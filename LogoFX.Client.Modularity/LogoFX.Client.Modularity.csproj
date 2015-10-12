@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Solid.Practices.IoC">
+      <HintPath>..\packages\Solid.Practices.IoC.1.0.4.1\lib\net451\Solid.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Solid.Practices.Middleware">
       <HintPath>..\packages\Solid.Practices.Middleware.1.0.3\lib\net451\Solid.Practices.Middleware.dll</HintPath>
       <Private>True</Private>

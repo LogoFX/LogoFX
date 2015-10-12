@@ -63,5 +63,10 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
         {
             return GetInstance<TService>();
         }
+
+        public void Dispose()
+        {
+            ((IDisposable) _container).Dispose();
+        }
     }
 }

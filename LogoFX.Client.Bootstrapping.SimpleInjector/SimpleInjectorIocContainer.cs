@@ -65,5 +65,10 @@ namespace LogoFX.Client.Bootstrapping.SimpleInjector
         {
             return _container.GetInstance<TService>();
         }
+
+        public void Dispose()
+        {
+            ((IDisposable) _container).Dispose();
+        }
     }
 }
