@@ -11,7 +11,7 @@ using LogoFX.Core;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract class EditableObjectViewModel<T> : ObjectViewModel<T>, IEditableViewModel, ICanBeBusy, IDataErrorInfo
-        where T : IEditableModel
+        where T : IEditableModel, IHaveErrors
     {                
         protected EditableObjectViewModel(T model)
             : base(model)
@@ -157,7 +157,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         bool IEditableViewModel.HasErrors
         {
-            get { return Model.HasErrors; }
+            get { return ((IHaveErrors)Model).HasErrors; }
         }
 
         void IEditableViewModel.CancelChanges()

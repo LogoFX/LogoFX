@@ -11,7 +11,7 @@ using LogoFX.Core;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract class EditableScreenObjectViewModel<T> : ScreenObjectViewModel<T>, IEditableViewModel, ICanBeBusy, IDataErrorInfo
-        where T : IEditableModel
+        where T : IEditableModel, IHaveErrors
     {
         #region Constructors
 
@@ -34,7 +34,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             {
                 return _applyCommand ??
                        (_applyCommand = ActionCommand
-                           .When(() => (ForcedDirty || Model.IsDirty) && !Model.HasErrors)
+                           .When(() => (ForcedDirty || Model.IsDirty) && !((IHaveErrors)Model).HasErrors)
                            .Do(async () =>
                            {
                                await SaveAsync();
