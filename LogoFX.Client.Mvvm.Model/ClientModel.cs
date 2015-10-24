@@ -70,4 +70,14 @@ namespace LogoFX.Client.Mvvm.Model
     {
         
     }
+
+    public class EntityId<TEntityId> : IEntityId<TEntityId>
+    {
+        public EntityId(TEntityId id)
+        {
+            Id = id;
+        }
+
+        public TEntityId Id { get; set; }
+    }
 }

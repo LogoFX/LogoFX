@@ -12,10 +12,15 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     {
         
     }
-
-    public interface IEntity<TId> : IHaveId<TId> where TId : IEquatable<TId>
+    
+    public interface IEntity<TEntityId>
     {
-        
+        IEntityId<TEntityId> EntityId { get; }
+    }
+
+    public interface IEntityId<TEntityId>
+    {
+        TEntityId Id { get; set; }
     }
 
     public interface IIsDirty
