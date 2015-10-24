@@ -54,7 +54,6 @@
   <ItemGroup>
     <Compile Include="ClientModel.cs" />
     <Compile Include="ConcurrentModelsCollection.cs" />
-    <Compile Include="EditableList.cs" />
     <Compile Include="EditableModel.cs" />
     <Compile Include="EditableModel.Dirty.cs">
       <DependentUpon>EditableModel.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace LogoFX.Client.Mvvm.Model
+namespace LogoFX.Client.Mvvm.Model.Contracts
 {
     /// <summary>
     /// Determines whether a collection should be stored during snapshot creation

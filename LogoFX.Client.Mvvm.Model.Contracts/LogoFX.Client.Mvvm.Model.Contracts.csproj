@@ -34,6 +34,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditableList.cs" />
     <Compile Include="ICanBeDirty.cs" />
     <Compile Include="ICanCancelChanges.cs" />
     <Compile Include="IClientModel.cs" />
