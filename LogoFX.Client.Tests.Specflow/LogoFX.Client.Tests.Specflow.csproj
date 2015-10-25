@@ -42,7 +42,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.SpecFlow, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.SpecFlow.1.0.7.2\lib\net451\Attest.Tests.SpecFlow.dll</HintPath>
+      <HintPath>..\packages\Attest.Tests.SpecFlow.1.0.7.3\lib\net451\Attest.Tests.SpecFlow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
