@@ -165,7 +165,18 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public void CancelChanges()
         {
-            RestoreFromUndoBuffer();                        
+            RestoreFromUndoBuffer();
+
+            var dirtyProperties = TypeInformationProvider.GetDirtySourceValuesUnboxed(Type, this);
+            foreach (var dirtyProperty in dirtyProperties.OfType<ICanCancelChanges>().Where(x => x.CanCancelChanges))
+            {
+                dirtyProperty.CancelChanges();
+            }
+            var dirtyCollectionItems = TypeInformationProvider.GetDirtySourceCollectionsUnboxed(Type, this);
+            foreach (var dirtyCollectionItem in dirtyCollectionItems.OfType<ICanCancelChanges>().Where(x => x.CanCancelChanges))
+            {
+                dirtyCollectionItem.CancelChanges();
+            }
         }
 
         /// <summary>

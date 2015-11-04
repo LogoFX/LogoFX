@@ -1,4 +1,5 @@
-﻿using Solid.Patterns.Memento;
+﻿using System.Diagnostics;
+using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {
@@ -13,13 +14,16 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void RestoreFromUndoBuffer()
         {
-            _undoBuffer.Restore(this);
-            ClearUndoBuffer();
+            if (OwnDirty)
+            {
+                _undoBuffer.Restore(this);
+                ClearUndoBuffer();
+            }
         }
 
         private void ClearUndoBuffer()
         {
-            ClearDirty(forceClearChildren:true);
+            ClearDirty();
             _undoBuffer = null;
         }
     }
