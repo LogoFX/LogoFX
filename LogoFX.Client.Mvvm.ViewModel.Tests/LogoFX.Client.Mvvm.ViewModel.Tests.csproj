@@ -38,35 +38,9 @@
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.3.1\lib\net451\LogoFX.Client.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.3\lib\net451\LogoFX.Client.Mvvm.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.5.1\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.0.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.5.1\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Tests.Infra">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Infra.dll</HintPath>
-    </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Shared.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.3.3\lib\net451\LogoFX.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="nunit.framework">
+    <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Patterns.Memento, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Patterns.Memento.1.0.3.1\lib\net451\Solid.Patterns.Memento.dll</HintPath>
@@ -96,13 +70,41 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
+      <Project>{e84a106c-3f18-4fb3-b3b8-61c3760ac548}</Project>
+      <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Core\LogoFX.Client.Mvvm.Core.csproj">
+      <Project>{bd03b159-9c44-4e27-961b-97a63e383fef}</Project>
+      <Name>LogoFX.Client.Mvvm.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.csproj">
+      <Project>{28c459b3-0e33-4052-b8fe-ebd532d65aab}</Project>
+      <Name>LogoFX.Client.Mvvm.Model.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model\LogoFX.Client.Mvvm.Model.csproj">
+      <Project>{bcfb79ba-0f07-46aa-8de5-98816c86d13a}</Project>
+      <Name>LogoFX.Client.Mvvm.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
-      <Project>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</Project>
+      <Project>{e2ffa98b-e7d6-4c7a-8b3f-fca4cecdda49}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel\LogoFX.Client.Mvvm.ViewModel.csproj">
-      <Project>{83C4C216-4685-41D3-B93E-17C820724E25}</Project>
+      <Project>{83c4c216-4685-41d3-b93e-17c820724e25}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Tests.Infra\LogoFX.Client.Tests.Infra.csproj">
+      <Project>{67e5e2e9-a69e-438d-bd6d-e462a42d267c}</Project>
+      <Name>LogoFX.Client.Tests.Infra</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Tests.Shared\LogoFX.Client.Tests.Shared.csproj">
+      <Project>{b939ecbb-3316-4f61-b1f3-1d544543cf5f}</Project>
+      <Name>LogoFX.Client.Tests.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
+      <Project>{1fc8c6d3-261a-416f-95b8-f3c334fb283a}</Project>
+      <Name>LogoFX.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

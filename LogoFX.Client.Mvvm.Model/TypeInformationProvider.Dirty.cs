@@ -10,10 +10,11 @@ namespace LogoFX.Client.Mvvm.Model
 {
     using DataErrorInfoDictionary = Dictionary<string, PropertyInfo>;
 
+
     partial class TypeInformationProvider
     {
         private static readonly ConcurrentDictionary<Type, DataErrorInfoDictionary> DirtySource =
-            new ConcurrentDictionary<Type, DataErrorInfoDictionary>(); 
+            new ConcurrentDictionary<Type, DataErrorInfoDictionary>();
 
         /// <summary>
         /// Determines whether property is a dirty source
@@ -28,7 +29,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static bool IsPropertyDirtySourceImpl(Type type, string propertyName)
         {
-            AddTypeIfMissing(type);
+            DirtySource.AddIfMissing(type, GetDirtyDictionary);
             return DirtySource[type].ContainsKey(propertyName);
         }
 
@@ -61,9 +62,9 @@ namespace LogoFX.Client.Mvvm.Model
         /// <returns>Collection of dirty sources</returns>
         internal static IEnumerable<ICanBeDirty> GetDirtySourceValuesUnboxed(Type type, object propertyContainer)
         {
-            AddTypeIfMissing(type);
+            DirtySource.AddIfMissing(type, GetDirtyDictionary);
             return DirtySource[type].Select(entry => GetDirtySourceValueUnboxed(type, entry.Key, propertyContainer));
-        }        
+        }
 
         private static ICanBeDirty GetDirtySourceValueUnboxed(Type type, string propertyName, object propertyContainer)
         {
@@ -84,13 +85,12 @@ namespace LogoFX.Client.Mvvm.Model
             return DirtySource[type][propertyName].GetValue(propertyContainer);
         }
 
-        private static void AddDirtyDictionary(Type type)
+        private static Dictionary<string, PropertyInfo> GetDirtyDictionary(Type type)
         {
             var props = type.GetProperties();
-            var dirtySourceDictionary =
-                props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(ICanBeDirty)))
-                    .ToDictionary(t => t.Name, t => t);
-            DirtySource.TryAdd(type, dirtySourceDictionary);
+            return props
+                .Where(t => t.PropertyType.GetInterfaces().Contains(typeof (ICanBeDirty)))
+                .ToDictionary(t => t.Name, t => t);
         }
 
         private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> DirtySourceCollection =
@@ -144,22 +144,14 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static bool IsPropertyDirtySourceCollection(PropertyInfo propertyInfo, object propertyContainer)
         {
-            var isEnumerable = typeof (IEnumerable<ICanBeDirty>).IsAssignableFrom(propertyInfo.PropertyType);
+            var isEnumerable = typeof(IEnumerable<ICanBeDirty>).IsAssignableFrom(propertyInfo.PropertyType);
             if (isEnumerable == false)
             {
                 return false;
-            }            
+            }
             var actualValue = propertyInfo.GetValue(propertyContainer);
-            var isTraceable = actualValue is INotifyCollectionChanged;                             
+            var isTraceable = actualValue is INotifyCollectionChanged;
             return isTraceable;
         }
-
-        private static void AddTypeIfMissing(Type type)
-        {
-            if (DirtySource.ContainsKey(type) == false)
-            {
-                AddDirtyDictionary(type);
-            }
-        }
-    }    
+    }
 }

@@ -167,13 +167,13 @@ namespace LogoFX.Client.Mvvm.Model
         {
             RestoreFromUndoBuffer();
 
-            var dirtyProperties = TypeInformationProvider.GetDirtySourceValuesUnboxed(Type, this);
-            foreach (var dirtyProperty in dirtyProperties.OfType<ICanCancelChanges>().Where(x => x.CanCancelChanges))
+            var dirtyProperties = TypeInformationProvider.GetCanCancelChangesSourceValuesUnboxed(Type, this);
+            foreach (var dirtyProperty in dirtyProperties.Where(x => x.CanCancelChanges))
             {
                 dirtyProperty.CancelChanges();
             }
-            var dirtyCollectionItems = TypeInformationProvider.GetDirtySourceCollectionsUnboxed(Type, this);
-            foreach (var dirtyCollectionItem in dirtyCollectionItems.OfType<ICanCancelChanges>().Where(x => x.CanCancelChanges))
+            var dirtyCollectionItems = TypeInformationProvider.GetCanCancelChangesSourceCollectionsUnboxed(Type, this);
+            foreach (var dirtyCollectionItem in dirtyCollectionItems.Where(x => x.CanCancelChanges))
             {
                 dirtyCollectionItem.CancelChanges();
             }
@@ -216,7 +216,7 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void InitDirtyListener()
         {
-            ListenToDirtyPropertyChange();            
+            ListenToDirtyPropertyChange();
             var propertyInfos = TypeInformationProvider.GetPropertyDirtySourceCollections(Type, this).ToArray();
             foreach (var propertyInfo in propertyInfos)
             {

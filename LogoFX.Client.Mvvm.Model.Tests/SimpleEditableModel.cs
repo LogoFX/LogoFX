@@ -18,7 +18,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
 
         public SimpleEditableModel()
         {
-            
+
         }
 
         private string _name;

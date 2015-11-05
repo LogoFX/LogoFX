@@ -30,26 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.3.1\lib\net451\LogoFX.Client.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.1\lib\net451\LogoFX.Client.Mvvm.ViewModel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Interfaces">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.1\lib\net451\LogoFX.Client.Mvvm.ViewModel.Interfaces.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.3.3\lib\net451\LogoFX.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Practices.IoC, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -71,9 +51,29 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Core\LogoFX.Client.Core.csproj">
+      <Project>{e84a106c-3f18-4fb3-b3b8-61c3760ac548}</Project>
+      <Name>LogoFX.Client.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
+      <Project>{e2ffa98b-e7d6-4c7a-8b3f-fca4cecdda49}</Project>
+      <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer.csproj">
       <Project>{50e9f62a-75dc-4ba0-8c35-712e64a1d16b}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel\LogoFX.Client.Mvvm.ViewModel.csproj">
+      <Project>{83c4c216-4685-41d3-b93e-17c820724e25}</Project>
+      <Name>LogoFX.Client.Mvvm.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
+      <Project>{1fc8c6d3-261a-416f-95b8-f3c334fb283a}</Project>
+      <Name>LogoFX.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
+      <Project>{c7ae389e-c13c-4d52-9926-be23e7ecaea7}</Project>
+      <Name>LogoFX.Practices.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -39,11 +39,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.2\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.3\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.2\lib\net451\LogoFX.Client.Bootstrapping.Contracts.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.3\lib\net451\LogoFX.Client.Bootstrapping.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.IoC, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3.1\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

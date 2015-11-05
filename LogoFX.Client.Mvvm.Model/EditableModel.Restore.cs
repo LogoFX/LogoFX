@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using Solid.Patterns.Memento;
+﻿using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {

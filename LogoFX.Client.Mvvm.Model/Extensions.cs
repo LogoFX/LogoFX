@@ -58,5 +58,36 @@ namespace LogoFX.Client.Mvvm.Model
                     ((IMergeable<TW>)found).Merge(a);
             });
         }
+
+        /// <summary>
+        /// Adds if missing.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="dictionary">The dictionary.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        public static void AddIfMissing<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, TValue value)
+        {
+            dictionary.AddIfMissing(key, k => value);
+        }
+
+        /// <summary>
+        /// Adds if missing.
+        /// </summary>
+        /// <typeparam name="TKey">The type of the key.</typeparam>
+        /// <typeparam name="TValue">The type of the value.</typeparam>
+        /// <param name="dictionary">The dictionary.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="getValueFunc">The get value function.</param>
+        public static void AddIfMissing<TKey, TValue>(this IDictionary<TKey, TValue> dictionary, TKey key, Func<TKey, TValue> getValueFunc)
+        {
+            if (dictionary.ContainsKey(key))
+            {
+                return;
+            }
+
+            dictionary.Add(key, getValueFunc(key));
+        }
     }
 }
