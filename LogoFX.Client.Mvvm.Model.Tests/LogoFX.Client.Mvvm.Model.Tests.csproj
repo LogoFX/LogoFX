@@ -76,7 +76,7 @@
       <Name>LogoFX.Client.Mvvm.Model.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.Model\LogoFX.Client.Mvvm.Model.csproj">
-      <Project>{BCFB79BA-0F07-46AA-8DE5-98816C86D13A}</Project>
+      <Project>{bcfb79ba-0f07-46aa-8de5-98816c86d13a}</Project>
       <Name>LogoFX.Client.Mvvm.Model</Name>
     </ProjectReference>
   </ItemGroup>

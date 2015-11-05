@@ -9,7 +9,22 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         [Test]
         public void InnerModelIsMadeDirtyThenCancelChangesIsCalled_ModelDataIsRestoredAndIsDirtyIsFalse()
         {
-            var expectedPhones = new[] {546, 432};
+            var simpleEditableModel = new SimpleEditableModel("Old Value", 10);
+            var compositeModel = new CompositeEditableModel("location", new[] { simpleEditableModel });
+            var deepHierarchyModel = new DeepHierarchyEditableModel(new[] { compositeModel });
+            Assert.IsFalse(deepHierarchyModel.IsDirty);
+            simpleEditableModel.Name = "New Value";
+            Assert.IsTrue(deepHierarchyModel.IsDirty);
+            Assert.AreEqual(simpleEditableModel.Name, "New Value");
+            deepHierarchyModel.CancelChanges();
+            Assert.IsFalse(deepHierarchyModel.IsDirty);
+            Assert.AreEqual(simpleEditableModel.Name, "Old Value");
+        }
+
+        [Test]
+        public void InnerModelAddedThenCancelChangesIsCalled_ModelDataIsRestoredAndIsDirtyIsFalse()
+        {
+            var expectedPhones = new[] { 546, 432 };
             var compositeModel = new CompositeEditableModel("Here", expectedPhones);
             compositeModel.AddPhone(647);
             compositeModel.CancelChanges();
