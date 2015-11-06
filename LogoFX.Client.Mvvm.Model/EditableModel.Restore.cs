@@ -13,11 +13,11 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void RestoreFromUndoBuffer()
         {
-            if (OwnDirty)
+            if (_undoBuffer != null)
             {
-                _undoBuffer.Restore(this);
-                ClearUndoBuffer();
-            }
+                _undoBuffer.Restore(this);    
+            }            
+            ClearUndoBuffer();
         }
 
         private void ClearUndoBuffer()
