@@ -11,14 +11,11 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         {
             var simpleEditableModel = new SimpleEditableModel("Old Value", 10);
             var compositeModel = new CompositeEditableModel("location", new[] { simpleEditableModel });
-            var deepHierarchyModel = new DeepHierarchyEditableModel(new[] { compositeModel });
-            Assert.IsFalse(deepHierarchyModel.IsDirty);
-            simpleEditableModel.Name = "New Value";
-            Assert.IsTrue(deepHierarchyModel.IsDirty);
-            Assert.AreEqual(simpleEditableModel.Name, "New Value");
+            var deepHierarchyModel = new DeepHierarchyEditableModel(new[] { compositeModel });            
+            simpleEditableModel.Name = "New Value";            
             deepHierarchyModel.CancelChanges();
             Assert.IsFalse(deepHierarchyModel.IsDirty);
-            Assert.AreEqual(simpleEditableModel.Name, "Old Value");
+            Assert.AreEqual("Old Value", simpleEditableModel.Name);
         }
 
         [Test]
