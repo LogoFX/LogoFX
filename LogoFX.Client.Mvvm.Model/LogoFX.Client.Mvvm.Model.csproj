@@ -38,8 +38,8 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.3\lib\net451\LogoFX.Client.Mvvm.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.3.3\lib\net451\LogoFX.Core.dll</HintPath>
+    <Reference Include="LogoFX.Core, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.0.3.4\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Patterns.Memento, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
@@ -97,12 +97,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.csproj">
-      <Project>{28C459B3-0E33-4052-B8FE-EBD532D65AAB}</Project>
-      <Name>LogoFX.Client.Mvvm.Model.Contracts</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="EditableModel.Snapshot.cs">
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
@@ -110,6 +104,12 @@
     <Compile Include="TypeInformationProvider.NotifyDataErrorInfo.cs">
       <DependentUpon>TypeInformationProvider.cs</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.csproj">
+      <Project>{28c459b3-0e33-4052-b8fe-ebd532d65aab}</Project>
+      <Name>LogoFX.Client.Mvvm.Model.Contracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

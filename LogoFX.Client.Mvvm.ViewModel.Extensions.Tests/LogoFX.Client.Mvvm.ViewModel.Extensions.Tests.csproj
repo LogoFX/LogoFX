@@ -62,6 +62,10 @@
       <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Core, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.0.3.4\lib\net451\LogoFX.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
@@ -179,10 +183,6 @@
     <ProjectReference Include="..\LogoFX.Client.Tests.Shared\LogoFX.Client.Tests.Shared.csproj">
       <Project>{b939ecbb-3316-4f61-b1f3-1d544543cf5f}</Project>
       <Name>LogoFX.Client.Tests.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Core\LogoFX.Core.csproj">
-      <Project>{1fc8c6d3-261a-416f-95b8-f3c334fb283a}</Project>
-      <Name>LogoFX.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
       <Project>{c7ae389e-c13c-4d52-9926-be23e7ecaea7}</Project>
