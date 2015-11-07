@@ -8,7 +8,7 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
         int GetHashCode();
     }
 
-    public interface IValueObject : IClientModel
+    public interface IValueObject
     {
         
     }
