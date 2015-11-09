@@ -108,6 +108,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         {
             await OnSaving();
             bool result = await SaveMethod(Model);
+            if (result)
+            {
+                Model.ClearDirty(forceClearChildren: true);
+            }
             await OnSaved(result);
             return result;
         }

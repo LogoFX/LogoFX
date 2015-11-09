@@ -24,8 +24,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
         internal bool WasCancelingChangesCalled { get; private set; }
 
         protected override Task<bool> SaveMethod(SimpleEditableModel model)
-        {
-            model.ClearDirty(forceClearChildren:true);
+        {            
             return Task.FromResult(true);
         }
 
