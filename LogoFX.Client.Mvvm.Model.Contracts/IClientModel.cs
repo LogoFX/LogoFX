@@ -12,6 +12,11 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     {
         
     }
+
+    public interface IService
+    {
+        
+    }
     
     public interface IEntity<TEntityId>
     {
