@@ -13,17 +13,6 @@ namespace LogoFX.Client.Mvvm.Model
         private static readonly ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>> CancelChangesSource =
             new ConcurrentDictionary<Type, Dictionary<string, PropertyInfo>>();
 
-        /// <summary>
-        /// Determines whether property is a <see cref="ICanCancelChanges"/> source
-        /// </summary>
-        /// <param name="type">Type of property container</param>
-        /// <param name="propertyName">Property name</param>
-        /// <returns>True if property is a <see cref="ICanCancelChanges"/> source, false otherwise</returns>
-        internal static bool IsPropertyCanCancelChangesSource(Type type, string propertyName)
-        {
-            return IsPropertyCanCancelChangesSourceImpl(type, propertyName);
-        }
-
         private static bool IsPropertyCanCancelChangesSourceImpl(Type type, string propertyName)
         {
             CancelChangesSource.AddIfMissing(type, GetCanCancelChangesDictionary);
@@ -71,21 +60,6 @@ namespace LogoFX.Client.Mvvm.Model
 
         private static readonly ConcurrentDictionary<Type, IEnumerable<PropertyInfo>> CancelChangesSourceCollection =
             new ConcurrentDictionary<Type, IEnumerable<PropertyInfo>>();
-
-        /// <summary>
-        /// Retrieves collection of dirty source collections from the given property container
-        /// </summary>
-        /// <param name="type">Type of property container</param>
-        /// <param name="properyContainer">Property container</param>
-        /// <returns>Collection of <see cref="ICanCancelChanges"/> source collections</returns>
-        internal static IEnumerable<PropertyInfo> GetPropertyCanCancelChangesSourceCollections(Type type, object properyContainer)
-        {
-            if (CancelChangesSourceCollection.ContainsKey(type) == false)
-            {
-                CancelChangesSourceCollection.TryAdd(type, CalculateCanCancelChangesSourceCollectionProperties(type, properyContainer));
-            }
-            return CancelChangesSourceCollection[type];
-        }
 
         private static IEnumerable<PropertyInfo> CalculateCanCancelChangesSourceCollectionProperties(Type type, object propertyContainer)
         {

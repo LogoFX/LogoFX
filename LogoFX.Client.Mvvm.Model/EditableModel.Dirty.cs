@@ -135,14 +135,16 @@ namespace LogoFX.Client.Mvvm.Model
 
         private bool SourceValuesAreDirty()
         {
-            return TypeInformationProvider.GetDirtySourceValuesUnboxed(Type, this).Any(dirtySource => dirtySource.IsDirty);
+            return
+                TypeInformationProvider.GetDirtySourceValuesUnboxed(Type, this)
+                    .Any(dirtySource => dirtySource != null && dirtySource.IsDirty);
         }        
 
         private bool SourceCollectionsAreDirty()
         {
             return
                 TypeInformationProvider.GetDirtySourceCollectionsUnboxed(Type, this)
-                    .Any(dirtySource => dirtySource.IsDirty);
+                    .Any(dirtySource => dirtySource != null && dirtySource.IsDirty);
         }
 
         /// <summary>

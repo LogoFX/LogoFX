@@ -14,7 +14,10 @@ namespace LogoFX.Client.Mvvm.Model
         public IEnumerable<string> ExtractChildrenErrors(Type type, object propertyContainer)
         {
             return
-                TypeInformationProvider.GetDataErrorInfoSourceValuesUnboxed(type, propertyContainer).Select(t => t.Error).ToArray();
+                TypeInformationProvider.GetDataErrorInfoSourceValuesUnboxed(type, propertyContainer)
+                    .Where(t => t != null)
+                    .Select(t => t.Error)
+                    .ToArray();
         }
     }
 
@@ -24,6 +27,7 @@ namespace LogoFX.Client.Mvvm.Model
         {
             return
                 TypeInformationProvider.GetNotifyDataErrorInfoSourceValuesUnboxed(type, propertyContainer)
+                    .Where(t => t != null)
                     .Select(t => t.GetErrors(null))
                     .SelectMany(t => t.OfType<string>())
                     .ToArray();
