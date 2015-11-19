@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping")]
+[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping.Adapters.SimpleContainer")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("LogoUI 2012")]
-[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping")]
-[assembly: AssemblyCopyright("Copyright LogoUI 2012 ©  2015")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping.Adapters.SimpleContainer")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b523c69f-5d08-4af1-9517-d75fa9586374")]
+[assembly: Guid("c9a3c675-daec-4559-8082-c35b9811c490")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.3.4")]
-[assembly: AssemblyFileVersion("1.0.3.4")]
+[assembly: AssemblyVersion("1.0.3.1")]
+[assembly: AssemblyFileVersion("1.0.3.1")]

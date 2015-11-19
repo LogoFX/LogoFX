@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Attest.Fake.Moq;
 using Caliburn.Micro;
-using LogoFX.Client.Bootstrapping.SimpleContainer;
+using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Bootstrapping.Tests

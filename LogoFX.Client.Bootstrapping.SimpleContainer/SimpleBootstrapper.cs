@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 using LogoFX.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping.SimpleContainer

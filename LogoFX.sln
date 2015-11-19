@@ -133,6 +133,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewModel.Extensions.Tests", "LogoFX.Client.Mvvm.ViewModel.Extensions.Tests\LogoFX.Client.Mvvm.ViewModel.Extensions.Tests.csproj", "{87F99EDC-3500-4710-8AE7-3ADE9F4AAC8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Adapters.SimpleContainer", "LogoFX.Client.Bootstrapping.Adapters.SimpleContainer\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.csproj", "{C84E0089-7BC7-4F16-8A10-B09F7CC1DB83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -307,6 +309,10 @@ Global
 		{87F99EDC-3500-4710-8AE7-3ADE9F4AAC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87F99EDC-3500-4710-8AE7-3ADE9F4AAC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87F99EDC-3500-4710-8AE7-3ADE9F4AAC8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C84E0089-7BC7-4F16-8A10-B09F7CC1DB83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C84E0089-7BC7-4F16-8A10-B09F7CC1DB83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C84E0089-7BC7-4F16-8A10-B09F7CC1DB83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C84E0089-7BC7-4F16-8A10-B09F7CC1DB83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -371,5 +377,6 @@ Global
 		{5070010D-E908-42C2-85EA-B53DCFC247CE} = {1ECA8284-2CB4-4BE6-AF50-EACEFEDE86CC}
 		{52314B3B-DDB3-48FD-A735-3ADCF70D4014} = {5070010D-E908-42C2-85EA-B53DCFC247CE}
 		{87F99EDC-3500-4710-8AE7-3ADE9F4AAC8B} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
+		{C84E0089-7BC7-4F16-8A10-B09F7CC1DB83} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 	EndGlobalSection
 EndGlobal

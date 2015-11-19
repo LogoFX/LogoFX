@@ -1,4 +1,4 @@
-﻿using LogoFX.Client.Bootstrapping.SimpleContainer;
+﻿using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 
 namespace LogoFX.Client.Bootstrapping.Tests
 {
