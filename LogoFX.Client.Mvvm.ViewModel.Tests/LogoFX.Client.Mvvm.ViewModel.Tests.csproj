@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WrappingCollectionTests\BulkTests.cs" />
     <Compile Include="WrappingCollectionTests\DataSourceCollectionChangedTests.cs" />
+    <Compile Include="WrappingCollectionTests\DataSourceModificationsTests.cs" />
     <Compile Include="WrappingCollectionTests\NotificationTests.cs" />
     <Compile Include="WrappingCollectionTests\SelectionTests.cs" />
     <Compile Include="WrappingCollectionTests\TestModel.cs" />

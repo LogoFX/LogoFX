@@ -170,9 +170,9 @@ a);
             };
             Action<IEnumerable<object>> RemoveRangeHandler = collection =>
             {
-                var wrappers = collection.Select(r => GetWrapper(sender, r)).ToArray();
-                wrappers.ForEach(a => RemoveWrapper(sender, a));
-                _collectionManager.RemoveRange(wrappers);
+                var wrappers = collection.Select(r => new Tuple<object, object>(GetWrapper(sender, r), r)).ToArray();
+                wrappers.ForEach(a => RemoveWrapper(sender, a.Item2));
+                _collectionManager.RemoveRange(wrappers.Select(t => t.Item1));
                 wrappers.ForEach(o =>
                 {
                     if (o is IDisposable)
