@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [TestFixture]
-    class EditableScreenObjectViewModelTests : TestsBaseWithActivation<ExtendedSimpleIocContainer,FakeFactory,TestConductorViewModel,TestBootstrapper>
+    class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleIocContainer,FakeFactory,TestConductorViewModel,TestBootstrapper>
     {        
         [Test]        
         public void ModelIsChanged_WhenViewModelIsClosed_MessageBoxIsDisplayed()

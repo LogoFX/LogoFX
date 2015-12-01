@@ -42,8 +42,8 @@
       <HintPath>..\packages\Attest.Tests.Core.1.0.7.6\lib\net451\Attest.Tests.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Tests.NUnit, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.NUnit.1.0.7.2\lib\net451\Attest.Tests.NUnit.dll</HintPath>
+    <Reference Include="Attest.Tests.NUnit, Version=1.0.7.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.NUnit.1.0.7.3\lib\net451\Attest.Tests.NUnit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro">
@@ -79,8 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestsBase.cs" />
-    <Compile Include="TestsBaseWithActivation.cs" />
+    <Compile Include="IntegrationTestsBase.cs" />
+    <Compile Include="IntegrationTestsBaseWithActivation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
