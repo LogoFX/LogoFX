@@ -42,8 +42,8 @@
       <HintPath>..\packages\Attest.Fake.Moq.1.0.7\lib\net451\Attest.Fake.Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Tests.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.Core.1.0.7.4\lib\net451\Attest.Tests.Core.dll</HintPath>
+    <Reference Include="Attest.Tests.Core, Version=1.0.7.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.Core.1.0.7.6\lib\net451\Attest.Tests.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.NUnit, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -110,7 +110,7 @@
       <HintPath>..\packages\LogoFX.Client.Tests.NUnit.1.0.3.1\lib\net451\LogoFX.Client.Tests.NUnit.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared">
+    <Reference Include="LogoFX.Client.Tests.Shared, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.3\lib\net451\LogoFX.Client.Tests.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
