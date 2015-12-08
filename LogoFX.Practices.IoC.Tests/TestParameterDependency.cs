@@ -1,17 +1,32 @@
 ﻿namespace LogoFX.Practices.IoC.Tests
 {
-    interface ITestParameterDependency
+    interface ITestNamedParameterDependency
     {
         string Model { get; }
     }
 
-    class TestParameterDependency : ITestParameterDependency
+    class TestNamedParameterDependency : ITestNamedParameterDependency
     {
-        public TestParameterDependency(string model)
+        public TestNamedParameterDependency(string model)
         {
             Model = model;
         }
 
         public string Model { get; private set; }
+    }
+
+    interface ITestTypedParameterDependency
+    {
+        int Value { get; }
+    }
+
+    class TestTypedParameterDependency : ITestTypedParameterDependency
+    {
+        public TestTypedParameterDependency(int val)
+        {
+            Value = val;
+        }
+
+        public int Value { get; private set; }
     }
 }

@@ -11,13 +11,28 @@ namespace LogoFX.Practices.IoC.Tests
             ()
         {
             var container = new ExtendedSimpleContainer();
-            container.RegisterPerRequest(typeof(ITestParameterDependency), null, typeof(TestParameterDependency));
+            container.RegisterPerRequest(typeof(ITestNamedParameterDependency), null, typeof(TestNamedParameterDependency));
             const string model = "5";
-            var dependency = container.GetInstance(typeof (ITestParameterDependency), null,
-                new IParameter[] {new NamedParameter("model", model)}) as ITestParameterDependency;
+            var dependency = container.GetInstance(typeof (ITestNamedParameterDependency), null,
+                new IParameter[] {new NamedParameter("model", model)}) as ITestNamedParameterDependency;
 
             var actualModel = dependency.Model;
             Assert.AreEqual(model, actualModel);
+        }
+
+        [Test]
+        public void
+            GivenDependencyHasOneTypedParameter_WhenDependencyIsRegisteredAndDependencyIsResolvedWithParameter_ThenResolvedDependencyValueIsCorrect
+            ()
+        {
+            var container = new ExtendedSimpleContainer();
+            container.RegisterPerRequest(typeof(ITestTypedParameterDependency), null, typeof(TestTypedParameterDependency));
+            const int val = 6;
+            var dependency = container.GetInstance(typeof(ITestTypedParameterDependency), null,
+                new IParameter[] { new TypedParameter(typeof(int), val) }) as ITestTypedParameterDependency;
+
+            var actualValue = dependency.Value;
+            Assert.AreEqual(val, actualValue);
         }
 
         [Test]

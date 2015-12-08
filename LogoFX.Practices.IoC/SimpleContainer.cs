@@ -399,9 +399,13 @@ namespace LogoFX.Practices.IoC
         private object CreateArgument(ParameterInfo info, IParameter[] parameters)
         {            
             if (parameters != null)
-            {
-                //only match by name                
-                var match = parameters.OfType<NamedParameter>().FirstOrDefault(t => t.ParameterName == info.Name);
+            {                          
+                IParameter match = parameters.OfType<NamedParameter>().FirstOrDefault(t => t.ParameterName == info.Name);
+                if (match != null)
+                {
+                    return match.ParameterValue;
+                }
+                match = parameters.OfType<TypedParameter>().FirstOrDefault(t => t.ParameterType == info.ParameterType);
                 if (match != null)
                 {
                     return match.ParameterValue;
