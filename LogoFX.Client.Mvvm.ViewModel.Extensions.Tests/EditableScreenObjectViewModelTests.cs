@@ -1,13 +1,20 @@
 ﻿using Attest.Fake.Moq;
 using LogoFX.Client.Bootstrapping.SimpleContainer;
 using LogoFX.Client.Tests.NUnit;
+using LogoFX.Client.Tests.Shared;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [TestFixture]
     class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleIocContainer,FakeFactory,TestConductorViewModel,TestBootstrapper>
-    {        
+    {
+        protected override void OnAfterTeardown()
+        {
+            base.OnAfterTeardown();
+            TestHelper.Teardown();
+        }
+
         [Test]        
         public void ModelIsChanged_WhenViewModelIsClosed_MessageBoxIsDisplayed()
         {

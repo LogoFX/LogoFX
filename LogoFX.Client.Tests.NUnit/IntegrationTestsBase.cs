@@ -24,9 +24,9 @@ namespace LogoFX.Client.Tests.NUnit
             TestHelper.Setup();
         }
 
-        protected override void TearDownOverride()
+        protected override void OnAfterTeardown()
         {
-            base.TearDownOverride();
+            base.OnAfterTeardown();
             if (_resolutionStyle == InitializationParametersResolutionStyle.PerRequest)
             {
                 TestHelper.Teardown();
