@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Contracts;
+using LogoFX.Core;
 using Solid.Practices.Composition;
 using Solid.Practices.Composition.Desktop;
 using Solid.Practices.IoC;
@@ -205,7 +206,7 @@ namespace LogoFX.Client.Bootstrapping
               .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
               .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
               .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
-              .Apply(a => iocContainer.RegisterTransient(a, a));            
+              .ForEach(a => iocContainer.RegisterTransient(a, a));            
         }
     }    
 }
