@@ -1,10 +1,11 @@
 ﻿using System;
+using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
     public interface INavigationService
     {
-        IRootableNavigationBuilder<T> RegisterViewModel<T>();
+        IRootableNavigationBuilder<T> RegisterViewModel<T>(IIocContainer container) where T : class;
 
         IRootableNavigationBuilder<T> RegisterViewModel<T>(T viewModel);
 

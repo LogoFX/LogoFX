@@ -24,8 +24,8 @@ namespace LogoFX.Client.Mvvm.Navigation
             
         }
 
-        protected NavigationBootstrapper(TIocContainer iocContainer, bool useApplication=true)
-            :base(iocContainer, useApplication)
+        protected NavigationBootstrapper(TIocContainer iocContainer, bool useApplication=true, bool reuseCompositionInformation = false)
+            :base(iocContainer, useApplication, reuseCompositionInformation)
         {
             
         }
@@ -34,16 +34,16 @@ namespace LogoFX.Client.Mvvm.Navigation
         {
             base.OnConfigure(container);
             container.RegisterInstance(NavigationService);
-            OnRegisterRoot(NavigationService);
-            OnPrepareNavigation(NavigationService);
+            OnRegisterRoot(NavigationService, container);
+            OnPrepareNavigation(NavigationService, container);
         }        
 
-        protected virtual void OnRegisterRoot(INavigationService navigationService)
+        protected virtual void OnRegisterRoot(INavigationService navigationService, IIocContainer container)
         {
-            navigationService.RegisterViewModel<TRootViewModel>().AsRoot();
+            navigationService.RegisterViewModel<TRootViewModel>(container).AsRoot();
         }
 
-        protected virtual void OnPrepareNavigation(INavigationService navigationService)
+        protected virtual void OnPrepareNavigation(INavigationService navigationService, IIocContainer container)
         {
             //register navigation view-models
             AssemblySource.Instance.ToArray()
@@ -55,7 +55,7 @@ namespace LogoFX.Client.Mvvm.Navigation
                     Attr = type.GetCustomAttribute<NavigationViewModelAttribute>()
                 })
                 .Where(x => x.Attr != null)
-                .ForEach(x => _navigationService.RegisterAttr(x.Type, x.Attr));
+                .ForEach(x => _navigationService.RegisterAttr(x.Type, x.Attr, container));
         }
     }
 }

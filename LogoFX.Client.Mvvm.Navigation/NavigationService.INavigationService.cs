@@ -1,12 +1,13 @@
 ﻿using System;
+using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
     internal sealed partial class NavigationService : INavigationService
     {
-        public IRootableNavigationBuilder<T> RegisterViewModel<T>()
+        public IRootableNavigationBuilder<T> RegisterViewModel<T>(IIocContainer container) where T : class
         {
-            var builder = new GenericBuilder<T>();
+            var builder = new GenericBuilder<T>(container);
             _builders.Add(typeof(T), builder);
             return builder;
         }

@@ -4,10 +4,12 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Caliburn.Micro;
+using LogoFX.Client.Core;
+using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
-    internal sealed partial class NavigationService : PropertyChangedBase
+    internal sealed partial class NavigationService : NotifyPropertyChangedBase<NavigationService>
     {
         #region Nested Types
 
@@ -54,7 +56,7 @@ namespace LogoFX.Client.Mvvm.Navigation
 
         #region Internal Members
 
-        internal void RegisterAttr(Type type, NavigationViewModelAttribute attr)
+        internal void RegisterAttr(Type type, NavigationViewModelAttribute attr, IIocContainer container)
         {
             var types = new List<Type> {type};
             var synonymAttrs = type.GetAttributes<NavigationSynonymAttribute>(false);
@@ -62,7 +64,7 @@ namespace LogoFX.Client.Mvvm.Navigation
 
             foreach (var t in types)
             {
-                var builder = new AttributeBuilder(type, attr);
+                var builder = new AttributeBuilder(type, attr, container);
                 _builders.Add(t, builder);
             }
         }

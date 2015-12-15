@@ -1,25 +1,35 @@
 ﻿using System;
 using Caliburn.Micro;
+using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
     internal sealed partial class NavigationService
     {
-        private sealed class GenericBuilder<T> : RootableNavigationBuilder<T>
+        private sealed class GenericBuilder<T> : RootableNavigationBuilder<T> where T : class
         {
-            protected override T GetValueInternal()
+            private readonly IIocContainer _container;
+
+            public GenericBuilder(IIocContainer container)
             {
-                return IoC.Get<T>();
+                _container = container;
+            }
+
+            protected override T GetValueInternal()
+            {                
+                return _container.Resolve<T>();
             }
         }
 
         private sealed class AttributeBuilder : NavigationBuilder
         {
             private readonly Type _vmType;
-            
-            public AttributeBuilder(Type vmType, NavigationViewModelAttribute attr)
+            private readonly IIocContainer _container;
+
+            public AttributeBuilder(Type vmType, NavigationViewModelAttribute attr, IIocContainer container)
             {
                 _vmType = vmType;
+                _container = container;
 
                 IsSingleton = attr.IsSingleton;
                 ConductorType = attr.ConductorType;
@@ -28,7 +38,7 @@ namespace LogoFX.Client.Mvvm.Navigation
 
             protected override object GetValue()
             {
-                return IoC.GetInstance(_vmType, null);
+                return _container.Resolve(_vmType);
             }
         }
     }

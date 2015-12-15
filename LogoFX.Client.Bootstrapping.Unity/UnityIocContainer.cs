@@ -45,6 +45,11 @@ namespace LogoFX.Client.Bootstrapping.Unity
             return _container.Resolve<TService>();
         }
 
+        public object Resolve(Type serviceType)
+        {
+            return _container.Resolve(serviceType);
+        }
+
         public TService GetInstance<TService>(Type serviceType) where TService : class
         {
             return (TService)_container.Resolve(serviceType);

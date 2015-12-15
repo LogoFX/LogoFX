@@ -91,6 +91,11 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleContainer
             return GetInstance<TService>();
         }
 
+        public object Resolve(Type serviceType)
+        {
+            return GetInstance(serviceType);
+        }
+
         public void Dispose()
         {
             ((IDisposable) _container).Dispose();
