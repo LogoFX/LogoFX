@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping.SimpleInjector")]
+[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping.Adapters.SimpleInjector")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping.SimpleInjector")]
+[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping.Adapters.SimpleInjector")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

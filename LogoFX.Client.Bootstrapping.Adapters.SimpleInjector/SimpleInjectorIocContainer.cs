@@ -4,7 +4,7 @@ using LogoFX.Client.Bootstrapping.Contracts;
 using SimpleInjector;
 using Solid.Practices.IoC;
 
-namespace LogoFX.Client.Bootstrapping.SimpleInjector
+namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
 {
     public class SimpleInjectorContainer : IIocContainer, IBootstrapperAdapter
     {
@@ -12,6 +12,7 @@ namespace LogoFX.Client.Bootstrapping.SimpleInjector
 
         public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
         {
+            _container.RegisterSingleton(_container);            
             RegisterTransient(typeof(TService), typeof(TImplementation));
         }
 
