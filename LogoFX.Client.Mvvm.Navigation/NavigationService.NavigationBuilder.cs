@@ -59,7 +59,7 @@ namespace LogoFX.Client.Mvvm.Navigation
 
             protected abstract object GetValue();
 
-            internal void DestroySingleton()
+            internal void ClearSingleton()
             {
                 _value = null;
             }

@@ -4,9 +4,20 @@ using System.Windows.Input;
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
+    /// <summary>
+    /// Navigation helper which allows registering navigation commands on the specified view
+    /// </summary>
     public static class NavigationHelper
     {
-        public static void RegisterNavigationCommands(Type viewModelType, object view,
+        /// <summary>
+        /// Registers the navigation commands on the specified view
+        /// </summary>
+        /// <param name="viewModelType">Type of the view model, i.e. the navigation commands source.</param>
+        /// <param name="view">The specified view.</param>
+        /// <param name="navigationService">The navigation service.</param>
+        public static void RegisterNavigationCommands(
+            Type viewModelType, 
+            object view,
             INavigationService navigationService)
         {
             var commandBindings = new[]

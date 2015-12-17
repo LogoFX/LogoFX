@@ -5,33 +5,33 @@ namespace LogoFX.Client.Mvvm.Navigation
 {
     internal sealed partial class NavigationService : INavigationService
     {
-        public IRootableNavigationBuilder<T> RegisterViewModel<T>(IIocContainer container) where T : class
+        IRootableNavigationBuilder<T> INavigationService.RegisterViewModel<T>(IIocContainer container)
         {
             var builder = new GenericBuilder<T>(container);
             _builders.Add(typeof(T), builder);
             return builder;
         }
 
-        public IRootableNavigationBuilder<T> RegisterViewModel<T>(T viewModel)
+        IRootableNavigationBuilder<T> INavigationService.RegisterViewModel<T>(T viewModel)
         {
             var builder = new InstanceBuilder<T>(this, viewModel);
             _builders[viewModel.GetType()] = builder;
             return builder;
         }
 
-        public IRootableNavigationBuilder<T> RegisterViewModel<T>(Func<T> createFunc)
+        IRootableNavigationBuilder<T> INavigationService.RegisterViewModel<T>(Func<T> createFunc)
         {
             var builder = new ResolverBuilder<T>(this, createFunc);
             _builders.Add(typeof(T), builder);
             return builder;
         }
 
-        public async void Navigate<T>(object argument = null)
+        async void INavigationService.Navigate<T>(object argument = null)
         {
             await NavigateInternal(typeof(T), argument);
         }
 
-        public async void Navigate(Type itemType, object argument = null)
+        async void INavigationService.Navigate(Type itemType, object argument = null)
         {
             await NavigateInternal(itemType, argument);
         }
@@ -49,28 +49,33 @@ namespace LogoFX.Client.Mvvm.Navigation
         //    }
         //}
 
-        public NavigationParameter CreateParameter<T>(object argument/*, bool noTrack = false*/)
+        NavigationParameter INavigationService.CreateParameter<T>(object argument/*, bool noTrack = false*/)
         {
-            return new NavigationParameter<T>(this/*, noTrack*/, argument);
+            return CreateParameter<T>(argument);
         }
 
-        public NavigationParameter CreateParameter<T>()
+        NavigationParameter INavigationService.CreateParameter<T>()
         {
             return CreateParameter<T>(null);
         }
 
-        public void ClearHistory(bool clearSingletones)
+        private NavigationParameter CreateParameter<T>(object argument)
+        {
+            return new NavigationParameter<T>(this/*, noTrack*/, argument);
+        }
+
+        void INavigationService.ClearHistory(bool clearSingletons)
         {
             _currentIndex = -1;
             _history.Clear();
-            if (clearSingletones)
+            if (clearSingletons)
             {
                 foreach (var navigationBuilder in _builders.Values)
                 {
                     var builder = (NavigationBuilder) navigationBuilder;
-                    if (!builder.IsRoot)
+                    if (builder.IsRoot == false)
                     {
-                        builder.DestroySingleton();
+                        builder.ClearSingleton();
                     }
                 }
             }

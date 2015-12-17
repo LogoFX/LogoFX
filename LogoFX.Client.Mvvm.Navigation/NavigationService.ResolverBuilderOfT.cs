@@ -9,7 +9,6 @@ namespace LogoFX.Client.Mvvm.Navigation
             private readonly Func<T> _createFunc;
 
             public ResolverBuilder(INavigationService service, Func<T> createFunc)
-                : base()
             {
                 _createFunc = createFunc;
             }

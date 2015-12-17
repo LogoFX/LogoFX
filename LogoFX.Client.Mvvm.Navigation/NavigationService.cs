@@ -19,14 +19,32 @@ namespace LogoFX.Client.Mvvm.Navigation
         private sealed class HistoryItem
         {
             /// <summary>
-            /// Type of this item.
+            /// Type of the navigation target.
             /// </summary>
             public Type Type { get; private set; }
 
+            /// <summary>
+            /// Gets the navigation argument.
+            /// </summary>
+            /// <value>
+            /// The navigation argument.
+            /// </value>
             public object Argument { get; private set; }
 
+            /// <summary>
+            /// Gets or sets the navigation target.
+            /// </summary>
+            /// <value>
+            /// The navigation target.
+            /// </value>
             public WeakReference Object { get; set; }
 
+            /// <summary>
+            /// Gets or sets a value indicating whether this <see cref="HistoryItem"/> should be skipped.
+            /// </summary>
+            /// <value>
+            ///   <c>true</c> if skipped; otherwise, <c>false</c>.
+            /// </value>
             public bool Skip { get; private set; }
 
             public HistoryItem(Type type, object argument, bool skip)
@@ -56,15 +74,15 @@ namespace LogoFX.Client.Mvvm.Navigation
 
         #region Internal Members
 
-        internal void RegisterAttr(Type type, NavigationViewModelAttribute attr, IIocContainer container)
+        internal void RegisterAttribute(Type type, NavigationViewModelAttribute attribute, IIocContainer container)
         {
             var types = new List<Type> {type};
-            var synonymAttrs = type.GetAttributes<NavigationSynonymAttribute>(false);
-            types.AddRange(synonymAttrs.Select(x => x.SynonimType));
+            var synonymAttributes = type.GetAttributes<NavigationSynonymAttribute>(false);
+            types.AddRange(synonymAttributes.Select(x => x.SynonymType));
 
             foreach (var t in types)
             {
-                var builder = new AttributeBuilder(type, attr, container);
+                var builder = new AttributeBuilder(type, attribute, container);
                 _builders.Add(t, builder);
             }
         }
@@ -121,8 +139,8 @@ namespace LogoFX.Client.Mvvm.Navigation
             INavigationBuilder navigationBuilder;
 
             if (!_builders.TryGetValue(type, out navigationBuilder))
-            {
-                throw new SystemException(String.Format("Not registered type '{0}'.", type));
+            {                
+                throw new UnregisteredTypeException($"Not registered type '{type}'.");
             }
 
             return navigationBuilder;
@@ -141,6 +159,7 @@ namespace LogoFX.Client.Mvvm.Navigation
 
             StopTrack = true;
             StopEvents = true;
+
             try
             {
                 result = (INavigationConductor) await NavigateInternal(conductorType, null, true);

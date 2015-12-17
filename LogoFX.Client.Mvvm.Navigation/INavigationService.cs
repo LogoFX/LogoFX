@@ -3,8 +3,17 @@ using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
+    /// <summary>
+    /// Navigation service which allows navigation within the application
+    /// </summary>
     public interface INavigationService
     {
+        /// <summary>
+        /// Registers the view model for navigation using container-resolution strategy
+        /// </summary>
+        /// <typeparam name="T">Type of view model</typeparam>
+        /// <param name="container">The container.</param>
+        /// <returns></returns>
         IRootableNavigationBuilder<T> RegisterViewModel<T>(IIocContainer container) where T : class;
 
         IRootableNavigationBuilder<T> RegisterViewModel<T>(T viewModel);
@@ -17,7 +26,7 @@ namespace LogoFX.Client.Mvvm.Navigation
         NavigationParameter CreateParameter<T>(object argument/*, bool noTrack = false*/);
         NavigationParameter CreateParameter<T>();
 
-        void ClearHistory(bool clearSingletones);
+        void ClearHistory(bool clearSingletons);
 
         void Back();
         void Forward();

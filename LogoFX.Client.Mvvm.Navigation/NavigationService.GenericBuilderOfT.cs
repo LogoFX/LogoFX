@@ -1,5 +1,4 @@
 ﻿using System;
-using Caliburn.Micro;
 using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.Navigation

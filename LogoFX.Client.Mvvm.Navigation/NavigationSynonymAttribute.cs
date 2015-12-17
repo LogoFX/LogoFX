@@ -2,14 +2,17 @@
 
 namespace LogoFX.Client.Mvvm.Navigation
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+    /// <summary>
+    /// Used for redirection scenarios
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]    
     public sealed class NavigationSynonymAttribute : Attribute
     {
-        public NavigationSynonymAttribute(Type synonimType)
+        public NavigationSynonymAttribute(Type synonymType)
         {
-            SynonimType = synonimType;
+            SynonymType = synonymType;
         }
 
-        public Type SynonimType { get; private set; }
+        public Type SynonymType { get; private set; }
     }
 }

@@ -72,7 +72,7 @@ namespace LogoFX.Client.Mvvm.Navigation
         {          
             if (NavigationService == null)
             {
-                throw new Exception("Navigation service must be set");
+                throw new NavigationServiceNullException("Navigation service must be set");                
             }
 
             if (Parameter != null)
@@ -84,8 +84,8 @@ namespace LogoFX.Client.Mvvm.Navigation
                 NavigationService.Navigate(ItemType, Argument);
             }
             else
-            {
-                throw new SystemException("You must set Parameter or ItemType.");
+            {                
+                throw new ArgumentException("You must set Parameter or ItemType.");                
             }
         }
     }

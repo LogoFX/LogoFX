@@ -89,6 +89,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions.cs" />
     <Compile Include="IAsyncNavigationViewModel.cs" />
     <Compile Include="INavigationBuilder.cs" />
     <Compile Include="INavigationBuilderOfT.cs" />
