@@ -46,7 +46,7 @@ namespace LogoFX.Client.Bootstrapping.SimpleInjector
         }
 
         public object GetInstance(Type serviceType)
-        {
+        {            
             return _container.GetInstance(serviceType);
         }
 
