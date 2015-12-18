@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
