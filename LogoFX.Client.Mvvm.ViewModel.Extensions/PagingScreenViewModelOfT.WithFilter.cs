@@ -1,15 +1,9 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
-{
-    public interface IFilterModel : ICloneable
-    {
-
-    }
-
+{    
     public abstract partial class PagingScreenViewModel<TItem, TModel>
     {
         public abstract class WithFilter<TFilterModel> : PagingScreenViewModel<TItem, TModel>

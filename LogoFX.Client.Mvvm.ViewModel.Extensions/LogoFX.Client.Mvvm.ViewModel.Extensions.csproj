@@ -121,9 +121,17 @@
     <Compile Include="ResultEventArgs.cs" />
     <Compile Include="ScreenObjectViewModel.cs" />
     <Compile Include="ShouldDisplayErrorInfoAttribute.cs" />
+    <Compile Include="VirtualContainer.Collection.cs" />
+    <Compile Include="VirtualContainer.cs" />
+    <Compile Include="VirtualPagingItemListViewModel.cs" />
+    <Compile Include="VirtualPagingItemListViewModel.WithSelection.cs" />
+    <Compile Include="VirtualPagingItemViewModel.cs" />
+    <Compile Include="VirtualPagingScreenViewModel.cs" />
+    <Compile Include="VirtualPagingScreenViewModel.WithFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="PagingItemListViewModel.WithFilter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

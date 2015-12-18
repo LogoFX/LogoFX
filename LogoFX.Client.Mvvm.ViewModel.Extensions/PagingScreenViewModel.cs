@@ -80,6 +80,4 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #endregion
     }
-
-    
 }
