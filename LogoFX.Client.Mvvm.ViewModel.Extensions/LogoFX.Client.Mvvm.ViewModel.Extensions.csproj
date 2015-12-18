@@ -100,10 +100,23 @@
   <ItemGroup>
     <Compile Include="BusyScreen.cs" />
     <Compile Include="EditableObjectViewModel.cs" />
+    <Compile Include="EditablePagingItemViewModel.cs" />
+    <Compile Include="EditablePagingScreenViewModel.cs" />
+    <Compile Include="EditablePagingScreenViewModel.WithFilter.cs" />
     <Compile Include="EditableScreenObjectViewModel.cs" />
     <Compile Include="ErrorInfoViewModel.cs" />
+    <Compile Include="FilterViewModelBase.cs" />
     <Compile Include="IEditableViewModel.cs" />
+    <Compile Include="IPageInfo.cs" />
+    <Compile Include="IPagingItemViewModel.cs" />
+    <Compile Include="IPagingViewModel.cs" />
+    <Compile Include="IWithSelection.cs" />
     <Compile Include="MessageResult.cs" />
+    <Compile Include="PagingItemListViewModel.cs" />
+    <Compile Include="PagingItemListViewModelBase.cs" />
+    <Compile Include="PagingScreenViewModel.cs" />
+    <Compile Include="PagingScreenViewModelOfT.cs" />
+    <Compile Include="PagingScreenViewModelOfT.WithFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultEventArgs.cs" />
     <Compile Include="ScreenObjectViewModel.cs" />

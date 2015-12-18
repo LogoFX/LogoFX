@@ -139,6 +139,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewMode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Adapters.SimpleInjector", "LogoFX.Client.Bootstrapping.Adapters.SimpleInjector\LogoFX.Client.Bootstrapping.Adapters.SimpleInjector.csproj", "{2024019E-47E0-471D-ACA6-979672ED9788}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.View.Extensions", "LogoFX.Client.Mvvm.View.Extensions\LogoFX.Client.Mvvm.View.Extensions.csproj", "{7D14EB6D-4775-4518-A8E4-02B804226E83}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -325,6 +327,10 @@ Global
 		{2024019E-47E0-471D-ACA6-979672ED9788}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2024019E-47E0-471D-ACA6-979672ED9788}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2024019E-47E0-471D-ACA6-979672ED9788}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -392,5 +398,6 @@ Global
 		{B779CF43-965D-4295-8756-D758438FC0F2} = {60FB7B33-6CD4-4C2C-8047-BB6D9959F1DB}
 		{CA796B73-78D7-4A11-BD42-85C9A7365E48} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
 		{2024019E-47E0-471D-ACA6-979672ED9788} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
+		{7D14EB6D-4775-4518-A8E4-02B804226E83} = {B18FADF0-1520-4C84-A91A-7AF26CFA2FC7}
 	EndGlobalSection
 EndGlobal
