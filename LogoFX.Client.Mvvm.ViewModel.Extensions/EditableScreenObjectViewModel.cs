@@ -6,12 +6,11 @@ using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.Core;
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
-using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract class EditableScreenObjectViewModel<T> : ScreenObjectViewModel<T>, IEditableViewModel, ICanBeBusy, IDataErrorInfo
-        where T : IEditableModel, IHaveErrors
+        where T : IEditableModel, IHaveErrors, IDataErrorInfo
     {
         #region Constructors
 
@@ -60,7 +59,6 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         }
 
         private ICommand _closeCommand;
-
         public ICommand CloseCommand
         {
             get
@@ -115,6 +113,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             await OnSaved(result);
             return result;
         }
+
         protected async virtual Task OnSaving()
         {
             var handler = Saving;
@@ -232,7 +231,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             set { Model.CanCancelChanges = value; }
         }
 
-        bool IEditableViewModel.HasErrors
+        bool IHaveErrors.HasErrors
         {
             get { return Model.HasErrors; }
         }
@@ -253,22 +252,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         public virtual string this[string columnName]
         {
-            get
-            {
-                var errors = GetErrors(columnName);
-
-                if (errors == null)
-                {
-                    return null;
-                }
-
-                return errors.FirstOrDefault().ToString();
-            }
+            get { return Model[columnName]; }
         }
 
         public virtual string Error
         {
-            get { return null; }
+            get { return Model.Error; }
         }
 
         #endregion        

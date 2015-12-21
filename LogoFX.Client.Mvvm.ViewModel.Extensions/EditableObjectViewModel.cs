@@ -6,12 +6,11 @@ using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.Core;
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
-using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract class EditableObjectViewModel<T> : ObjectViewModel<T>, IEditableViewModel, ICanBeBusy, IDataErrorInfo
-        where T : IEditableModel, IHaveErrors
+        where T : IEditableModel, IHaveErrors, IDataErrorInfo
     {                
         protected EditableObjectViewModel(T model)
             : base(model)
@@ -30,7 +29,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             {
                 return _applyCommand ??
                     (_applyCommand = ActionCommand
-                    .When(() => (ForcedDirty || Model.IsDirty) && !Model.HasErrors)
+                    .When(() => (ForcedDirty || Model.IsDirty) && !((IHaveErrors)Model).HasErrors)
                     .Do(async () =>
                     {
                         await SaveAsync();
@@ -41,17 +40,17 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        private ICommand _cancelChangesCommand;
+        private ICommand _canCancelChangesCommand;
         public ICommand CancelChangesCommand
         {
             get
             {
-                return _cancelChangesCommand ??
-                    (_cancelChangesCommand = ActionCommand
-                    .When(() => Model.CanCancelChanges && Model.IsDirty)
-                    .Do(CancelChanges)
-                    .RequeryOnPropertyChanged(this, () => CanCancelChanges)
-                    .RequeryOnPropertyChanged(this, () => IsDirty));
+                return _canCancelChangesCommand ??
+                       (_canCancelChangesCommand = ActionCommand
+                           .When(() => CanCancelChanges && IsDirty)
+                           .Do(CancelChangesAsync)
+                           .RequeryOnPropertyChanged(this, () => CanCancelChanges)
+                           .RequeryOnPropertyChanged(this, () => IsDirty));
             }
         }
 
@@ -87,21 +86,21 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Protected Members
 
-        protected abstract Task<bool> SaveMethod(T model);        
+        protected abstract Task<bool> SaveMethod(T model);
 
-        protected async Task<bool> SaveAsync()
+        private async Task<bool> SaveAsync()
         {
-            OnSaving();
+            await OnSaving();
             bool result = await SaveMethod(Model);
             if (result)
             {
-                Model.ClearDirty();
+                Model.ClearDirty(forceClearChildren: true);
             }
-            OnSaved(result);
+            await OnSaved(result);
             return result;
-        }
+        }        
 
-        protected virtual void OnSaving()
+        protected async virtual Task OnSaving()
         {
             var handler = Saving;
 
@@ -111,7 +110,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        protected virtual void OnSaved(bool successfull)
+        protected async virtual Task OnSaved(bool successfull)
         {
             var handler = Saved;
 
@@ -121,23 +120,45 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        private void CancelChanges()
+        private async void CancelChangesAsync()
         {
-            if (Model.CanCancelChanges)
+            try
             {
-                Model.CancelChanges();
+                await OnChangesCanceling();
             }
-            else
+            catch (Exception ex)
             {
-                Model.ClearDirty();
+                throw ex;
             }
 
-            OnChangesCanceled();
+            try
+            {
+                if (Model.CanCancelChanges)
+                {
+                    Model.CancelChanges();
+                }
+                else
+                {
+                    Model.ClearDirty();
+                }
+            }
+            catch (Exception)
+            {
+                //TODO: add proper rollback
+                throw;
+            }
+
+            await OnChangesCanceled();
         }
 
-        protected virtual void OnChangesCanceled()
+        protected virtual Task OnChangesCanceling()
         {
+            return Task.Run(() => { });
+        }
 
+        protected virtual Task OnChangesCanceled()
+        {
+            return Task.Run(() => { });
         }
 
         #endregion
@@ -155,14 +176,14 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             set { Model.CanCancelChanges = value; }
         }
 
-        bool IEditableViewModel.HasErrors
+        bool IHaveErrors.HasErrors
         {
             get { return ((IHaveErrors)Model).HasErrors; }
         }
 
         void IEditableViewModel.CancelChanges()
         {
-            CancelChanges();
+            CancelChangesAsync();
         }
 
         Task<bool> IEditableViewModel.SaveAsync()
@@ -176,22 +197,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         public virtual string this[string columnName]
         {
-            get
-            {
-                var errors = GetErrors(columnName);
-
-                if (errors == null)
-                {
-                    return null;
-                }
-
-                return errors.FirstOrDefault().ToString();
-            }
+            get { return Model[columnName]; }
         }
 
         public virtual string Error
         {
-            get { return null; }
+            get { return Model.Error; }
         }
 
         #endregion

@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 using LogoFX.Client.Bootstrapping;
-using LogoFX.Client.Bootstrapping.SimpleContainer;
+using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {

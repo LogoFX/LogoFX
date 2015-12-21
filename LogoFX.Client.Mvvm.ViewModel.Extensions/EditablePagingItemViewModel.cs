@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
@@ -6,7 +7,7 @@ using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract class EditablePagingItemViewModel<T> : EditableObjectViewModel<T>, IPagingItemViewModel
-        where T : IEditableModel, IHaveErrors
+        where T : IEditableModel, IHaveErrors, IDataErrorInfo
     {
         protected EditablePagingItemViewModel(T model, bool isNew)
             : base(model)

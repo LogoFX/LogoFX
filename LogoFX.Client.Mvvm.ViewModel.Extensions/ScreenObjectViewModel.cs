@@ -1,14 +1,11 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using Caliburn.Micro;
-using LogoFX.Client.Core;
+using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
-    public class ScreenObjectViewModel<T> : Screen, IObjectViewModel<T>
+    public class ScreenObjectViewModel<T> : Screen, IObjectViewModel<T>       
     {
         #region Ctor's
 
@@ -322,24 +319,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         {
 
         }
-        #endregion
-
-        private readonly Dictionary<string, List<string>> _currentErrors = new Dictionary<string, List<string>>();
-
-
-
-        /// <summary>
-        /// Gets the errors for property.
-        /// </summary>
-        /// <param name="propertyName">DomainName of the property to check.</param>
-        /// <returns></returns>
-        public IEnumerable GetErrors(string propertyName)
-        {
-            if (_currentErrors.ContainsKey(propertyName))
-                return _currentErrors[propertyName];
-
-            return null;
-        }
+        #endregion        
 
         /// <summary>
         /// Gets a value indicating whether this instance has errors.
@@ -347,50 +327,15 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         /// <value>
         /// 	<c>true</c> if this instance has errors; otherwise, <c>false</c>.
         /// </value>
-        public bool HasErrors
+        public virtual bool HasErrors
         {
-            get { return (_currentErrors.Count > 0); }
-        }
-
-        // ReSharper disable UnusedParameter.Local
-        void FireErrorsChanged(string property)
-            // ReSharper restore UnusedParameter.Local
-        {
-#if SILVERLIGHT
-            if (ErrorsChanged != null)
+            get
             {
-                ErrorsChanged(this, new DataErrorsChangedEventArgs(property));
+                var hasErrors = Model as IHaveErrors;
+                return hasErrors != null && hasErrors.HasErrors;
             }
-#endif
-            NotifyOfPropertyChange(() => HasErrors);
-        }
+        }       
 
-        /// <summary>
-        /// Clears the error from property.
-        /// </summary>
-        /// <typeparam name="TProperty">The type of the property.</typeparam>
-        /// <param name="expression">The expression that designates the property.</param>
-        public void ClearErrorFromProperty<TProperty>(Expression<Func<TProperty>> expression)
-        {
-
-            string property = expression.GetPropertyName();
-            _currentErrors.Remove(property);
-            FireErrorsChanged(property);
-        }
-
-        /// <summary>
-        /// Adds the error for property.
-        /// </summary>
-        /// <typeparam name="TProperty">The type of the property.</typeparam>
-        /// <param name="expression">The expression that designates the property.</param>
-        /// <param name="error">The error description.</param>
-        public void AddErrorForProperty<TProperty>(Expression<Func<TProperty>> expression, string error)
-        {
-            string property = expression.GetPropertyName();
-            _currentErrors.Remove(property);
-            _currentErrors.Add(property, new List<string>(new[] { error }));
-            FireErrorsChanged(property);
-        }
 
 #if SILVERLIGHT
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;

@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
@@ -8,7 +9,7 @@ using LogoFX.Client.Mvvm.Model.Contracts;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract partial class EditablePagingScreenViewModel<TItem, TModel> : PagingScreenViewModel<TItem, TModel>
-        where TModel : class, IEditableModel, IHaveErrors 
+        where TModel : class, IEditableModel, IHaveErrors, IDataErrorInfo
         where TItem : EditablePagingItemViewModel<TModel>, IPagingItemViewModel
     {
         #region Fields

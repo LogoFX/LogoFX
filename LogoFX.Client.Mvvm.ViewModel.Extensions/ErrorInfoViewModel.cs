@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract class ErrorInfoViewModel<T> : ScreenObjectViewModel<T>, IDataErrorInfo
-        where T : IDataErrorInfo
+        where T : IDataErrorInfo, IHaveErrors
     {
         private readonly ConcurrentDictionary<string, bool> _isPropertyChanged = new ConcurrentDictionary<string, bool>();
         private readonly HashSet<string> _interestingProperties = new HashSet<string>();
