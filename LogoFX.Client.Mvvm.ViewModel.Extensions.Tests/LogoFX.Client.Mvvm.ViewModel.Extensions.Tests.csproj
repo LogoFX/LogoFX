@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Builders.1.0.7\lib\net451\Attest.Fake.Builders.dll</HintPath>
+      <HintPath>..\packages\Attest.Fake.Builders.1.0.7.1\lib\net451\Attest.Fake.Builders.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Fake.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -39,7 +39,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Fake.Moq, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Moq.1.0.7\lib\net451\Attest.Fake.Moq.dll</HintPath>
+      <HintPath>..\packages\Attest.Fake.Moq.1.0.7.1\lib\net451\Attest.Fake.Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.Core, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">

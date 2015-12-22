@@ -63,7 +63,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel.Extensions, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.1.0.4\lib\net451\LogoFX.Client.Mvvm.ViewModel.Extensions.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Extensions.1.0.4.1\lib\net451\LogoFX.Client.Mvvm.ViewModel.Extensions.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel.Interfaces, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">

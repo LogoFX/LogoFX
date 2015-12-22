@@ -34,8 +34,8 @@
       <HintPath>..\packages\Attest.Fake.Core.1.0.7\lib\net451\Attest.Fake.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Moq">
-      <HintPath>..\packages\Attest.Fake.Moq.1.0.7\lib\net451\Attest.Fake.Moq.dll</HintPath>
+    <Reference Include="Attest.Fake.Moq, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Moq.1.0.7.1\lib\net451\Attest.Fake.Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro">
