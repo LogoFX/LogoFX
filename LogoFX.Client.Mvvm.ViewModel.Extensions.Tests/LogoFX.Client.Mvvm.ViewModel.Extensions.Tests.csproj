@@ -62,8 +62,8 @@
       <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.4\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.5\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping.Adapters.SimpleContainer, Version=1.0.3.3, Culture=neutral, processorArchitecture=MSIL">

@@ -61,7 +61,7 @@ namespace LogoFX.Client.Mvvm.Navigation
 
         private void RegisterNavigationViewModels(IIocContainer container)
         {
-            AssemblySource.Instance.ToArray()
+            Assemblies.ToArray()
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(type => type != typeof (TRootViewModel) && type.IsClass)
                 .Select(type => new

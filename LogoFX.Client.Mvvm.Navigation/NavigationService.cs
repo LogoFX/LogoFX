@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Caliburn.Micro;
 using LogoFX.Client.Core;
 using Solid.Practices.IoC;
 
@@ -76,8 +75,8 @@ namespace LogoFX.Client.Mvvm.Navigation
 
         internal void RegisterAttribute(Type type, NavigationViewModelAttribute attribute, IIocContainer container)
         {
-            var types = new List<Type> {type};
-            var synonymAttributes = type.GetAttributes<NavigationSynonymAttribute>(false);
+            var types = new List<Type> {type};            
+            var synonymAttributes = Attribute.GetCustomAttributes(type, inherit: false).OfType<NavigationSynonymAttribute>();                
             types.AddRange(synonymAttributes.Select(x => x.SynonymType));
 
             foreach (var t in types)

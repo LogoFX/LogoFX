@@ -38,8 +38,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.4\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.3.5, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.3.5\lib\net451\LogoFX.Client.Bootstrapping.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
