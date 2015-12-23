@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
@@ -62,6 +63,7 @@ namespace LogoFX.Client.Bootstrapping
         {
             _iocContainer = iocContainer;
             _reuseCompositionInformation = reuseCompositionInformation;
+            InitializeCompositionInfo();
             Initialize();
         }
 
@@ -79,14 +81,19 @@ namespace LogoFX.Client.Bootstrapping
         protected override void Configure()
         {
             base.Configure();
-            Dispatch.Current.InitializeDispatch();
-            DefineViewLocatorFunctions();
-            InitializeAdapter();
+            InitializeDispatcher();
+            InitializeViewLocator();
+            InitializeAdapter();            
             RegisterCommon(_iocContainer);
             RegisterViewsAndViewModels(_iocContainer);
-            RegisterModules();
+            RegisterCompositionModules(_iocContainer);
             OnConfigure(_iocContainer);
-        }        
+        }
+
+        private static void InitializeDispatcher()
+        {
+            Dispatch.Current.InitializeDispatch();
+        }
 
         private static void RegisterCommon(IIocContainer iocContainer)
         {
@@ -95,9 +102,9 @@ namespace LogoFX.Client.Bootstrapping
             iocContainer.RegisterInstance(iocContainer);
         }
 
-        private static void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
+        private void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
         {            
-            AssemblySource.Instance.ToArray()
+            Assemblies
                 .SelectMany(assembly => assembly.GetTypes())         
                 .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
                 .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
@@ -114,6 +121,11 @@ namespace LogoFX.Client.Bootstrapping
         public virtual object CurrentLifetimeScope
         {
             get { return _defaultLifetimeScope; }
+        }
+
+        protected Assembly[] Assemblies
+        {
+            get { return _compositionInfo.AssembliesResolver.GetAssemblies().ToArray(); }
         }
     }    
 }

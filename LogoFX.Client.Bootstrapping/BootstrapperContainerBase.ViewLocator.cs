@@ -8,9 +8,9 @@ namespace LogoFX.Client.Bootstrapping
 {
     partial class BootstrapperContainerBase<TRootViewModel, TIocContainer>
     {
-        private static readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
 
-        private void DefineViewLocatorFunctions()
+        private void InitializeViewLocator()
         {
             //overriden for performance reasons (Assembly caching)
             ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
@@ -29,7 +29,7 @@ namespace LogoFX.Client.Bootstrapping
                 Type viewType;
                 if (!_typedic.TryGetValue(viewTypeName, out viewType))
                 {
-                    _typedic[viewTypeName] = viewType = (from assembly in AssemblySource.Instance
+                    _typedic[viewTypeName] = viewType = (from assembly in Assemblies
                                                          from type in assembly.GetExportedTypes()
                                                          where type.FullName == viewTypeName
                                                          select type).FirstOrDefault();
