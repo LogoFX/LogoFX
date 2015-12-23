@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Solid.Practices.Composition;
+using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
@@ -28,6 +29,12 @@ namespace LogoFX.Client.Bootstrapping
         protected override IEnumerable<Assembly> SelectAssemblies()
         {                       
             return Assemblies;
+        }
+
+        private void RegisterCompositionModules(TIocContainer iocContainer)
+        {            
+            var moduleRegistrator = new ModuleRegistrator(Modules);
+            moduleRegistrator.RegisterModules(iocContainer);
         }
 
         private void InitializeCompositionInfo()

@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Contracts;
+using LogoFX.Core;
 using Solid.Practices.IoC;
-using Solid.Practices.Middleware;
 
 namespace LogoFX.Client.Bootstrapping
 {    
@@ -25,8 +25,7 @@ namespace LogoFX.Client.Bootstrapping
         where TRootViewModel : class
         where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
     {        
-        private readonly TIocContainer _iocContainer;
-        private readonly List<IMiddleware> _middlewares = new List<IMiddleware>();
+        private readonly TIocContainer _iocContainer;        
 
         /// <summary>
         /// This ctor is used when the container is not created outside the bootstrapper.
@@ -84,20 +83,33 @@ namespace LogoFX.Client.Bootstrapping
             base.Configure();
             InitializeDispatcher();
             InitializeViewLocator();
-            InitializeAdapter();
-            _middlewares.AddRange(new IMiddleware[]
-            {
-                new CommonMiddleware<TRootViewModel>(),
-                new ViewAndViewModelMiddleware<TRootViewModel>(Assemblies),
-                new ModuleMiddleware(Modules)
-            });
-            _middlewares.ForEach(t => t.Apply(_iocContainer));            
+            InitializeAdapter();            
+            RegisterCommon(_iocContainer);
+            RegisterViewsAndViewModels(_iocContainer);
+            RegisterCompositionModules(_iocContainer);
             OnConfigure(_iocContainer);
         }
 
         private static void InitializeDispatcher()
         {
             Dispatch.Current.InitializeDispatch();
+        }
+
+        private static void RegisterCommon(IIocContainer iocContainer)
+        {
+            iocContainer.RegisterSingleton<IWindowManager, WindowManager>();
+            iocContainer.RegisterSingleton<TRootViewModel, TRootViewModel>();
+            iocContainer.RegisterInstance(iocContainer);
+        }
+
+        private void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
+        {            
+            Assemblies
+                .SelectMany(assembly => assembly.GetTypes())         
+                .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
+                .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
+                .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
+                .ForEach(a => iocContainer.RegisterTransient(a, a));            
         }
 
         protected virtual void OnConfigure(TIocContainer container)
