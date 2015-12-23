@@ -95,11 +95,12 @@ namespace LogoFX.Client.Bootstrapping
             Dispatch.Current.InitializeDispatch();
         }
 
-        private static void RegisterCommon(IIocContainer iocContainer)
+        private static void RegisterCommon(TIocContainer iocContainer)
         {
             iocContainer.RegisterSingleton<IWindowManager, WindowManager>();
             iocContainer.RegisterSingleton<TRootViewModel, TRootViewModel>();
             iocContainer.RegisterInstance(iocContainer);
+            iocContainer.RegisterInstance<IIocContainer>(iocContainer);
         }
 
         private void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
