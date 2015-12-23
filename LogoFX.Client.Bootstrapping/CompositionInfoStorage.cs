@@ -3,7 +3,7 @@ using Solid.Practices.Composition;
 
 namespace LogoFX.Client.Bootstrapping
 {
-    static class CompositionInfoManager
+    static class CompositionInfoStorage
     {
         private static readonly ConcurrentDictionary<string, ICompositionInitializationFacade> _internalStorage =
             new ConcurrentDictionary<string, ICompositionInitializationFacade>();

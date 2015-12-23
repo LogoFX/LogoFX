@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Threading;
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Contracts;
 using LogoFX.Core;
-using Solid.Practices.Composition;
-using Solid.Practices.Composition.Desktop;
 using Solid.Practices.IoC;
-using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
 {    
@@ -22,20 +15,16 @@ namespace LogoFX.Client.Bootstrapping
     /// </summary>
     /// <typeparam name="TRootViewModel">Type of Root ViewModel</typeparam>
     /// <typeparam name="TIocContainer">Type of IoC container</typeparam>
-    public class BootstrapperContainerBase<TRootViewModel, TIocContainer> :
+    public partial class BootstrapperContainerBase<TRootViewModel, TIocContainer> :
 #if !WinRT
  BootstrapperBase
 #else
         CaliburnApplication
-#endif
-        , ICompositionModulesProvider
+#endif        
         where TRootViewModel : class
         where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
-    {
-        private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
-        private IBootstrapperAdapter _bootstrapperAdapter;        
-        private readonly TIocContainer _iocContainer;
-        private readonly bool _reuseCompositionInformation;
+    {        
+        private readonly TIocContainer _iocContainer;        
 
         /// <summary>
         /// This ctor is used when the container is not created outside the bootstrapper.
@@ -91,45 +80,11 @@ namespace LogoFX.Client.Bootstrapping
         {
             base.Configure();
             Dispatch.Current.InitializeDispatch();
-            //overriden for performance reasons (Assembly caching)
-            ViewLocator.LocateTypeForModelType = (modelType, displayLocation, context) =>
-            {                
-                var viewTypeName = modelType.FullName.Substring(0, modelType.FullName.IndexOf("`") < 0
-                    ? modelType.FullName.Length
-                    : modelType.FullName.IndexOf("`")
-                    ).Replace("Model", string.Empty);
-
-                if (context != null)
-                {
-                    viewTypeName = viewTypeName.Remove(viewTypeName.Length - 4, 4);
-                    viewTypeName = viewTypeName + "." + context;
-                }
-
-                Type viewType;
-                if (!_typedic.TryGetValue(viewTypeName, out viewType))
-                {
-                    _typedic[viewTypeName] = viewType = (from assembly in AssemblySource.Instance
-                                                         from type in assembly.GetExportedTypes()
-                                                         where type.FullName == viewTypeName
-                                                         select type).FirstOrDefault();
-                }
-
-                return viewType;
-            };
-            ViewLocator.LocateForModelType = (modelType, displayLocation, context) =>
-            {
-                var viewType = ViewLocator.LocateTypeForModelType(modelType, displayLocation, context);
-
-                return viewType == null
-                    ? new TextBlock { Text = string.Format("Cannot find view for\nModel: {0}\nContext: {1} .", modelType, context) }
-                    : ViewLocator.GetOrCreateViewType(viewType);
-            };
-            _bootstrapperAdapter = _iocContainer;
-
+            DefineViewLocatorFunctions();
+            InitializeAdapter();
             RegisterCommon(_iocContainer);
             RegisterViewsAndViewModels(_iocContainer);
-            var moduleRegistrator = new ModuleRegistrator(Modules);
-            moduleRegistrator.RegisterModules(_iocContainer);
+            RegisterModules();
             OnConfigure(_iocContainer);
         }        
 
@@ -139,74 +94,26 @@ namespace LogoFX.Client.Bootstrapping
             iocContainer.RegisterSingleton<TRootViewModel, TRootViewModel>();
             iocContainer.RegisterInstance(iocContainer);
         }
-        
-        protected virtual void OnConfigure(TIocContainer container)
-        {
-        }
-
-        protected override object GetInstance(Type service, string key)
-        {
-            return _bootstrapperAdapter.GetInstance(service);
-        }
-        
-        protected override IEnumerable<object> GetAllInstances(Type service)
-        {
-            return _bootstrapperAdapter.GetAllInstances(service);
-        }
-        
-        protected override void BuildUp(object instance)
-        {
-            _bootstrapperAdapter.BuildUp(instance);
-        }
-
-        protected override IEnumerable<Assembly> SelectAssemblies()
-        {
-            var rootPath = Environment.CurrentDirectory + ModulesPath;
-            if (_reuseCompositionInformation)
-            {                
-                var existingCompositionInfo = CompositionInfoManager.GetCompositionInfo(rootPath);
-                if (existingCompositionInfo != null)
-                {
-                    Modules = existingCompositionInfo.Modules;
-                    return existingCompositionInfo.AssembliesResolver.GetAssemblies();
-                }
-            }
-            var initializationFacade = new CompositionInitializationFacade(GetType());
-            initializationFacade.Initialize(ModulesPath,Prefixes);
-            if (_reuseCompositionInformation)
-            {
-                CompositionInfoManager.AddCompositionInfo(rootPath, initializationFacade);
-            }
-            Modules = initializationFacade.Modules;
-            return initializationFacade.AssembliesResolver.GetAssemblies();
-        }
-
-        public virtual string ModulesPath
-        {
-            get { return "."; }
-        }
-
-        public virtual string[] Prefixes
-        {
-            get { return new string[]{}; }
-        }
-
-        private readonly object _defaultLifetimeScope = new object();
-        public virtual object CurrentLifetimeScope
-        {
-            get { return _defaultLifetimeScope; }
-        }
-
-        public IEnumerable<ICompositionModule> Modules { get; private set; }
 
         private static void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
         {            
             AssemblySource.Instance.ToArray()
-              .SelectMany(ass => ass.GetTypes())         
-              .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
-              .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
-              .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
-              .ForEach(a => iocContainer.RegisterTransient(a, a));            
+                .SelectMany(assembly => assembly.GetTypes())         
+                .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
+                .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
+                .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
+                .ForEach(a => iocContainer.RegisterTransient(a, a));            
+        }
+
+        protected virtual void OnConfigure(TIocContainer container)
+        {
+        }
+
+        private readonly object _defaultLifetimeScope = new object();
+
+        public virtual object CurrentLifetimeScope
+        {
+            get { return _defaultLifetimeScope; }
         }
     }    
 }
