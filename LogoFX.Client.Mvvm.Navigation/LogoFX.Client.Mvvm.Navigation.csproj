@@ -72,8 +72,8 @@
       <HintPath>..\packages\Solid.Practices.IoC.1.0.4.2\lib\net451\Solid.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Middleware, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Middleware.1.0.3\lib\net451\Solid.Practices.Middleware.dll</HintPath>
+    <Reference Include="Solid.Practices.Middleware, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Middleware.1.0.4\lib\net451\Solid.Practices.Middleware.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Modularity, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
