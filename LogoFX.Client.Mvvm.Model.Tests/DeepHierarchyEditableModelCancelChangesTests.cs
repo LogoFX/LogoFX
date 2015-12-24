@@ -11,9 +11,10 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         {
             var simpleEditableModel = new SimpleEditableModel();
             var compositeModel = new CompositeEditableModel("location");
-            var deepHierarchyModel = new DeepHierarchyEditableModel();
             compositeModel.AddSimpleModelImpl(simpleEditableModel);
+            var deepHierarchyModel = new DeepHierarchyEditableModel();
             deepHierarchyModel.AddCompositeItemImpl(compositeModel);
+
             compositeModel.RemoveSimpleItem(simpleEditableModel);
             deepHierarchyModel.CancelChanges();
 

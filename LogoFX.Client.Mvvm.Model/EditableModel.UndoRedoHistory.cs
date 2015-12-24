@@ -4,15 +4,14 @@ using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {
-    partial class EditableModel
+    partial class EditableModel<T>
     {
         /// <summary>
         /// This class represents an undo and redo history.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
+        /// </summary>        
         /// <seealso cref="IMemento{T}"/>
         [Serializable]
-        public class UndoRedoHistory<T>
+        public class UndoRedoHistory : EditableModel<T>
         {
             private const int DEFAULT_CAPACITY = 100;
 
@@ -20,12 +19,12 @@ namespace LogoFX.Client.Mvvm.Model
             private bool inUndoRedo = false;
 
             [NonSerialized]
-            private CompoundMemento<T> tempMemento = null;
+            private CompoundMemento<EditableModel<T>> tempMemento = null;
 
             /// <summary>
             /// The subject that this undo redo history is about.
             /// </summary>
-            protected T subject;
+            protected EditableModel<T> subject;
 
 #if LIMITED_CAPACITY
         /// <summary>
@@ -62,18 +61,18 @@ namespace LogoFX.Client.Mvvm.Model
             /// <summary>
             /// Undo stack
             /// </summary>
-            protected Stack<IMemento<T>> undoStack = new Stack<IMemento<T>>(DEFAULT_CAPACITY);
+            protected Stack<IMemento<EditableModel<T>>> undoStack = new Stack<IMemento<EditableModel<T>>>(DEFAULT_CAPACITY);
 
             /// <summary>
             /// Redo stack
             /// </summary>
-            protected Stack<IMemento<T>> redoStack = new Stack<IMemento<T>>(DEFAULT_CAPACITY);
+            protected Stack<IMemento<EditableModel<T>>> redoStack = new Stack<IMemento<EditableModel<T>>>(DEFAULT_CAPACITY);
 
             /// <summary>
-            /// Creates <see cref="UndoRedoHistory&lt;T&gt;"/>.
+            /// Creates <see cref="EditableModel{T}.UndoRedoHistory"/>.
             /// </summary>
             /// <param name="subject"></param>
-            public UndoRedoHistory(T subject)
+            public UndoRedoHistory(EditableModel<T> subject)
             {
                 this.subject = subject;
             }
@@ -170,7 +169,7 @@ namespace LogoFX.Client.Mvvm.Model
                 if (tempMemento != null)
                     throw new InvalidOperationException("Previous complex memento wasn't commited.");
 
-                tempMemento = new CompoundMemento<T>();
+                tempMemento = new CompoundMemento<EditableModel<T>>();
             }
 
             /// <summary>
@@ -198,14 +197,14 @@ namespace LogoFX.Client.Mvvm.Model
             /// <remarks>
             /// This method MUST be properly involked by programmers right before (preferably) or right after 
             /// the state of <see cref="subject"/> is changed. 
-            /// Whenever <see cref="Do(IMemento&lt;T&gt;)"/> is called, the status of <see cref="InUndoRedo"/> 
+            /// Whenever <see cref="Do(IMemento&lt;EditableModel&lt;T&gt;&gt;)"/> is called, the status of <see cref="InUndoRedo"/> 
             /// should aways be checked first. See details at <see cref="InUndoRedo"/>. 
             /// This method causes redo stack to be cleared.
             /// </remarks>
             /// <seealso cref="InUndoRedo"/>
             /// <seealso cref="Undo()"/>
             /// <seealso cref="Redo()"/>
-            public void Do(IMemento<T> m)
+            public void Do(IMemento<EditableModel<T>> m)
             {
                 if (inUndoRedo)
                     throw new InvalidOperationException("Involking do within an undo/redo action.");
@@ -224,7 +223,7 @@ namespace LogoFX.Client.Mvvm.Model
             /// Internal <b>DO</b> action with no error checking
             /// </summary>
             /// <param name="m"></param>
-            private void _Do(IMemento<T> m)
+            private void _Do(IMemento<EditableModel<T>> m)
             {
                 redoStack.Clear();
                 undoStack.Push(m);
@@ -241,7 +240,7 @@ namespace LogoFX.Client.Mvvm.Model
                     throw new InvalidOperationException("The complex memento wasn't commited.");
 
                 inUndoRedo = true;
-                IMemento<T> top = undoStack.Pop();
+                var top = undoStack.Pop();
                 redoStack.Push(top.Restore(subject));
                 inUndoRedo = false;
             }
@@ -257,7 +256,7 @@ namespace LogoFX.Client.Mvvm.Model
                     throw new InvalidOperationException("The complex memento wasn't commited.");
 
                 inUndoRedo = true;
-                IMemento<T> top = redoStack.Pop();
+                var top = redoStack.Pop();
                 undoStack.Push(top.Restore(subject));
                 inUndoRedo = false;
             }
@@ -291,7 +290,7 @@ namespace LogoFX.Client.Mvvm.Model
             /// Gets, without removing, the top memento on the undo stack.
             /// </summary>
             /// <returns></returns>
-            public IMemento<T> PeekUndo()
+            public IMemento<EditableModel<T>> PeekUndo()
             {
                 if (undoStack.Count > 0)
                     return undoStack.Peek();
@@ -303,14 +302,13 @@ namespace LogoFX.Client.Mvvm.Model
             /// Gets, without removing, the top memento on the redo stack.
             /// </summary>
             /// <returns></returns>
-            public IMemento<T> PeekRedo()
+            public IMemento<EditableModel<T>> PeekRedo()
             {
                 if (redoStack.Count > 0)
                     return redoStack.Peek();
                 else
                     return null;
             }
-
         }
     }
 }
