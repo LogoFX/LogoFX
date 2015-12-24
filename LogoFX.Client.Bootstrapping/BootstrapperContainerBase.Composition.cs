@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Solid.Practices.Composition;
-using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping

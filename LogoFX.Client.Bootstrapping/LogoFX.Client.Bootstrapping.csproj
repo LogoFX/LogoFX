@@ -76,10 +76,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BootstrapperContainerBase.Adapter.cs" />
-    <Compile Include="BootstrapperContainerBase.Composition.cs" />
+    <Compile Include="BootstrapperContainerBase.Adapter.cs">
+      <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BootstrapperContainerBase.Composition.cs">
+      <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="BootstrapperContainerBase.cs" />
-    <Compile Include="BootstrapperContainerBase.ViewLocator.cs" />
+    <Compile Include="BootstrapperContainerBase.ViewLocator.cs">
+      <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="CompositionInfoStorage.cs" />
     <Compile Include="CompositionInfoHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
