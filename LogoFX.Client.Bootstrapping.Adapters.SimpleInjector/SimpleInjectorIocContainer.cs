@@ -12,6 +12,7 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
 
         public SimpleInjectorContainer()
         {
+            _container.Options.AllowOverridingRegistrations = true;
             _container.RegisterSingleton(_container);
         }
 
@@ -42,22 +43,42 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
 
         public TService GetInstance<TService>(Type serviceType) where TService : class
         {
-            return (TService)_container.GetInstance(serviceType);
+            return (TService)GetInstanceInternal(serviceType);
         }
 
         public TService GetInstance<TService>() where TService : class
         {
-            return _container.GetInstance<TService>();
+            return (TService) GetInstanceInternal(typeof (TService));
         }
 
         public object GetInstance(Type serviceType)
-        {            
-            return _container.GetInstance(serviceType);
+        {
+            return GetInstanceInternal(serviceType);                   
+        }
+
+        private object GetInstanceInternal(Type serviceType)
+        {
+            try
+            {
+                return _container.GetInstance(serviceType);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
         public IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            return _container.GetAllInstances(serviceType);
+            try
+            {
+                return _container.GetAllInstances(serviceType);
+            }
+            catch (ActivationException)
+            {
+
+                return new object[] {};
+            }            
         }
 
         public void BuildUp(object instance)
