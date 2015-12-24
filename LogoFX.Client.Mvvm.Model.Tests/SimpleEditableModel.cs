@@ -5,7 +5,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
     interface ISimpleEditableModel : IEditableModel, ISimpleModel
     {        
         
-    }    
+    }        
 
     class SimpleEditableModel : EditableModel, ISimpleEditableModel
     {
@@ -37,16 +37,16 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         public int Age { get; set; }
     }
 
-    class SimpleEditableModelWithHistory : EditableModel.WithUndoRedo, ISimpleEditableModel
+    class SimpleEditableModelWithUndoRedo : EditableModel.WithUndoRedo, ISimpleEditableModel
     {        
-        public SimpleEditableModelWithHistory(string name, int age)
+        public SimpleEditableModelWithUndoRedo(string name, int age)
             : this()
         {
             _name = name;
             Age = age;
         }
 
-        public SimpleEditableModelWithHistory()
+        public SimpleEditableModelWithUndoRedo()
         {            
         }
 

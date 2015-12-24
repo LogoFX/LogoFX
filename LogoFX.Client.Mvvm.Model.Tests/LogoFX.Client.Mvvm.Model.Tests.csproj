@@ -60,11 +60,13 @@
     <Compile Include="CompositeEditableModel.cs" />
     <Compile Include="CompositeEditableModelCancelChangesTests.cs" />
     <Compile Include="CompositeEditableModelDirtyTests.cs" />
+    <Compile Include="CompositeEditableModelUndoRedoTests.cs" />
     <Compile Include="CompositeEditableModelValidationTests.cs" />
     <Compile Include="DataGenerator.cs" />
     <Compile Include="DeepHierarchyEditableModel.cs" />
     <Compile Include="DeepHierarchyEditableModelCancelChangesTests.cs" />
     <Compile Include="SimpleEditableModelDirtyTests.cs" />
+    <Compile Include="SimpleEditableModelUndoRedoTests.cs" />
     <Compile Include="SimpleEditableModelValidationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleEditableModel.cs" />

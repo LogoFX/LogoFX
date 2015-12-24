@@ -58,6 +58,15 @@ namespace LogoFX.Client.Mvvm.Model
                     OwnDirty = true;    
                 }                
                 _history.Do(new SnapshotMementoAdapter(this));
+            }            
+
+            protected override void RestoreFromHistory()
+            {
+                while (_history.CanUndo)
+                {
+                    _history.Undo();
+                }
+                ClearDirty();
             }
         }
     }

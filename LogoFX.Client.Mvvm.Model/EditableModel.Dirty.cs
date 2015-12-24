@@ -167,13 +167,22 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public void CancelChanges()
         {
-            RestoreFromUndoBuffer();
+            RestoreFromHistory();
+            CancelProperties();
+            CancelCollections();
+        }
 
+        protected void CancelProperties()
+        {
             var cancelChangesProperties = TypeInformationProvider.GetCanCancelChangesSourceValuesUnboxed(Type, this);
             foreach (var cancelChangesProperty in cancelChangesProperties.Where(x => x.CanCancelChanges))
             {
                 cancelChangesProperty.CancelChanges();
             }
+        }
+
+        protected void CancelCollections()
+        {
             var cancelChangesCollectionItems = TypeInformationProvider.GetCanCancelChangesSourceCollectionsUnboxed(Type, this);
             foreach (var cancelChangesCollectionItem in cancelChangesCollectionItems.Where(x => x.CanCancelChanges))
             {
@@ -191,7 +200,7 @@ namespace LogoFX.Client.Mvvm.Model
                 return;
             }            
             OwnDirty = true;
-            SetUndoBuffer(new SnapshotMementoAdapter(this));
+            SetHistory(new SnapshotMementoAdapter(this));
         }   
 
         /// <summary>
@@ -309,9 +318,9 @@ namespace LogoFX.Client.Mvvm.Model
                 //This is the case where an inner Model reports a change in its Dirty state
                 //If the current Model is not Dirty yet it should be marked as one
                 var dirtySource = notifyingObject as ICanBeDirty;
-                if (dirtySource != null && _undoBuffer == null && dirtySource.IsDirty)
+                if (dirtySource != null && _history == null && dirtySource.IsDirty)
                 {
-                    SetUndoBuffer(new SnapshotMementoAdapter(this));
+                    SetHistory(new SnapshotMementoAdapter(this));
                 }
                 NotifyOfPropertyChange(() => IsDirty);
             }, () => NotifyOfPropertyChange(() => CanCancelChanges));            

@@ -4,26 +4,26 @@ namespace LogoFX.Client.Mvvm.Model
 {
     partial class EditableModel<T>
     {
-        private IMemento<EditableModel<T>> _undoBuffer;
+        private IMemento<EditableModel<T>> _history;
 
-        private void SetUndoBuffer(IMemento<EditableModel<T>> memento)
+        private void SetHistory(IMemento<EditableModel<T>> memento)
         {
-            _undoBuffer = memento;
+            _history = memento;
         }
 
-        private void RestoreFromUndoBuffer()
+        protected virtual void RestoreFromHistory()
         {
-            if (_undoBuffer != null)
+            if (_history != null)
             {
-                _undoBuffer.Restore(this);    
+                _history.Restore(this);    
             }            
-            ClearUndoBuffer();
+            ClearHistory();
         }
 
-        private void ClearUndoBuffer()
+        private void ClearHistory()
         {
             ClearDirty();
-            _undoBuffer = null;
+            _history = null;
         }
     }
 }
