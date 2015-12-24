@@ -200,7 +200,7 @@ namespace LogoFX.Client.Mvvm.Model
                 return;
             }            
             OwnDirty = true;
-            SetHistory(new SnapshotMementoAdapter(this));
+            AddToHistory();
         }   
 
         /// <summary>
@@ -318,9 +318,9 @@ namespace LogoFX.Client.Mvvm.Model
                 //This is the case where an inner Model reports a change in its Dirty state
                 //If the current Model is not Dirty yet it should be marked as one
                 var dirtySource = notifyingObject as ICanBeDirty;
-                if (dirtySource != null && _history == null && dirtySource.IsDirty)
+                if (dirtySource != null && _history.CanUndo == false && dirtySource.IsDirty)
                 {
-                    SetHistory(new SnapshotMementoAdapter(this));
+                    AddToHistory();
                 }
                 NotifyOfPropertyChange(() => IsDirty);
             }, () => NotifyOfPropertyChange(() => CanCancelChanges));            

@@ -18,7 +18,7 @@ namespace LogoFX.Client.Mvvm.Model
         void IEditableObject.EndEdit()
         {
             var memento = _editStack.Pop();
-            SetHistory(memento);
+            _history.Do(memento);
             OnEndEdit();
         }
 

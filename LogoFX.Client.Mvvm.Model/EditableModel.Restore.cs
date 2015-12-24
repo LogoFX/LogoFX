@@ -1,29 +1,21 @@
-﻿using Solid.Patterns.Memento;
-
-namespace LogoFX.Client.Mvvm.Model
+﻿namespace LogoFX.Client.Mvvm.Model
 {
     partial class EditableModel<T>
     {
-        private IMemento<EditableModel<T>> _history;
+        private readonly UndoRedoHistory<EditableModel<T>> _history;
 
-        private void SetHistory(IMemento<EditableModel<T>> memento)
+        private void AddToHistory()
         {
-            _history = memento;
+            _history.Do(new SnapshotMementoAdapter(this));
         }
 
-        protected virtual void RestoreFromHistory()
+        private void RestoreFromHistory()
         {
-            if (_history != null)
+            while (_history.CanUndo)
             {
-                _history.Restore(this);    
-            }            
-            ClearHistory();
-        }
-
-        private void ClearHistory()
-        {
+                _history.Undo();
+            }                        
             ClearDirty();
-            _history = null;
         }
     }
 }

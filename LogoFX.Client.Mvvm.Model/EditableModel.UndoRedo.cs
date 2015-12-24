@@ -27,14 +27,8 @@ namespace LogoFX.Client.Mvvm.Model
         /// This class represents an editable model which supports undo and redo operations.
         /// </summary>   
         public class WithUndoRedo : EditableModel<T>, IUndoRedo
-        {
-            private readonly UndoRedoHistory<EditableModel<T>> _history;
-
-            public WithUndoRedo()
-            {
-                _history = new UndoRedoHistory<EditableModel<T>>(this);
-            }            
-
+        {            
+                        
             public void Undo()
             {
                 if (_history.CanUndo)
@@ -57,17 +51,8 @@ namespace LogoFX.Client.Mvvm.Model
                 {
                     OwnDirty = true;    
                 }                
-                _history.Do(new SnapshotMementoAdapter(this));
-            }            
-
-            protected override void RestoreFromHistory()
-            {
-                while (_history.CanUndo)
-                {
-                    _history.Undo();
-                }
-                ClearDirty();
-            }
+                AddToHistory();
+            }                        
         }
     }
 
