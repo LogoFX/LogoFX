@@ -49,5 +49,5 @@ namespace LogoFX.Client.Mvvm.Model.Tests
             MakeDirty();
             _compositeModels.Remove(compositeModel);
         }
-    }
+    }    
 }

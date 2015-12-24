@@ -65,7 +65,7 @@
     <Compile Include="EditableModel.Restore.cs">
       <DependentUpon>EditableModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="EditableModel.UndoRedoHistory.cs" />
+    <Compile Include="EditableModel.UndoRedo.cs" />
     <Compile Include="EditableSingleAttribute.cs" />
     <Compile Include="ErrorInfoExtractionStrategy.cs" />
     <Compile Include="ErrorService.cs" />
