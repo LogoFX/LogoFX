@@ -10,9 +10,13 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
     {
         private readonly Container _container = new Container();
 
-        public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
+        public SimpleInjectorContainer()
         {
-            _container.RegisterSingleton(_container);            
+            _container.RegisterSingleton(_container);
+        }
+
+        public void RegisterTransient<TService, TImplementation>() where TImplementation : class, TService
+        {            
             RegisterTransient(typeof(TService), typeof(TImplementation));
         }
 
