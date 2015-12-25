@@ -12,7 +12,7 @@ namespace LogoFX.Client.Bootstrapping
 {    
     /// <summary>
     /// Base class for application and test boostrappers.
-    /// Used when no navigation or special IoC containers are neeeded.
+    /// Used when no navigation or special IoC container-dependent logic is needed.
     /// </summary>
     /// <typeparam name="TRootViewModel">Type of Root ViewModel</typeparam>
     /// <typeparam name="TIocContainer">Type of IoC container</typeparam>
@@ -72,13 +72,20 @@ namespace LogoFX.Client.Bootstrapping
             DisplayRootViewFor(typeof(TRootViewModel));
         }
 
+        /// <summary>
+        /// Override this to add custom behavior to execute after the application starts.
+        /// </summary>
+        /// <param name="sender">The sender.</param><param name="e">The args.</param>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
             base.OnStartup(sender, e);
             DisplayRootView();
         }
-        
-        protected override void Configure()
+
+        /// <summary>
+        /// Configures the framework and executes boiler-plate registrations.
+        /// </summary>
+        protected sealed override void Configure()
         {
             base.Configure();
             InitializeDispatcher();
@@ -113,17 +120,33 @@ namespace LogoFX.Client.Bootstrapping
                 .ForEach(a => iocContainer.RegisterTransient(a, a));            
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during bootstrapper configuration.
+        /// </summary>
+        /// <param name="container">IoC container</param>
         protected virtual void OnConfigure(TIocContainer container)
         {
         }
 
         private readonly object _defaultLifetimeScope = new object();
 
+        /// <summary>
+        /// Gets the current lifetime scope.
+        /// </summary>
+        /// <value>
+        /// The current lifetime scope.
+        /// </value>
         public virtual object CurrentLifetimeScope
         {
             get { return _defaultLifetimeScope; }
         }
 
+        /// <summary>
+        /// Gets the assemblies that will be inspected for the application components.
+        /// </summary>
+        /// <value>
+        /// The assemblies.
+        /// </value>
         protected Assembly[] Assemblies
         {
             get { return _compositionInfo.AssembliesResolver.GetAssemblies().ToArray(); }
