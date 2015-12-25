@@ -7,11 +7,18 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     /// </summary>
     public class EditableListAttribute : Attribute
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditableListAttribute"/> class.
+        /// </summary>
         public EditableListAttribute()
         {
             CloneItems = false;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditableListAttribute"/> class.
+        /// </summary>
+        /// <param name="cloneItems">if set to <c>true</c> list items are cloned as well.</param>
         public EditableListAttribute(bool cloneItems)
         {
             CloneItems = cloneItems;

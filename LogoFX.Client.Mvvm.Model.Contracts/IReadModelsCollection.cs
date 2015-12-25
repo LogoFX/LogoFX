@@ -8,6 +8,9 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     /// <typeparam name="TItem">Type of model</typeparam>
     public interface IReadModelsCollection<TItem>
     {
+        /// <summary>
+        /// Gets the collection items
+        /// </summary>
         IEnumerable<TItem> Items { get; }
     }
 }

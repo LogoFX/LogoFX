@@ -11,6 +11,12 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     /// <typeparam name="T">type of object wrapped</typeparam>
     public interface IObjectModel<out T>:IModel
     {
+        /// <summary>
+        /// Gets the object.
+        /// </summary>
+        /// <value>
+        /// The object.
+        /// </value>
         T Object { get; }
     }
 

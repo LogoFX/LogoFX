@@ -64,13 +64,28 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
         /// </summary>
         string Description { get; set; }
 
-        [Obsolete]
+        /// <summary>
+        /// Gets a value indicating whether this instance is read only.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance is read only; otherwise, <c>false</c>.
+        /// </value>
+        [Obsolete]        
         bool IsReadOnly { get;}
 
+        /// <summary>
+        /// Gets the properties.
+        /// </summary>
+        /// <value>
+        /// The properties.
+        /// </value>
         [Obsolete]
         IEnumerable<IPropertyData> Properties { get; }
     }
 
+    /// <summary>
+    /// Represents model with <see cref="int"/> as identifier.
+    /// </summary>
     public interface IModel: IModel<int>
     {
     }

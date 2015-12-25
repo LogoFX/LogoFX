@@ -1,5 +1,8 @@
 ﻿namespace LogoFX.Client.Mvvm.Model.Contracts
 {
+    /// <summary>
+    /// Represents an object that is able to cancel model changes
+    /// </summary>
     public interface ICanCancelChanges
     {
         /// <summary>
@@ -8,7 +11,7 @@
         void CancelChanges();
 
         /// <summary>
-        /// Sets or gets the value which determines whether object changes can be cancelled
+        /// Gets or sets the value indicating whether object changes can be cancelled
         /// </summary>
         bool CanCancelChanges { get; set; }
     }
