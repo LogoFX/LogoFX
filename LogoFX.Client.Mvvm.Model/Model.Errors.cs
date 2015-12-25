@@ -54,6 +54,14 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Gets the error for the specified property.
+        /// </summary>
+        /// <value>
+        /// The <see cref="System.String"/>.
+        /// </value>
+        /// <param name="columnName">Property name.</param>
+        /// <returns></returns>
         public virtual string this[string columnName]
         {
             get
@@ -96,6 +104,12 @@ namespace LogoFX.Client.Mvvm.Model
             return ErrorService.GetValidationErrorsByPropertyName(Type, columnName, this);
         }
 
+        /// <summary>
+        /// Gets the error.
+        /// </summary>
+        /// <value>
+        /// The error.
+        /// </value>
         public virtual string Error
         {
             get
@@ -121,6 +135,11 @@ namespace LogoFX.Client.Mvvm.Model
             }            
         }
 
+        /// <summary>
+        /// Gets the errors for the specified property name.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns></returns>
         public IEnumerable GetErrors(string propertyName)
         {
             return string.IsNullOrEmpty(propertyName) ? GetAllErrors() : GetErrorsByPropertyName(propertyName);
@@ -134,6 +153,12 @@ namespace LogoFX.Client.Mvvm.Model
             return errors;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this instance has errors.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has errors; otherwise, <c>false</c>.
+        /// </value>
         public bool HasErrors
         {
             get { return string.IsNullOrWhiteSpace(Error) == false; }
@@ -151,8 +176,16 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Raised when the collection of errors is changed.
+        /// </summary>
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
 
+        /// <summary>
+        /// Sets external error to the specific property
+        /// </summary>
+        /// <param name="error">External error</param>
+        /// <param name="propertyName">Property name</param>
         public void SetError(string error, string propertyName)
         {
             if (_externalErrors.ContainsKey(propertyName))
@@ -176,6 +209,10 @@ namespace LogoFX.Client.Mvvm.Model
             NotifyOfPropertyChange(() => HasErrors);
         }
 
+        /// <summary>
+        /// Clears external error from the specific property
+        /// </summary>
+        /// <param name="propertyName">Property name</param>
         public void ClearError(string propertyName)
         {
             if (_externalErrors.ContainsKey(propertyName))

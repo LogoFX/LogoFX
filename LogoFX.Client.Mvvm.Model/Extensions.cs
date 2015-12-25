@@ -12,6 +12,9 @@ using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model
 {
+    /// <summary>
+    /// Contains additional methods for easier manipulation on collections of models.
+    /// </summary>
     public static class Extensions
     {
         /// <summary>

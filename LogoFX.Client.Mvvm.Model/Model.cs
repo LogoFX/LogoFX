@@ -115,6 +115,9 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Returns current object type.
+        /// </summary>
         protected readonly Type Type;
 
         /// <summary>
@@ -141,12 +144,11 @@ namespace LogoFX.Client.Mvvm.Model
         #region Public Properties 
 
         #region Id property
-
+        
+        private T _id;
         /// <summary>
         /// Model identifier
         /// </summary>
-        private T _id;
-
         public T Id
         {
             get { return _id; }
@@ -162,6 +164,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during id set operation.
+        /// </summary>
+        /// <param name="newValue">The new value.</param>
+        /// <param name="oldValue">The old value.</param>
         protected virtual void OnIdChangedOverride(T newValue, T oldValue)
         {
         }
@@ -169,13 +176,12 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
 
         #region Name property
-
+        
+        [DataMember(Name="Name")]
+        private string _name;
         /// <summary>
         /// Model name
         /// </summary>
-        [DataMember(Name="Name")]
-        private string _name;
-
         public string Name
         {
             get { return _name; }
@@ -191,6 +197,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during name set operation..
+        /// </summary>
+        /// <param name="newValue">The new value.</param>
+        /// <param name="oldValue">The old value.</param>
         protected virtual void OnNameChangedOverride(string newValue, string oldValue)
         {
         }
@@ -198,13 +209,12 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
 
         #region Description property
-
+        
+        [DataMember(Name = "Description")]
+        private string _description;
         /// <summary>
         /// Model description
         /// </summary>
-        [DataMember(Name = "Description")]
-        private string _description;
-
         public string Description
         {
             get { return _description; }
@@ -220,6 +230,11 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during name set operation..
+        /// </summary>
+        /// <param name="newValue">The new value.</param>
+        /// <param name="oldValue">The old value.</param>
         protected virtual void OnDescriptionChangedOverride(string newValue, string oldValue)
         {
         }
@@ -227,9 +242,13 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
 
 
+        /// <summary>
+        /// Gets the list of properties associated with the current type.
+        /// </summary>
 #if !SILVERLIGHT && !WinRT
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]        
 #endif
+       
         public IEnumerable<IPropertyData> Properties
         {
             get
@@ -250,12 +269,11 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
 
         #region IsReadOnly property
-
+        
+        private bool _isReadOnly;
         /// <summary>
         /// IsReadOnly property
         /// </summary>
-        private bool _isReadOnly;
-
         public virtual bool IsReadOnly
         {
             get { return _isReadOnly; }
@@ -271,14 +289,25 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during read only set operation..
+        /// </summary>
+        /// <param name="newValue">if set to <c>true</c> [new value].</param>
+        /// <param name="oldValue">if set to <c>true</c> [old value].</param>
         protected virtual void OnIsReadOnlyChangedOverride(bool newValue, bool oldValue)
         {
         }
 
         #endregion
 
-        #region Overrides
-
+        #region Overrides  
+              
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return string.IsNullOrWhiteSpace(Name)?base.ToString():Name;
@@ -287,12 +316,23 @@ namespace LogoFX.Client.Mvvm.Model
         #endregion
     }
 
+    /// <summary>
+    /// Represents model with <see cref="int"/> as identifier.
+    /// </summary>
     [DataContract]
     public class Model : Model<int>, IModel
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Model"/> class
+        /// </summary>
         public Model()
         {            
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Model"/> class.
+        /// </summary>
+        /// <param name="other">The other.</param>
         public Model(Model other):base(other)
         {
         }

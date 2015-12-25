@@ -172,7 +172,7 @@ namespace LogoFX.Client.Mvvm.Model
             CancelCollections();
         }
 
-        protected void CancelProperties()
+        private void CancelProperties()
         {
             var cancelChangesProperties = TypeInformationProvider.GetCanCancelChangesSourceValuesUnboxed(Type, this);
             foreach (var cancelChangesProperty in cancelChangesProperties.Where(x => x.CanCancelChanges))
@@ -181,7 +181,7 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
-        protected void CancelCollections()
+        private void CancelCollections()
         {
             var cancelChangesCollectionItems = TypeInformationProvider.GetCanCancelChangesSourceCollectionsUnboxed(Type, this);
             foreach (var cancelChangesCollectionItem in cancelChangesCollectionItems.Where(x => x.CanCancelChanges))

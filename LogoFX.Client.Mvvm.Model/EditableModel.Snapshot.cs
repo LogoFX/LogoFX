@@ -15,7 +15,7 @@ namespace LogoFX.Client.Mvvm.Model
             void Restore(EditableModel<T> model);
         }
 
-        protected sealed class Snapshot : ISnapshot
+        sealed class Snapshot : ISnapshot
         {
             private readonly IDictionary<PropertyInfo, object> _state = new Dictionary<PropertyInfo, object>();
 

@@ -28,16 +28,25 @@ namespace LogoFX.Client.Mvvm.Model
             _editStack.Pop().Restore(this);
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic when the editing operation starts.
+        /// </summary>
         protected virtual void OnBeginEdit()
         {
 
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic when the editing operation completes.
+        /// </summary>
         protected virtual void OnEndEdit()
         {
 
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic when the editing operation is cancelled.
+        /// </summary>
         protected virtual void OnCancelEdit()
         {
 

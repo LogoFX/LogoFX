@@ -12,21 +12,33 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>   
         public class WithUndoRedo : EditableModel<T>, IUndoRedo
         {
+            /// <summary>
+            /// Initializes a new instance of the <see cref="EditableModel{T}.WithUndoRedo"/> class.
+            /// </summary>
             public WithUndoRedo()
             {
                 SubscribeToUndoRedoHistoryEvents();
             }            
 
+            /// <summary>
+            /// Gets the value indicating whether there are operations that can be undone.
+            /// </summary>
             public bool CanUndo
             {
                 get { return _history.CanUndo; }
             }
 
+            /// <summary>
+            /// Gets the value indicating whether there are operations that can be redone.
+            /// </summary>
             public bool CanRedo
             {
                 get { return _history.CanRedo; }
             }
 
+            /// <summary>
+            /// Undoes the last operation.
+            /// </summary>
             public void Undo()
             {
                 if (_history.CanUndo)
@@ -35,6 +47,9 @@ namespace LogoFX.Client.Mvvm.Model
                 }
             }
 
+            /// <summary>
+            /// Redoes the last operation.
+            /// </summary>
             public void Redo()
             {
                 if (_history.CanRedo)
@@ -43,6 +58,9 @@ namespace LogoFX.Client.Mvvm.Model
                 }
             }
 
+            /// <summary>
+            /// Marks the model as dirty.
+            /// </summary>
             public override void MakeDirty()
             {
                 if ((OwnDirty && CanCancelChanges) == false)
