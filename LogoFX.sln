@@ -99,8 +99,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.NUnit",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.Shared", "LogoFX.Client.Tests.Shared\LogoFX.Client.Tests.Shared.csproj", "{B939ECBB-3316-4F61-B1F3-1D544543CF5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Contracts", "LogoFX.Client.Bootstraping.Contracts\LogoFX.Client.Bootstrapping.Contracts.csproj", "{51C997C0-087C-4D57-8B9E-39A58256CB35}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping", "LogoFX.Client.Bootstrapping\LogoFX.Client.Bootstrapping.csproj", "{51322595-4423-46D9-8AAD-7486FC87E15C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.SimpleContainer", "LogoFX.Client.Bootstrapping.SimpleContainer\LogoFX.Client.Bootstrapping.SimpleContainer.csproj", "{87AA42D8-A9F2-432B-B6DC-8FD61A2E92C5}"
@@ -140,6 +138,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Adapters.SimpleInjector", "LogoFX.Client.Bootstrapping.Adapters.SimpleInjector\LogoFX.Client.Bootstrapping.Adapters.SimpleInjector.csproj", "{2024019E-47E0-471D-ACA6-979672ED9788}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.View.Extensions", "LogoFX.Client.Mvvm.View.Extensions\LogoFX.Client.Mvvm.View.Extensions.csproj", "{7D14EB6D-4775-4518-A8E4-02B804226E83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Adapters.Contracts", "LogoFX.Client.Bootstrapping.Adapters.Contracts\LogoFX.Client.Bootstrapping.Adapters.Contracts.csproj", "{F768CD07-5CBB-4DFC-B7BE-C83E367DD77F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -255,10 +255,6 @@ Global
 		{B939ECBB-3316-4F61-B1F3-1D544543CF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B939ECBB-3316-4F61-B1F3-1D544543CF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B939ECBB-3316-4F61-B1F3-1D544543CF5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51C997C0-087C-4D57-8B9E-39A58256CB35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51C997C0-087C-4D57-8B9E-39A58256CB35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51C997C0-087C-4D57-8B9E-39A58256CB35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51C997C0-087C-4D57-8B9E-39A58256CB35}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51322595-4423-46D9-8AAD-7486FC87E15C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51322595-4423-46D9-8AAD-7486FC87E15C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51322595-4423-46D9-8AAD-7486FC87E15C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -331,6 +327,10 @@ Global
 		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D14EB6D-4775-4518-A8E4-02B804226E83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F768CD07-5CBB-4DFC-B7BE-C83E367DD77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F768CD07-5CBB-4DFC-B7BE-C83E367DD77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F768CD07-5CBB-4DFC-B7BE-C83E367DD77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F768CD07-5CBB-4DFC-B7BE-C83E367DD77F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -378,7 +378,6 @@ Global
 		{67E5E2E9-A69E-438D-BD6D-E462A42D267C} = {177AB724-0A12-44ED-9691-58293F10A922}
 		{FC0C6B40-4A6D-4C55-BF2C-0C1A23E5FDA5} = {177AB724-0A12-44ED-9691-58293F10A922}
 		{B939ECBB-3316-4F61-B1F3-1D544543CF5F} = {177AB724-0A12-44ED-9691-58293F10A922}
-		{51C997C0-087C-4D57-8B9E-39A58256CB35} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 		{51322595-4423-46D9-8AAD-7486FC87E15C} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 		{87AA42D8-A9F2-432B-B6DC-8FD61A2E92C5} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 		{86BE00A6-BA8C-4231-B1EB-5C4016DB665D} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
@@ -399,5 +398,6 @@ Global
 		{CA796B73-78D7-4A11-BD42-85C9A7365E48} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
 		{2024019E-47E0-471D-ACA6-979672ED9788} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 		{7D14EB6D-4775-4518-A8E4-02B804226E83} = {B18FADF0-1520-4C84-A91A-7AF26CFA2FC7}
+		{F768CD07-5CBB-4DFC-B7BE-C83E367DD77F} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 	EndGlobalSection
 EndGlobal

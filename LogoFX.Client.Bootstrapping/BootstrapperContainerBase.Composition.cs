@@ -52,17 +52,11 @@ namespace LogoFX.Client.Bootstrapping
             return Assemblies;
         }
 
-        private void RegisterCompositionModules(TIocContainer iocContainer)
-        {            
-            var moduleRegistrator = new ModuleRegistrator(Modules);
-            moduleRegistrator.RegisterModules(iocContainer);
-        }
-
         private void InitializeCompositionInfo()
         {
             _compositionInfo = CompositionInfoHelper.GetCompositionInfo(ModulesPath, Prefixes,
                     GetType(),
                     _reuseCompositionInformation);
-        }
+        }        
     }
 }

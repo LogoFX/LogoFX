@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using LogoFX.Client.Bootstrapping.Contracts;
+using LogoFX.Client.Bootstrapping.Adapters.Contracts;
 using Microsoft.Practices.Unity;
 using Solid.Practices.IoC;
 
@@ -60,7 +60,7 @@ namespace LogoFX.Client.Bootstrapping.Unity
             return _container.Resolve<TService>();
         }
 
-        public object GetInstance(Type serviceType)
+        public object GetInstance(Type serviceType, string key)
         {
             return _container.Resolve(serviceType);
         }

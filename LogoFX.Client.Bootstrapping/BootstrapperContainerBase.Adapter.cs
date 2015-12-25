@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using LogoFX.Client.Bootstrapping.Contracts;
+using LogoFX.Client.Bootstrapping.Adapters.Contracts;
 
 namespace LogoFX.Client.Bootstrapping
 {
@@ -17,7 +17,7 @@ namespace LogoFX.Client.Bootstrapping
         /// <returns></returns>
         protected override object GetInstance(Type service, string key)
         {            
-            return _bootstrapperAdapter.GetInstance(service);
+            return _bootstrapperAdapter.GetInstance(service, key);
         }
 
         /// <summary>

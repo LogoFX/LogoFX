@@ -4,9 +4,10 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Threading;
 using Caliburn.Micro;
-using LogoFX.Client.Bootstrapping.Contracts;
+using LogoFX.Client.Bootstrapping.Adapters.Contracts;
 using LogoFX.Core;
 using Solid.Practices.IoC;
+using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
 {    
@@ -118,6 +119,11 @@ namespace LogoFX.Client.Bootstrapping
                 .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
                 .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
                 .ForEach(a => iocContainer.RegisterTransient(a, a));            
+        }
+
+        private void RegisterCompositionModules(TIocContainer iocContainer)
+        {
+            new ModuleRegistrator(Modules).RegisterModules(iocContainer);
         }
 
         /// <summary>
