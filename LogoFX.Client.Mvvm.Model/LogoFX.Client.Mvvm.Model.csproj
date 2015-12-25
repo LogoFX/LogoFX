@@ -84,6 +84,7 @@
     <Compile Include="PropertyData.cs" />
     <Compile Include="RangeModelsCollection.cs" />
     <Compile Include="RoundStack.cs" />
+    <Compile Include="StackWithNotifications.cs" />
     <Compile Include="TypeInformationProvider.CancelChanges.cs">
       <DependentUpon>TypeInformationProvider.cs</DependentUpon>
     </Compile>

@@ -6,6 +6,9 @@
     /// </summary>
     public interface IUndoRedo
     {
+        bool CanUndo { get; }
+        bool CanRedo { get; }
+
         /// <summary>
         /// Cancels last change.
         /// </summary>

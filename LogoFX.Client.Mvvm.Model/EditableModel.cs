@@ -11,8 +11,8 @@ namespace LogoFX.Client.Mvvm.Model
         public EditableModel()
         {            
             InitDirtyListener();
-            _history = new UndoRedoHistory<EditableModel<T>>(this);
-        }                
+            _history = new UndoRedoHistory<EditableModel<T>>(this);            
+        }        
     }
 
     public partial class EditableModel : EditableModel<int>

@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using LogoFX.Client.Mvvm.Model.Contracts;
+using LogoFX.Core;
 using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -11,13 +11,27 @@ namespace LogoFX.Client.Mvvm.Model
         /// This class represents an editable model which supports undo and redo operations.
         /// </summary>   
         public class WithUndoRedo : EditableModel<T>, IUndoRedo
-        {            
-                        
+        {
+            public WithUndoRedo()
+            {
+                SubscribeToUndoRedoHistoryEvents();
+            }            
+
+            public bool CanUndo
+            {
+                get { return _history.CanUndo; }
+            }
+
+            public bool CanRedo
+            {
+                get { return _history.CanRedo; }
+            }
+
             public void Undo()
             {
                 if (_history.CanUndo)
                 {
-                    _history.Undo();
+                    _history.Undo();                   
                 }
             }
 
@@ -25,7 +39,7 @@ namespace LogoFX.Client.Mvvm.Model
             {
                 if (_history.CanRedo)
                 {
-                    _history.Redo();
+                    _history.Redo();                   
                 }
             }
 
@@ -36,7 +50,25 @@ namespace LogoFX.Client.Mvvm.Model
                     OwnDirty = true;    
                 }                
                 AddToHistory();
-            }                        
+            }
+
+            private void SubscribeToUndoRedoHistoryEvents()
+            {
+                EventHandler undoStrongHandler = HistoryOnUndoStackChanged;
+                _history.UndoStackChanged += WeakDelegate.From(undoStrongHandler);
+                EventHandler redoStrongHandler = HistoryOnRedoStackChanged;
+                _history.RedoStackChanged += WeakDelegate.From(redoStrongHandler);
+            }
+
+            private void HistoryOnUndoStackChanged(object sender, EventArgs eventArgs)
+            {
+                NotifyOfPropertyChange(() => CanUndo);
+            }
+
+            private void HistoryOnRedoStackChanged(object sender, EventArgs eventArgs)
+            {
+                NotifyOfPropertyChange(() => CanRedo);
+            }
         }
     }
 
@@ -47,34 +79,31 @@ namespace LogoFX.Client.Mvvm.Model
     [Serializable]
     public class UndoRedoHistory<T>
     {
-        private const int DefaultCapacity = 100;
-
-        private bool supportRedo = true;
-        private bool inUndoRedo = false;
+        private const int DefaultCapacity = 100;               
 
         [NonSerialized]
-        private CompoundMemento<T> tempCompoundMemento = null;
+        private CompoundMemento<T> _tempCompoundMemento = null;
 
         /// <summary>
         /// The subject that this undo redo history is about.
         /// </summary>
-        protected T subject;
+        protected T Subject;
 
 #if LIMITED_CAPACITY
         /// <summary>
         /// Undo stack with capacity
         /// </summary>
-        protected RoundStack<IMemento<T>> undoStack;
+        protected RoundStack<IMemento<T>> UndoStack;
 
         /// <summary>
         /// Redo stack with capacity
         /// </summary>
-        protected RoundStack<IMemento<T>> redoStack;
+        protected RoundStack<IMemento<T>> RedoStack;
 
         /// <summary>
         /// Creates <see cref="UndoRedoHistory&lt;T&gt;"/> with default capacity.
         /// </summary>
-        /// <param name="subject"></param>
+        /// <param name="subject">Undo-redo operations subject</param>
         public UndoRedoHistory(T subject)
             : this(subject, DefaultCapacity)
         {
@@ -83,35 +112,60 @@ namespace LogoFX.Client.Mvvm.Model
         /// <summary>
         /// Creates <see cref="UndoRedoHistory&lt;T&gt;"/> with given capacity.
         /// </summary>
-        /// <param name="subject"></param>
-        /// <param name="capacity"></param>
+        /// <param name="subject">Undo-redo operations subject</param>
+        /// <param name="capacity">Undo-redo operations capacity</param>
         public UndoRedoHistory(T subject, int capacity)
         {
-            this.subject = subject;
-            undoStack = new RoundStack<IMemento<T>>(capacity);
-            redoStack = new RoundStack<IMemento<T>>(capacity);
+            Subject = subject;
+            UndoStack = new RoundStack<IMemento<T>>(capacity);
+            RedoStack = new RoundStack<IMemento<T>>(capacity);
+            SubscribeToStackEvents();
         }
 #else
         /// <summary>
         /// Undo stack
         /// </summary>
-        protected Stack<IMemento<T>> undoStack = new Stack<IMemento<T>>(DefaultCapacity);
+        protected StackWithNotifications<IMemento<T>> UndoStack = new StackWithNotifications<IMemento<T>>(DefaultCapacity);
 
         /// <summary>
         /// Redo stack
         /// </summary>
-        protected Stack<IMemento<T>> redoStack = new Stack<IMemento<T>>(DefaultCapacity);
+        protected StackWithNotifications<IMemento<T>> RedoStack = new StackWithNotifications<IMemento<T>>(DefaultCapacity);
 
         /// <summary>
         /// Creates <see cref="UndoRedoHistory{T}"/>.
         /// </summary>
-        /// <param name="subject"></param>
+        /// <param name="subject">Undo-redo operations subject</param>
         public UndoRedoHistory(T subject)
         {
-            this.subject = subject;
+            Subject = subject;
+            SubscibeToStackEvents();
         }
 #endif
+        private void SubscibeToStackEvents()
+        {
+            EventHandler strongUndoHandler = UndoStackOnStackChanged;
+            UndoStack.StackChanged += WeakDelegate.From(strongUndoHandler);
+            EventHandler strongRedoHandler = RedoStackOnStackChanged;
+            RedoStack.StackChanged += WeakDelegate.From(strongRedoHandler);
+        }
+        private void UndoStackOnStackChanged(object sender, EventArgs eventArgs)
+        {
+            if (UndoStackChanged != null)
+            {
+                UndoStackChanged(UndoStack, new EventArgs());
+            }
+        }
 
+        private void RedoStackOnStackChanged(object sender, EventArgs eventArgs)
+        {
+            if (RedoStackChanged != null)
+            {
+                RedoStackChanged(RedoStack, new EventArgs());
+            }
+        }
+
+        private bool _inUndoRedo = false;
         /// <summary>
         /// Gets a value indicating if the history is in the process of undoing or redoing.
         /// </summary>
@@ -132,7 +186,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// </remarks>
         public bool InUndoRedo
         {
-            get { return inUndoRedo; }
+            get { return _inUndoRedo; }
         }
 
         /// <summary>
@@ -140,7 +194,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public int UndoCount
         {
-            get { return undoStack.Count; }
+            get { return UndoStack.Count; }
         }
 
         /// <summary>
@@ -148,17 +202,28 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public int RedoCount
         {
-            get { return redoStack.Count; }
+            get { return RedoStack.Count; }
         }
 
+        private bool _supportRedo = true;
         /// <summary>
         /// Gets or sets whether the history supports redo.
         /// </summary>
         public bool SupportRedo
         {
-            get { return supportRedo; }
-            set { supportRedo = value; }
+            get { return _supportRedo; }
+            set { _supportRedo = value; }
         }
+
+        /// <summary>
+        /// Raise in case of change in the undo stack contents
+        /// </summary>
+        public event EventHandler UndoStackChanged;
+
+        /// <summary>
+        /// Raise in case of change in the redo stack contents
+        /// </summary>
+        public event EventHandler RedoStackChanged;
 
         /// <summary>
         /// Begins a complex memento for grouping.
@@ -200,10 +265,10 @@ namespace LogoFX.Client.Mvvm.Model
         /// <seealso cref="EndCompoundDo()"/>
         public void BeginCompoundDo()
         {
-            if (tempCompoundMemento != null)
+            if (_tempCompoundMemento != null)
                 throw new InvalidOperationException("Previous complex memento wasn't commited.");
 
-            tempCompoundMemento = new CompoundMemento<T>();
+            _tempCompoundMemento = new CompoundMemento<T>();
         }
 
         /// <summary>
@@ -217,20 +282,20 @@ namespace LogoFX.Client.Mvvm.Model
         /// </exception>/// <seealso cref="BeginCompoundDo()"/>
         public void EndCompoundDo()
         {
-            if (tempCompoundMemento == null)
+            if (_tempCompoundMemento == null)
                 throw new InvalidOperationException("Ending a non-existing complex memento");
 
-            _Do(tempCompoundMemento);
-            tempCompoundMemento = null;
+            _Do(_tempCompoundMemento);
+            _tempCompoundMemento = null;
         }
 
         /// <summary>
-        /// Pushes an memento into the undo stack, any time the state of <see cref="subject"/> changes. 
+        /// Pushes an memento into the undo stack, any time the state of <see cref="Subject"/> changes. 
         /// </summary>
         /// <param name="m"></param>
         /// <remarks>
         /// This method MUST be properly involked by programmers right before (preferably) or right after 
-        /// the state of <see cref="subject"/> is changed. 
+        /// the state of <see cref="Subject"/> is changed. 
         /// Whenever <see cref="Do(IMemento&lt;T&gt;)"/> is called, the status of <see cref="InUndoRedo"/> 
         /// should aways be checked first. See details at <see cref="InUndoRedo"/>. 
         /// This method causes redo stack to be cleared.
@@ -240,19 +305,19 @@ namespace LogoFX.Client.Mvvm.Model
         /// <seealso cref="Redo()"/>
         public void Do(IMemento<T> m)
         {
-            if (inUndoRedo)
+            if (_inUndoRedo)
             {
                 //silent return in order to cope with the Restore case
                 return;
             }
 
-            if (tempCompoundMemento == null)
+            if (_tempCompoundMemento == null)
             {
                 _Do(m);
             }
             else
             {
-                tempCompoundMemento.Add(m);
+                _tempCompoundMemento.Add(m);
             }
         }
 
@@ -262,8 +327,8 @@ namespace LogoFX.Client.Mvvm.Model
         /// <param name="memento"></param>
         private void _Do(IMemento<T> memento)
         {
-            redoStack.Clear();
-            undoStack.Push(memento);
+            RedoStack.Clear();
+            UndoStack.Push(memento);
         }
 
         /// <summary>
@@ -273,13 +338,13 @@ namespace LogoFX.Client.Mvvm.Model
         /// <seealso cref="Redo()"/>
         public void Undo()
         {
-            if (tempCompoundMemento != null)
+            if (_tempCompoundMemento != null)
                 throw new InvalidOperationException("The complex memento wasn't commited.");
 
-            inUndoRedo = true;
-            var top = undoStack.Pop();
-            redoStack.Push(top.Restore(subject));
-            inUndoRedo = false;
+            _inUndoRedo = true;
+            var top = UndoStack.Pop();
+            RedoStack.Push(top.Restore(Subject));
+            _inUndoRedo = false;
         }
 
         /// <summary>
@@ -289,13 +354,13 @@ namespace LogoFX.Client.Mvvm.Model
         /// <seealso cref="Undo()"/>
         public void Redo()
         {
-            if (tempCompoundMemento != null)
+            if (_tempCompoundMemento != null)
                 throw new InvalidOperationException("The complex memento wasn't commited.");
 
-            inUndoRedo = true;
-            var top = redoStack.Pop();
-            undoStack.Push(top.Restore(subject));
-            inUndoRedo = false;
+            _inUndoRedo = true;
+            var top = RedoStack.Pop();
+            UndoStack.Push(top.Restore(Subject));
+            _inUndoRedo = false;
         }
 
         /// <summary>
@@ -303,7 +368,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public bool CanUndo
         {
-            get { return (undoStack.Count != 0); }
+            get { return (UndoStack.Count != 0); }
         }
 
         /// <summary>
@@ -311,7 +376,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public bool CanRedo
         {
-            get { return (redoStack.Count != 0); }
+            get { return (RedoStack.Count != 0); }
         }
 
         /// <summary>
@@ -319,30 +384,30 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         public void Clear()
         {
-            undoStack.Clear();
-            redoStack.Clear();
+            UndoStack.Clear();
+            RedoStack.Clear();
         }
 
         /// <summary>
-        /// Gets, without removing, the top memento on the undo stack.
+        /// Gets, without removing, the top operation on the undo stack.
         /// </summary>
         /// <returns></returns>
         public IMemento<T> PeekUndo()
         {
-            if (undoStack.Count > 0)
-                return undoStack.Peek();
+            if (UndoStack.Count > 0)
+                return UndoStack.Peek();
             else
                 return null;
         }
 
         /// <summary>
-        /// Gets, without removing, the top memento on the redo stack.
+        /// Gets, without removing, the top operation on the redo stack.
         /// </summary>
         /// <returns></returns>
         public IMemento<T> PeekRedo()
         {
-            if (redoStack.Count > 0)
-                return redoStack.Peek();
+            if (RedoStack.Count > 0)
+                return RedoStack.Peek();
             else
                 return null;
         }
