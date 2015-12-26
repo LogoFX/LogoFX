@@ -17,6 +17,12 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
 #if !SILVERLIGHT && !WinRT
         private DispatcherPriority _updatePriority = Consts.DispatcherPriority;
+        /// <summary>
+        /// Gets or sets the update priority.
+        /// </summary>
+        /// <value>
+        /// The update priority.
+        /// </value>
         public DispatcherPriority UpdatePriority
         {
             get { return _updatePriority; }
@@ -157,8 +163,8 @@ a);
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-        public void ListCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        
+        private void ListCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Action<object> RemoveHandler = (a) =>
             {

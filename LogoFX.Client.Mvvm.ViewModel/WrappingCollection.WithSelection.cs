@@ -7,13 +7,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Threading;
 using LogoFX.Client.Core;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel
 {
     public partial class WrappingCollection
     {
+        /// <summary>
+        /// Represents collection of view models which enables synchronization with its data source(s) and supports selection.
+        /// </summary>
         public class WithSelection : WrappingCollection, ISelector, INotifyPropertyChanged
         {
             private readonly ObservableCollection<object> _selectedItems = new ObservableCollection<object>();
@@ -27,12 +30,20 @@ namespace LogoFX.Client.Mvvm.ViewModel
             private Action<object, SelectionChangingEventArgs> _selectionHandler;
             private PropertyChangedEventHandler _internalSelectionHandler;
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="WrappingCollection.WithSelection"/> class.
+            /// </summary>
             public WithSelection()
                 :this(selectionMode: DefaultSelectionMode, isBulk: false)
             {
                 
             }
 
+            /// <summary>
+            /// Initializes a new instance of the <see cref="WrappingCollection.WithSelection"/> class.
+            /// </summary>
+            /// <param name="selectionMode">The selection mode.</param>
+            /// <param name="isBulk">if set to <c>true</c> [is bulk].</param>
             public WithSelection(SelectionMode selectionMode = DefaultSelectionMode, bool isBulk = false)
                 : base(isBulk)
             {
@@ -121,6 +132,11 @@ namespace LogoFX.Client.Mvvm.ViewModel
             #endregion
 
             #region overrides
+
+            /// <summary>
+            /// Override this method to inject custom logic on collection change.
+            /// </summary>
+            /// <param name="e"></param>
             protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
             {
                 if (_internalSelectionHandler == null)
@@ -200,6 +216,9 @@ namespace LogoFX.Client.Mvvm.ViewModel
                 return false;
             }
 
+            /// <summary>
+            /// Clears the selection.
+            /// </summary>
             public void ClearSelection()
             {
                 //TODO: refactor into more efficient approach
@@ -211,13 +230,19 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
             #endregion
 
-            #region To Override
+            /// <summary>
+            /// Override this method to inject custom logic after the selection is changed.
+            /// </summary>
             protected virtual void OnSelectionChanged()
             {
             }
-            #endregion
 
-            #region public props
+            /// <summary>
+            /// Gets or sets the selection handler.
+            /// </summary>
+            /// <value>
+            /// The selection handler.
+            /// </value>
             public Action<object, SelectionChangingEventArgs> SelectionHandler
             {
                 get { return _selectionHandler; }
@@ -230,44 +255,74 @@ namespace LogoFX.Client.Mvvm.ViewModel
                 }
             }
 
+            /// <summary>
+            /// Selected item
+            /// </summary>
             public object SelectedItem
             {
                 get { return _selectedItems.Count > 0 ? _selectedItems[0] : null; }
             }
 
+            /// <summary>
+            /// Gets the selection count.
+            /// </summary>
+            /// <value>
+            /// The selection count.
+            /// </value>
             public int SelectionCount
             {
                 get { return _selectedItems == null ? 0 :_selectedItems.Count; }
             }
 
+            /// <summary>
+            /// Selected items
+            /// </summary>
             public IEnumerable SelectedItems
             {
                 get { return _selectedItems; }
             }
-            #endregion
 
-            #region selectionevents
+            /// <summary>
+            /// Occurs when selection is changed.
+            /// </summary>
             public event EventHandler SelectionChanged;
 
+            /// <summary>
+            /// Invokes the selection changed event.
+            /// </summary>
+            /// <param name="e"></param>
             protected void InvokeSelectionChanged(EventArgs e)
             {
                 EventHandler handler = SelectionChanged;
                 if (handler != null) handler(this, e);
             }
 
+            /// <summary>
+            /// Occurs when selection is changing.
+            /// </summary>
             public event EventHandler<SelectionChangingEventArgs> SelectionChanging;
 
+            /// <summary>
+            /// Invokes the selection changing event.
+            /// </summary>
+            /// <param name="e"></param>
             protected void InvokeSelectionChanging(SelectionChangingEventArgs e)
             {
                 EventHandler<SelectionChangingEventArgs> handler = SelectionChanging;
                 if (handler != null) handler(this, e);
             }
-            #endregion
 
             #region Implementation of INotifyPropertyChanged
 
+            /// <summary>
+            /// Occurs when a property value changes.
+            /// </summary>
             public event PropertyChangedEventHandler PropertyChanged;
 
+            /// <summary>
+            /// Called when property is changed.
+            /// </summary>
+            /// <param name="p">The p.</param>
             protected void OnPropertyChanged(string p)
             {
                 PropertyChangedEventHandler handler = PropertyChanged;

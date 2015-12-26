@@ -5,31 +5,36 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Linq;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel
 {
-#if !WinRT && !SILVERLIGHT
-#endif
-
-    public partial class WrappingCollection:IEnumerable,INotifyCollectionChanged,IDisposable
+    /// <summary>
+    /// Represents collection of view models which enables synchronization with its data source(s).
+    /// </summary>
+    public partial class WrappingCollection : IEnumerable, INotifyCollectionChanged, IHaveLoadingViewModel<IModelWrapper>, IDisposable
     {
         private readonly ObservableCollection<IEnumerable> _sources = new ObservableCollection<IEnumerable>();
         private readonly ICollectionManager _collectionManager;
         private Func<object, object> _factoryMethod;
         private Func<object,object> DefaultFactoryMethod =
             a => new { Model = a }
-            ; 
+            ;
 
-        private IModelWrapper _loadingViewModel;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WrappingCollection"/> class.
+        /// </summary>
         public WrappingCollection()
             :this(isBulk:false)
         {
             
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WrappingCollection"/> class.
+        /// </summary>
+        /// <param name="isBulk">if set to <c>true</c> [is bulk].</param>
         public WrappingCollection(bool isBulk = false)
         {
             _collectionManager = isBulk
@@ -38,6 +43,13 @@ namespace LogoFX.Client.Mvvm.ViewModel
             _sources.CollectionChanged += SourcesCollectionChanged;
         }
 
+        private IModelWrapper _loadingViewModel;
+        /// <summary>
+        /// Gets or sets the view model which is displayed on loading the collection.
+        /// </summary>
+        /// <value>
+        /// The loading view model.
+        /// </value>
         public IModelWrapper LoadingViewModel
         {
             get { return _loadingViewModel; }
@@ -56,11 +68,20 @@ namespace LogoFX.Client.Mvvm.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets the collection of data sources.
+        /// </summary>
         public IEnumerable<IEnumerable> Sources
         {
             get { return _sources; }
         }
 
+        /// <summary>
+        /// Adds data source.
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public bool AddSource(IEnumerable source)
         {
             if(source == null)
@@ -74,6 +95,11 @@ namespace LogoFX.Client.Mvvm.ViewModel
             return false;
         }
 
+        /// <summary>
+        /// Removes the source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns></returns>
         public bool RemoveSource(IEnumerable source)
         {
             if (_sources.Contains(source))
@@ -85,23 +111,41 @@ namespace LogoFX.Client.Mvvm.ViewModel
             
         }
 
+        /// <summary>
+        /// Clears the data sources.
+        /// </summary>
         public void ClearSources()
         {
             HashSet<IEnumerable> hs = new HashSet<IEnumerable>(_sources);
             hs.ForEach(a => _sources.Remove(a));
         }        
 
+        /// <summary>
+        /// Gets or sets the factory method which is used to create view model from a data source item.
+        /// </summary>
         public Func<object,object> FactoryMethod
         {
             get { return _factoryMethod; }
             set { _factoryMethod = value; }
         }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
         public IEnumerator GetEnumerator()
         {
             return _collectionManager.GetEnumerator();
         }
 
+        /// <summary>
+        /// Creates model wrapper using the specified model.
+        /// </summary>
+        /// <param name="obj">The specified model.</param>
+        /// <returns></returns>
         protected virtual object CreateWrapper(object obj)
         {
             return FactoryMethod != null ? FactoryMethod(obj) : DefaultFactoryMethod(obj);
@@ -124,16 +168,27 @@ namespace LogoFX.Client.Mvvm.ViewModel
             }
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic on collection change.
+        /// </summary>
+        /// <param name="args"></param>
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
         {
         }
 
+        /// <summary>
+        /// Occurs when the collection changes.
+        /// </summary>
         public event NotifyCollectionChangedEventHandler CollectionChanged
         {
             add { _collectionManager.CollectionChangedSource.CollectionChanged += value; }
             remove { _collectionManager.CollectionChangedSource.CollectionChanged -= value; }
         }
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
         public void Dispose()
         {
             _collectionManager.CollectionChangedSource.CollectionChanged -= OnCollectionChangedCore;            
@@ -142,6 +197,5 @@ namespace LogoFX.Client.Mvvm.ViewModel
                 .OfType<INotifyCollectionChanged>()
                 .ForEach(ml => ml.CollectionChanged -= _weakHandler);
         } 
-
     }
 }

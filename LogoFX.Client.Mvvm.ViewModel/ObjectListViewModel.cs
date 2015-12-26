@@ -45,8 +45,8 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Windows.Threading;
 using LogoFX.Client.Core;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel
 {
@@ -109,7 +109,7 @@ namespace LogoFX.Client.Mvvm.ViewModel
     /// <summary>
     /// Base class for any <c>ViewModels</c> that are wrapping some objects list
     /// </summary>
-    public class ObjectsListViewModel : ObjectViewModel, IHierarchicalViewModel, IObjectViewModelFactory
+    public class ObjectsListViewModel : ObjectViewModel, IHierarchicalViewModel, IHaveLoadingViewModel<IObjectViewModel>, IObjectViewModelFactory
     {
         #region Members
         private ObservableCollection<IEnumerable> _modelLists;
@@ -179,6 +179,12 @@ namespace LogoFX.Client.Mvvm.ViewModel
         }
         #endregion
 
+        /// <summary>
+        /// Gets or sets the view model which is displayed on loading the collection.
+        /// </summary>
+        /// <value>
+        /// The loading view model.
+        /// </value>
         public IObjectViewModel LoadingViewModel
         {
             get { return _loadingViewModel; }
@@ -434,6 +440,9 @@ namespace LogoFX.Client.Mvvm.ViewModel
             }
         }
 
+        /// <summary>
+        /// Gets the items.(GLUE:compatibility to caliburn micro)
+        /// </summary>
         public virtual IViewModelsCollection<IObjectViewModel> Items
         {
             get { return Children; }

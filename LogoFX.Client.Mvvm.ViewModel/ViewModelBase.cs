@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
 using LogoFX.Client.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel
 {
@@ -48,19 +48,16 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
         #endregion
 
-        #region DisplayName property
-
-        /// <summary>
-        /// DisplayName property
-        /// </summary>
         private string _externalDisplayName;
+        /// <summary>
+        /// Gets the display name.
+        /// </summary>
+        /// <value>The display name.</value>
         public virtual string DisplayName
         {
             get { return _externalDisplayName ?? "ViewModel"; }
             set { _externalDisplayName = value; }
         }
-
-        #endregion
 
         #region IsExpanded property
 
@@ -338,6 +335,9 @@ namespace LogoFX.Client.Mvvm.ViewModel
             FireErrorsChanged(property);
         }
 
+        /// <summary>
+        /// Occurs when the validation errors have changed for a property or for the entire entity. 
+        /// </summary>
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
     }
 }

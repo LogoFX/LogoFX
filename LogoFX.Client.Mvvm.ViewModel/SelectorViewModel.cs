@@ -41,8 +41,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Threading;
 using LogoFX.Client.Core;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel
 {
@@ -280,6 +280,12 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
         #region Implementation of ISelect
 
+        /// <summary>
+        /// Selects the specified item.
+        /// </summary>
+        /// <param name="item">The item.</param>
+        /// <param name="notify"></param>
+        /// <returns>true if succeeded, otherwise false</returns>
         public bool Select(object item, bool notify = true)
         {
 
@@ -310,6 +316,12 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
         #region Implementation of IUnselect
 
+        /// <summary>
+        /// Unselects the specified item.
+        /// </summary>
+        /// <param name="item">The specified item.</param>
+        /// <param name="notify">True, if the selection change should raise notification.</param>
+        /// <returns>true if succeeded, otherwise false</returns>
         public bool Unselect(object item, bool notify = true)
         {
             if (item == null)

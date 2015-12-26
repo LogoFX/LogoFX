@@ -87,9 +87,9 @@
       <Project>{bcfb79ba-0f07-46aa-8de5-98816c86d13a}</Project>
       <Name>LogoFX.Client.Mvvm.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Contracts\LogoFX.Client.Mvvm.ViewModel.Contracts.csproj">
       <Project>{e2ffa98b-e7d6-4c7a-8b3f-fca4cecdda49}</Project>
-      <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
+      <Name>LogoFX.Client.Mvvm.ViewModel.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel\LogoFX.Client.Mvvm.ViewModel.csproj">
       <Project>{83c4c216-4685-41d3-b93e-17c820724e25}</Project>

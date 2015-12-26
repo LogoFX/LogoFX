@@ -1,12 +1,7 @@
-﻿// Partial Copyright (c) LogoUI Software Solutions LTD
-// Autor: Vladislav Spivak
-// This source file is the part of LogoFX Framework http://logofx.codeplex.com
-// See accompanying licences and credits.
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace LogoFX.Client.Mvvm.ViewModel.Interfaces
+namespace LogoFX.Client.Mvvm.ViewModel.Contracts
 {
     /// <summary>
     /// Object that have multiple selected items

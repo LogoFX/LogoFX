@@ -1,13 +1,7 @@
-﻿// Partial Copyright (c) LogoUI Software Solutions LTD
-// Autor: Vladislav Spivak
-// This source file is the part of LogoFX Framework http://logofx.codeplex.com
-// See accompanying licences and credits.
-
-namespace LogoFX.Client.Mvvm.ViewModel.Interfaces
+﻿namespace LogoFX.Client.Mvvm.ViewModel.Contracts
 {
-
     /// <summary>
-    /// Object that can select
+    /// Represents an object that can select.
     /// </summary>
     public interface ISelect
     {

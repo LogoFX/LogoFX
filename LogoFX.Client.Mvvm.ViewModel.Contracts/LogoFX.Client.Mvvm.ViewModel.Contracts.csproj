@@ -7,8 +7,8 @@
     <ProjectGuid>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogoFX.Client.Mvvm.ViewModel.Interfaces</RootNamespace>
-    <AssemblyName>LogoFX.Client.Mvvm.ViewModel.Interfaces</AssemblyName>
+    <RootNamespace>LogoFX.Client.Mvvm.ViewModel.Contracts</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.ViewModel.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Mvvm.ViewModel.Contracts.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -38,6 +39,7 @@
     <Compile Include="ICurrent.cs" />
     <Compile Include="IHaveCurrentItem.cs" />
     <Compile Include="IHaveDisplayName.cs" />
+    <Compile Include="IHaveLoadingViewModel.cs" />
     <Compile Include="IHaveSelectedItem.cs" />
     <Compile Include="IHaveSelectedItems.cs" />
     <Compile Include="IHierarсhicalViewModel.cs" />

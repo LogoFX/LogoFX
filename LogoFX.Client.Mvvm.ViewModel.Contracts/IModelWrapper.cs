@@ -1,4 +1,4 @@
-﻿namespace LogoFX.Client.Mvvm.ViewModel.Interfaces
+﻿namespace LogoFX.Client.Mvvm.ViewModel.Contracts
 {
     /// <summary>
     /// Object that wraps some other object

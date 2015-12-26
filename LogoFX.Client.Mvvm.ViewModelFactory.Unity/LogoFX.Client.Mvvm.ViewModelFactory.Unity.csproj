@@ -54,12 +54,6 @@
     <Compile Include="ViewModelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Interfaces\LogoFX.Client.Mvvm.ViewModel.Interfaces.csproj">
-      <Project>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</Project>
-      <Name>LogoFX.Client.Mvvm.ViewModel.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

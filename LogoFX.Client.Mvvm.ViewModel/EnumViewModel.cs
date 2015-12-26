@@ -1,58 +1,39 @@
-﻿// ===================================
-// <copyright>LogoUI Co.</copyright>
-// <author>Vlad Spivak</author>
-// <email>mailto:vlads@logoui.co.il</email>
-// <created>21/00/10</created>
-// <lastedit>21/00/10</lastedit>
-
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the 'Software'), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-//
-//
-// <remarks>Part of this software based on various internet sources, mostly on the works
-// of members of Wpf Disciples group http://wpfdisciples.wordpress.com/
-// Also project may contain code from the frameworks: 
-//        Nito 
-//        OpenLightGroup
-//        nRoute
-// </remarks>
-// ====================================================================================//
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel
 {
+    /// <summary>
+    /// Represents a view model which wraps around an enum value.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EnumEntryViewModel<T>:ObjectViewModel<T>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnumEntryViewModel{T}"/> class.
+        /// </summary>
+        /// <param name="obj">The object.</param>
         public EnumEntryViewModel(T obj):base(obj)
         {
             
         }        
     }
 
+    /// <summary>
+    /// Represents a view model which wraps around a collection of enum values.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class EnumViewModel<T> : IHierarchicalViewModel
     {
         private ObservableViewModelsCollection<IObjectViewModel> _children;
 
+        /// <summary>
+        /// Returns an enum model wrapper for specified enum value.
+        /// </summary>
+        /// <param name="item">The specified enum value.</param>
         public EnumEntryViewModel<T> this[T item]
         {
 #if WinRT
@@ -62,6 +43,9 @@ namespace LogoFX.Client.Mvvm.ViewModel
 #endif
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EnumViewModel{T}"/> class.
+        /// </summary>
         public EnumViewModel()
         {
             EnumHelper.GetValues<T>().ForEach(a => InternalChildren.Add(new EnumEntryViewModel<T>(a)));
@@ -69,11 +53,17 @@ namespace LogoFX.Client.Mvvm.ViewModel
 
         #region Implementation of IHierarhicalViewModel
 
+        /// <summary>
+        /// Gets the children.
+        /// </summary>
         public IViewModelsCollection<IObjectViewModel> Children
         {
             get { return InternalChildren; }
         }
 
+        /// <summary>
+        /// Gets the items.(GLUE:compatibility to caliburn micro)
+        /// </summary>
         public IViewModelsCollection<IObjectViewModel> Items
         {
             get { return InternalChildren; }
@@ -88,23 +78,41 @@ namespace LogoFX.Client.Mvvm.ViewModel
         #endregion
     }
 
-
+    /// <summary>
+    /// Helper class for enum operations.
+    /// </summary>
     public static class EnumHelper
     {
         private static readonly IDictionary<Type, object[]> s_enumCache = new Dictionary<Type, object[]>();
 
-        public static object GetBoxed(System.Enum s)
+        /// <summary>
+        /// Gets the boxed enum value.
+        /// </summary>
+        /// <param name="s">The unboxed enum value.</param>
+        /// <returns></returns>
+        public static object GetBoxed(Enum s)
         {
             Type enumType = s.GetType();
             object ret = GetValues(enumType).Where(ss => ss.ToString() == s.ToString()).FirstOrDefault();
             return ret;
         }
 
+        /// <summary>
+        /// Gets all enum values from the specified enum type.
+        /// </summary>
+        /// <typeparam name="T">The specified enum type.</typeparam>
+        /// <returns></returns>
         public static T[] GetValues<T>()
         {
             return GetValues(typeof (T)).Cast<T>().ToArray();
         }
 
+        /// <summary>
+        /// Gets the unboxed enum values from the specified enum type.
+        /// </summary>
+        /// <param name="enumType">Type of the enum.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentException">Type ' + enumType.Name + ' is not an enum</exception>
         public static object[] GetValues(Type enumType)
         {
 #if WinRT
