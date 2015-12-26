@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Services
