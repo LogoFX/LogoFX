@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Threading;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using SimpleInjector;
 using SimpleInjector.Advanced;
 
@@ -13,16 +13,30 @@ namespace LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector
         internal static string ModelParameterName = "model";
     }
 
+    /// <summary>
+    /// Represents <see cref="IViewModelFactory" /> implementation using <see cref="Container"/>/>
+    /// </summary>
     public class ViewModelFactory : IViewModelFactory
     {
         private readonly Container _container;
         private readonly object _syncObject = new object();
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ViewModelFactory"/> class.
+        /// </summary>
+        /// <param name="container">The container.</param>
         public ViewModelFactory(Container container)
         {
             _container = container;                       
         }
 
+        /// <summary>
+        /// Creates the view model which has capabilities of a model wrapper.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the model.</typeparam>
+        /// <typeparam name="TViewModel">The type of the view model.</typeparam>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         public TViewModel CreateModelWrapper<TModel, TViewModel>(TModel model) where TViewModel : IModelWrapper<TModel>
         {
             var localDataStoreSlot = Thread.AllocateNamedDataSlot(Consts.ModelParameterName);
@@ -35,10 +49,24 @@ namespace LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector
             
         }
     }
-   
+
+    /// <summary>
+    /// Represents parameter convention used for registration inside the <see cref="Container"/>
+    /// </summary>
     public interface IParameterConvention
     {
+        /// <summary>
+        /// Determines whether this instance can resolve the specified target.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <returns></returns>
         bool CanResolve(InjectionTargetInfo target);
+
+        /// <summary>
+        /// Builds the expression.
+        /// </summary>
+        /// <param name="consumer">The consumer.</param>
+        /// <returns></returns>
         Expression BuildExpression(InjectionConsumerInfo consumer);
     }
 

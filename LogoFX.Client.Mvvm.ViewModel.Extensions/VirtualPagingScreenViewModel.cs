@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {

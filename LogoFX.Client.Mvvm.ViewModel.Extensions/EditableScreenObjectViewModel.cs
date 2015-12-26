@@ -5,7 +5,7 @@ using System.Windows.Input;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.Core;
 using LogoFX.Client.Mvvm.Model.Contracts;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {

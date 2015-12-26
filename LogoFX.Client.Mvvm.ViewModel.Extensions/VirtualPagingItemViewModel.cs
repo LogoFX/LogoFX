@@ -3,8 +3,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 using LogoFX.Client.Mvvm.Core;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {

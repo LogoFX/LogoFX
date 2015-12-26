@@ -55,6 +55,10 @@
       <Project>{e84a106c-3f18-4fb3-b3b8-61c3760ac548}</Project>
       <Name>LogoFX.Client.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Contracts\LogoFX.Client.Mvvm.ViewModel.Contracts.csproj">
+      <Project>{e2ffa98b-e7d6-4c7a-8b3f-fca4cecdda49}</Project>
+      <Name>LogoFX.Client.Mvvm.ViewModel.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer.csproj">
       <Project>{50e9f62a-75dc-4ba0-8c35-712e64a1d16b}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer</Name>

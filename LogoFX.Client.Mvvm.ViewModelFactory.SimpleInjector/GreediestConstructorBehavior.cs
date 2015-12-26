@@ -5,7 +5,7 @@ using SimpleInjector.Advanced;
 
 namespace LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector
 {
-    public class GreediestConstructorBehavior : IConstructorResolutionBehavior
+    class GreediestConstructorBehavior : IConstructorResolutionBehavior
     {
         public ConstructorInfo GetConstructor(Type serviceType, Type implementationType)
         {

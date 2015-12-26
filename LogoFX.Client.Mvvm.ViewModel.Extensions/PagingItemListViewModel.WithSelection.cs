@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using Caliburn.Micro;
 using LogoFX.Client.Core;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions

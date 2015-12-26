@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using LogoFX.Client.Mvvm.Model.Contracts;
-using LogoFX.Client.Mvvm.ViewModel.Interfaces;
+using LogoFX.Client.Mvvm.ViewModel.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
