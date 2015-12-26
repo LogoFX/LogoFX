@@ -3,7 +3,7 @@
 namespace LogoFX.Client.Mvvm.Navigation
 {
     /// <summary>
-    /// Navigation builder which allows exposes the navigation object properties
+    /// Navigation builder which allows exposing the navigation object properties
     /// </summary>
     public interface INavigationBuilder
     {

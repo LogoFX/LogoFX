@@ -23,18 +23,32 @@ namespace LogoFX.Client.Mvvm.Navigation
             get { return _navigationService ?? (_navigationService = new NavigationService()); }
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="NavigationBootstrapper{TRootViewModel,TIocContainer}"/> class.
+        /// </summary>
+        /// <param name="useApplication"></param>
         protected NavigationBootstrapper(bool useApplication = true)
             :base(useApplication)
         {
             
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationBootstrapper{TRootViewModel, TIocContainer}"/> class.
+        /// </summary>
+        /// <param name="iocContainer">The ioc container.</param>
+        /// <param name="useApplication">if set to <c>true</c> [use application].</param>
+        /// <param name="reuseCompositionInformation">if set to <c>true</c> [reuse composition information].</param>
         protected NavigationBootstrapper(TIocContainer iocContainer, bool useApplication=true, bool reuseCompositionInformation = false)
             :base(iocContainer, useApplication, reuseCompositionInformation)
         {
             
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during bootstrapper configuration.
+        /// </summary>
+        /// <param name="container">IoC container</param>
         protected override void OnConfigure(TIocContainer container)
         {
             base.OnConfigure(container);
@@ -43,6 +57,11 @@ namespace LogoFX.Client.Mvvm.Navigation
             OnPrepareNavigation(NavigationService, container);
         }        
 
+        /// <summary>
+        /// Override this method to inject custom logic during root view model registration.
+        /// </summary>
+        /// <param name="navigationService"></param>
+        /// <param name="container"></param>
         protected virtual void OnRegisterRoot(INavigationService navigationService, IIocContainer container)
         {
             RegisterRootViewModel(navigationService, container);
@@ -53,6 +72,11 @@ namespace LogoFX.Client.Mvvm.Navigation
             navigationService.RegisterViewModel<TRootViewModel>(container).AsRoot();
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during navigation view models registration.
+        /// </summary>
+        /// <param name="navigationService">The navigation service.</param>
+        /// <param name="container">The IoC container.</param>
         protected virtual void OnPrepareNavigation(INavigationService navigationService, IIocContainer container)
         {
             RegisterNavigationViewModels(container);
