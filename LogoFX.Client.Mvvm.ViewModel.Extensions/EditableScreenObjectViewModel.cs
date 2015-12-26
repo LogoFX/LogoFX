@@ -6,6 +6,7 @@ using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.Core;
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Client.Mvvm.ViewModel.Contracts;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {

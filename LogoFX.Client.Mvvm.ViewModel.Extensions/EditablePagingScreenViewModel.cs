@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Caliburn.Micro;
 using LogoFX.Client.Mvvm.Commanding;
 using LogoFX.Client.Mvvm.Model.Contracts;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {

@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Caliburn.Micro;
+using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 using Solid.Practices.Scheduling;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests

@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
+using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
@@ -20,6 +22,11 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
         {
             WasCalled = true;
             return Task.FromResult(_messageResult);
+        }
+
+        public MessageResult ShowError(Exception error, string caption = "")
+        {
+            throw new NotImplementedException();
         }
 
         public Task<MessageResult> ShowErrorAsync(Exception error, string caption = "")

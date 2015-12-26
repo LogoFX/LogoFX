@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {

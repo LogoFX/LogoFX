@@ -1,4 +1,4 @@
-﻿namespace LogoFX.Client.Mvvm.ViewModel.Extensions
+﻿namespace LogoFX.Client.Mvvm.ViewModel.Shared
 {
     /// <summary>
     /// Available message results.

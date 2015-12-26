@@ -1,5 +1,7 @@
 ﻿using Attest.Fake.Moq;
 using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+using LogoFX.Client.Mvvm.ViewModel.Services;
+using LogoFX.Client.Mvvm.ViewModel.Shared;
 using LogoFX.Client.Tests.NUnit;
 using LogoFX.Client.Tests.Shared;
 using NUnit.Framework;

@@ -67,6 +67,10 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.3\lib\net451\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Shared, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Shared.1.0.3\lib\net451\LogoFX.Client.Mvvm.ViewModel.Shared.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Core.1.0.3.4\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
@@ -113,7 +117,6 @@
     <Compile Include="IPagingViewModel.cs" />
     <Compile Include="ISaveChanges.cs" />
     <Compile Include="IWithSelection.cs" />
-    <Compile Include="MessageResult.cs" />
     <Compile Include="PagingItemListViewModel.cs" />
     <Compile Include="PagingItemListViewModelBase.cs" />
     <Compile Include="PagingScreenViewModel.cs" />
