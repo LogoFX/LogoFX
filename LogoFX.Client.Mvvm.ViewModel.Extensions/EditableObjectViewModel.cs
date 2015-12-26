@@ -9,9 +9,17 @@ using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
+    /// <summary>
+    /// Represents object view model which wraps an editable model.
+    /// </summary>
+    /// <typeparam name="T">Type of editable model.</typeparam>
     public abstract class EditableObjectViewModel<T> : ObjectViewModel<T>, IEditableViewModel, ICanBeBusy, IDataErrorInfo
         where T : IEditableModel, IHaveErrors, IDataErrorInfo
-    {                
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditableObjectViewModel{T}"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
         protected EditableObjectViewModel(T model)
             : base(model)
         {
@@ -23,6 +31,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         #region Commands
 
         private ICommand _applyCommand;
+        /// <summary>
+        /// Gets the apply command which saves model changes.
+        /// </summary>
+        /// <value>
+        /// The apply command.
+        /// </value>
         public ICommand ApplyCommand
         {
             get
@@ -41,6 +55,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         }
 
         private ICommand _canCancelChangesCommand;
+        /// <summary>
+        /// Gets the cancel changes command which cancels model changes.
+        /// </summary>
+        /// <value>
+        /// The cancel changes command.
+        /// </value>
         public ICommand CancelChangesCommand
         {
             get
@@ -59,6 +79,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         #region Public Properties
 
         private bool _forcedDirty;
+        /// <summary>
+        /// Gets or sets a value indicating whether view model's dirty state is forced.        .
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if view model's dirty state is forced; otherwise, <c>false</c>.
+        /// </value>
         public bool ForcedDirty
         {
             get { return _forcedDirty; }
@@ -78,14 +104,25 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Events
 
+        /// <summary>
+        /// Occurs before the model changes are applied.
+        /// </summary>
         public event EventHandler Saving;
 
+        /// <summary>
+        /// Occurs after the model changes are applied.
+        /// </summary>
         public event EventHandler<ResultEventArgs> Saved;
 
         #endregion
 
         #region Protected Members
 
+        /// <summary>
+        /// Override this method to provide custom save changes logic.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         protected abstract Task<bool> SaveMethod(T model);
 
         private async Task<bool> SaveAsync()
@@ -98,8 +135,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
             await OnSaved(result);
             return result;
-        }        
+        }
 
+        /// <summary>
+        /// Override this method to inject custom logic before the model changes are saved.
+        /// </summary>
+        /// <returns></returns>
         protected async virtual Task OnSaving()
         {
             var handler = Saving;
@@ -110,13 +151,18 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        protected async virtual Task OnSaved(bool successfull)
+        /// <summary>
+        /// Override this method to inject custom logic after the model changes are saved.
+        /// </summary>
+        /// <param name="successful">The result of save changes operation.</param>
+        /// <returns></returns>
+        protected async virtual Task OnSaved(bool successful)
         {
             var handler = Saved;
 
             if (handler != null)
             {
-                handler(this, new ResultEventArgs(successfull));
+                handler(this, new ResultEventArgs(successful));
             }
         }
 
@@ -151,11 +197,19 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             await OnChangesCanceled();
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic before the model changes are canceled.
+        /// </summary>
+        /// <returns></returns>
         protected virtual Task OnChangesCanceling()
         {
             return Task.Run(() => { });
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic after the model changes are canceled.
+        /// </summary>
+        /// <returns></returns>
         protected virtual Task OnChangesCanceled()
         {
             return Task.Run(() => { });
@@ -165,11 +219,23 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region IEditableViewModel
 
+        /// <summary>
+        /// Gets a value indicating whether the view model is dirty.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the view model is dirty; otherwise, <c>false</c>.
+        /// </value>
         public bool IsDirty
         {
             get { return Model.IsDirty; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the changes can be cancelled.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the changes can be cancelled; otherwise, <c>false</c>.
+        /// </value>
         public bool CanCancelChanges
         {
             get { return Model.CanCancelChanges; }
@@ -195,11 +261,24 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region IDataErrorInfo
 
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <returns>
+        /// The error message for the property. The default is an empty string ("").
+        /// </returns>
+        /// <param name="columnName">The name of the property whose error message to get. </param>
         public virtual string this[string columnName]
         {
             get { return Model[columnName]; }
         }
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
+        /// <returns>
+        /// An error message indicating what is wrong with this object. The default is an empty string ("").
+        /// </returns>
         public virtual string Error
         {
             get { return Model.Error; }

@@ -8,6 +8,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public sealed partial class VirtualContainer<T>
     {
+        /// <summary>
+        /// Represents collection with virtualization capabilties.
+        /// </summary>
         public sealed class Collection : IList<VirtualContainer<T>>, IList
         {
             #region Nested Types
@@ -162,8 +165,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #endregion
 
-            #region Constructors
-
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Collection"/> class.
+            /// </summary>
+            /// <param name="count">The count.</param>
+            /// <param name="getItemsFunc">The get items function.</param>
+            /// <param name="segmentSize">Size of the segment.</param>
             public Collection(int count, Func<int, int, Task<IEnumerable<T>>> getItemsFunc, int segmentSize = 256)
             {
                 _count = count;
@@ -171,10 +178,14 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 _segmentSize = segmentSize;
             }
 
-            #endregion
-
             #region Public Properties
 
+            /// <summary>
+            /// Gets the cached collection.
+            /// </summary>
+            /// <value>
+            /// The cached collection.
+            /// </value>
             public IEnumerable<VirtualContainer<T>> CachedCollection
             {
                 get { return _cache.Values.SelectMany(x => x).ToList(); }
@@ -253,6 +264,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region IList<T>
 
+            /// <summary>
+            /// Returns an enumerator that iterates through the collection.
+            /// </summary>
+            /// <returns>
+            /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+            /// </returns>
+            /// <filterpriority>1</filterpriority>
             public IEnumerator<VirtualContainer<T>> GetEnumerator()
             {
                 return new VirtualEnumerator(this);
@@ -288,6 +306,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            /// </summary>
+            /// <returns>
+            /// The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            /// </returns>
             public int Count
             {
                 get { return _count; }
@@ -313,6 +337,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 throw new NotImplementedException();
             }
 
+            /// <summary>
+            /// Gets or sets the element at the specified index.
+            /// </summary>
+            /// <returns>
+            /// The element at the specified index.
+            /// </returns>
+            /// <param name="index">The zero-based index of the element to get or set.</param><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception><exception cref="T:System.NotSupportedException">The property is set and the <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
             public VirtualContainer<T> this[int index]
             {
                 get

@@ -5,6 +5,10 @@ using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
+    /// <summary>
+    /// Represents screen object view model
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class ScreenObjectViewModel<T> : Screen, IObjectViewModel<T>       
     {
         #region Ctor's
@@ -95,6 +99,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region DisplayName property
 
+        /// <summary>
+        /// Gets or sets the value indicating whether the display name is set explicitly.
+        /// </summary>
         protected bool SetExplicitly;
         private string _displayName = string.Empty;
         /// <summary>

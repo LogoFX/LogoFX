@@ -8,19 +8,24 @@ using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
+    /// <summary>
+    /// Represents a screen with support for paging and editing of specified type object view models.
+    /// </summary>
+    /// <typeparam name="TItem">The type of paging item.</typeparam>
+    /// <typeparam name="TModel">The type of model.</typeparam>
     public abstract partial class EditablePagingScreenViewModel<TItem, TModel> : PagingScreenViewModel<TItem, TModel>
         where TModel : class, IEditableModel, IHaveErrors, IDataErrorInfo
-        where TItem : EditablePagingItemViewModel<TModel>, IPagingItemViewModel
+        where TItem : EditablePagingItemViewModel<TModel>, IPagingItem
     {
-        #region Fields
-
-        private ICommand _editCommand;
-        private ICommand _closeCommand;
-
-        #endregion
-
         #region Commands
 
+        private ICommand _closeCommand;
+        /// <summary>
+        /// Gets the close command.
+        /// </summary>
+        /// <value>
+        /// The close command.
+        /// </value>
         public ICommand CloseCommand
         {
             get
@@ -34,6 +39,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private ICommand _editCommand;
+        /// <summary>
+        /// Gets the edit command.
+        /// </summary>
+        /// <value>
+        /// The edit command.
+        /// </value>
         public ICommand EditCommand
         {
             get
@@ -47,13 +59,17 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-
         #endregion
 
         #region Public Properties
 
         private TItem _editingItem;
-
+        /// <summary>
+        /// Gets or sets the editing item.
+        /// </summary>
+        /// <value>
+        /// The editing item.
+        /// </value>
         public TItem EditingItem
         {
             get { return _editingItem; }
@@ -88,8 +104,16 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Protected Members
 
+        /// <summary>
+        /// Saves paging item's model.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         protected abstract bool ItemSave(TModel model);
 
+        /// <summary>
+        /// Override this method to inject custom logic when the paging item's model is saved.
+        /// </summary>
         protected virtual void OnItemSaved()
         {
 
@@ -135,10 +159,22 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Overrides
 
+        /// <summary>
+        /// Displays the save changes prompt and captures the selected prompt option.
+        /// </summary>
+        /// <returns></returns>
         protected abstract Task<MessageResult> OnSaveChangesPrompt();
 
+        /// <summary>
+        /// Reacts to the save changes error.
+        /// </summary>
+        /// <returns></returns>
         protected abstract Task OnSaveChangesWithErrors();
 
+        /// <summary>
+        /// Called to check whether or not this instance can close.
+        /// </summary>
+        /// <param name="callback">The implementor calls this action with the result of the close check.</param>
         public override async void CanClose(Action<bool> callback)
         {
             bool isDirty = EditingItem != null && EditingItem.IsDirty;

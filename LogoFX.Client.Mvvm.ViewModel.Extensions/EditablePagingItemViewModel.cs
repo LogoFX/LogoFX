@@ -6,9 +6,18 @@ using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
-    public abstract class EditablePagingItemViewModel<T> : EditableObjectViewModel<T>, IPagingItemViewModel
+    /// <summary>
+    /// Represents an editable object view model that is an item in the paged collection.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class EditablePagingItemViewModel<T> : EditableObjectViewModel<T>, IPagingItem
         where T : IEditableModel, IHaveErrors, IDataErrorInfo
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditablePagingItemViewModel{T}"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <param name="isNew">if set to <c>true</c> [is new].</param>
         protected EditablePagingItemViewModel(T model, bool isNew)
             : base(model)
         {
@@ -16,7 +25,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         }
 
         private bool _isNew;
-
+        /// <summary>
+        /// Gets a value indicating whether this instance is new.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is new; otherwise, <c>false</c>.
+        /// </value>
         public bool IsNew
         {
             get { return _isNew; }
@@ -26,7 +40,6 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 {
                     return;
                 }
-
                 _isNew = value;
                 NotifyOfPropertyChange();
             }
@@ -38,8 +51,19 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             set { IsSelected = value; }
         }
 
+        /// <summary>
+        /// Gets or sets the on saving function.
+        /// </summary>
+        /// <value>
+        /// The on saving function.
+        /// </value>
         public Func<T, bool> OnSavingFunc { get; set; }
 
+        /// <summary>
+        /// Override this method to provide custom save changes logic.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         protected override Task<bool> SaveMethod(T model)
         {
             return Task.Run(() => OnSavingFunc(model));

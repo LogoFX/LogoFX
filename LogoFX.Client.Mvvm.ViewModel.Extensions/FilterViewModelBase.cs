@@ -7,6 +7,10 @@ using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
+    /// <summary>
+    /// The base class for filter view model.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class FilterViewModelBase<T> : ObjectViewModel<T>
         where T : IFilterModel
     {
@@ -16,8 +20,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #endregion
 
-        #region Constructors
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FilterViewModelBase{T}"/> class.
+        /// </summary>
+        /// <param name="model">The model.</param>
         protected FilterViewModelBase(T model)
         {            
             TimerEnabled = true;
@@ -29,10 +35,11 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             _refreshTimer.Tick += RefreshTimer_Tick;
         }
 
-        #endregion
-
         #region Events
 
+        /// <summary>
+        /// Occurs when filtering is executed.
+        /// </summary>
         public event EventHandler<FilterEventArgs<T>> Filter;
 
         #endregion
@@ -40,7 +47,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         #region Commands
 
         private ICommand _expandCommand;
-
+        /// <summary>
+        /// Gets the expand command.
+        /// </summary>
+        /// <value>
+        /// The expand command.
+        /// </value>
         public ICommand ExpandCommand
         {
             get
@@ -58,7 +70,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         }
 
         private ICommand _collapseCommand;
-
+        /// <summary>
+        /// Gets the collapse command.
+        /// </summary>
+        /// <value>
+        /// The collapse command.
+        /// </value>
         public ICommand CollapseCommand
         {
             get
@@ -78,6 +95,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Public Methods
 
+        /// <summary>
+        /// Sets the model.
+        /// </summary>
+        /// <param name="model">The model.</param>
         public void SetModel(T model)
         {
             OnModelChanging(model, Model);
@@ -117,34 +138,65 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets or sets the refresh interval.
+        /// </summary>
+        /// <value>
+        /// The refresh interval.
+        /// </value>
         public TimeSpan RefreshInterval { get; set; }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether timer is enabled.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if timer is enabled; otherwise, <c>false</c>.
+        /// </value>
         public bool TimerEnabled { get; set; }
 
         #endregion
 
         #region Protected Members
 
+        /// <summary>
+        /// Cancels the refresh.
+        /// </summary>
         protected void CancelRefresh()
         {
             _refreshTimer.Stop();
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic during filtering.
+        /// </summary>
         protected virtual void OnFilter()
         {
             CancelRefresh();
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic before the model is changed.
+        /// </summary>
+        /// <param name="newModel">The new model.</param>
+        /// <param name="oldModel">The old model.</param>
         protected virtual void OnModelChanging(T newModel, T oldModel)
         {
 
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic after the model is changed.
+        /// </summary>
+        /// <param name="newModel">The new model.</param>
+        /// <param name="oldModel">The old model.</param>
         protected virtual void OnModelChanged(T newModel, T oldModel)
         {
 
         }
 
+        /// <summary>
+        /// Invokes the data change logic.
+        /// </summary>
         protected void DataChanged()
         {
             if (!TimerEnabled || Model == null)
@@ -188,10 +240,24 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         #endregion
     }
 
+    /// <summary>
+    /// Represents filtering event arguments
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public sealed class FilterEventArgs<T> : EventArgs
     {
+        /// <summary>
+        /// Gets the filter model.
+        /// </summary>
+        /// <value>
+        /// The filter model.
+        /// </value>
         public T FilterModel { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FilterEventArgs{T}"/> class.
+        /// </summary>
+        /// <param name="filterModel">The filter model.</param>
         public FilterEventArgs(T filterModel)
         {
             FilterModel = filterModel;

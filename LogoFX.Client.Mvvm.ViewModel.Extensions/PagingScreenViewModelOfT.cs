@@ -12,33 +12,31 @@ using LogoFX.Client.Mvvm.Core;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
+    /// <summary>
+    /// Represents a screen with support for paging specified type object view models.
+    /// </summary>
+    /// <typeparam name="TItem">The type of the item.</typeparam>
+    /// <typeparam name="TModel">The type of the model.</typeparam>
     public abstract partial class PagingScreenViewModel<TItem, TModel> : PagingScreenViewModel
         where TModel : class
-        where TItem : class, IPagingItemViewModel
+        where TItem : class, IPagingItem
     {
-        #region Fields
-
-        private ICollectionView _collectionView;
-        private PagingItemListViewModelBase<TItem> _items;
-
-        private IList _internalCache;
-
-        private int _totalPages;
-        private int _currentPage;
-        private double _pageWidth;
-        private double _pageLeft;
+        #region Fields                                       
 
         private int _oldPageCount;
-        private int? _oldCurrentPage;
-
-        private ICommand _clearAllSelectionCommand;
-        private ICommand _selectAllItemsCommand;
-        private ICommand _revertAllSelectionCommand;
+        private int? _oldCurrentPage;        
 
         #endregion
 
         #region Commands
 
+        private ICommand _selectAllItemsCommand;
+        /// <summary>
+        /// Gets the select all items command.
+        /// </summary>
+        /// <value>
+        /// The select all items command.
+        /// </value>
         public ICommand SelectAllItemsCommand
         {
             get
@@ -51,6 +49,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private ICommand _revertAllSelectionCommand;
+        /// <summary>
+        /// Gets the revert all selection command.
+        /// </summary>
+        /// <value>
+        /// The revert all selection command.
+        /// </value>
         public ICommand RevertAllSelectionCommand
         {
             get
@@ -63,6 +68,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private ICommand _clearAllSelectionCommand;
+        /// <summary>
+        /// Gets the clear all selection command.
+        /// </summary>
+        /// <value>
+        /// The clear all selection command.
+        /// </value>
         public ICommand ClearAllSelectionCommand
         {
             get
@@ -79,6 +91,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets the overall number of selected items on the current page.
+        /// </summary>
         public int SelectedOnPage
         {
             get
@@ -98,6 +113,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        /// <summary>
+        /// Gets the overall items count.
+        /// </summary>
         public virtual int Count
         {
             get
@@ -111,6 +129,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        /// <summary>
+        /// Gets the filtered items count.
+        /// </summary>
+        /// <value>
+        /// The filtered items count.
+        /// </value>
         public virtual int FilteredCount
         {
             get
@@ -124,6 +148,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private int _totalPages;
+        /// <summary>
+        /// Gets or sets the total pages count.
+        /// </summary>
+        /// <value>
+        /// The total pages count.
+        /// </value>
         public override int TotalPages
         {
             get { return _totalPages; }
@@ -141,6 +172,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private int _currentPage;
+        /// <summary>
+        /// Gets or sets the current page.
+        /// </summary>
+        /// <value>
+        /// The current page.
+        /// </value>
         public override int CurrentPage
         {
             get { return _currentPage; }
@@ -157,6 +195,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private double _pageWidth;
+        /// <summary>
+        /// Gets or sets the width of the page.
+        /// </summary>
+        /// <value>
+        /// The width of the page.
+        /// </value>
         public override double PageWidth
         {
             get { return _pageWidth; }
@@ -172,6 +217,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private double _pageLeft;
+        /// <summary>
+        /// Gets or sets the left value of the page rectangle.
+        /// </summary>
+        /// <value>
+        /// The left value of the page rectangle.
+        /// </value>
         public override double PageLeft
         {
             get { return _pageLeft; }
@@ -187,11 +239,17 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        /// <summary>
+        /// Gets the starting index.
+        /// </summary>
         public int StartIndex
         {
             get { return CurrentPage * PageCapacity; }
         }
 
+        /// <summary>
+        /// Gets the page capacity.
+        /// </summary>
         public int PageCapacity
         {
             get
@@ -205,6 +263,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
+        private PagingItemListViewModelBase<TItem> _items;
+        /// <summary>
+        /// Gets the list of paged items.
+        /// </summary>
         public PagingItemListViewModelBase<TItem> Items
         {
             get { return _items; }
@@ -227,6 +289,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Protected Members
 
+        /// <summary>
+        /// Override this method to inject custom logic on select all execution.
+        /// </summary>
         protected virtual void OnSelectAll()
         {
             if (CollectionView == null)
@@ -237,6 +302,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             CollectionView.OfType<TItem>().ForEach(item => item.IsSelected = true);
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic on reverting select all execution.
+        /// </summary>
         protected virtual void OnRevertAllSelection()
         {
             if (CollectionView == null)
@@ -247,6 +315,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             CollectionView.OfType<TItem>().ForEach(item => item.IsSelected = !item.IsSelected);
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic on clearing selection.
+        /// </summary>
         protected virtual void OnClearAllSelection()
         {
             if (CollectionView == null)
@@ -257,11 +328,17 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             CollectionView.OfType<TItem>().ForEach(item => item.IsSelected = false);
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic on refreshing the view.
+        /// </summary>
         protected virtual void OnRefresh()
         {
 
         }
 
+        /// <summary>
+        /// Refreshes the data.
+        /// </summary>
         protected virtual void RefreshData()
         {
             if (CollectionView == null)
@@ -273,6 +350,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             OnRefresh();
         }
 
+        /// <summary>
+        /// Gets minimal selected index.
+        /// </summary>
+        /// <returns></returns>
         protected virtual int GetMinSelectedIndex()
         {
             if (CollectionView == null)
@@ -295,6 +376,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             return minSelectedIndex;
         }
 
+        /// <summary>
+        /// Gets maximal selected index.
+        /// </summary>
+        /// <returns></returns>
         protected virtual int GetMaxSelectedIndex()
         {
             if (CollectionView == null)
@@ -316,6 +401,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             var maxSelectedIndex = CollectionView.OfType<TItem>().ToList().IndexOf(selectedList[selectedList.Count - 1]);
             return maxSelectedIndex;
         }
+
+        /// <summary>
+        /// Memorizes the current page and the overall page count values.
+        /// </summary>
         protected virtual void MakePageLocationSnapshot()
         {
             if (TotalPages == 0)
@@ -330,6 +419,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             _oldPageCount = TotalPages;
         }
 
+        /// <summary>
+        /// Restores the selection.
+        /// </summary>
         protected override void RestoreSelection()
         {
             if (!_oldCurrentPage.HasValue)
@@ -351,6 +443,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             _oldCurrentPage = null;
         }
 
+        private IList _internalCache;
+        /// <summary>
+        /// Gets or sets the internal cache of paged items.
+        /// </summary>
         protected IList InternalCache
         {
             get { return _internalCache; }
@@ -366,7 +462,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 Items.UnNotifyOn("Count");
             }
 
-            Items = await CreateItems();
+            Items = await CreateItemsAsync();
 
             Items.NotifyOn("Count", (i, i1) =>
             {
@@ -378,6 +474,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             NotifyOfPropertyChange(() => FilteredCount);
         }
 
+        /// <summary>
+        /// Gets the selected items count.
+        /// </summary>
+        /// <value>
+        /// The selected items count.
+        /// </value>
         public override int SelectedCount
         {
             get
@@ -391,12 +493,28 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        protected abstract Task<PagingItemListViewModelBase<TItem>> CreateItems();
+        /// <summary>
+        /// Creates the list of paged items asynchronously.
+        /// </summary>
+        /// <returns></returns>
+        protected abstract Task<PagingItemListViewModelBase<TItem>> CreateItemsAsync();
 
+        /// <summary>
+        /// Updates the sort descriptors.
+        /// </summary>
         protected abstract void UpdateSortDescriptors();
 
+        /// <summary>
+        /// Override this method to inject custom logic when an item is filtered.
+        /// </summary>
+        /// <param name="item">The item being filtered.</param>
+        /// <returns></returns>
         protected abstract bool OnItemFilter(TItem item);
 
+        /// <summary>
+        /// Creates the collection view.
+        /// </summary>
+        /// <returns></returns>
         protected virtual ICollectionView CreateCollectionView()
         {
             var collectionView = CollectionViewSource.GetDefaultView(Items);
@@ -404,6 +522,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             return collectionView;
         }
 
+        private ICollectionView _collectionView;
+        /// <summary>
+        /// Gets the collection view.
+        /// </summary>
+        /// <value>
+        /// The collection view.
+        /// </value>
         protected ICollectionView CollectionView
         {
             get

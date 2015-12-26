@@ -15,6 +15,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract partial class PagingItemListViewModel<TItem, TModel>
     {
+        /// <summary>
+        /// Represents paging list manager for specific model and support for selection.
+        /// </summary>
         public abstract class WithSelection : PagingItemListViewModel<TItem, TModel>, IWithSelection<TItem>
         {
             #region Fields
@@ -32,8 +35,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #endregion
 
-            #region Constructors
-
+            /// <summary>
+            /// Initializes a new instance of the <see cref="PagingItemListViewModel{TItem,TModel}.WithSelection"/> class.
+            /// </summary>
+            /// <param name="parent">The parent.</param>
+            /// <param name="source">The source.</param>
+            /// <param name="selectionMode">The selection mode.</param>
             protected WithSelection(object parent, IList<TModel> source, SelectionMode selectionMode = DefaultSelectionMode)
                 : base(parent, source)
             {
@@ -41,20 +48,32 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 _selectedItems.CollectionChanged += (a, b) => OnSelectionChanged();
             }
 
-            #endregion
-
             #region Events
 
+            /// <summary>
+            /// Occurs when selection is changed.
+            /// </summary>
             public event EventHandler SelectionChanged;
 
+            /// <summary>
+            /// Invokes the selection changed.
+            /// </summary>
+            /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
             protected void InvokeSelectionChanged(EventArgs e)
             {
                 EventHandler handler = SelectionChanged;
                 if (handler != null) handler(this, e);
             }
 
+            /// <summary>
+            /// Occurs when selection is changing.
+            /// </summary>
             public event EventHandler<SelectionChangingEventArgs> SelectionChanging;
 
+            /// <summary>
+            /// Invokes the selection changing.
+            /// </summary>
+            /// <param name="e">The <see cref="SelectionChangingEventArgs"/> instance containing the event data.</param>
             protected void InvokeSelectionChanging(SelectionChangingEventArgs e)
             {
                 EventHandler<SelectionChangingEventArgs> handler = SelectionChanging;
@@ -65,6 +84,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region Public Properties
 
+            /// <summary>
+            /// Gets or sets the selection handler.
+            /// </summary>
+            /// <value>
+            /// The selection handler.
+            /// </value>
             public Action<object, SelectionChangingEventArgs> SelectionHandler
             {
                 get { return _selectionHandler; }
@@ -80,12 +105,18 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 }
             }
 
+            /// <summary>
+            /// Selected item
+            /// </summary>
             public TItem SelectedItem
             {
                 get { return _selectedItems.Count > 0 ? _selectedItems[0] : null; }
             }
 
 
+            /// <summary>
+            /// Selected items
+            /// </summary>
             public IEnumerable<TItem> SelectedItems
             {
                 get { return _selectedItems; }
@@ -167,6 +198,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region Overrides
 
+            /// <summary>
+            /// Override this method to inject custom logic on item creation.
+            /// </summary>
+            /// <param name="item">The item.</param>
             protected override void OnCreated(TItem item)
             {
                 if (_internalSelectionHandler == null)
@@ -188,6 +223,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
                 addHandler(item);
             }
 
+            /// <summary>
+            /// Raises the <see cref="E:CollectionChanged" /> event.
+            /// </summary>
+            /// <param name="args">The <see cref="NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
             protected override void OnCollectionChanged(NotifyCollectionChangedEventArgs e)
             {
                 if (_internalSelectionHandler == null)
@@ -242,6 +281,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region Protected
 
+            /// <summary>
+            /// Override this method to inject custom logic after the selection is changed.
+            /// </summary>
             protected virtual void OnSelectionChanged()
             {
             }

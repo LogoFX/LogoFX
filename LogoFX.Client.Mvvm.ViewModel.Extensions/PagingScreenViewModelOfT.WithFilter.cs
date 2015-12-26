@@ -7,6 +7,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {    
     public abstract partial class PagingScreenViewModel<TItem, TModel>
     {
+        /// <summary>
+        /// Represents a screen with support for paging and filtering specified type object view models.
+        /// </summary>
+        /// <typeparam name="TFilterModel">The type of the filter model.</typeparam>
         public abstract class WithFilter<TFilterModel> : PagingScreenViewModel<TItem, TModel>
             where TFilterModel : class, IFilterModel
         {
@@ -14,14 +18,17 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             private TFilterModel _emptyFilter;
 
-            private FilterViewModelBase<TFilterModel> _filter;
-
-            private ICommand _clearFilterCommand;
-
             #endregion
 
             #region Commands
 
+            private ICommand _clearFilterCommand;
+            /// <summary>
+            /// Gets the clear filter command.
+            /// </summary>
+            /// <value>
+            /// The clear filter command.
+            /// </value>
             public ICommand ClearFilterCommand
             {
                 get
@@ -43,6 +50,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region Public Properties
 
+            private FilterViewModelBase<TFilterModel> _filter;
+            /// <summary>
+            /// Gets or sets the filter.
+            /// </summary>
+            /// <value>
+            /// The filter.
+            /// </value>
             public FilterViewModelBase<TFilterModel> Filter
             {
                 get { return _filter; }
@@ -80,6 +94,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region Virtual Methods
 
+            /// <summary>
+            /// Clears the filter.
+            /// </summary>
             protected virtual void ClearFilter()
             {
                 if (Filter == null)

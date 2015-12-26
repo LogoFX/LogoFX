@@ -7,21 +7,28 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
     public abstract partial class EditablePagingScreenViewModel<TItem, TModel>
     {
+        /// <summary>
+        /// Represents a screen with support for paging, editing and filtering specified type object view models.
+        /// </summary>
+        /// <typeparam name="TFilterModel">The type of the filter model.</typeparam>
         public new abstract class WithFilter<TFilterModel> : EditablePagingScreenViewModel<TItem, TModel>
             where TFilterModel : class, IFilterModel
         {
             #region Fields
 
-            private TFilterModel _emptyFilter;
-
-            private ICommand _clearFilterCommand;
-
-            private FilterViewModelBase<TFilterModel> _filter;
+            private TFilterModel _emptyFilter;                        
 
             #endregion
 
             #region Commands
 
+            private ICommand _clearFilterCommand;
+            /// <summary>
+            /// Gets the clear filter command.
+            /// </summary>
+            /// <value>
+            /// The clear filter command.
+            /// </value>
             public ICommand ClearFilterCommand
             {
                 get
@@ -43,6 +50,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #region Public Properties
 
+            private FilterViewModelBase<TFilterModel> _filter;
+            /// <summary>
+            /// Gets or sets the filter.
+            /// </summary>
+            /// <value>
+            /// The filter.
+            /// </value>
             public FilterViewModelBase<TFilterModel> Filter
             {
                 get { return _filter; }
@@ -77,8 +91,11 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
             #endregion
 
-            #region Virtual Methods
+            #region Virtual Methods            
 
+            /// <summary>
+            /// Clears the filter.
+            /// </summary>
             protected virtual void ClearFilter()
             {
                 if (Filter == null || _emptyFilter == null)

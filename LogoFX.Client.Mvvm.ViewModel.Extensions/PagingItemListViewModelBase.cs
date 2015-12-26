@@ -6,7 +6,11 @@ using Caliburn.Micro;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
-   public abstract class PagingItemListViewModelBase<TItem> : PropertyChangedBase, IList<TItem>, IList, INotifyCollectionChanged
+    /// <summary>
+    /// Represents base class for paging list manager.
+    /// </summary>
+    /// <typeparam name="TItem">The type of the item.</typeparam>
+    public abstract class PagingItemListViewModelBase<TItem> : PropertyChangedBase, IList<TItem>, IList, INotifyCollectionChanged
     {
         #region Fields
 
@@ -16,14 +20,38 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Protected
 
+        /// <summary>
+        /// Gets the count.
+        /// </summary>
+        /// <returns></returns>
         protected abstract int GetCount();
 
+        /// <summary>
+        /// Gets the item at specified index.
+        /// </summary>
+        /// <param name="index">The index.</param>
+        /// <returns></returns>
         protected abstract TItem Get(int index);
 
+        /// <summary>
+        /// Gets the index of specified item.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
         protected abstract int IndexOf(object value);
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// An enumerator that can be used to iterate through the collection.
+        /// </returns>
         protected abstract IEnumerator<TItem> GetEnumerator();
 
+        /// <summary>
+        /// Raises the <see cref="E:CollectionChanged" /> event.
+        /// </summary>
+        /// <param name="args">The <see cref="NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
         protected virtual void OnCollectionChanged(NotifyCollectionChangedEventArgs args)
         {
             NotifyCollectionChangedEventHandler handler;
@@ -43,6 +71,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets the cached items.
+        /// </summary>
+        /// <value>
+        /// The cached items.
+        /// </value>
         public abstract IEnumerable<TItem> CachedItems { get; }
 
         #endregion
@@ -67,6 +101,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region ICollection<TItem>
 
+        /// <summary>
+        /// Gets the number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        /// </summary>
+        /// <returns>
+        /// The number of elements contained in the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+        /// </returns>
         public int Count
         {
             get { return GetCount(); }
@@ -145,6 +185,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Gets or sets the element at the specified index.
+        /// </summary>
+        /// <returns>
+        /// The element at the specified index.
+        /// </returns>
+        /// <param name="index">The zero-based index of the element to get or set.</param><exception cref="T:System.ArgumentOutOfRangeException"><paramref name="index"/> is not a valid index in the <see cref="T:System.Collections.Generic.IList`1"/>.</exception><exception cref="T:System.NotSupportedException">The property is set and the <see cref="T:System.Collections.Generic.IList`1"/> is read-only.</exception>
         public TItem this[int index]
         {
             get { return Get(index); }
@@ -210,6 +257,9 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region INotifyCollectionChanged
 
+        /// <summary>
+        /// Occurs when the collection changes.
+        /// </summary>
         public event NotifyCollectionChangedEventHandler CollectionChanged;
 
         #endregion        

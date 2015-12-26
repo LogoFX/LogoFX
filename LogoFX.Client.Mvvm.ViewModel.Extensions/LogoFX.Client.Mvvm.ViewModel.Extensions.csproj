@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Mvvm.ViewModel.Extensions.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -108,8 +109,9 @@
     <Compile Include="FilterViewModelBase.cs" />
     <Compile Include="IEditableViewModel.cs" />
     <Compile Include="IPageInfo.cs" />
-    <Compile Include="IPagingItemViewModel.cs" />
+    <Compile Include="IPagingItem.cs" />
     <Compile Include="IPagingViewModel.cs" />
+    <Compile Include="ISaveChanges.cs" />
     <Compile Include="IWithSelection.cs" />
     <Compile Include="MessageResult.cs" />
     <Compile Include="PagingItemListViewModel.cs" />
@@ -131,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="PagingItemListViewModel.WithFilter.cs" />
+    <Compile Include="PagingItemListViewModel.WithSelection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

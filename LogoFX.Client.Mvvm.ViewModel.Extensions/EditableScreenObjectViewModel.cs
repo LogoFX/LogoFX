@@ -9,11 +9,17 @@ using LogoFX.Client.Mvvm.ViewModel.Interfaces;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 {
+    /// <summary>
+    /// Represents screen object view model which wraps an editable model.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class EditableScreenObjectViewModel<T> : ScreenObjectViewModel<T>, IEditableViewModel, ICanBeBusy, IDataErrorInfo
         where T : IEditableModel, IHaveErrors, IDataErrorInfo
     {
-        #region Constructors
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EditableScreenObjectViewModel{T}"/> class.
+        /// </summary>
+        /// <param name="model"></param>
         protected EditableScreenObjectViewModel(T model)
             : base(model)
         {
@@ -22,11 +28,15 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             Model.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => HasErrors));
         }
 
-        #endregion
-
         #region Commands
 
         private ICommand _applyCommand;
+        /// <summary>
+        /// Gets the apply command.
+        /// </summary>
+        /// <value>
+        /// The apply command.
+        /// </value>
         public ICommand ApplyCommand
         {
             get
@@ -45,6 +55,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         }
 
         private ICommand _canCancelChangesCommand;
+        /// <summary>
+        /// Gets the cancel changes command.
+        /// </summary>
+        /// <value>
+        /// The cancel changes command.
+        /// </value>
         public ICommand CancelChangesCommand
         {
             get
@@ -59,6 +75,12 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
         }
 
         private ICommand _closeCommand;
+        /// <summary>
+        /// Gets the close command.
+        /// </summary>
+        /// <value>
+        /// The close command.
+        /// </value>
         public ICommand CloseCommand
         {
             get
@@ -70,9 +92,13 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #endregion
 
-        #region Public Properties
-
         private bool _forcedDirty;
+        /// <summary>
+        /// Gets or sets a value indicating whether view model's dirty state is forced.        .
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if view model's dirty state is forced; otherwise, <c>false</c>.
+        /// </value>
         public bool ForcedDirty
         {
             get { return _forcedDirty; }
@@ -88,18 +114,27 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        #endregion
-
         #region Events
 
+        /// <summary>
+        /// Occurs before the model changes are applied.
+        /// </summary>
         public event EventHandler Saving;
 
+        /// <summary>
+        /// Occurs after the model changes are applied.
+        /// </summary>
         public event EventHandler<ResultEventArgs> Saved;
 
         #endregion
 
         #region Protected Members
 
+        /// <summary>
+        /// Override this method to provide custom save changes logic.
+        /// </summary>
+        /// <param name="model">The model.</param>
+        /// <returns></returns>
         protected abstract Task<bool> SaveMethod(T model);
 
         private async Task<bool> SaveAsync()
@@ -114,6 +149,10 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             return result;
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic before the model changes are saved.
+        /// </summary>
+        /// <returns></returns>
         protected async virtual Task OnSaving()
         {
             var handler = Saving;
@@ -124,18 +163,31 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             }
         }
 
-        protected async virtual Task OnSaved(bool successfull)
+        /// <summary>
+        /// Override this method to inject custom logic after the model changes are saved.
+        /// </summary>
+        /// <param name="successful">The result of save changes operation.</param>
+        /// <returns></returns>
+        protected async virtual Task OnSaved(bool successful)
         {
             var handler = Saved;
 
             if (handler != null)
             {
-                handler(this, new ResultEventArgs(successfull));
+                handler(this, new ResultEventArgs(successful));
             }
         }
 
+        /// <summary>
+        /// Displays the save changes prompt and captures the selected prompt option.
+        /// </summary>
+        /// <returns></returns>
         protected abstract Task<MessageResult> OnSaveChangesPrompt();
 
+        /// <summary>
+        /// Reacts to the save changes error.
+        /// </summary>
+        /// <returns></returns>
         protected abstract Task OnSaveChangesWithErrors();
 
         private async void CancelChangesAsync()
@@ -169,16 +221,28 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
             await OnChangesCanceled();
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic before the model changes are canceled.
+        /// </summary>
+        /// <returns></returns>
         protected virtual Task OnChangesCanceling()
         {
             return Task.Run(() => { });
         }
 
+        /// <summary>
+        /// Override this method to inject custom logic after the model changes are canceled.
+        /// </summary>
+        /// <returns></returns>
         protected virtual Task OnChangesCanceled()
         {
             return Task.Run(() => { });
         }
 
+        /// <summary>
+        /// Called to check whether or not this instance can close.
+        /// </summary>
+        /// <param name="callback">The implementor calls this action with the result of the close check.</param>
         public override async void CanClose(Action<bool> callback)
         {
             if (IsDirty)
@@ -220,11 +284,23 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region IEditableViewModel
 
+        /// <summary>
+        /// Gets a value indicating whether the view model is dirty.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if the view model is dirty; otherwise, <c>false</c>.
+        /// </value>
         public bool IsDirty
         {
             get { return Model.IsDirty; }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the changes can be cancelled.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the changes can be cancelled; otherwise, <c>false</c>.
+        /// </value>
         public bool CanCancelChanges
         {
             get { return Model.CanCancelChanges; }
@@ -250,11 +326,24 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions
 
         #region IDataErrorInfo
 
+        /// <summary>
+        /// Gets the error message for the property with the given name.
+        /// </summary>
+        /// <returns>
+        /// The error message for the property. The default is an empty string ("").
+        /// </returns>
+        /// <param name="columnName">The name of the property whose error message to get. </param>
         public virtual string this[string columnName]
         {
             get { return Model[columnName]; }
         }
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object.
+        /// </summary>
+        /// <returns>
+        /// An error message indicating what is wrong with this object. The default is an empty string ("").
+        /// </returns>
         public virtual string Error
         {
             get { return Model.Error; }

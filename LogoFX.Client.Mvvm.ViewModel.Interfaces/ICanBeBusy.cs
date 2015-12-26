@@ -6,13 +6,16 @@
 namespace LogoFX.Client.Mvvm.ViewModel.Interfaces
 {
     /// <summary>
-    /// Designates object with busy state
+    /// Designates object with busy state.
     /// </summary>
     public interface ICanBeBusy
     {
         /// <summary>
-        /// Defines busy state
+        /// Gets or sets a value indicating whether the object is busy.
         /// </summary>
+        /// <value>
+        ///   <c>true</c> if the object is busy; otherwise, <c>false</c>.
+        /// </value>
         bool IsBusy { get; set; }
     }
 }
