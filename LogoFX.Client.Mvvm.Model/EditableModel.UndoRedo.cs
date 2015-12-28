@@ -45,6 +45,10 @@ namespace LogoFX.Client.Mvvm.Model
                 {
                     _history.Undo();                   
                 }
+                if (_history.CanUndo == false)
+                {
+                    ClearDirty();
+                }
             }
 
             /// <summary>
