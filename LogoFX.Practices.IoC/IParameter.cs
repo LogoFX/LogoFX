@@ -5,6 +5,12 @@
     /// </summary>
     public interface IParameter
     {
+        /// <summary>
+        /// Gets the parameter value.
+        /// </summary>
+        /// <value>
+        /// The parameter value.
+        /// </value>
         object ParameterValue { get; }
     }
 }

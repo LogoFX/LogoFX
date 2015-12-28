@@ -61,6 +61,13 @@ namespace LogoFX.Practices.IoC
 
         #region Public Methods
 
+        /// <summary>
+        /// Registers the service per lifetime of an external object.
+        /// </summary>
+        /// <param name="lifeTime">The lifetime function of an external object.</param>
+        /// <param name="service">The service.</param>
+        /// <param name="key">The key.</param>
+        /// <param name="implementation">The implementation.</param>
         public void RegisterPerLifetime(Func<object> lifeTime, Type service, string key, Type implementation)
         {
             WeakReference wr = null;
@@ -429,6 +436,10 @@ namespace LogoFX.Practices.IoC
 #endif
         #endregion
 
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        /// <filterpriority>2</filterpriority>
         public virtual void Dispose()
         {
             
