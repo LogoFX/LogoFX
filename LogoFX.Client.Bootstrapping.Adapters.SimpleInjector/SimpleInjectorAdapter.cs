@@ -9,14 +9,14 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
     /// <summary>
     /// Represents implementation of IoC container and bootstrapper adapter using Simple Injector
     /// </summary>
-    public class SimpleInjectorContainer : IIocContainer, IBootstrapperAdapter
+    public class SimpleInjectorAdapter : IIocContainer, IBootstrapperAdapter
     {
         private readonly Container _container = new Container();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SimpleInjectorContainer"/> class.
+        /// Initializes a new instance of the <see cref="SimpleInjectorAdapter"/> class.
         /// </summary>
-        public SimpleInjectorContainer()
+        public SimpleInjectorAdapter()
         {
             _container.Options.AllowOverridingRegistrations = true;
             _container.RegisterSingleton(_container);
@@ -62,6 +62,16 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
         }
 
         /// <summary>
+        /// Registers the singleton.
+        /// </summary>
+        /// <param name="serviceType">Type of the service.</param>
+        /// <param name="implementationType">Type of the implementation.</param>
+        public void RegisterSingleton(Type serviceType, Type implementationType)
+        {
+            _container.RegisterSingleton(serviceType, implementationType);
+        }
+
+        /// <summary>
         /// Registers the service instance.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>
@@ -69,6 +79,16 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
         public void RegisterInstance<TService>(TService instance) where TService : class
         {
             _container.RegisterSingleton(instance);
+        }
+
+        /// <summary>
+        /// Registers the instance.
+        /// </summary>
+        /// <param name="dependencyType">Type of the dependency.</param>
+        /// <param name="instance">The instance.</param>
+        public void RegisterInstance(Type dependencyType, object instance)
+        {
+            _container.RegisterSingleton(dependencyType,instance);
         }
 
         /// <summary>
