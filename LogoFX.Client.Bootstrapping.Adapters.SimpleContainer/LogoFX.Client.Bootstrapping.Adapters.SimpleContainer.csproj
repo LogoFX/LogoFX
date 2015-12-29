@@ -43,18 +43,18 @@
       <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3.2\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.IoC, Version=1.0.4.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Solid.Practices.IoC.1.0.4.3\lib\net451\Solid.Practices.IoC.dll</HintPath>
+    <Reference Include="Solid.Practices.IoC, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.IoC.1.0.5\lib\net451\Solid.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExtendedSimpleIocContainer.cs" />
+    <Compile Include="ExtendedSimpleContainerAdapter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimpleIocContainer.cs" />
+    <Compile Include="SimpleContainerAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

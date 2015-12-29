@@ -8,15 +8,26 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleContainer
     /// <summary>
     /// Represents implementation of IoC container and bootstrapper adapter using Simple Container
     /// </summary>
-    public class SimpleIocContainer : IIocContainer, IBootstrapperAdapter
+    public class SimpleContainerAdapter : IIocContainer, IBootstrapperAdapter
     {
-        private readonly Practices.IoC.SimpleContainer _container = new Practices.IoC.SimpleContainer();
+        private readonly Practices.IoC.SimpleContainer _container;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SimpleIocContainer"/> class.
+        /// Initializes a new instance of the <see cref="SimpleContainerAdapter"/> class.
         /// </summary>
-        public SimpleIocContainer()
+        public SimpleContainerAdapter()
+            :this(new Practices.IoC.SimpleContainer())
         {
+            
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleContainerAdapter"/> class.
+        /// </summary>
+        /// <param name="container">The container.</param>
+        public SimpleContainerAdapter(Practices.IoC.SimpleContainer container)
+        {
+            _container = container;
             _container.RegisterSingleton(typeof(Practices.IoC.SimpleContainer), null, typeof(Practices.IoC.SimpleContainer));
         }
 
@@ -56,17 +67,47 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleContainer
         /// <typeparam name="TImplementation">The type of the implementation.</typeparam>
         public void RegisterSingleton<TService, TImplementation>() where TImplementation : class, TService
         {
-            _container.RegisterSingleton(typeof(TService), null, typeof(TImplementation));
+            RegisterSingletonImpl(typeof(TService), typeof(TImplementation));
         }
 
         /// <summary>
-        /// Registers the service instance.
+        /// Registers the singleton.
+        /// </summary>
+        /// <param name="serviceType">Type of the service.</param>
+        /// <param name="implementationType">Type of the implementation.</param>
+        public void RegisterSingleton(Type serviceType, Type implementationType)
+        {
+            RegisterSingletonImpl(serviceType, implementationType);
+        }
+
+        private void RegisterSingletonImpl(Type serviceType, Type implementationType)
+        {
+            _container.RegisterSingleton(serviceType, null, implementationType);
+        }
+
+        /// <summary>
+        /// Registers the instance of the service.
         /// </summary>
         /// <typeparam name="TService">The type of the service.</typeparam>
         /// <param name="instance">The instance.</param>
         public void RegisterInstance<TService>(TService instance) where TService : class
         {
-            _container.RegisterInstance(typeof(TService), null, instance);
+            RegisterInstanceImpl(typeof(TService), instance);
+        }
+
+        /// <summary>
+        /// Registers the instance.
+        /// </summary>
+        /// <param name="dependencyType">Type of the dependency.</param>
+        /// <param name="instance">The instance.</param>
+        public void RegisterInstance(Type dependencyType, object instance)
+        {
+            RegisterInstanceImpl(dependencyType, instance);
+        }
+
+        private void RegisterInstanceImpl(Type dependencyType, object instance)
+        {
+            _container.RegisterInstance(dependencyType, null, instance);
         }
 
         /// <summary>
