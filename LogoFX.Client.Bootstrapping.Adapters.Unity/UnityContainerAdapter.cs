@@ -7,16 +7,16 @@ using Solid.Practices.IoC;
 namespace LogoFX.Client.Bootstrapping.Adapters.Unity
 {
     /// <summary>
-    /// Represents implementation of IoC container and bootstrapper adapter using Unity
+    /// Represents implementation of IoC container and bootstrapper adapter using Unity Container
     /// </summary>
-    public class UnityIocContainer : IIocContainer, IBootstrapperAdapter
+    public class UnityContainerAdapter : IIocContainer, IBootstrapperAdapter
     {
         private readonly UnityContainer _container = new UnityContainer();
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnityIocContainer"/> class.
+        /// Initializes a new instance of the <see cref="UnityContainerAdapter"/> class.
         /// </summary>
-        public UnityIocContainer()
+        public UnityContainerAdapter()
         {
             _container.RegisterInstance(_container);
         }
@@ -58,12 +58,34 @@ namespace LogoFX.Client.Bootstrapping.Adapters.Unity
         }
 
         /// <summary>
+        /// Registers the singleton.
+        /// </summary>
+        /// <param name="serviceType">Type of the service.</param>
+        /// <param name="implementationType">Type of the implementation.</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void RegisterSingleton(Type serviceType, Type implementationType)
+        {
+            _container.RegisterType(serviceType, implementationType, new ContainerControlledLifetimeManager());
+        }
+
+        /// <summary>
         /// Registers an instance of dependency
         /// </summary>
         /// <typeparam name="TService">Type of dependency</typeparam><param name="instance">Instance of dependency</param>
         public void RegisterInstance<TService>(TService instance) where TService : class
         {
             _container.RegisterInstance(instance, new ContainerControlledLifetimeManager());
+        }
+
+        /// <summary>
+        /// Registers the instance.
+        /// </summary>
+        /// <param name="dependencyType">Type of the dependency.</param>
+        /// <param name="instance">The instance.</param>
+        /// <exception cref="System.NotImplementedException"></exception>
+        public void RegisterInstance(Type dependencyType, object instance)
+        {
+            _container.RegisterInstance(dependencyType, instance, new ContainerControlledLifetimeManager());
         }
 
         /// <summary>
