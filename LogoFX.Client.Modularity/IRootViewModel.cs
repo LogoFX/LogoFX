@@ -1,6 +1,9 @@
 ﻿namespace LogoFX.Client.Modularity
 {
-    public interface IRootViewModel : IAvailable
+    /// <summary>
+    /// Represents module's root view model
+    /// </summary>
+    public interface IRootViewModel
     {
     }
 }

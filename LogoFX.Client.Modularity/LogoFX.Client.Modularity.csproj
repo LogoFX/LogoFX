@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Modularity.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LogoFX.Core, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
@@ -51,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IAvailable.cs" />
+    <Compile Include="ILicenseAware.cs" />
     <Compile Include="IRootViewModel.cs" />
     <Compile Include="IUiModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

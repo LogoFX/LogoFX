@@ -28,7 +28,7 @@ namespace LogoFX.Client.Modularity
     /// Respresents user interface composition module with root view model
     /// </summary>
     /// <typeparam name="TRootViewModel">Type of Root ViewModel</typeparam>
-    public interface IUiModule<out TRootViewModel> : IUiModule
+    public interface IUiModule<out TRootViewModel> : IUiModule where TRootViewModel : IRootViewModel
     {
         /// <summary>
         /// Root ViewModel
