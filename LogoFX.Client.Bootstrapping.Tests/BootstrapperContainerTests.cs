@@ -23,7 +23,7 @@ namespace LogoFX.Client.Bootstrapping.Tests
         {
             var mockWindowManager = _fakeFactory.CreateFake<IWindowManager>();
 
-            var bootstrapperContainerUnderTest = new TestBootstrapperContainer(new ExtendedSimpleIocContainer());
+            var bootstrapperContainerUnderTest = new TestBootstrapperContainer(new ExtendedSimpleContainerAdapter());
 
             mockWindowManager.VerifyCall(
                 t => t.ShowWindow(It.IsAny<object>(), It.IsAny<object>(), It.IsAny<IDictionary<string, object>>()));

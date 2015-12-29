@@ -2,10 +2,10 @@
 
 namespace LogoFX.Client.Bootstrapping.Tests
 {
-    internal class TestBootstrapperContainer : BootstrapperContainerBase<TestViewModel, ExtendedSimpleIocContainer>
+    internal class TestBootstrapperContainer : BootstrapperContainerBase<TestViewModel, ExtendedSimpleContainerAdapter>
     {
-        public TestBootstrapperContainer(ExtendedSimpleIocContainer iocContainer) :
-            base(iocContainer)
+        public TestBootstrapperContainer(ExtendedSimpleContainerAdapter iocContainerAdapter) :
+            base(iocContainerAdapter)
         {
             
         }

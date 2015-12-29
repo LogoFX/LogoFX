@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [TestFixture]
-    class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleIocContainer,FakeFactory,TestConductorViewModel,TestBootstrapper>
+    class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleContainerAdapter, FakeFactory, TestConductorViewModel,TestBootstrapper>
     {
         protected override void OnAfterTeardown()
         {

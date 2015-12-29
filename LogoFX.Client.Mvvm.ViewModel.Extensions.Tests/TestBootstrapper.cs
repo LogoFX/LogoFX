@@ -5,9 +5,9 @@ using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [UsedImplicitly]
-    class TestBootstrapper : BootstrapperContainerBase<TestConductorViewModel,ExtendedSimpleIocContainer>
+    class TestBootstrapper : BootstrapperContainerBase<TestConductorViewModel,ExtendedSimpleContainerAdapter>
     {
-        public TestBootstrapper(ExtendedSimpleIocContainer container)
+        public TestBootstrapper(ExtendedSimpleContainerAdapter container)
             :base(container, false)
         {
             
