@@ -5,7 +5,7 @@ using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
 {
-    partial class BootstrapperContainerBase<TRootViewModel, TIocContainer> : ICompositionModulesProvider
+    partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter> : ICompositionModulesProvider
     {
         private readonly bool _reuseCompositionInformation;
         private ICompositionInitializationFacade _compositionInfo;

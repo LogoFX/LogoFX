@@ -6,7 +6,7 @@ using Caliburn.Micro;
 
 namespace LogoFX.Client.Bootstrapping
 {
-    partial class BootstrapperContainerBase<TRootViewModel, TIocContainer>
+    partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter>
     {
         private readonly Dictionary<string, Type> _typedic = new Dictionary<string, Type>();
 

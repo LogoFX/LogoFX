@@ -4,7 +4,7 @@ using LogoFX.Client.Bootstrapping.Adapters.Contracts;
 
 namespace LogoFX.Client.Bootstrapping
 {
-    partial class BootstrapperContainerBase<TRootViewModel, TIocContainer>
+    partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter>
     {
         private IBootstrapperAdapter _bootstrapperAdapter;
 
@@ -32,7 +32,7 @@ namespace LogoFX.Client.Bootstrapping
         }
 
         /// <summary>
-        /// Injects all missing properties from the IoC container into the provided object.
+        /// Injects all missing properties from the IoC containerAdapter into the provided object.
         /// Not intended to be used explicitly from code.
         /// </summary>
         /// <param name="instance">The instance.</param>
@@ -43,7 +43,7 @@ namespace LogoFX.Client.Bootstrapping
 
         private void InitializeAdapter()
         {
-            _bootstrapperAdapter = _iocContainer;
+            _bootstrapperAdapter = _iocContainerAdapter;
         }
     }
 }

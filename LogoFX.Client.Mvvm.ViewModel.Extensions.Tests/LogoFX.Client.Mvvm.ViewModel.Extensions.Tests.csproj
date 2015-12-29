@@ -70,8 +70,8 @@
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.Contracts.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.Adapters.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.SimpleContainer, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.1.0.3.4\lib\net451\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.SimpleContainer, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.1.0.4\lib\net451\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
@@ -98,8 +98,8 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.3\lib\net451\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.1.0.3.1\lib\net451\LogoFX.Client.Mvvm.ViewModel.Services.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Services, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Services.1.0.3.2\lib\net451\LogoFX.Client.Mvvm.ViewModel.Services.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel.Shared, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -122,8 +122,8 @@
       <HintPath>..\packages\LogoFX.Core.1.0.3.4\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Practices.IoC, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.3.2\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
+    <Reference Include="LogoFX.Practices.IoC, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.4\lib\net451\LogoFX.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

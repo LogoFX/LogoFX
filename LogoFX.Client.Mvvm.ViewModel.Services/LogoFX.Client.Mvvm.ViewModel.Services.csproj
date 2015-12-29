@@ -31,8 +31,8 @@
     <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Mvvm.ViewModel.Services.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.0\lib\net451\LogoFX.Client.Core.dll</HintPath>
+    <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Core.1.0.3.1\lib\net451\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.0.3.3, Culture=neutral, processorArchitecture=MSIL">
@@ -47,8 +47,8 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Shared.1.0.3\lib\net451\LogoFX.Client.Mvvm.ViewModel.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.0\lib\net451\LogoFX.Core.dll</HintPath>
+    <Reference Include="LogoFX.Core, Version=1.0.3.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.0.3.4\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework" />

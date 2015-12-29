@@ -48,13 +48,13 @@ namespace LogoFX.Client.Mvvm.Navigation
         /// <summary>
         /// Override this method to inject custom logic during bootstrapper configuration.
         /// </summary>
-        /// <param name="container">IoC container</param>
-        protected override void OnConfigure(TIocContainer container)
+        /// <param name="iocContainerAdapter">IoC container</param>
+        protected override void OnConfigure(TIocContainer iocContainerAdapter)
         {
-            base.OnConfigure(container);
-            container.RegisterInstance(NavigationService);
-            OnRegisterRoot(NavigationService, container);
-            OnPrepareNavigation(NavigationService, container);
+            base.OnConfigure(iocContainerAdapter);
+            iocContainerAdapter.RegisterInstance(NavigationService);
+            OnRegisterRoot(NavigationService, iocContainerAdapter);
+            OnPrepareNavigation(NavigationService, iocContainerAdapter);
         }        
 
         /// <summary>
