@@ -12,35 +12,25 @@ namespace LogoFX.Client.Mvvm.Navigation
     /// this includes the navigation view models
     /// </summary>
     /// <typeparam name="TRootViewModel">The type of the root view model.</typeparam>
-    /// <typeparam name="TIocContainer">The type of the IoC container.</typeparam>
-    public class NavigationBootstrapper<TRootViewModel, TIocContainer> : 
-        BootstrapperContainerBase<TRootViewModel, TIocContainer> 
-        where TRootViewModel : class where TIocContainer : class, IIocContainer, IBootstrapperAdapter, new()
+    /// <typeparam name="TIocContainerAdapter">The type of the IoC container adapter.</typeparam>
+    public class NavigationBootstrapper<TRootViewModel, TIocContainerAdapter> : 
+        BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter> 
+        where TRootViewModel : class where TIocContainerAdapter : class, IIocContainer, IBootstrapperAdapter, new()
     {
         private NavigationService _navigationService = new NavigationService();        
         private INavigationService NavigationService
         {
             get { return _navigationService ?? (_navigationService = new NavigationService()); }
-        }
-
-        /// <summary>
-        /// Initializes a new instance of <see cref="NavigationBootstrapper{TRootViewModel,TIocContainer}"/> class.
-        /// </summary>
-        /// <param name="useApplication"></param>
-        protected NavigationBootstrapper(bool useApplication = true)
-            :base(useApplication)
-        {
-            
-        }
+        }        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="NavigationBootstrapper{TRootViewModel, TIocContainer}"/> class.
         /// </summary>
-        /// <param name="iocContainer">The ioc container.</param>
+        /// <param name="iocContainerAdapter">The ioc container.</param>
         /// <param name="useApplication">if set to <c>true</c> [use application].</param>
         /// <param name="reuseCompositionInformation">if set to <c>true</c> [reuse composition information].</param>
-        protected NavigationBootstrapper(TIocContainer iocContainer, bool useApplication=true, bool reuseCompositionInformation = false)
-            :base(iocContainer, useApplication, reuseCompositionInformation)
+        protected NavigationBootstrapper(TIocContainerAdapter iocContainerAdapter, bool useApplication=true, bool reuseCompositionInformation = false)
+            :base(iocContainerAdapter, useApplication, reuseCompositionInformation)
         {
             
         }
@@ -48,8 +38,8 @@ namespace LogoFX.Client.Mvvm.Navigation
         /// <summary>
         /// Override this method to inject custom logic during bootstrapper configuration.
         /// </summary>
-        /// <param name="iocContainerAdapter">IoC container</param>
-        protected override void OnConfigure(TIocContainer iocContainerAdapter)
+        /// <param name="iocContainerAdapter">IoC container adapter.</param>
+        protected override void OnConfigure(TIocContainerAdapter iocContainerAdapter)
         {
             base.OnConfigure(iocContainerAdapter);
             iocContainerAdapter.RegisterInstance(NavigationService);
