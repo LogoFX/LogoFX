@@ -1,10 +1,4 @@
-﻿// Partial Copyright (c) LogoUI Software Solutions LTD
-// Partial Copyright (c) Puzzlehead LTD
-// Vlad Spivak, Igal Abachi
-// This source file is the part of LogoFX Framework http://logofx.codeplex.com
-// See accompanying licences and credits.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using LogoFX.Core;

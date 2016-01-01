@@ -1,9 +1,4 @@
-﻿// Partial Copyright (c) LogoUI Software Solutions LTD
-// Autor: Vladislav Spivak
-// This source file is the part of LogoFX Framework http://logofx.codeplex.com
-// See accompanying licences and credits.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -154,8 +149,10 @@ namespace LogoFX.Client.Mvvm.Model
             get { return _id; }
             set
             {
-                if (_id.Equals(value))
+                if (Equals(_id, value))
+                {
                     return;
+                }                
 
                 T oldValue = _id;
                 _id = value;
@@ -245,6 +242,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// <summary>
         /// Gets the list of properties associated with the current type.
         /// </summary>
+        [Obsolete]
 #if !SILVERLIGHT && !WinRT
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]        
 #endif
@@ -274,6 +272,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// <summary>
         /// IsReadOnly property
         /// </summary>
+        [Obsolete]
         public virtual bool IsReadOnly
         {
             get { return _isReadOnly; }

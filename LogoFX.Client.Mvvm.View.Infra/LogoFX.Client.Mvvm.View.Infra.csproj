@@ -61,6 +61,41 @@
     <Compile Include="Annotations.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\HeaderedContentControl.cs" />
+    <Compile Include="Controls\InteractionHelper.cs" />
+    <Compile Include="Controls\IUpdateVisualState.cs" />
+    <Compile Include="Controls\MatrixExtensions.cs" />
+    <Compile Include="Controls\PopupHeaderedContentControl.cs" />
+    <Compile Include="Controls\PopupHelper.cs" />
+    <Compile Include="Controls\PopupPlacement.cs" />
+    <Compile Include="Controls\RoutedPropertyChangingEventArgs.cs" />
+    <Compile Include="Controls\VisualStates.cs" />
+    <Compile Include="Converters\AddConstantConverter.cs" />
+    <Compile Include="Converters\AddConverter.cs" />
+    <Compile Include="Converters\BoolRevertConverter.cs" />
+    <Compile Include="Converters\BoolToConstConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\CultureDateTimeConverter.cs" />
+    <Compile Include="Converters\DebugConverter.cs" />
+    <Compile Include="Converters\DurationConverter.cs" />
+    <Compile Include="Converters\ElementToItemConverter.cs" />
+    <Compile Include="Converters\EnumConverter.cs" />
+    <Compile Include="Converters\EqualsToBooleanConverter.cs" />
+    <Compile Include="Converters\EqualsToVisibilityConverter.cs" />
+    <Compile Include="Converters\ImageConverters.cs" />
+    <Compile Include="Converters\IntervalConverter.cs" />
+    <Compile Include="Converters\IsSetToVisibilityConverter.cs" />
+    <Compile Include="Converters\ItemToContextConverter.cs" />
+    <Compile Include="Converters\MinDateToTextConverter.cs" />
+    <Compile Include="Converters\MulConstantConverter.cs" />
+    <Compile Include="Converters\NegativeConverter.cs" />
+    <Compile Include="Converters\NotNullConverter.cs" />
+    <Compile Include="Converters\PercentageFormatConverter.cs" />
+    <Compile Include="Converters\SubConstantConverter.cs" />
+    <Compile Include="Converters\SupressTwoWayConverter.cs" />
+    <Compile Include="Converters\TextFormatConverter.cs" />
+    <Compile Include="Converters\TimeToDoubleConverter.cs" />
+    <Compile Include="Interactivity\Actions\SetFocusAction.cs" />
     <Compile Include="Interactivity\Behaviors\PasswordHelper.cs" />
     <Compile Include="Interactivity\Behaviors\SelectTextOnFocusBehavior.cs" />
     <Compile Include="Interactivity\Behaviors\UpdateSourceOnChangeBehavior.cs" />
@@ -85,6 +120,8 @@
     <Compile Include="MarkupExtensions\LocalizedStringMarkupExtension.cs" />
     <Compile Include="MarkupExtensions\UpdatableMarkupExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\InteractivityHelper.cs" />
+    <Compile Include="Util\TreeHelper.cs" />
     <Compile Include="Xaml\SharedResourceDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
