@@ -42,12 +42,12 @@
       <HintPath>..\packages\Solid.Practices.IoC.1.0.6\lib\portable-net45+sl4+wp7+win8\Solid.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Middleware, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Middleware.1.0.4\lib\net451\Solid.Practices.Middleware.dll</HintPath>
+    <Reference Include="Solid.Practices.Middleware, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Middleware.1.0.6\lib\portable-net45+sl4+wp7+win8\Solid.Practices.Middleware.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Modularity, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Modularity.1.0.5\lib\net451\Solid.Practices.Modularity.dll</HintPath>
+    <Reference Include="Solid.Practices.Modularity, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Modularity.1.0.6\lib\portable-net4+sl4+wp7+win8\Solid.Practices.Modularity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

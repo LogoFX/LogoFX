@@ -146,28 +146,32 @@
       <HintPath>..\packages\Solid.Patterns.Memento.1.0.3.1\lib\net451\Solid.Patterns.Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.1.0.5\lib\net451\Solid.Practices.Composition.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.6\lib\net45\Solid.Practices.Composition.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.5\lib\net451\Solid.Practices.Composition.Desktop.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition.Core, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.6\lib\net45\Solid.Practices.Composition.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.6\lib\net45\Solid.Practices.Composition.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Practices.IoC.1.0.6\lib\portable-net45+sl4+wp7+win8\Solid.Practices.IoC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Middleware, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Middleware.1.0.4\lib\net451\Solid.Practices.Middleware.dll</HintPath>
+    <Reference Include="Solid.Practices.Middleware, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Middleware.1.0.6\lib\portable-net45+sl4+wp7+win8\Solid.Practices.Middleware.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Modularity, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Modularity.1.0.5\lib\net451\Solid.Practices.Modularity.dll</HintPath>
+    <Reference Include="Solid.Practices.Modularity, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Modularity.1.0.6\lib\portable-net4+sl4+wp7+win8\Solid.Practices.Modularity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Scheduling, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.4\lib\net451\Solid.Practices.Scheduling.dll</HintPath>
+    <Reference Include="Solid.Practices.Scheduling, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.6\lib\portable-net4+sl4+wp7+win8\Solid.Practices.Scheduling.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
