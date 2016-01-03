@@ -51,12 +51,12 @@
       <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.3\lib\net451\LogoFX.Client.Mvvm.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.6\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.6.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.6.1\lib\net451\LogoFX.Client.Mvvm.Model.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.6\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.Model.Contracts, Version=1.0.6.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Model.1.0.6.1\lib\net451\LogoFX.Client.Mvvm.Model.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.0.3.3, Culture=neutral, processorArchitecture=MSIL">
@@ -76,8 +76,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework" />
-    <Reference Include="Solid.Patterns.Memento, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Patterns.Memento.1.0.3.1\lib\net451\Solid.Patterns.Memento.dll</HintPath>
+    <Reference Include="Solid.Patterns.Memento, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Patterns.Memento.1.0.4\lib\portable-net4+sl4+wp7+win8\Solid.Patterns.Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

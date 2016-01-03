@@ -43,8 +43,8 @@
       <HintPath>..\packages\LogoFX.Core.1.0.3.4\lib\net451\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Patterns.Memento, Version=1.0.3.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Patterns.Memento.1.0.3.1\lib\net451\Solid.Patterns.Memento.dll</HintPath>
+    <Reference Include="Solid.Patterns.Memento, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Patterns.Memento.1.0.4\lib\portable-net4+sl4+wp7+win8\Solid.Patterns.Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
