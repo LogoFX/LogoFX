@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 
 namespace LogoFX.Core
-{    
+{
+    /// <summary>
+    /// Extension methods for <see cref="IEnumerable"/>
+    /// </summary>
     public static class EnumerableExtensions
     {
         /// <summary>

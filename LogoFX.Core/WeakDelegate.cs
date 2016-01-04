@@ -265,23 +265,43 @@ namespace LogoFX.Core
     /// legal.
     public class WeakNullReference<T> : WeakReference<T> where T : class
     {
+        /// <summary>
+        /// The instance of <see cref="WeakNullReference{T}"/>
+        /// </summary>
         public static readonly WeakNullReference<T> Singleton = new WeakNullReference<T>();
 
         private WeakNullReference() : base(null) { }
 
+        /// <summary>
+        /// Gets an indication whether the object referenced by the current <see cref="WeakReference{T}"/> object has been garbage collected.
+        /// </summary>
+        /// 
+        /// <returns>
+        /// true if the object referenced by the current <see cref="WeakReference{T}"/> object has not been garbage collected and is still accessible; otherwise, false.
+        /// </returns>
         public override bool IsAlive
         {
             get { return true; }
         }
     }
 
+    /// <summary>
     /// Adds strong typing to WeakReference.Target using generics. Also,
     /// the Create factory method is used in place of a constructor
     /// to handle the case where target is null, but we want the
     /// reference to still appear to be alive.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class WeakReference<T> where T : class
     {
         private readonly WeakReference _inner;
+
+
+        /// <summary>
+        /// Creates <see cref="WeakReference{T}"/> from the provided target.
+        /// </summary>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public static WeakReference<T> Create(T target)
         {
             if (target == null)
@@ -290,6 +310,11 @@ namespace LogoFX.Core
             return new WeakReference<T>(target);
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WeakReference{T}"/> class.
+        /// </summary>
+        /// <param name="target">The target.</param>
+        /// <exception cref="System.ArgumentNullException">target</exception>
         protected WeakReference(T target)
         {
             if (target == null) throw new ArgumentNullException("target");
@@ -297,11 +322,24 @@ namespace LogoFX.Core
 
         }
 
+        /// <summary>
+        /// Gets the weak reference's target.
+        /// </summary>
+        /// <value>
+        /// The target.
+        /// </value>
         public T Target
         {
             get { return (T)_inner.Target; }
         }
 
+        /// <summary>
+        /// Gets an indication whether the object referenced by the current <see cref="WeakReference{T}"/> object has been garbage collected.
+        /// </summary>
+        /// 
+        /// <returns>
+        /// true if the object referenced by the current <see cref="WeakReference{T}"/> object has not been garbage collected and is still accessible; otherwise, false.
+        /// </returns>
         public virtual bool IsAlive
         {
             get
@@ -328,8 +366,10 @@ namespace LogoFX.Core
         {
 #if WinRT
             Method = (MethodInfo)handler.GetType().GetRuntimeProperty("Method").GetValue(handler);
-#else
+#elif NET45            
             Method = handler.Method;
+#else
+            Method = handler.GetMethodInfo();
 #endif
         }
 

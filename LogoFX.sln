@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Core", "LogoFX.Core\LogoFX.Core.csproj", "{1FC8C6D3-261A-416F-95B8-F3C334FB283A}"
 EndProject
@@ -107,7 +107,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Core.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewModel.Tests", "LogoFX.Client.Mvvm.ViewModel.Tests\LogoFX.Client.Mvvm.ViewModel.Tests.csproj", "{630502EE-979F-4E80-BE5D-C4B0A6163F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.SpecFlow", "LogoFX.Client.Tests.SpecFlow\LogoFX.Client.Tests.SpecFlow.csproj", "{F5D2AB99-2779-4304-98BF-B3EE6967D4F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.Specflow", "LogoFX.Client.Tests.Specflow\LogoFX.Client.Tests.Specflow.csproj", "{F5D2AB99-2779-4304-98BF-B3EE6967D4F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.Model.Tests", "LogoFX.Client.Mvvm.Model.Tests\LogoFX.Client.Mvvm.Model.Tests.csproj", "{AFE013BB-1FAC-4266-A441-61EAB2B50867}"
 EndProject
@@ -152,6 +152,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewModel.Shared", "LogoFX.Client.Mvvm.ViewModel.Shared\LogoFX.Client.Mvvm.ViewModel.Shared.csproj", "{78CC7269-18EB-49C1-878B-00634A27A264}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{D078B102-DE4D-4C76-BD64-3584B6941080}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Core.NET45", "LogoFX.Core\LogoFX.Core.NET45.csproj", "{6945F333-2DE5-4CFD-8D11-FC0639634590}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -351,6 +353,10 @@ Global
 		{78CC7269-18EB-49C1-878B-00634A27A264}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78CC7269-18EB-49C1-878B-00634A27A264}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78CC7269-18EB-49C1-878B-00634A27A264}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6945F333-2DE5-4CFD-8D11-FC0639634590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6945F333-2DE5-4CFD-8D11-FC0639634590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6945F333-2DE5-4CFD-8D11-FC0639634590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6945F333-2DE5-4CFD-8D11-FC0639634590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -425,5 +431,6 @@ Global
 		{36644D8C-2D7D-4390-AE7F-1F3839242157} = {28D26B1E-DEE8-4880-B8D6-CDB6057AA866}
 		{78CC7269-18EB-49C1-878B-00634A27A264} = {D078B102-DE4D-4C76-BD64-3584B6941080}
 		{D078B102-DE4D-4C76-BD64-3584B6941080} = {1ECA8284-2CB4-4BE6-AF50-EACEFEDE86CC}
+		{6945F333-2DE5-4CFD-8D11-FC0639634590} = {2A39DB70-BA27-47BE-940A-97F0A7DFCBC7}
 	EndGlobalSection
 EndGlobal
