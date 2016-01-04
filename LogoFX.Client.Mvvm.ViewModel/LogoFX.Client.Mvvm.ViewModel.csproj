@@ -31,12 +31,12 @@
     <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Mvvm.ViewModel.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogoFX.Client.Core, Version=1.0.3.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.3.1\lib\net451\LogoFX.Client.Core.dll</HintPath>
+    <Reference Include="LogoFX.Client.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Core.1.0.4\lib\net45\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core.NET45, Version=1.0.3.4, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\LogoFX.Core.1.0.4\lib\net45\LogoFX.Core.NET45.dll</HintPath>
+    <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\LogoFX.Core.1.0.5\lib\net45\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework" />
@@ -75,13 +75,13 @@
     <Compile Include="WrappingCollectionExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModel.Contracts\LogoFX.Client.Mvvm.ViewModel.Contracts.csproj">
       <Project>{E2FFA98B-E7D6-4C7A-8B3F-FCA4CECDDA49}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModel.Contracts</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

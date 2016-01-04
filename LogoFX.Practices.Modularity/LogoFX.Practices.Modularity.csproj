@@ -30,8 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LogoFX.Core.NET45, Version=1.0.3.4, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\LogoFX.Core.1.0.4\lib\net45\LogoFX.Core.NET45.dll</HintPath>
+    <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\LogoFX.Core.1.0.5\lib\net45\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.IoC, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
