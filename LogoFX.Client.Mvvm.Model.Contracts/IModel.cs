@@ -10,8 +10,10 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     /// <typeparam name="T"></typeparam>
     public interface IModel<T> : 
         INotifyPropertyChanged, 
-        IHaveId<T>, 
-        IDataErrorInfo,
+        IHaveId<T>,
+#if NET45
+         IDataErrorInfo,
+#endif        
         INotifyDataErrorInfo,
         IHaveErrors,
         IHaveExternalErrors

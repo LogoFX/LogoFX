@@ -6,7 +6,10 @@ namespace LogoFX.Client.Mvvm.Model.Contracts
     /// <summary>
     /// Represents client model
     /// </summary>
-    public interface IClientModel : INotifyPropertyChanged, IDataErrorInfo
+    public interface IClientModel : INotifyPropertyChanged
+#if NET45
+          , IDataErrorInfo
+#endif
     {
         /// <summary>
         /// Returns a hash code for this instance.
