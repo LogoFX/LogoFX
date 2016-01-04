@@ -31,13 +31,12 @@ namespace LogoFX.Client.Core
         /// </summary>
         private PropertyChangedEventHandler _propertyChanged;
 
-#if !SILVERLIGHT && !WinRT
         /// <summary>
         /// Occurs when a property value changes.
         /// </summary>
+#if NET45        
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
 #endif
-
         public event PropertyChangedEventHandler PropertyChanged
         {
             add { this._propertyChanged += value; }
@@ -107,7 +106,10 @@ namespace LogoFX.Client.Core
             // The cast of "this" to TObject will always succeed due to the generic constraint on this class
             this._propertyChanged.Raise((TObject)this, expression);
         }
-        
+
+        /// <summary>
+        /// Notifies of all properties change.
+        /// </summary>
         protected void NotifyOfPropertiesChange()
         {
             // The cast of "this" to TObject will always succeed due to the generic constraint on this class
@@ -405,12 +407,12 @@ namespace LogoFX.Client.Core
             }
             if (memberExpression != null)
             {
-#if WinRT
-                Debug.Assert((memberExpression.Member is PropertyInfo),
-                             "propertySelector" + SELECTOR_MUSTBEPROP);
-#else
+#if NET45
                 Debug.Assert((memberExpression.Member.MemberType == MemberTypes.Property),
-                             "propertySelector", SELECTOR_MUSTBEPROP);
+                             "propertySelector", SELECTOR_MUSTBEPROP);               
+#else
+                Debug.Assert((memberExpression.Member is PropertyInfo),
+                            "propertySelector" + SELECTOR_MUSTBEPROP);
 #endif
 
                 return memberExpression.Member.Name;
@@ -429,12 +431,12 @@ namespace LogoFX.Client.Core
             var memberExpression = propertySelector.Body as MemberExpression;
             if (memberExpression != null)
             {
-#if WinRT
+#if NET45
+                Debug.Assert((memberExpression.Member.MemberType == MemberTypes.Property),
+                             "propertySelector", SELECTOR_MUSTBEPROP);                
+#else
                 Debug.Assert((memberExpression.Member is PropertyInfo),
                              "propertySelector" + SELECTOR_MUSTBEPROP);
-#else
-                Debug.Assert((memberExpression.Member.MemberType == MemberTypes.Property),
-                             "propertySelector", SELECTOR_MUSTBEPROP);
 #endif
                 return memberExpression;
             }
@@ -446,12 +448,12 @@ namespace LogoFX.Client.Core
                 var innerMemberExpression = unaryExpression.Operand as MemberExpression;
                 if (innerMemberExpression != null)
                 {
-#if WinRT
+#if NET45
+                    Debug.Assert((memberExpression.Member.MemberType == MemberTypes.Property),
+                                 "propertySelector", SELECTOR_MUSTBEPROP);                    
+#else
                     Debug.Assert((memberExpression.Member is PropertyInfo),
                                  "propertySelector" + SELECTOR_MUSTBEPROP);
-#else
-                    Debug.Assert((memberExpression.Member.MemberType == MemberTypes.Property),
-                                 "propertySelector", SELECTOR_MUSTBEPROP);
 #endif
                     return innerMemberExpression;
                 }
