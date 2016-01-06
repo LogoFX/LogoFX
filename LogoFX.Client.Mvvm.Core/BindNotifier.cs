@@ -53,18 +53,31 @@ namespace LogoFX.Client.Mvvm.Core
         private readonly Action<object, object> _callback;
         private bool _isDetached = false;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NotificationHelperDp"/> class.
+        /// </summary>
+        /// <param name="callback">The callback.</param>
         public NotificationHelperDp(Action<object, object> callback)
         {
             _callback = callback;
         }
 
+        /// <summary>
+        /// Gets or sets the bind value.
+        /// </summary>
+        /// <value>
+        /// The bind value.
+        /// </value>
         public object BindValue
         {
             get { return (object)GetValue(BindValueProperty); }
             set { SetValue(BindValueProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for BindValue.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for BindValue.  This enables animation, styling, binding, etc...        
+        /// <summary>
+        /// The bind value property
+        /// </summary>
         public static readonly DependencyProperty BindValueProperty =
             DependencyProperty.Register("BindValue", typeof(object), typeof(NotificationHelperDp),
                 new PropertyMetadata(null, OnBindValueChanged));
@@ -81,6 +94,9 @@ namespace LogoFX.Client.Mvvm.Core
                 that._callback(e.NewValue, e.OldValue);
         }
 
+        /// <summary>
+        /// Clears the bound value.
+        /// </summary>
         public void Detach()
         {
             _isDetached = true;

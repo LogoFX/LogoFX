@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE1E5DBB-B9AC-4FCD-87F2-0F99E6089ACF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogoFX.Client.Mvvm.Model</RootNamespace>
+    <AssemblyName>LogoFX.Client.Mvvm.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Bin\net45\Release\Client\</OutputPath>
+    <DefineConstants>TRACE;NET45</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="LogoFX.Client.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Core.1.0.4\lib\net45\LogoFX.Client.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Mvvm.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.4\lib\net45\LogoFX.Client.Mvvm.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.0.6\lib\net45\LogoFX.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Patterns.Memento, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Patterns.Memento.1.0.4\lib\portable-net4+sl4+wp7+win8\Solid.Patterns.Memento.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientModel.cs" />
+    <Compile Include="CompoundMemento.cs" />
+    <Compile Include="ConcurrentModelsCollection.cs" />
+    <Compile Include="EditableModel.cs" />
+    <Compile Include="EditableModel.Dirty.cs" />
+    <Compile Include="EditableModel.EditingLifecycle.cs" />
+    <Compile Include="EditableModel.Restore.cs" />
+    <Compile Include="EditableModel.Snapshot.cs" />
+    <Compile Include="EditableModel.UndoRedo.cs" />
+    <Compile Include="EditableSingleAttribute.cs" />
+    <Compile Include="ErrorInfoExtractionStrategy.cs" />
+    <Compile Include="ErrorInfoManager.cs" />
+    <Compile Include="ErrorService.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Model.Errors.cs" />
+    <Compile Include="ModelsCollection.cs" />
+    <Compile Include="ModelsCollectionBase.cs" />
+    <Compile Include="ObjectModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyData.cs" />
+    <Compile Include="RangeModelsCollection.cs" />
+    <Compile Include="RoundStack.cs" />
+    <Compile Include="StackWithNotifications.cs" />
+    <Compile Include="TypeInformationProvider.CancelChanges.cs" />
+    <Compile Include="TypeInformationProvider.cs" />
+    <Compile Include="TypeInformationProvider.Dirty.cs" />
+    <Compile Include="TypeInformationProvider.DataErrorInfo.cs" />
+    <Compile Include="TypeInformationProvider.NotifyDataErrorInfo.cs" />
+    <Compile Include="TypeInformationProvider.Snapshot.cs" />
+    <Compile Include="TypeInformationProvider.Validation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.NET45.csproj">
+      <Project>{cd93a053-1acc-4aa3-9255-bf8a8464cd3f}</Project>
+      <Name>LogoFX.Client.Mvvm.Model.Contracts.NET45</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
