@@ -10,6 +10,12 @@ namespace LogoFX.Client.Mvvm.Model
         private static readonly IErrorInfoManager NotifyDataErrorInfoSource =
             new ConcurrentErrorInfoManager();
 
+        public static IEnumerable<string> GetNotifyDataErrorInfoSources(Type type)
+        {
+            var props = type.GetProperties().ToArray();
+            return props.Where(t => IsPropertyNotifyDataErrorInfoSourceInternal(type, t.Name)).Select(k => k.Name);
+        }
+
         /// <summary>
         /// Determines whether property is an error source
         /// </summary>
@@ -101,16 +107,6 @@ namespace LogoFX.Client.Mvvm.Model
             )
         {
             return errorInfoManager[type][propertyName].GetValue(propertyContainer);
-        }
-
-        private static void AddErrorInfoDictionaryInternal<TErrorInfo>(Type type,
-            IErrorInfoManager errorInfoManager)
-        {
-            var props = type.GetProperties();
-            var dataErrorInfoDictionary =
-                props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(TErrorInfo)))
-                    .ToDictionary(t => t.Name, t => t);
-            errorInfoManager.Add(type, dataErrorInfoDictionary);
-        }       
+        }               
     }
 }

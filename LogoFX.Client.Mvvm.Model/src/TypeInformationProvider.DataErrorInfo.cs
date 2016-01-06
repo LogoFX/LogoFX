@@ -1,13 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace LogoFX.Client.Mvvm.Model
 {    
     partial class TypeInformationProvider
     {
         private static readonly IErrorInfoManager DataErrorInfoSource =
-            new ConcurrentErrorInfoManager(); 
+            new ConcurrentErrorInfoManager();
+
+        public static IEnumerable<string> GetDataErrorInfoSources(Type type)
+        {
+            var props = type.GetProperties().ToArray();
+            return props.Where(t => IsPropertyDataErrorInfoSourceInternal(type, t.Name)).Select(k => k.Name);
+        }
 
         /// <summary>
         /// Determines whether property is an error source
@@ -16,6 +23,11 @@ namespace LogoFX.Client.Mvvm.Model
         /// <param name="propertyName">Property name</param>
         /// <returns>True if property is an error source, false otherwise</returns>
         internal static bool IsPropertyDataErrorInfoSource(Type type, string propertyName)
+        {
+            return IsPropertyDataErrorInfoSourceInternal(type, propertyName);
+        }
+
+        private static bool IsPropertyDataErrorInfoSourceInternal(Type type, string propertyName)
         {
             return IsPropertyErrorInfoSourceInternal<IDataErrorInfo>(type, propertyName, DataErrorInfoSource);
         }

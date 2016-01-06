@@ -19,21 +19,21 @@ namespace LogoFX.Client.Mvvm.Model.Tests
     {       
         public CompositeEditableModel(string location)
         {                                      
-            Location = location; 
-            _person = new SimpleEditableModel();           
+            Location = location;
+            _person = new SimpleEditableModel();            
         }
 
         public CompositeEditableModel(string location, IEnumerable<int> phones)
         {
             Location = location;
-            _person = new SimpleEditableModel();
-            Phones.AddRange(phones);
+            _person = new SimpleEditableModel();            
+            Phones.AddRange(phones);            
         }
 
         public CompositeEditableModel(string location, IEnumerable<SimpleEditableModel> simpleCollection)
         {
             Location = location;
-            _person = new SimpleEditableModel();
+            _person = new SimpleEditableModel();            
             foreach (var simpleEditableModel in simpleCollection)
             {
                 _simpleCollection.Add(simpleEditableModel);

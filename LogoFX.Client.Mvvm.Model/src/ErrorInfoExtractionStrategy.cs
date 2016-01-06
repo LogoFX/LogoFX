@@ -7,6 +7,7 @@ namespace LogoFX.Client.Mvvm.Model
     interface IErrorInfoExtractionStrategy
     {
         IEnumerable<string> ExtractChildrenErrors(Type type, object propertyContainer);
+        IEnumerable<string> GetPropertyInfoSources(Type type);
         bool IsPropertyErrorInfoSource(Type type, string propertyName);        
         object GetErrorInfoSourceValue<T>(Type type, string propertyName, Model<T> model) where T : IEquatable<T>;
     }
@@ -22,6 +23,11 @@ namespace LogoFX.Client.Mvvm.Model
                     .Where(t => t != null)
                     .Select(t => t.Error)
                     .ToArray();
+        }
+
+        public IEnumerable<string> GetPropertyInfoSources(Type type)
+        {
+            return TypeInformationProvider.GetDataErrorInfoSources(type);
         }
 
         public bool IsPropertyErrorInfoSource(Type type, string propertyName)
@@ -47,6 +53,11 @@ namespace LogoFX.Client.Mvvm.Model
                     .Select(t => t.GetErrors(null))
                     .SelectMany(t => t.OfType<string>())
                     .ToArray();
+        }
+
+        public IEnumerable<string> GetPropertyInfoSources(Type type)
+        {
+            return TypeInformationProvider.GetNotifyDataErrorInfoSources(type);
         }
 
         public bool IsPropertyErrorInfoSource(Type type, string propertyName)

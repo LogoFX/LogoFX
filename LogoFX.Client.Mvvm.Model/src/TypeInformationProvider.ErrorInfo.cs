@@ -1,14 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 
 namespace LogoFX.Client.Mvvm.Model
 {
     partial class TypeInformationProvider
-    {
-        public static IEnumerable<PropertyInfo> GetPropertyErrorInfoSources<T>(Type type, Model<T> model) where T : IEquatable<T>
+    {        
+        private static void AddErrorInfoDictionaryInternal<TErrorInfo>(Type type,
+            IErrorInfoManager errorInfoManager)
         {
-            throw new NotImplementedException();
+            var props = type.GetProperties();
+            var dataErrorInfoDictionary =
+                props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(TErrorInfo)))
+                    .ToDictionary(t => t.Name, t => t);
+            errorInfoManager.Add(type, dataErrorInfoDictionary);
         }
     }
 }

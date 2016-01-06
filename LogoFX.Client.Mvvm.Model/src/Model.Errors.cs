@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 //// The BindNotifierSubscriber isn't used
@@ -38,11 +37,11 @@ namespace LogoFX.Client.Mvvm.Model
                 _errorInfoExtractionStrategy = new DataErrorInfoExtractionStrategy();                
             }
 #endif
-            //var properties = TypeInformationProvider.GetPropertyErrorInfoSources(Type, this);
-            //foreach (var property in properties)
-            //{
-                
-            //}
+            var propertyNames = _errorInfoExtractionStrategy.GetPropertyInfoSources(Type);
+            foreach (var propertyName in propertyNames)
+            {
+                SubscribeToInnerChange(propertyName);
+            }
             ListenToPropertyChange();                        
         }
 
@@ -59,15 +58,20 @@ namespace LogoFX.Client.Mvvm.Model
             {
                 return;
             }
-            var propertyValue = _errorInfoExtractionStrategy.GetErrorInfoSourceValue(Type, changedPropertyName, this);
+            SubscribeToInnerChange(changedPropertyName);
+            NotifyOfPropertyChange(() => Error);
+        }
+
+        private void SubscribeToInnerChange(string propertyName)
+        {
+            var propertyValue = _errorInfoExtractionStrategy.GetErrorInfoSourceValue(Type, propertyName, this);
             if (propertyValue != null)
             {
-                NotifyOfPropertyChange(() => Error);
                 var innerSource = propertyValue as INotifyPropertyChanged;
                 if (innerSource != null)
                 {
-                  innerSource.PropertyChanged += WeakDelegate.From(InnerSourceOnPropertyChanged);  
-                }               
+                    innerSource.PropertyChanged += WeakDelegate.From(InnerSourceOnPropertyChanged);
+                }
                 //propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
             }
         }
