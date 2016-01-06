@@ -1,6 +1,4 @@
-﻿#if !WINDOWS_PHONE
-#endif
-using System;
+﻿using System;
 using LogoFX.Client.Mvvm.Model.Contracts;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -25,7 +23,7 @@ namespace LogoFX.Client.Mvvm.Model
     /// <summary>
     /// Represents editable model with <see cref="int"/> as identifier.
     /// </summary>
-    public partial class EditableModel : EditableModel<int>
+    public class EditableModel : EditableModel<int>
     {
         
     }

@@ -138,6 +138,9 @@
     <Compile Include="..\src\TypeInformationProvider.Dirty.cs">
       <Link>TypeInformationProvider.Dirty.cs</Link>
     </Compile>
+    <Compile Include="..\src\TypeInformationProvider.ErrorInfo.cs">
+      <Link>TypeInformationProvider.ErrorInfo.cs</Link>
+    </Compile>
     <Compile Include="..\src\TypeInformationProvider.NotifyDataErrorInfo.cs">
       <Link>TypeInformationProvider.NotifyDataErrorInfo.cs</Link>
     </Compile>

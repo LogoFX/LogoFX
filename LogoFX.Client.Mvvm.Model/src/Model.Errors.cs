@@ -26,21 +26,24 @@ namespace LogoFX.Client.Mvvm.Model
 
         private void InitErrorListener()
         {
-            ListenToPropertyChange();
             var interfaces = Type.GetInterfaces().ToArray();
             //TODO: Add Chain-Of-Command
             if (interfaces.Contains(typeof(INotifyDataErrorInfo)))
             {
-                _errorInfoExtractionStrategy = new NotifyDataErrorInfoExtractionStrategy();
-                return;
+                _errorInfoExtractionStrategy = new NotifyDataErrorInfoExtractionStrategy();                
             }
 #if NET45
-            if (interfaces.Contains(typeof(IDataErrorInfo)))
+            else if (interfaces.Contains(typeof(IDataErrorInfo)))
             {
-                _errorInfoExtractionStrategy = new DataErrorInfoExtractionStrategy();
-                return;
+                _errorInfoExtractionStrategy = new DataErrorInfoExtractionStrategy();                
             }
 #endif
+            //var properties = TypeInformationProvider.GetPropertyErrorInfoSources(Type, this);
+            //foreach (var property in properties)
+            //{
+                
+            //}
+            ListenToPropertyChange();                        
         }
 
         private void ListenToPropertyChange()

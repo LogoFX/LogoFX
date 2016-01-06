@@ -111,6 +111,6 @@ namespace LogoFX.Client.Mvvm.Model
                 props.Where(t => t.PropertyType.GetInterfaces().Contains(typeof(TErrorInfo)))
                     .ToDictionary(t => t.Name, t => t);
             errorInfoManager.Add(type, dataErrorInfoDictionary);
-        }
+        }       
     }
 }
