@@ -22,13 +22,7 @@ namespace LogoFX.Client.Mvvm.Model
         /// </summary>
         protected ClientModel()
         {
-            var props = GetType()
-#if NET45
-                .GetProperties()
-#else
-                .GetTypeInfo().DeclaredProperties
-#endif
-            .ToArray();
+            var props = GetType().GetProperties().ToArray();
             foreach (var propertyInfo in props)
             {
                 var validationAttr = propertyInfo.GetCustomAttributes(typeof (ValidationAttribute), true).Cast<ValidationAttribute>().ToArray();
