@@ -6,9 +6,13 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
-#if NET45
-using LogoFX.Client.Mvvm.Core;
-#endif
+//// The BindNotifierSubscriber isn't used
+//// therefore we can save LogoFX.Client.Mvvm.Core package.
+
+//#if NET45
+//using LogoFX.Client.Mvvm.Core;
+//#endif
+
 using LogoFX.Core;
 
 namespace LogoFX.Client.Mvvm.Model
@@ -23,14 +27,7 @@ namespace LogoFX.Client.Mvvm.Model
         private void InitErrorListener()
         {
             ListenToPropertyChange();
-            var interfaces = Type
-#if NET45
-                .GetInterfaces()
-#else
-                .GetTypeInfo()
-                .ImplementedInterfaces
-#endif
-                .ToArray();
+            var interfaces = Type.GetInterfaces().ToArray();
             //TODO: Add Chain-Of-Command
             if (interfaces.Contains(typeof(INotifyDataErrorInfo)))
             {
@@ -54,16 +51,29 @@ namespace LogoFX.Client.Mvvm.Model
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             var changedPropertyName = e.PropertyName;
-            if (TypeInformationProvider.IsPropertyDataErrorInfoSource(Type, changedPropertyName) == false)
+
+            if (_errorInfoExtractionStrategy.IsPropertyErrorInfoSource(Type, changedPropertyName) == false)
             {
                 return;
             }
-            var propertyValue = TypeInformationProvider.GetDataErrorInfoSourceValue(Type, changedPropertyName, this);
+            var propertyValue = _errorInfoExtractionStrategy.GetErrorInfoSourceValue(Type, changedPropertyName, this);
             if (propertyValue != null)
             {
                 NotifyOfPropertyChange(() => Error);
-                //TODO: replace with another weak delegate subscriber.
-                propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
+                var innerSource = propertyValue as INotifyPropertyChanged;
+                if (innerSource != null)
+                {
+                  innerSource.PropertyChanged += WeakDelegate.From(InnerSourceOnPropertyChanged);  
+                }               
+                //propertyValue.NotifyOn("Error", (o, o1) => NotifyOfPropertyChange(() => Error));
+            }
+        }
+
+        private void InnerSourceOnPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        {
+            if (propertyChangedEventArgs.PropertyName == "Error")
+            {
+                NotifyOfPropertyChange(() => Error);
             }
         }
 

@@ -54,7 +54,9 @@ namespace LogoFX.Client.Mvvm.Model
         {
             var props = type.GetProperties();
             return props
-                .Where(t => t.PropertyType.GetInterfaces().Contains(typeof (ICanCancelChanges)))
+                .Where(t => t.PropertyType
+                .GetInterfaces()
+                .Contains(typeof (ICanCancelChanges)))
                 .ToDictionary(t => t.Name, t => t);
         }
 
@@ -64,6 +66,7 @@ namespace LogoFX.Client.Mvvm.Model
         private static IEnumerable<PropertyInfo> CalculateCanCancelChangesSourceCollectionProperties(Type type, object propertyContainer)
         {
             var props = type.GetProperties();
+                ;
             // ReSharper disable once LoopCanBeConvertedToQuery - Becomes unreadable
             foreach (var prop in props)
             {

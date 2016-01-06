@@ -7,7 +7,7 @@ namespace LogoFX.Client.Mvvm.Model
     /// <summary>
     /// A class used to group multiple mementos together, which can be pushed on to the undo stack as a single memento. 
     /// With this class, multiple consecutive actions can be recognized as a single action, which are undo as an entity. 
-    /// It also implements the <see cref="IMemento&lt;T&gt;"/> interface, which means one <see cref="CompoundMemento&lt;T&gt;"/> can be a 
+    /// It also implements the <see cref="IMemento{T}"/> interface, which means one <see cref="CompoundMemento{T}"/> can be a 
     /// member of another <see cref="CompoundMemento&lt;T&gt;"/>. Therefore it is possible to create hierachical mementos. 
     /// </summary>
     /// <seealso cref="IMemento{T}"/>

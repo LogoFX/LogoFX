@@ -31,19 +31,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LogoFX.Client.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.4\lib\net45\LogoFX.Client.Core.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.4\lib\net45\LogoFX.Client.Mvvm.Core.dll</HintPath>
+      <HintPath>..\..\packages\LogoFX.Client.Core.1.0.5\lib\net45\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.6\lib\net45\LogoFX.Core.dll</HintPath>
+      <HintPath>..\..\packages\LogoFX.Core.1.0.6.2\lib\net45\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Patterns.Memento, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Patterns.Memento.1.0.4\lib\portable-net4+sl4+wp7+win8\Solid.Patterns.Memento.dll</HintPath>
+    <Reference Include="Solid.Patterns.Memento, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Solid.Patterns.Memento.1.0.5\lib\portable-net45+wpa8+win8\Solid.Patterns.Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -58,40 +54,103 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ClientModel.cs" />
-    <Compile Include="CompoundMemento.cs" />
-    <Compile Include="ConcurrentModelsCollection.cs" />
-    <Compile Include="EditableModel.cs" />
-    <Compile Include="EditableModel.Dirty.cs" />
-    <Compile Include="EditableModel.EditingLifecycle.cs" />
-    <Compile Include="EditableModel.Restore.cs" />
-    <Compile Include="EditableModel.Snapshot.cs" />
-    <Compile Include="EditableModel.UndoRedo.cs" />
-    <Compile Include="EditableSingleAttribute.cs" />
-    <Compile Include="ErrorInfoExtractionStrategy.cs" />
-    <Compile Include="ErrorInfoManager.cs" />
-    <Compile Include="ErrorService.cs" />
-    <Compile Include="Extensions.cs" />
-    <Compile Include="Model.cs" />
-    <Compile Include="Model.Errors.cs" />
-    <Compile Include="ModelsCollection.cs" />
-    <Compile Include="ModelsCollectionBase.cs" />
-    <Compile Include="ObjectModel.cs" />
+    <Compile Include="..\src\ClientModel.cs">
+      <Link>ClientModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\CompoundMemento.cs">
+      <Link>CompoundMemento.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ConcurrentModelsCollection.cs">
+      <Link>ConcurrentModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableModel.cs">
+      <Link>EditableModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableModel.Dirty.cs">
+      <Link>EditableModel.Dirty.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableModel.EditingLifecycle.cs">
+      <Link>EditableModel.EditingLifecycle.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableModel.Restore.cs">
+      <Link>EditableModel.Restore.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableModel.Snapshot.cs">
+      <Link>EditableModel.Snapshot.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableModel.UndoRedo.cs">
+      <Link>EditableModel.UndoRedo.cs</Link>
+    </Compile>
+    <Compile Include="..\src\EditableSingleAttribute.cs">
+      <Link>EditableSingleAttribute.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ErrorInfoExtractionStrategy.cs">
+      <Link>ErrorInfoExtractionStrategy.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ErrorInfoManager.cs">
+      <Link>ErrorInfoManager.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ErrorService.cs">
+      <Link>ErrorService.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Extensions.cs">
+      <Link>Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Model.cs">
+      <Link>Model.cs</Link>
+    </Compile>
+    <Compile Include="..\src\Model.Errors.cs">
+      <Link>Model.Errors.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ModelsCollection.cs">
+      <Link>ModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ModelsCollectionBase.cs">
+      <Link>ModelsCollectionBase.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ObjectModel.cs">
+      <Link>ObjectModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\PropertyData.cs">
+      <Link>PropertyData.cs</Link>
+    </Compile>
+    <Compile Include="..\src\RangeModelsCollection.cs">
+      <Link>RangeModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ReflectionExtensions.cs">
+      <Link>ReflectionExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\src\RoundStack.cs">
+      <Link>RoundStack.cs</Link>
+    </Compile>
+    <Compile Include="..\src\StackWithNotifications.cs">
+      <Link>StackWithNotifications.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.CancelChanges.cs">
+      <Link>TypeInformationProvider.CancelChanges.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.cs">
+      <Link>TypeInformationProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.DataErrorInfo.cs">
+      <Link>TypeInformationProvider.DataErrorInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.Dirty.cs">
+      <Link>TypeInformationProvider.Dirty.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.NotifyDataErrorInfo.cs">
+      <Link>TypeInformationProvider.NotifyDataErrorInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.Snapshot.cs">
+      <Link>TypeInformationProvider.Snapshot.cs</Link>
+    </Compile>
+    <Compile Include="..\src\TypeInformationProvider.Validation.cs">
+      <Link>TypeInformationProvider.Validation.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyData.cs" />
-    <Compile Include="RangeModelsCollection.cs" />
-    <Compile Include="RoundStack.cs" />
-    <Compile Include="StackWithNotifications.cs" />
-    <Compile Include="TypeInformationProvider.CancelChanges.cs" />
-    <Compile Include="TypeInformationProvider.cs" />
-    <Compile Include="TypeInformationProvider.Dirty.cs" />
-    <Compile Include="TypeInformationProvider.DataErrorInfo.cs" />
-    <Compile Include="TypeInformationProvider.NotifyDataErrorInfo.cs" />
-    <Compile Include="TypeInformationProvider.Snapshot.cs" />
-    <Compile Include="TypeInformationProvider.Validation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.NET45.csproj">
+    <ProjectReference Include="..\..\LogoFX.Client.Mvvm.Model.Contracts\LogoFX.Client.Mvvm.Model.Contracts.NET45.csproj">
       <Project>{cd93a053-1acc-4aa3-9255-bf8a8464cd3f}</Project>
       <Name>LogoFX.Client.Mvvm.Model.Contracts.NET45</Name>
     </ProjectReference>

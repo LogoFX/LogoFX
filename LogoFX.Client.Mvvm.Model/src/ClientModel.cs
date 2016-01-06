@@ -26,9 +26,9 @@ namespace LogoFX.Client.Mvvm.Model
 #if NET45
                 .GetProperties()
 #else
-                .GetTypeInfo	()
+                .GetTypeInfo().DeclaredProperties
 #endif
-            .GetProperties().ToArray();
+            .ToArray();
             foreach (var propertyInfo in props)
             {
                 var validationAttr = propertyInfo.GetCustomAttributes(typeof (ValidationAttribute), true).Cast<ValidationAttribute>().ToArray();
