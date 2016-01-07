@@ -44,6 +44,7 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         }
 
         [Test]
+        [Ignore("This feature isn't supported yet")]
         public void InnerModelPropertyIsReset_ErrorNotificationIsRaised()
         {
             var compositeModel = new CompositeEditableModel("location");
