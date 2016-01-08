@@ -163,6 +163,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.Model.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.Model.NET45.Tests", "LogoFX.Client.Mvvm.Model.Tests\net45\LogoFX.Client.Mvvm.Model.NET45.Tests.csproj", "{0583BF7E-32B1-4909-BCCA-BBCF1D35933F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.Contracts", "LogoFX.Client.Tests.Contracts\LogoFX.Client.Tests.Contracts.csproj", "{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -381,6 +383,10 @@ Global
 		{0583BF7E-32B1-4909-BCCA-BBCF1D35933F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0583BF7E-32B1-4909-BCCA-BBCF1D35933F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0583BF7E-32B1-4909-BCCA-BBCF1D35933F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -460,5 +466,6 @@ Global
 		{EE1E5DBB-B9AC-4FCD-87F2-0F99E6089ACF} = {17D377D2-2E70-4140-AC6C-29A9356DA0B2}
 		{AFE013BB-1FAC-4266-A441-61EAB2B50867} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
 		{0583BF7E-32B1-4909-BCCA-BBCF1D35933F} = {E534B559-5905-4F1F-9EA3-50358E7707EF}
+		{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60} = {177AB724-0A12-44ED-9691-58293F10A922}
 	EndGlobalSection
 EndGlobal
