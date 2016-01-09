@@ -4,9 +4,16 @@ using TestStack.White;
 
 namespace LogoFX.Client.Tests.EndToEnd.White
 {
-    //for now
+    /// <summary>
+    /// Represents start application service for End-To-End tests.
+    /// </summary>
+    /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
     public class StartApplicationService : IStartApplicationService
     {
+        /// <summary>
+        /// Starts the application.
+        /// </summary>
+        /// <param name="startupPath">The startup path. In the integration tests case, it may be left empty.</param>
         public void StartApplication(string startupPath)
         {
             BuildersCollectionContext.SerializeBuilders();
