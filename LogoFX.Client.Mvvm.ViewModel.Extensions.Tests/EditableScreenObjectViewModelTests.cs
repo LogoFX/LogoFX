@@ -1,5 +1,4 @@
-﻿using Attest.Fake.Moq;
-using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+﻿using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Client.Mvvm.ViewModel.Shared;
 using LogoFX.Client.Tests.NUnit;
@@ -9,7 +8,7 @@ using NUnit.Framework;
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [TestFixture]
-    class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleContainerAdapter, FakeFactory, TestConductorViewModel,TestBootstrapper>
+    class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleContainerAdapter, TestConductorViewModel,TestBootstrapper>
     {
         protected override void OnAfterTeardown()
         {
