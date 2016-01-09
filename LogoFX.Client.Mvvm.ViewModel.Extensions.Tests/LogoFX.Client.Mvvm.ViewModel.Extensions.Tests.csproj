@@ -38,10 +38,6 @@
       <HintPath>..\packages\Attest.Fake.Core.1.0.7\lib\net451\Attest.Fake.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Moq, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Moq.1.0.7.1\lib\net451\Attest.Fake.Moq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Attest.Fake.Registration, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Attest.Fake.Registration.1.0.3\lib\net45\Attest.Fake.Registration.dll</HintPath>
       <Private>True</Private>
@@ -132,10 +128,6 @@
     </Reference>
     <Reference Include="LogoFX.Practices.Modularity, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Practices.Modularity.1.0.3\lib\net451\LogoFX.Practices.Modularity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
