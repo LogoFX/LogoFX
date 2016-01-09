@@ -105,7 +105,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Core.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.ViewModel.Tests", "LogoFX.Client.Mvvm.ViewModel.Tests\LogoFX.Client.Mvvm.ViewModel.Tests.csproj", "{630502EE-979F-4E80-BE5D-C4B0A6163F1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.Specflow", "LogoFX.Client.Tests.Specflow\LogoFX.Client.Tests.Specflow.csproj", "{F5D2AB99-2779-4304-98BF-B3EE6967D4F8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.SpecFlow", "LogoFX.Client.Tests.Specflow\LogoFX.Client.Tests.SpecFlow.csproj", "{F5D2AB99-2779-4304-98BF-B3EE6967D4F8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Practices.IoC.Tests", "LogoFX.Practices.IoC.Tests\LogoFX.Practices.IoC.Tests.csproj", "{4960E05A-C2E6-4EB1-A1AC-88198D752DCC}"
 EndProject
