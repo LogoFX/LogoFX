@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Attest.Fake.Builders;
 
-namespace LogoFX.Client.Tests.EndToEnd
+namespace LogoFX.Client.Tests.EndToEnd.Shared
 {
     internal static class BuildersCollectionContext
     {

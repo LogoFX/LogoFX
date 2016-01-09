@@ -3,10 +3,11 @@ using System.Linq;
 using Attest.Fake.Builders;
 using Attest.Fake.Moq;
 using Attest.Tests.Core;
+using LogoFX.Client.Tests.EndToEnd.Shared;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
-namespace LogoFX.Client.Tests.EndToEnd
+namespace LogoFX.Client.Tests.EndToEnd.Modularity
 {
     public abstract class ProvidersModuleBase<TContainerAdapter> : ICompositionModule<TContainerAdapter>
         where TContainerAdapter : IIocContainer
