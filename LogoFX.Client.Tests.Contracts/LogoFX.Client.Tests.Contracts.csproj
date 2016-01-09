@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Tests.Contracts.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Attest.Fake.Builders, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
