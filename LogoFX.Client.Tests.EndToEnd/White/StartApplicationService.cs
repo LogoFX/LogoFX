@@ -18,7 +18,7 @@ namespace LogoFX.Client.Tests.EndToEnd.White
         {
             BuildersCollectionContext.SerializeBuilders();
             ApplicationContext.Application = Application.Launch(startupPath);
-            ApplicationContext.Application.WaitWhileBusy();
+            ApplicationContext.Application.WaitWhileBusy();          
         }
     }    
 }

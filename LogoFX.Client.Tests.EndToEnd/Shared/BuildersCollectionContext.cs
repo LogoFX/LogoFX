@@ -9,7 +9,8 @@ namespace LogoFX.Client.Tests.EndToEnd.Shared
 {
     internal static class BuildersCollectionContext
     {
-        //TODO: The file name should be scenario-specific
+        //TODO: The file name should be scenario-specific in case of parallel End-To-End tests
+        //which run in the same directory - highly unlikely and thus has low priority.
         private const string SerializedBuildersPath = "SerializedBuildersCollection.Data";
 
         private static readonly BuildersCollection _buildersCollection = new BuildersCollection();
@@ -26,8 +27,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Shared
 
         public static void SerializeBuilders()
         {
-            var fileStream = new FileStream(SerializedBuildersPath,
-                                      FileMode.Create);
+            var fileStream = new FileStream(SerializedBuildersPath, FileMode.Create);
 
             var binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(fileStream, _buildersCollection);
@@ -36,8 +36,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Shared
 
         public static void DeserializeBuilders()
         {
-            var fs = new FileStream(SerializedBuildersPath,
-                                       FileMode.Open);
+            var fs = new FileStream(SerializedBuildersPath, FileMode.Open);
             var bf = new BinaryFormatter();
 
             var data = (BuildersCollection)bf.Deserialize(fs);

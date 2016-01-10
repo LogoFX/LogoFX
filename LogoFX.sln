@@ -175,6 +175,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EndToEnd", "EndToEnd", "{A2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.Integration.SpecFlow", "LogoFX.Client.Tests.Integration.SpecFlow\LogoFX.Client.Tests.Integration.SpecFlow.csproj", "{FEF4428C-81DA-4E0A-BC8C-080AE123D5A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Tests.Integration", "LogoFX.Client.Tests.Integration\LogoFX.Client.Tests.Integration.csproj", "{BB57B1D6-5C7E-4B3A-80E6-FBD2F2EFDB1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -409,6 +411,10 @@ Global
 		{FEF4428C-81DA-4E0A-BC8C-080AE123D5A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEF4428C-81DA-4E0A-BC8C-080AE123D5A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEF4428C-81DA-4E0A-BC8C-080AE123D5A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB57B1D6-5C7E-4B3A-80E6-FBD2F2EFDB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB57B1D6-5C7E-4B3A-80E6-FBD2F2EFDB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB57B1D6-5C7E-4B3A-80E6-FBD2F2EFDB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB57B1D6-5C7E-4B3A-80E6-FBD2F2EFDB1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -494,5 +500,6 @@ Global
 		{36468D8D-55FB-41BB-8DFC-3795274872B3} = {177AB724-0A12-44ED-9691-58293F10A922}
 		{A27CF071-C2D9-4EC9-9FCB-7BBA66E05803} = {177AB724-0A12-44ED-9691-58293F10A922}
 		{FEF4428C-81DA-4E0A-BC8C-080AE123D5A0} = {36468D8D-55FB-41BB-8DFC-3795274872B3}
+		{BB57B1D6-5C7E-4B3A-80E6-FBD2F2EFDB1E} = {36468D8D-55FB-41BB-8DFC-3795274872B3}
 	EndGlobalSection
 EndGlobal

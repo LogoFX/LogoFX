@@ -23,7 +23,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Modularity
         public void RegisterModule(TContainer iocContainer)
         {
             BuildersCollectionContext.DeserializeBuilders();
-            OnRegisterProviders(iocContainer);
+            OnRegisterProviders(iocContainer);            
         }
 
         /// <summary>

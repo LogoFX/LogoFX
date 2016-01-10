@@ -3,7 +3,7 @@ using LogoFX.Client.Tests.Contracts;
 using LogoFX.Client.Tests.EndToEnd.Shared;
 
 namespace LogoFX.Client.Tests.EndToEnd
-{
+{   
     /// <summary>
     /// Represents builder registration service for End-To-End tests.
     /// </summary>
