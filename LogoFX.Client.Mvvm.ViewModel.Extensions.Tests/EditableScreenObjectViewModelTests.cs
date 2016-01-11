@@ -1,15 +1,23 @@
-﻿using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
+﻿using Caliburn.Micro;
+using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Client.Mvvm.ViewModel.Shared;
 using LogoFX.Client.Tests.NUnit;
-using LogoFX.Client.Tests.Shared;
+using LogoFX.Client.Tests.Shared.Caliburn.Micro;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
 {
     [TestFixture]
-    class EditableScreenObjectViewModelTests : IntegrationTestsBaseWithActivation<ExtendedSimpleContainerAdapter, TestConductorViewModel,TestBootstrapper>
+    class EditableScreenObjectViewModelTests : IntegrationTestsBase<ExtendedSimpleContainerAdapter, TestConductorViewModel,TestBootstrapper>
     {
+        //Note: may use here IntegrationTestsBaseWithActivation as well - package still not available.
+        protected override TestConductorViewModel CreateRootObjectOverride(TestConductorViewModel rootObject)
+        {
+            ScreenExtensions.TryActivate(rootObject);
+            return rootObject;
+        }
+
         protected override void OnAfterTeardown()
         {
             base.OnAfterTeardown();

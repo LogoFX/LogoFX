@@ -14,8 +14,6 @@ namespace LogoFX.Client.Tests.SpecFlow
         Attest.Tests.SpecFlow.IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper>
         where TContainer : IIocContainer, new() where TRootViewModel : class
     {
-        private readonly InitializationParametersResolutionStyle _resolutionStyle;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="IntegrationTestsBase{TContainer, TRootViewModel, TBootstrapper}"/> class.
         /// </summary>
@@ -23,7 +21,6 @@ namespace LogoFX.Client.Tests.SpecFlow
         protected IntegrationTestsBase(InitializationParametersResolutionStyle resolutionStyle = InitializationParametersResolutionStyle.PerRequest)
             :base(resolutionStyle)
         {
-            _resolutionStyle = resolutionStyle;
         }
 
         /// <summary>
@@ -33,18 +30,6 @@ namespace LogoFX.Client.Tests.SpecFlow
         {
             base.SetupOverride();
             TestHelper.Setup();
-        }
-
-        /// <summary>
-        /// Called when the teardown finishes
-        /// </summary>
-        protected override void OnAfterTeardown()
-        {
-            base.OnAfterTeardown();
-            if (_resolutionStyle == InitializationParametersResolutionStyle.PerRequest)
-            {
-                TestHelper.Teardown();    
-            }            
-        }
+        }        
     }
 }

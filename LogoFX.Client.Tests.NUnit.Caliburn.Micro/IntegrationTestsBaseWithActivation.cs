@@ -2,7 +2,7 @@ using Attest.Tests.Core;
 using Caliburn.Micro;
 using Solid.Practices.IoC;
 
-namespace LogoFX.Client.Tests.NUnit
+namespace LogoFX.Client.Tests.NUnit.Caliburn.Micro
 {
     /// <summary>
     /// Base class for client integration tests which involve root object activation.
