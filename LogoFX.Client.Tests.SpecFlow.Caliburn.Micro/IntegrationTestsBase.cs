@@ -1,5 +1,5 @@
 ﻿using Attest.Tests.Core;
-using LogoFX.Client.Tests.Shared.Caliburn.Micro;
+using LogoFX.Client.Tests.Shared;
 using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Tests.SpecFlow.Caliburn.Micro
@@ -43,7 +43,7 @@ namespace LogoFX.Client.Tests.SpecFlow.Caliburn.Micro
             base.OnAfterTeardown();
             if (_resolutionStyle == InitializationParametersResolutionStyle.PerRequest)
             {
-                TestHelper.Teardown();    
+                Shared.Caliburn.Micro.TestHelper.Teardown();    
             }            
         }
     }

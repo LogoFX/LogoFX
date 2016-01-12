@@ -118,8 +118,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.3\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
+    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">

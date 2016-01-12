@@ -3,7 +3,7 @@
 namespace LogoFX.Client.Tests.Shared.Caliburn.Micro
 {
     /// <summary>
-    /// Helper class for setting the tests scheduler and dispatcher.
+    /// Helper class for test-related actions.
     /// </summary>
     public static class TestHelper
     {
