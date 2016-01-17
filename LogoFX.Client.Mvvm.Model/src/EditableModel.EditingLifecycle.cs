@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {
     public partial class EditableModel<T>
     {
-        private readonly Stack<IMemento<EditableModel<T>>> _editStack = new Stack<IMemento<EditableModel<T>>>();
-
         void IEditableObject.BeginEdit()
         {
+            //for now using the "forgiving" strategy
+            //where edit can "start" multiple times
+            //without throwing an exception
             MakeDirty();
             OnBeginEdit();
         }
