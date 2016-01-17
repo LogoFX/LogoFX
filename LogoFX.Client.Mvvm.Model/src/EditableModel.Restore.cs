@@ -11,7 +11,7 @@
 
         private void RestoreFromHistory()
         {
-            while (_history.CanUndo)
+            while (_history.CanUndo && (_checkPoint == null ||(_checkPoint != null && _checkPoint.Equals(_history.PeekUndo()) == false)))
             {
                 _history.Undo();
             }                        

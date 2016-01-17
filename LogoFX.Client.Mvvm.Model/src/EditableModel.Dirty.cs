@@ -11,11 +11,33 @@ using System.Linq;
 //#endif
 using LogoFX.Client.Mvvm.Model.Contracts;
 using LogoFX.Core;
+using Solid.Patterns.Memento;
 
 namespace LogoFX.Client.Mvvm.Model
 {
     partial class EditableModel<T>
     {
+        private Checkpoint _checkPoint;
+
+        class Checkpoint
+        {
+            private LogoFX.Core.WeakReference<IMemento<EditableModel<T>>> _memento;
+
+            public Checkpoint(EditableModel<T> model)
+            {
+                _memento = LogoFX.Core.WeakReference<IMemento<EditableModel<T>>>.Create(model._history.PeekUndo());
+            }
+
+            public bool Equals(IMemento<EditableModel<T>> other)
+            {
+                if (_memento == null || _memento.IsAlive == false)
+                {
+                    return other == null;
+                }
+                return _memento.Target.Equals(other);
+            }
+        }
+
         /// <summary>
         /// Represents an API for subscribing and unsubscribing to inner property notifications
         /// </summary>
@@ -122,8 +144,7 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
-        private bool _canCancelChanges = true;
-
+        private bool _canCancelChanges = true;        
         /// <summary>
         /// Returns the value that denotes whether the model's changes can be cancelled
         /// Setting this value explicitly to false will disable changes cancellation
@@ -174,7 +195,7 @@ namespace LogoFX.Client.Mvvm.Model
         }
 
         /// <summary>
-        /// Cancels the current changes in the Model
+        /// Cancels the current changes in the model
         /// </summary>
         public void CancelChanges()
         {
@@ -344,6 +365,26 @@ namespace LogoFX.Client.Mvvm.Model
         private void UnNotifyOnInnerChange(object notifyingObject)
         {
             _innerChangesSubscriber.UnsubscribeToNotifyingObjectChanges(notifyingObject);
+        }
+
+        /// <summary>
+        /// Commits the changes and cleans up the dirty (being edited) object state.
+        /// </summary>
+        public void CommitChanges()
+        {
+            _checkPoint = new Checkpoint(this);
+            ClearDirty(forceClearChildren:true);
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the model changes can be committed.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if the model changes can be committed; otherwise, <c>false</c>.
+        /// </value>
+        public bool CanCommitChanges
+        {
+            get { return IsDirty; }
         }
     }
 }

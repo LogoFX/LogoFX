@@ -117,6 +117,7 @@
     <Compile Include="IPagingViewModel.cs" />
     <Compile Include="ISaveChanges.cs" />
     <Compile Include="IWithSelection.cs" />
+    <Compile Include="Notifications\NotificationsHelper.cs" />
     <Compile Include="PagingItemListViewModel.cs" />
     <Compile Include="PagingItemListViewModelBase.cs" />
     <Compile Include="PagingScreenViewModel.cs" />

@@ -33,6 +33,24 @@ namespace LogoFX.Client.Mvvm.Model.Tests
         }
 
         [Test]
+        public void InnerModelAddedThenApplyChangesIsCalledThenInnerModelAddedThenCancelChangesIsCalled_ModelDataIsRestoredAndIsDirtyIsFalse()
+        {
+            var initialPhones = new[] { 546, 432 };
+            var compositeModel = new CompositeEditableModel("Here", initialPhones);
+
+            compositeModel.AddPhone(647);
+            compositeModel.CommitChanges();
+            compositeModel.AddPhone(555);
+            compositeModel.CancelChanges();
+
+            var phones = ((ICompositeEditableModel)compositeModel).Phones.ToArray();
+            var expectedPhones = new[] {546, 432, 647};
+            CollectionAssert.AreEqual(expectedPhones, phones);
+            var isCompositeDirty = compositeModel.IsDirty;
+            Assert.IsFalse(isCompositeDirty);
+        }
+
+        [Test]
         public void InnerModelInsideCollectionIsRemoved_CanCancelChangesIsTrue()
         {
             var simpleEditableModel = new SimpleEditableModel();

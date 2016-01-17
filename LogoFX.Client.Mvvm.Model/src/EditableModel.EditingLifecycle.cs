@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Solid.Patterns.Memento;
 
@@ -10,26 +11,33 @@ namespace LogoFX.Client.Mvvm.Model
 
         void IEditableObject.BeginEdit()
         {
-            var memento = new SnapshotMementoAdapter(this);
-            _editStack.Push(memento);
+            MakeDirty();
             OnBeginEdit();
         }
 
         void IEditableObject.EndEdit()
         {
-            var memento = _editStack.Pop();
-            _history.Do(memento);
+            if (CanCommitChanges == false)
+            {
+                throw new InvalidOperationException("Cannot commit changes. Please check that the object is in editing state.");
+            }
+            CommitChanges();
             OnEndEdit();
         }
 
         void IEditableObject.CancelEdit()
         {
+            if (CanCancelChanges == false)
+            {
+                throw new InvalidOperationException(
+                    "Cannot cancel changes. Please check that the object is in editing state and changes cancelation is permitted.");
+            }
+            CancelChanges();
             OnCancelEdit();
-            _editStack.Pop().Restore(this);
         }
 
         /// <summary>
-        /// Override this method to inject custom logic when the editing operation starts.
+        /// Override this method to inject custom logic after the editing operation starts.
         /// </summary>
         protected virtual void OnBeginEdit()
         {
@@ -37,7 +45,7 @@ namespace LogoFX.Client.Mvvm.Model
         }
 
         /// <summary>
-        /// Override this method to inject custom logic when the editing operation completes.
+        /// Override this method to inject custom logic after the editing operation completes.
         /// </summary>
         protected virtual void OnEndEdit()
         {
@@ -45,7 +53,7 @@ namespace LogoFX.Client.Mvvm.Model
         }
 
         /// <summary>
-        /// Override this method to inject custom logic when the editing operation is cancelled.
+        /// Override this method to inject custom logic after the editing operation is cancelled.
         /// </summary>
         protected virtual void OnCancelEdit()
         {
