@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System.Linq;
+using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Adapters.SimpleContainer;
 using LogoFX.Client.Mvvm.ViewModel.Services;
 using LogoFX.Client.Mvvm.ViewModel.Shared;
@@ -31,7 +32,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var mockMessageService = new FakeMessageService();
 
             var rootObject = CreateRootObject();
-            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);            
             simpleModel.Name = DataGenerator.ValidName;
             screenObjectViewModel.CloseCommand.Execute(null);
@@ -47,7 +48,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var mockMessageService = new FakeMessageService();
 
             var rootObject = CreateRootObject();
-            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);            
             screenObjectViewModel.CloseCommand.Execute(null);
 
@@ -63,7 +64,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             mockMessageService.SetMessageResult(MessageResult.Yes);
 
             var rootObject = CreateRootObject();
-            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);
             const string expectedValue = DataGenerator.ValidName;
             simpleModel.Name = expectedValue;
@@ -86,7 +87,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             RegisterInstance<IMessageService>(mockMessageService);
 
             var rootObject = CreateRootObject();         
-            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);                        
             simpleModel.Name = DataGenerator.ValidName;
             screenObjectViewModel.CloseCommand.Execute(null);
@@ -108,7 +109,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             mockMessageService.SetMessageResult(MessageResult.Cancel);
 
             var rootObject = CreateRootObject();
-            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);
             simpleModel.Name = newValue;
             screenObjectViewModel.CloseCommand.Execute(null);            
@@ -130,13 +131,33 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             RegisterInstance<IMessageService>(mockMessageService);
 
             var rootObject = CreateRootObject();
-            var screenObjectViewModel = new TestEditableScreenObjectViewModel(mockMessageService, simpleModel);
+            var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);
             simpleModel.Name = DataGenerator.ValidName;
             screenObjectViewModel.CloseCommand.Execute(null);
 
             var wasCalled = screenObjectViewModel.WasCancelingChangesCalled;
             Assert.True(wasCalled);
+        }
+
+        [Test]
+        public void WhenModelIsChangedAndChangesAreAppliedAndModelIsChangedAndChangesAreCancelled_ThenCorrectModelIsDisplayed()
+        {
+            var initialPhones = new[] { 546, 432 };
+            var compositeModel = new CompositeEditableModel("Here", initialPhones);
+            var mockMessageService = new FakeMessageService();            
+            
+            var rootObject = CreateRootObject();
+            var screenObjectViewModel = new TestEditableScreenCompositeObjectViewModel(mockMessageService, compositeModel);
+            rootObject.ActivateItem(screenObjectViewModel);
+            compositeModel.AddPhone(647);
+            screenObjectViewModel.ApplyCommand.Execute(null);
+            compositeModel.AddPhone(555);
+            screenObjectViewModel.CancelChangesCommand.Execute(null);
+
+            var phones = ((ICompositeEditableModel)compositeModel).Phones.ToArray();
+            var expectedPhones = new[] { 546, 432, 647 };
+            CollectionAssert.AreEqual(expectedPhones, phones);
         }
     }
 }
