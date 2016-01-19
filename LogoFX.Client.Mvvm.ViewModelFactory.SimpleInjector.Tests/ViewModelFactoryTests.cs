@@ -1,9 +1,25 @@
 ﻿using LogoFX.Client.Mvvm.ViewModel;
+using LogoFX.Practices.IoC.Extensions.SimpleInjector;
 using NUnit.Framework;
 using SimpleInjector;
 
 namespace LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector.Tests
 {
+    interface ISimpleModel
+    {
+         string Name { get; }
+    }
+
+    class SimpleModel : ISimpleModel
+    {
+        public SimpleModel(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; }
+    }
+
     [TestFixture]
     class ViewModelFactoryTests
     {
@@ -12,21 +28,21 @@ namespace LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector.Tests
             GivenDependencyHasOneParameterNamedModelAndDependencyIsRegisteredPerRequest_WhenModelWrapperIsCreated_ThenModelWrapperIsNotNull
             ()
         {
-            const string model = "6";
+            ISimpleModel model = new SimpleModel("6");
             var container = new Container();   
             container.Options.RegisterModelParameterConvention();
             container.Register<TestObjectViewModel>();
 
             var viewModelFactory = new ViewModelFactory(container);
-            var modelWrapper = viewModelFactory.CreateModelWrapper<string, TestObjectViewModel>(model);
+            var modelWrapper = viewModelFactory.CreateModelWrapper<ISimpleModel, TestObjectViewModel>(model);
 
             Assert.AreEqual(model, modelWrapper.Model);
         }
     }
 
-    class TestObjectViewModel : ObjectViewModel<string>
+    class TestObjectViewModel : ObjectViewModel<ISimpleModel>
     {
-        public TestObjectViewModel(string model)
+        public TestObjectViewModel(ISimpleModel model)
             :base(model)
         {
             

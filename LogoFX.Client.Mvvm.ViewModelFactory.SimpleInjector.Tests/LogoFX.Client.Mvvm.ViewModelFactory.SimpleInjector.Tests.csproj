@@ -73,6 +73,10 @@
       <Project>{b779cf43-965d-4295-8756-d758438fc0f2}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogoFX.Practices.IoC.Extensions.SimpleInjector\LogoFX.Practices.IoC.Extensions.SimpleInjector.csproj">
+      <Project>{8731C339-27A8-43DD-AAB6-240D82F03BD7}</Project>
+      <Name>LogoFX.Practices.IoC.Extensions.SimpleInjector</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

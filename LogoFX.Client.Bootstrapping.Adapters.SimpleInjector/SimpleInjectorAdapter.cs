@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using LogoFX.Client.Bootstrapping.Adapters.Contracts;
+using LogoFX.Practices.IoC.Extensions.SimpleInjector;
 using SimpleInjector;
 using Solid.Practices.IoC;
 
@@ -19,6 +20,7 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleInjector
         public SimpleInjectorAdapter()
         {
             _container.Options.AllowOverridingRegistrations = true;
+            _container.Options.RegisterModelParameterConvention();
             _container.RegisterSingleton(_container);
         }
 
