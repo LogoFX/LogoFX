@@ -42,12 +42,12 @@
       <HintPath>..\packages\Attest.Fake.Registration.1.0.3\lib\net45\Attest.Fake.Registration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Tests.Core, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.Core.1.0.9\lib\net45\Attest.Tests.Core.dll</HintPath>
+    <Reference Include="Attest.Tests.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.Core.1.1.0\lib\net45\Attest.Tests.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Tests.NUnit, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.NUnit.1.0.9\lib\net45\Attest.Tests.NUnit.dll</HintPath>
+    <Reference Include="Attest.Tests.NUnit, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.NUnit.1.1.0\lib\net45\Attest.Tests.NUnit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -110,8 +110,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.4\lib\net45\LogoFX.Client.Tests.Infra.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.NUnit, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.NUnit.1.0.5\lib\net45\LogoFX.Client.Tests.NUnit.dll</HintPath>
+    <Reference Include="LogoFX.Client.Tests.NUnit, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.NUnit.1.0.6\lib\net45\LogoFX.Client.Tests.NUnit.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Tests.Shared, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
