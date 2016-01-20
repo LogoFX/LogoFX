@@ -38,6 +38,27 @@ namespace LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector.Tests
 
             Assert.AreEqual(model, modelWrapper.Model);
         }
+
+        [Test]
+        [Ignore("Simple Injector doesn't support ctor parameters resolution per each call")]
+        public void
+            GivenDependencyHasOneParameterNamedModelAndDependencyIsRegisteredPerRequest_WhenTwoModelWrappersAreCreated_ThenModelWrappersAreDifferent
+            ()
+        {
+            ISimpleModel modelOne = new SimpleModel("6");
+            ISimpleModel modelTwo = new SimpleModel("7");
+            var container = new Container();
+            container.Options.RegisterModelParameterConvention();
+            container.Register<TestObjectViewModel>();
+
+            var viewModelFactory = new ViewModelFactory(container);
+            var modelWrapperOne = viewModelFactory.CreateModelWrapper<ISimpleModel, TestObjectViewModel>(modelOne);
+            var modelWrapperTwo = viewModelFactory.CreateModelWrapper<ISimpleModel, TestObjectViewModel>(modelTwo);
+
+            Assert.AreEqual(modelTwo, modelWrapperTwo.Model,
+                "Expected name is " + modelTwo.Name + " but the actual name is " + modelWrapperTwo.Model.Name);
+            Assert.AreNotSame(modelWrapperTwo.Model, modelWrapperOne.Model);
+        }
     }
 
     class TestObjectViewModel : ObjectViewModel<ISimpleModel>

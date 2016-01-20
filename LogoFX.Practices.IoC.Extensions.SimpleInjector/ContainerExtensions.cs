@@ -22,7 +22,7 @@ namespace LogoFX.Practices.IoC.Extensions.SimpleInjector
         }
 
         private static void RegisterParameterConventionInternal(ContainerOptions options, IParameterConvention convention)
-        {
+        {            
             options.DependencyInjectionBehavior = new ConventionDependencyInjectionBehavior(
                 options.DependencyInjectionBehavior, convention);
         }
@@ -76,6 +76,11 @@ namespace LogoFX.Practices.IoC.Extensions.SimpleInjector
             var localDataStoreSlot = Thread.GetNamedDataSlot(Consts.ModelParameterName);
             var model = Thread.GetData(localDataStoreSlot);
             return Expression.Constant(model, _modelType);
+            //var lambda =
+            //    Expression.Lambda<Func<object>>(
+            //        Expression.Constant(Thread.GetData(Thread.GetNamedDataSlot(Consts.ModelParameterName)), _modelType));
+            //return lambda;
+
         }
     }
 }
