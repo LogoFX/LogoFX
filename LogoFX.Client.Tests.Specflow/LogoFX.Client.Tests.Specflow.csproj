@@ -63,8 +63,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Contracts.1.0.4\lib\net45\LogoFX.Client.Tests.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.EndToEnd, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.EndToEnd.1.0.4\lib\net45\LogoFX.Client.Tests.EndToEnd.dll</HintPath>
+    <Reference Include="LogoFX.Client.Tests.EndToEnd, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.EndToEnd.1.0.6\lib\net45\LogoFX.Client.Tests.EndToEnd.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Tests.Infra, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
