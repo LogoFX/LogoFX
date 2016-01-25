@@ -1,5 +1,5 @@
 ﻿using LogoFX.Client.Tests.Contracts;
-using LogoFX.Client.Tests.EndToEnd.Shared;
+using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 
 namespace LogoFX.Client.Tests.EndToEnd.White
 {

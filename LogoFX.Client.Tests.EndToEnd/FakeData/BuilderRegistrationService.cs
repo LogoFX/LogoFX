@@ -1,8 +1,8 @@
 ﻿using Attest.Fake.Builders;
 using LogoFX.Client.Tests.Contracts;
-using LogoFX.Client.Tests.EndToEnd.Shared;
+using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 
-namespace LogoFX.Client.Tests.EndToEnd
+namespace LogoFX.Client.Tests.EndToEnd.FakeData
 {   
     /// <summary>
     /// Represents builder registration service for End-To-End tests.

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using LogoFX.Client.Tests.EndToEnd.Shared;
+using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Tests.EndToEnd.Tests

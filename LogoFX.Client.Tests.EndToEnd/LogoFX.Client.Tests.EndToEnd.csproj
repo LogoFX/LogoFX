@@ -76,11 +76,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BuilderRegistrationService.cs" />
+    <Compile Include="FakeData\BuilderRegistrationService.cs" />
     <Compile Include="White\ApplicationContext.cs" />
-    <Compile Include="Shared\BuildersCollectionContext.cs" />
+    <Compile Include="FakeData\Shared\BuildersCollectionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Modularity\ProvidersModuleBase.cs" />
+    <Compile Include="FakeData\Modularity\ProvidersModuleBase.cs" />
     <Compile Include="White\StartApplicationHelper.cs" />
     <Compile Include="White\StartApplicationService.cs" />
   </ItemGroup>

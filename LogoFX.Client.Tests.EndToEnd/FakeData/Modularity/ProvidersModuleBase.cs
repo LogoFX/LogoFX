@@ -2,11 +2,11 @@ using System;
 using System.Linq;
 using Attest.Fake.Builders;
 using Attest.Fake.Registration;
-using LogoFX.Client.Tests.EndToEnd.Shared;
+using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
-namespace LogoFX.Client.Tests.EndToEnd.Modularity
+namespace LogoFX.Client.Tests.EndToEnd.FakeData.Modularity
 {
     /// <summary>
     /// Base module for fake providers to be used in End-To-End tests.

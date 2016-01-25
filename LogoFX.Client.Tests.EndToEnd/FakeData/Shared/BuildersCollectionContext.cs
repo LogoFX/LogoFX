@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Attest.Fake.Builders;
 
-namespace LogoFX.Client.Tests.EndToEnd.Shared
+namespace LogoFX.Client.Tests.EndToEnd.FakeData.Shared
 {
     /// <summary>
     /// Allows to manage builders collection, including serialization/deserialization.
