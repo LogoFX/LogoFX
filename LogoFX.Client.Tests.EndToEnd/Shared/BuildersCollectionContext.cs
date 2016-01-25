@@ -7,7 +7,10 @@ using Attest.Fake.Builders;
 
 namespace LogoFX.Client.Tests.EndToEnd.Shared
 {
-    internal static class BuildersCollectionContext
+    /// <summary>
+    /// Allows to manage builders collection, including serialization/deserialization.
+    /// </summary>
+    public static class BuildersCollectionContext
     {
         //TODO: The file name should be scenario-specific in case of parallel End-To-End tests
         //which run in the same directory - highly unlikely and thus has low priority.
@@ -15,16 +18,29 @@ namespace LogoFX.Client.Tests.EndToEnd.Shared
 
         private static readonly BuildersCollection _buildersCollection = new BuildersCollection();
 
+        /// <summary>
+        /// Gets the builders of the specified service type.
+        /// </summary>
+        /// <typeparam name="TService">The type of the service.</typeparam>
+        /// <returns></returns>
         public static IEnumerable<FakeBuilderBase<TService>> GetBuilders<TService>() where TService : class
         {
             return _buildersCollection.GetBuilders<TService>();
         }
 
+        /// <summary>
+        /// Adds the builder of the specified service type.
+        /// </summary>
+        /// <typeparam name="TService">The type of the service.</typeparam>
+        /// <param name="builder">The builder.</param>
         public static void AddBuilder<TService>(FakeBuilderBase<TService> builder) where TService : class
         {
             _buildersCollection.AddBuilder(builder);
         }
 
+        /// <summary>
+        /// Serializes the builders.
+        /// </summary>
         public static void SerializeBuilders()
         {
             var fileStream = new FileStream(SerializedBuildersPath, FileMode.Create);
@@ -34,6 +50,9 @@ namespace LogoFX.Client.Tests.EndToEnd.Shared
             fileStream.Close();
         }
 
+        /// <summary>
+        /// Deserializes the builders.
+        /// </summary>
         public static void DeserializeBuilders()
         {
             var fs = new FileStream(SerializedBuildersPath, FileMode.Open);
@@ -45,8 +64,11 @@ namespace LogoFX.Client.Tests.EndToEnd.Shared
         }
     }
 
-    [Serializable]
-    internal class BuildersCollection
+    /// <summary>
+    /// Represents builders collection.
+    /// </summary>
+    [Serializable]    
+    public class BuildersCollection
     {
         private readonly List<object> _allBuilders = new List<object>();
 

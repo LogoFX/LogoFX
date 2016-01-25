@@ -81,7 +81,9 @@
     <Compile Include="Shared\BuildersCollectionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modularity\ProvidersModuleBase.cs" />
+    <Compile Include="White\StartApplicationHelper.cs" />
     <Compile Include="White\StartApplicationService.cs" />
+    <Compile Include="StartApplicationServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
