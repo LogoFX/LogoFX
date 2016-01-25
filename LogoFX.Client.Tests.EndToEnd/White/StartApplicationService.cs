@@ -1,18 +1,51 @@
-﻿namespace LogoFX.Client.Tests.EndToEnd.White
+﻿using LogoFX.Client.Tests.Contracts;
+using LogoFX.Client.Tests.EndToEnd.Shared;
+
+namespace LogoFX.Client.Tests.EndToEnd.White
 {
     /// <summary>
     /// Represents start application service for End-To-End tests.
     /// </summary>
     /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
-    public class StartApplicationService : StartApplicationServiceBase
+    public abstract class StartApplicationService : IStartApplicationService
     {
         /// <summary>
-        /// Implement this method to start application using concrete automation framework.
+        /// Represents start application service for End-To-End tests which use fake data providers.
+        /// </summary>
+        /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
+        public class WithFakeProviders : StartApplicationService
+        {
+            /// <summary>
+            /// Starts the application.
+            /// </summary>
+            /// <param name="startupPath">The startup path.</param>
+            public override void StartApplication(string startupPath)
+            {
+                BuildersCollectionContext.SerializeBuilders();
+                StartApplicationHelper.StartApplication(startupPath);
+            }
+        }
+
+        /// <summary>
+        /// Represents start application service for End-To-End tests which use real data providers.
+        /// </summary>
+        /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
+        public class WithRealProviders : StartApplicationService
+        {
+            /// <summary>
+            /// Starts the application.
+            /// </summary>
+            /// <param name="startupPath">The startup path.</param>
+            public override void StartApplication(string startupPath)
+            {
+                StartApplicationHelper.StartApplication(startupPath);
+            }
+        }
+
+        /// <summary>
+        /// Starts the application.
         /// </summary>
         /// <param name="startupPath">The startup path.</param>
-        protected override void StartApplicationImpl(string startupPath)
-        {
-           StartApplicationHelper.StartApplication(startupPath);
-        }
+        public abstract void StartApplication(string startupPath);
     }
 }

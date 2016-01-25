@@ -83,7 +83,6 @@
     <Compile Include="Modularity\ProvidersModuleBase.cs" />
     <Compile Include="White\StartApplicationHelper.cs" />
     <Compile Include="White\StartApplicationService.cs" />
-    <Compile Include="StartApplicationServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

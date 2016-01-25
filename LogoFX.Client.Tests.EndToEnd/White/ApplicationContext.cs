@@ -1,8 +1,7 @@
 ﻿using TestStack.White;
 
 namespace LogoFX.Client.Tests.EndToEnd.White
-{
-    //TODO: have to find better solution.     
+{      
     /// <summary>
     /// Ambient Context for <see cref="TestStack.White.Application"/>
     /// </summary>

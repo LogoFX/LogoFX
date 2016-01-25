@@ -6,24 +6,42 @@ using LogoFX.Client.Tests.EndToEnd.White;
 namespace LogoFX.Client.Tests.SpecFlow
 {
     /// <summary>
-    /// Base class for client end-to-end tests.
+    /// Base class for client End-To-End tests.
     /// </summary>    
     public abstract class EndToEndTestsBase :
         Attest.Tests.SpecFlow.EndToEndTestsBase        
-    {
+    {        
         /// <summary>
-        /// Initializes a new instance of the <see cref="EndToEndTestsBase"/> class.
+        /// Base class for client End-To-End tests which use fake data providers.
         /// </summary>
-        protected EndToEndTestsBase()
+        /// <seealso cref="EndToEndTestsBase" />
+        public abstract class WithFakeProviders : EndToEndTestsBase
         {
-            ScenarioHelper.Add(new StartApplicationService(), typeof(IStartApplicationService));
-            ScenarioHelper.Add(new BuilderRegistrationService(), typeof(IBuilderRegistrationService));
-            RegisterScreenObjectsCore();
+            /// <summary>
+            /// Initializes a new instance of the <see cref="EndToEndTestsBase.WithFakeProviders"/> class.
+            /// </summary>
+            protected WithFakeProviders()
+            {
+                ScenarioHelper.Add(new StartApplicationService.WithFakeProviders(), typeof(IStartApplicationService));
+                ScenarioHelper.Add(new BuilderRegistrationService(), typeof(IBuilderRegistrationService));
+                RegisterScreenObjectsCore();
+            }            
         }
 
-        private void RegisterScreenObjectsCore()
+        /// <summary>
+        /// Base class for client End-To-End tests which use real data providers.
+        /// </summary>
+        /// <seealso cref="EndToEndTestsBase" />
+        public abstract class WithRealProviders : EndToEndTestsBase
         {
-            RegisterScreenObjects();
+            /// <summary>
+            /// Initializes a new instance of the <see cref="EndToEndTestsBase.WithRealProviders"/> class.
+            /// </summary>
+            protected WithRealProviders()
+            {
+                ScenarioHelper.Add(new StartApplicationService.WithRealProviders(), typeof(IStartApplicationService));
+                RegisterScreenObjectsCore();
+            }
         }
 
         /// <summary>
@@ -32,6 +50,11 @@ namespace LogoFX.Client.Tests.SpecFlow
         protected virtual void RegisterScreenObjects()
         {
             
+        }
+
+        internal void RegisterScreenObjectsCore()
+        {
+            RegisterScreenObjects();
         }
 
         /// <summary>
