@@ -31,24 +31,24 @@
     <DocumentationFile>..\bin\Release\Client\LogoFX.Client.Tests.SpecFlow.Caliburn.Micro.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Attest.Fake.Builders, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Builders.1.0.7.1\lib\net451\Attest.Fake.Builders.dll</HintPath>
+    <Reference Include="Attest.Fake.Builders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Builders.1.0.8\lib\net45\Attest.Fake.Builders.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Core.1.0.7\lib\net451\Attest.Fake.Core.dll</HintPath>
+    <Reference Include="Attest.Fake.Core, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Core.1.0.8\lib\portable-net45+wpa8+win8\Attest.Fake.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Registration, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Registration.1.0.3\lib\net45\Attest.Fake.Registration.dll</HintPath>
+    <Reference Include="Attest.Fake.Registration, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Registration.1.0.8\lib\portable-net45+wpa8+win8\Attest.Fake.Registration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Tests.Core, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.Core.1.1.0\lib\net45\Attest.Tests.Core.dll</HintPath>
+    <Reference Include="Attest.Tests.Core, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.Core.1.1.1\lib\portable-net45+wpa8+win8\Attest.Tests.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Tests.SpecFlow, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Tests.SpecFlow.1.1.0\lib\net45\Attest.Tests.SpecFlow.dll</HintPath>
+    <Reference Include="Attest.Tests.SpecFlow, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Tests.SpecFlow.1.1.1\lib\portable-net45+wpa8+win8\Attest.Tests.SpecFlow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -75,6 +75,10 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Shim, Version=1.0.2.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
+      <HintPath>..\packages\shim.1.0.2.50909\lib\net45\Shim.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Practices.IoC.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.IoC.dll</HintPath>
       <Private>True</Private>
@@ -91,8 +95,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TechTalk.SpecFlow, Version=1.9.0.77, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    <Reference Include="TechTalk.SpecFlow, Version=2.0.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.2.0.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
