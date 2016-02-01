@@ -26,11 +26,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Bin\portable\Release\Client\</OutputPath>
+    <OutputPath>..\..\Bin\portable\Release\Client\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Bin\portable\Release\Client\LogoFX.Client.Mvvm.Model.Contracts.XML</DocumentationFile>
+    <DocumentationFile>..\..\Bin\portable\Release\Client\LogoFX.Client.Mvvm.Model.Contracts.XML</DocumentationFile>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
@@ -38,27 +38,69 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EditableList.cs" />
-    <Compile Include="ICanBeDirty.cs" />
-    <Compile Include="ICanCancelChanges.cs" />
-    <Compile Include="ICanCommitChanges.cs" />
-    <Compile Include="IClientModel.cs" />
-    <Compile Include="ICloneable.cs" />
-    <Compile Include="ICopyable.cs" />
-    <Compile Include="IEditableModel.cs" />
-    <Compile Include="IFilterModel.cs" />
-    <Compile Include="IHaveErrors.cs" />
-    <Compile Include="IHaveId.cs" />
-    <Compile Include="IInfoModelsCollection.cs" />
-    <Compile Include="IMergeable.cs" />
-    <Compile Include="IModel.cs" />
-    <Compile Include="IModelsCollection.cs" />
-    <Compile Include="IObjectModel.cs" />
-    <Compile Include="IPropertyData.cs" />
-    <Compile Include="IReadModelsCollection.cs" />
-    <Compile Include="IUndoRedo.cs" />
-    <Compile Include="IWriteModelsCollection.cs" />
-    <Compile Include="IWriteRangeModelsCollection.cs" />
+    <Compile Include="..\src\EditableList.cs">
+      <Link>EditableList.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ICanBeDirty.cs">
+      <Link>ICanBeDirty.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ICanCancelChanges.cs">
+      <Link>ICanCancelChanges.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ICanCommitChanges.cs">
+      <Link>ICanCommitChanges.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IClientModel.cs">
+      <Link>IClientModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ICloneable.cs">
+      <Link>ICloneable.cs</Link>
+    </Compile>
+    <Compile Include="..\src\ICopyable.cs">
+      <Link>ICopyable.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IEditableModel.cs">
+      <Link>IEditableModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IFilterModel.cs">
+      <Link>IFilterModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IHaveErrors.cs">
+      <Link>IHaveErrors.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IHaveId.cs">
+      <Link>IHaveId.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IInfoModelsCollection.cs">
+      <Link>IInfoModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IMergeable.cs">
+      <Link>IMergeable.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IModel.cs">
+      <Link>IModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IModelsCollection.cs">
+      <Link>IModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IObjectModel.cs">
+      <Link>IObjectModel.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IPropertyData.cs">
+      <Link>IPropertyData.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IReadModelsCollection.cs">
+      <Link>IReadModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IUndoRedo.cs">
+      <Link>IUndoRedo.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IWriteModelsCollection.cs">
+      <Link>IWriteModelsCollection.cs</Link>
+    </Compile>
+    <Compile Include="..\src\IWriteRangeModelsCollection.cs">
+      <Link>IWriteRangeModelsCollection.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
