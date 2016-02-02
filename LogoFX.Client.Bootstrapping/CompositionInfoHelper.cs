@@ -6,10 +6,10 @@ namespace LogoFX.Client.Bootstrapping
 {
     internal static class CompositionInfoHelper
     {
-        internal static ICompositionInitializationFacade GetCompositionInfo(string modulesPath, string[] prefixes, Type entryType, bool reuseCompositionInformation)
+        internal static ICompositionInitializationInfo GetCompositionInfo(string modulesPath, string[] prefixes, Type entryType, bool reuseCompositionInformation)
         {
             var rootPath = Environment.CurrentDirectory + modulesPath;
-            ICompositionInitializationFacade compositionInfo;
+            ICompositionInitializationInfo compositionInfo;
             if (reuseCompositionInformation == false)
             {
                 compositionInfo = CreateCompositionInfo(modulesPath, prefixes, entryType);
@@ -28,7 +28,7 @@ namespace LogoFX.Client.Bootstrapping
             return compositionInfo;
         }
 
-        private static CompositionInitializationFacade CreateCompositionInfo(
+        private static ICompositionInitializationInfo CreateCompositionInfo(
             string modulesPath, 
             string[] prefixes,
             Type entryType)

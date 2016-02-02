@@ -8,7 +8,7 @@ namespace LogoFX.Client.Bootstrapping
     partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter> : ICompositionModulesProvider
     {
         private readonly bool _reuseCompositionInformation;
-        private ICompositionInitializationFacade _compositionInfo;
+        private ICompositionInitializationInfo _compositionInfo;
 
         /// <summary>
         /// Gets the path of composition modules that will be discovered during bootstrapper configuration.

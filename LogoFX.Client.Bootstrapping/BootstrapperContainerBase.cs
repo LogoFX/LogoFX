@@ -1,13 +1,9 @@
-﻿using System.ComponentModel;
-using System.Linq;
+﻿using System.Linq;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Threading;
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Adapters.Contracts;
-using LogoFX.Core;
 using Solid.Practices.IoC;
-using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
 {    
@@ -22,7 +18,7 @@ namespace LogoFX.Client.Bootstrapping
  BootstrapperBase
 #else
         CaliburnApplication
-#endif        
+#endif               
         where TRootViewModel : class
         where TIocContainerAdapter : class, IIocContainer, IBootstrapperAdapter, new()
     {        
@@ -46,7 +42,7 @@ namespace LogoFX.Client.Bootstrapping
             :base(useApplication)
         {
             _iocContainerAdapter = iocContainerAdapter;
-            _reuseCompositionInformation = reuseCompositionInformation;
+            _reuseCompositionInformation = reuseCompositionInformation;            
             InitializeCompositionInfo();
             Initialize();
         }
@@ -72,41 +68,17 @@ namespace LogoFX.Client.Bootstrapping
         protected sealed override void Configure()
         {
             base.Configure();
-            InitializeDispatcher();
+            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.InitializeDispatcher();
+            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.RegisterCore(_iocContainerAdapter, _compositionInfo);            
             InitializeViewLocator();
             InitializeAdapter();            
-            RegisterCommon(_iocContainerAdapter);
-            RegisterViewsAndViewModels(_iocContainerAdapter);
-            RegisterCompositionModules(_iocContainerAdapter);
+            RegisterPlatformSpecificServices(_iocContainerAdapter);                        
             OnConfigure(_iocContainerAdapter);
         }
-
-        private static void InitializeDispatcher()
-        {
-            Dispatch.Current.InitializeDispatch();
-        }
-
-        private static void RegisterCommon(TIocContainerAdapter iocContainerAdapter)
+        
+        private static void RegisterPlatformSpecificServices(TIocContainerAdapter iocContainerAdapter)
         {
             iocContainerAdapter.RegisterSingleton<IWindowManager, WindowManager>();
-            iocContainerAdapter.RegisterSingleton<TRootViewModel, TRootViewModel>();
-            iocContainerAdapter.RegisterInstance(iocContainerAdapter);
-            iocContainerAdapter.RegisterInstance<IIocContainer>(iocContainerAdapter);
-        }
-
-        private void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer)
-        {            
-            Assemblies
-                .SelectMany(assembly => assembly.GetTypes())         
-                .Where(type => type != typeof(TRootViewModel) && type.Name.EndsWith("ViewModel"))                
-                .Where(type => !(string.IsNullOrWhiteSpace(type.Namespace)) && type.Namespace != null && type.Namespace.EndsWith("ViewModels"))                
-                .Where(type => type.GetInterface(typeof(INotifyPropertyChanged).Name, false) != null)
-                .ForEach(a => iocContainer.RegisterTransient(a, a));            
-        }
-
-        private void RegisterCompositionModules(TIocContainerAdapter iocContainerAdapter)
-        {
-            new ModuleRegistrator(Modules).RegisterModules(iocContainerAdapter);
         }
 
         /// <summary>

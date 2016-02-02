@@ -1,22 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51322595-4423-46D9-8AAD-7486FC87E15C}</ProjectGuid>
+    <ProjectGuid>{BC639B22-269A-4556-83F7-BBFC2A4BF570}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LogoFX.Client.Bootstrapping</RootNamespace>
-    <AssemblyName>LogoFX.Client.Bootstrapping.Platform</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <AssemblyName>LogoFX.Client.Bootstrapping</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Bin\Debug\Client\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,39 +32,23 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Bootstrapping.Platform.xml</DocumentationFile>
+    <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Bootstrapping.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Caliburn.Micro">
-      <HintPath>..\packages\Caliburn.Micro.Core.2.0.2\lib\net45\Caliburn.Micro.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Micro.Platform">
-      <HintPath>..\packages\Caliburn.Micro.2.0.2\lib\net45\Caliburn.Micro.Platform.dll</HintPath>
-    </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.Contracts.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.Adapters.Contracts.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
+    <Compile Include="BootstrapperHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="LogoFX.Client.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Core.1.0.5\lib\net45\LogoFX.Client.Core.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Client.Core.1.0.5\lib\portable-net45+wpa8+win8\LogoFX.Client.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.6.2\lib\net45\LogoFX.Core.dll</HintPath>
+      <HintPath>..\packages\LogoFX.Core.1.0.6.2\lib\portable-net45+wpa8+win8\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="Solid.Practices.Composition, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Practices.Composition.Core.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.Composition.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.7\lib\net45\Solid.Practices.Composition.Desktop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Solid.Practices.Composition.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.1.0.7\lib\net45\Solid.Practices.Composition.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
@@ -75,7 +63,6 @@
       <HintPath>..\packages\Solid.Practices.Modularity.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.Modularity.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
     <Reference Include="System.Composition.AttributedModel, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
       <Private>True</Private>
@@ -96,35 +83,11 @@
       <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BootstrapperContainerBase.Adapter.cs">
-      <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BootstrapperContainerBase.Composition.cs">
-      <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BootstrapperContainerBase.cs" />
-    <Compile Include="BootstrapperContainerBase.ViewLocator.cs">
-      <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CompositionInfoStorage.cs" />
-    <Compile Include="CompositionInfoHelper.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Client.Bootstrapping.Core\LogoFX.Client.Bootstrapping.Core.csproj">
-      <Project>{BC639B22-269A-4556-83F7-BBFC2A4BF570}</Project>
-      <Name>LogoFX.Client.Bootstrapping.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

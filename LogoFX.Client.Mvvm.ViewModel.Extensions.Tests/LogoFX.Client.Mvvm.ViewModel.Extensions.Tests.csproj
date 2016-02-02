@@ -62,8 +62,8 @@
       <HintPath>..\packages\JetBrains.Annotations.10.0.0\lib\net20\JetBrains.Annotations.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.6\lib\net45\LogoFX.Client.Bootstrapping.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Core.1.0.7\lib\portable-net45+wpa8+win8\LogoFX.Client.Bootstrapping.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping.Adapters.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -72,6 +72,10 @@
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping.Adapters.SimpleContainer, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.1.0.4\lib\net451\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Bootstrapping.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.7\lib\net45\LogoFX.Client.Bootstrapping.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
