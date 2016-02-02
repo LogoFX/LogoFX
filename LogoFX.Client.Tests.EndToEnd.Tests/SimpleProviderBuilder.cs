@@ -45,7 +45,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Tests
             var initSetup = ServiceCall<ISimpleProvider>.CreateServiceCall(FakeService);
 
             var setup = initSetup
-                .AddMethodCall(MethodCallWithResult0<ISimpleProvider, IEnumerable<SimpleItemDto>>
+                .AddMethodCall(MethodCallWithResult<ISimpleProvider, IEnumerable<SimpleItemDto>>
                         .CreateMethodCall(t => t.GetSimpleItems())
                         .BuildCallbacks(r => r.Complete(GetSimpleItems())));
 

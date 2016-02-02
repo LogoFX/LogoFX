@@ -46,12 +46,12 @@
       <HintPath>..\packages\Attest.Fake.Registration.1.0.8\lib\portable-net45+wpa8+win8\Attest.Fake.Registration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Setup, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Setup.1.0.7\lib\net451\Attest.Fake.Setup.dll</HintPath>
+    <Reference Include="Attest.Fake.Setup, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Setup.1.0.8\lib\portable-net45+wpa8+win8\Attest.Fake.Setup.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Attest.Fake.Setup.Contracts, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Attest.Fake.Setup.1.0.7\lib\net451\Attest.Fake.Setup.Contracts.dll</HintPath>
+    <Reference Include="Attest.Fake.Setup.Contracts, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Attest.Fake.Setup.1.0.8\lib\portable-net45+wpa8+win8\Attest.Fake.Setup.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Attest.Tests.Core, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
