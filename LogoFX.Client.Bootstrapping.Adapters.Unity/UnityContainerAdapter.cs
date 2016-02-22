@@ -94,7 +94,7 @@ namespace LogoFX.Client.Bootstrapping.Adapters.Unity
         /// <param name="dependencyType">Type of the dependency.</param><param name="handler">The handler.</param>
         public void RegisterHandler(Type dependencyType, Func<object> handler)
         {
-            _container.RegisterType(dependencyType, new InjectionFactory(context => handler));
+            _container.RegisterType(dependencyType, new InjectionFactory(context => handler()));
         }
 
         /// <summary>
@@ -103,7 +103,7 @@ namespace LogoFX.Client.Bootstrapping.Adapters.Unity
         /// <param name="handler">The handler.</param>
         public void RegisterHandler<TService>(Func<TService> handler) where TService : class
         {
-            _container.RegisterType<TService>(new InjectionFactory(context => handler));
+            _container.RegisterType<TService>(new InjectionFactory(context => handler()));
         }
 
         /// <summary>
