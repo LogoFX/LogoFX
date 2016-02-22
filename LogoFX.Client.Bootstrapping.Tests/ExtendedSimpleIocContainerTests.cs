@@ -43,5 +43,27 @@ namespace LogoFX.Client.Bootstrapping.Tests
 
             Assert.IsNull(dependency);
         }
+
+        [Test]
+        public void Given_WhenDependencyIsRegisteredViaHandlerAndDependencyIsResolved_ThenResolvedDependencyIsNotNull()
+        {
+            var container = new ExtendedSimpleContainerAdapter(new ExtendedSimpleContainer());
+            container.RegisterHandler<ITestDependency>(() => new TestDependency());
+            TestLifetimeScopeProvider.Current = new TestObject();
+            var dependency = container.Resolve<ITestDependency>();
+
+            Assert.IsNotNull(dependency);
+        }
+
+        [Test]
+        public void Given_WhenDependencyIsRegisteredViaHandlerAndDependencyIsResolvedTwice_ThenResolvedDependenciesAreDifferent()
+        {
+            var container = new ExtendedSimpleContainerAdapter(new ExtendedSimpleContainer());
+            container.RegisterHandler<ITestDependency>(() => new TestDependency());            
+            var dependencyOne = container.Resolve<ITestDependency>();
+            var dependencyTwo = container.Resolve<ITestDependency>();
+
+            Assert.AreNotSame(dependencyTwo, dependencyOne);
+        }
     }
 }

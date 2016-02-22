@@ -36,7 +36,7 @@ namespace LogoFX.Client.Bootstrapping.Adapters.Unity
         /// <typeparam name="TService">Type of dependency</typeparam>
         public void RegisterTransient<TService>() where TService : class
         {
-            _container.RegisterType<TService>();
+            _container.RegisterType<TService>();            
         }
 
         /// <summary>
@@ -86,6 +86,24 @@ namespace LogoFX.Client.Bootstrapping.Adapters.Unity
         public void RegisterInstance(Type dependencyType, object instance)
         {
             _container.RegisterInstance(dependencyType, instance, new ContainerControlledLifetimeManager());
+        }
+
+        /// <summary>
+        /// Registers the dependency via the handler.
+        /// </summary>
+        /// <param name="dependencyType">Type of the dependency.</param><param name="handler">The handler.</param>
+        public void RegisterHandler(Type dependencyType, Func<object> handler)
+        {
+            _container.RegisterType(dependencyType, new InjectionFactory(context => handler));
+        }
+
+        /// <summary>
+        /// Registers the dependency via the handler.
+        /// </summary>
+        /// <param name="handler">The handler.</param>
+        public void RegisterHandler<TService>(Func<TService> handler) where TService : class
+        {
+            _container.RegisterType<TService>(new InjectionFactory(context => handler));
         }
 
         /// <summary>

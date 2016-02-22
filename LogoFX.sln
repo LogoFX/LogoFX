@@ -191,6 +191,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Mvvm.Model.Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Core", "LogoFX.Client.Bootstrapping.Core\LogoFX.Client.Bootstrapping.Core.csproj", "{BC639B22-269A-4556-83F7-BBFC2A4BF570}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{0F78E18F-5480-4BF2-AEB7-EA6B2AE2D744}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Data.Fake.ProviderBuilders", "LogoFX.Client.Data.Fake.ProviderBuilders\LogoFX.Client.Data.Fake.ProviderBuilders.csproj", "{1CE42C14-9D1D-4867-BDC5-D510DC513E3C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -457,6 +461,10 @@ Global
 		{BC639B22-269A-4556-83F7-BBFC2A4BF570}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC639B22-269A-4556-83F7-BBFC2A4BF570}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC639B22-269A-4556-83F7-BBFC2A4BF570}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE42C14-9D1D-4867-BDC5-D510DC513E3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE42C14-9D1D-4867-BDC5-D510DC513E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE42C14-9D1D-4867-BDC5-D510DC513E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE42C14-9D1D-4867-BDC5-D510DC513E3C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -550,5 +558,7 @@ Global
 		{CD93A053-1ACC-4AA3-9255-BF8A8464CD3F} = {17D377D2-2E70-4140-AC6C-29A9356DA0B2}
 		{28C459B3-0E33-4052-B8FE-EBD532D65AAB} = {17D377D2-2E70-4140-AC6C-29A9356DA0B2}
 		{BC639B22-269A-4556-83F7-BBFC2A4BF570} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
+		{0F78E18F-5480-4BF2-AEB7-EA6B2AE2D744} = {3CD5EE40-92FB-4E3B-95C9-BEE40E1131AB}
+		{1CE42C14-9D1D-4867-BDC5-D510DC513E3C} = {0F78E18F-5480-4BF2-AEB7-EA6B2AE2D744}
 	EndGlobalSection
 EndGlobal

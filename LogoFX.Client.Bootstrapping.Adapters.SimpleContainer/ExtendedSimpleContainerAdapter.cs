@@ -124,6 +124,24 @@ namespace LogoFX.Client.Bootstrapping.Adapters.SimpleContainer
         }
 
         /// <summary>
+        /// Registers the dependency via the handler.
+        /// </summary>
+        /// <param name="dependencyType">Type of the dependency.</param><param name="handler">The handler.</param>
+        public void RegisterHandler(Type dependencyType, Func<object> handler)
+        {
+            _container.RegisterHandler(dependencyType, null, (container, args) => handler());
+        }
+
+        /// <summary>
+        /// Registers the dependency via the handler.
+        /// </summary>
+        /// <param name="handler">The handler.</param>
+        public void RegisterHandler<TService>(Func<TService> handler) where TService : class
+        {
+           _container.RegisterHandler(typeof(TService), null, (container, args) => handler()); 
+        }        
+
+        /// <summary>
         /// Determines whether the specified service has handler.
         /// </summary>
         /// <param name="service">The service.</param>
