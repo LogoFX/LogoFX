@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using Attest.Fake.Builders;
+using Attest.Fake.Moq;
 using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 using NUnit.Framework;
 
@@ -32,6 +34,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Tests
                     Quantity = 6
                 }
             };
+            FakeFactoryContext.Current = new FakeFactory();
             var simpleBuilder = SimpleProviderBuilder.CreateBuilder();
             simpleBuilder.WithWarehouseItems(items);
 

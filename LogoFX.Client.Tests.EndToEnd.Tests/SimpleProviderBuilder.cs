@@ -24,7 +24,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Tests
     {
         private readonly List<SimpleItemDto> _warehouseItemsStorage = new List<SimpleItemDto>();
 
-        private SimpleProviderBuilder() :base(new FakeFactory())
+        private SimpleProviderBuilder()
         {
 
         }
@@ -49,7 +49,7 @@ namespace LogoFX.Client.Tests.EndToEnd.Tests
                         .CreateMethodCall(t => t.GetSimpleItems())
                         .BuildCallbacks(r => r.Complete(GetSimpleItems())));
 
-            setup.SetupService();
+            setup.Build();
         }
 
         private IEnumerable<SimpleItemDto> GetSimpleItems()
