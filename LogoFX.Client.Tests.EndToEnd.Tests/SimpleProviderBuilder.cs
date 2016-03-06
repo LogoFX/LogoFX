@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Attest.Fake.Builders;
-using Attest.Fake.Moq;
 using Attest.Fake.Setup;
 
 namespace LogoFX.Client.Tests.EndToEnd.Tests
@@ -45,9 +44,9 @@ namespace LogoFX.Client.Tests.EndToEnd.Tests
             var initSetup = ServiceCall<ISimpleProvider>.CreateServiceCall(FakeService);
 
             var setup = initSetup
-                .AddMethodCall(MethodCallWithResult<ISimpleProvider, IEnumerable<SimpleItemDto>>
-                        .CreateMethodCall(t => t.GetSimpleItems())
-                        .BuildCallbacks(r => r.Complete(GetSimpleItems())));
+                .AddMethodCallWithResult(MethodCallWithResult<ISimpleProvider, IEnumerable<SimpleItemDto>>
+                    .CreateMethodCall(t => t.GetSimpleItems())
+                    .BuildCallbacks(r => r.Complete(GetSimpleItems())));
 
             setup.Build();
         }
