@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Linq;
 using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.Model.Tests

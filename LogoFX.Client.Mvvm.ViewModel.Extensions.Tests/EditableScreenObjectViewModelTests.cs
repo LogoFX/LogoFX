@@ -107,7 +107,7 @@ namespace LogoFX.Client.Mvvm.ViewModel.Extensions.Tests
             var simpleModel = new SimpleEditableModel(initialValue, 20);
             var mockMessageService = new FakeMessageService();
             mockMessageService.SetMessageResult(MessageResult.Cancel);
-
+           
             var rootObject = CreateRootObject();
             var screenObjectViewModel = new TestEditableScreenSimpleObjectViewModel(mockMessageService, simpleModel);
             rootObject.ActivateItem(screenObjectViewModel);

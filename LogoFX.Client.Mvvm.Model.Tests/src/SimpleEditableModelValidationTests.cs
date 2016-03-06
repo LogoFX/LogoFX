@@ -1,5 +1,4 @@
-﻿using LogoFX.Client.Mvvm.Model.Contracts;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace LogoFX.Client.Mvvm.Model.Tests
 {
