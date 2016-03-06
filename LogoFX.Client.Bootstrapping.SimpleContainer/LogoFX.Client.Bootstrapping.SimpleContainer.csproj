@@ -47,8 +47,8 @@
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.Contracts.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.Adapters.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.SimpleContainer, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.1.0.4\lib\net451\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.SimpleContainer, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.1.0.5\lib\net451\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Bootstrapping.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">

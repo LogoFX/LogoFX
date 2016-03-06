@@ -66,8 +66,8 @@
       <HintPath>..\packages\Solid.Patterns.Memento.1.0.5\lib\portable-net45+wpa8+win8\Solid.Patterns.Memento.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Scheduling, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.6\lib\portable-net4+sl4+wp7+win8\Solid.Practices.Scheduling.dll</HintPath>
+    <Reference Include="Solid.Practices.Scheduling, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Scheduling.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.Scheduling.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
