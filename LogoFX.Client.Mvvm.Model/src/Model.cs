@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+#if NET45
 using System.ComponentModel;
+#endif
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
@@ -136,9 +138,9 @@ namespace LogoFX.Client.Mvvm.Model
             _description = other.Description;
         }
 
-        #region Public Properties 
+#region Public Properties 
 
-        #region Id property
+#region Id property
         
         private T _id;
         /// <summary>
@@ -170,9 +172,9 @@ namespace LogoFX.Client.Mvvm.Model
         {
         }
 
-        #endregion
+#endregion
 
-        #region Name property
+#region Name property
         
         [DataMember(Name="Name")]
         private string _name;
@@ -203,9 +205,9 @@ namespace LogoFX.Client.Mvvm.Model
         {
         }
 
-        #endregion
+#endregion
 
-        #region Description property
+#region Description property
         
         [DataMember(Name = "Description")]
         private string _description;
@@ -236,7 +238,7 @@ namespace LogoFX.Client.Mvvm.Model
         {
         }
 
-        #endregion
+#endregion
 
 
         /// <summary>
@@ -264,9 +266,9 @@ namespace LogoFX.Client.Mvvm.Model
             }
         }
 
-        #endregion
+#endregion
 
-        #region IsReadOnly property
+#region IsReadOnly property
         
         private bool _isReadOnly;
         /// <summary>
@@ -297,9 +299,9 @@ namespace LogoFX.Client.Mvvm.Model
         {
         }
 
-        #endregion
+#endregion
 
-        #region Overrides  
+#region Overrides  
               
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.
@@ -312,7 +314,7 @@ namespace LogoFX.Client.Mvvm.Model
             return string.IsNullOrWhiteSpace(Name)?base.ToString():Name;
         }
 
-        #endregion
+#endregion
     }
 
     /// <summary>

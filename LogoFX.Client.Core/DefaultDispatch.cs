@@ -1,5 +1,7 @@
-﻿using System.Threading;
+﻿#if !NET45
+using System.Threading;
 using System.Threading.Tasks;
+#endif
 using LogoFX.Client.Core;
 
 // ReSharper disable once CheckNamespace

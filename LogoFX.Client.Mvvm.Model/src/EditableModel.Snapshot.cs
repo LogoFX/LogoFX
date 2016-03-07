@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if !NET45
+using System;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
