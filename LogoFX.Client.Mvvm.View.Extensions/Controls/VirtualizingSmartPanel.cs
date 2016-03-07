@@ -7,6 +7,12 @@ using LogoFX.Client.Mvvm.ViewModel.Extensions;
 
 namespace LogoFX.Client.Mvvm.View.Extensions.Controls
 {
+    /// <summary>
+    /// This panel allows smart virtualization.
+    /// </summary>
+    /// <seealso cref="System.Windows.Controls.VirtualizingPanel" />
+    /// <seealso cref="System.Windows.Controls.Primitives.IScrollInfo" />
+    /// <seealso cref="LogoFX.Client.Mvvm.ViewModel.Extensions.IPageInfo" />
     public sealed class VirtualizingSmartPanel : VirtualizingPanel, IScrollInfo, IPageInfo
     {
         #region Fields
@@ -21,8 +27,9 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
 
         #endregion
 
-        #region Constructors
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="VirtualizingSmartPanel"/> class.
+        /// </summary>
         public VirtualizingSmartPanel()
         {
             CanVerticallyScroll = false;
@@ -30,10 +37,11 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
             Loaded += (sender, args) => InvalidateMeasure();
         }
 
-        #endregion
-
         #region Dependency Properties
 
+        /// <summary>
+        /// Defines a <see cref="DependencyProperty" /> for item width.
+        /// </summary>
         public static readonly DependencyProperty ItemWidthProperty =
             DependencyProperty.Register(
                 "ItemWidth",
@@ -43,6 +51,9 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
                     64d,
                     FrameworkPropertyMetadataOptions.AffectsMeasure));
 
+        /// <summary>
+        /// Defines a <see cref="DependencyProperty"/> for item height.
+        /// </summary>
         public static readonly DependencyProperty ItemHeightProperty =
             DependencyProperty.Register(
                 "ItemHeight",
@@ -56,18 +67,27 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
 
         #region Public Properties
 
+        /// <summary>
+        /// Gets or sets the item width.
+        /// </summary>
         public double ItemWidth
         {
             get { return (double)GetValue(ItemWidthProperty); }
             set { SetValue(ItemWidthProperty, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the item height.
+        /// </summary>
         public double ItemHeight
         {
             get { return (double)GetValue(ItemHeightProperty); }
             set { SetValue(ItemHeightProperty, value); }
         }
 
+        /// <summary>
+        /// Gets or sets the value whether the paging is allowed.
+        /// </summary>
         public bool AllowPaging { get; set; }
 
         #endregion
@@ -238,11 +258,22 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
 
         #region Overrides
 
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.FrameworkElement.Initialized"/> event. This method is invoked whenever <see cref="P:System.Windows.FrameworkElement.IsInitialized"/> is set to true internally. 
+        /// </summary>
+        /// <param name="e">The <see cref="T:System.Windows.RoutedEventArgs"/> that contains the event data.</param>
         protected override void OnInitialized(EventArgs e)
         {
             _itemsOwner = ItemsControl.GetItemsOwner(this);
         }
 
+        /// <summary>
+        /// When overridden in a derived class, measures the size in layout required for child elements and determines a size for the <see cref="T:System.Windows.FrameworkElement"/>-derived class. 
+        /// </summary>
+        /// <returns>
+        /// The size that this element determines it needs during layout, based on its calculations of child element sizes.
+        /// </returns>
+        /// <param name="availableSize">The available size that this element can give to child elements. Infinity can be specified as a value to indicate that the element will size to whatever content is available.</param>
         protected override Size MeasureOverride(Size availableSize)
         {
             if (Double.IsNaN(availableSize.Width) || Double.IsInfinity(availableSize.Width))
@@ -273,6 +304,13 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
             return availableSize;
         }
 
+        /// <summary>
+        /// When overridden in a derived class, positions child elements and determines a size for a <see cref="T:System.Windows.FrameworkElement"/> derived class. 
+        /// </summary>
+        /// <returns>
+        /// The actual size used.
+        /// </returns>
+        /// <param name="finalSize">The final area within the parent that this element should use to arrange itself and its children.</param>
         protected override Size ArrangeOverride(Size finalSize)
         {
             int childCount = InternalChildren.Count;
@@ -311,83 +349,108 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
 
         #region IScrollInfo
 
-        public void LineUp()
+        void IScrollInfo.LineUp()
         {
         }
 
-        public void LineDown()
+        void IScrollInfo.LineDown()
         {
         }
 
-        public void PageUp()
+        void IScrollInfo.PageUp()
         {
         }
 
-        public void PageDown()
+        void IScrollInfo.PageDown()
         {
         }
 
-        public void MouseWheelUp()
+        void IScrollInfo.MouseWheelUp()
         {
-            LineLeft();
+            LineLeftInternal();
         }
 
-        public void MouseWheelDown()
+        void IScrollInfo.MouseWheelDown()
         {
-            LineRight();
+            LineRightInternal();
         }
 
-        public void SetVerticalOffset(double offset)
+        void IScrollInfo.SetVerticalOffset(double offset)
         {
         }
 
-        public void LineLeft()
+        void IScrollInfo.LineLeft()
+        {
+            LineLeftInternal();
+        }
+
+        private void LineLeftInternal()
         {
             if (AllowPaging)
             {
-                PageLeft();
+                PageLeftInternal();
             }
             else
             {
-                SetHorizontalOffset(HorizontalOffset - 16.0);
+                SetHorizontalOffsetInternal(HorizontalOffset - 16.0);
             }
         }
 
-        public void LineRight()
+        void IScrollInfo.LineRight()
+        {
+            LineRightInternal();
+        }
+
+        private void LineRightInternal()
         {
             if (AllowPaging)
             {
-                PageRight();
+                PageRightInternal();
             }
             else
             {
-                SetHorizontalOffset(HorizontalOffset + 16.0);
+                SetHorizontalOffsetInternal(HorizontalOffset + 16.0);
             }
         }
 
-        public void PageLeft()
+        void IScrollInfo.PageLeft()
         {
-            SetHorizontalOffset(HorizontalOffset - _pageSize.Width);
+            PageLeftInternal();
         }
 
-        public void PageRight()
+        private void PageLeftInternal()
         {
-            SetHorizontalOffset(HorizontalOffset + _pageSize.Width);
+            SetHorizontalOffsetInternal(HorizontalOffset - _pageSize.Width);
         }
 
-        public void MouseWheelLeft()
+        void IScrollInfo.PageRight()
         {
-            SetHorizontalOffset(HorizontalOffset - SystemParameters.WheelScrollLines);
+            PageRightInternal();
         }
 
-        public void MouseWheelRight()
+        private void PageRightInternal()
         {
-            SetHorizontalOffset(HorizontalOffset + SystemParameters.WheelScrollLines);
+            SetHorizontalOffsetInternal(HorizontalOffset + _pageSize.Width);
         }
 
-        public void SetHorizontalOffset(double offset)
+        void IScrollInfo.MouseWheelLeft()
         {
-            //if (!ScrollOwner.IsLoaded)
+            SetHorizontalOffsetInternal(HorizontalOffset - SystemParameters.WheelScrollLines);
+        }
+
+        void IScrollInfo.MouseWheelRight()
+        {
+            SetHorizontalOffsetInternal(HorizontalOffset + SystemParameters.WheelScrollLines);
+        }
+
+        void IScrollInfo.SetHorizontalOffset(double offset)
+        {
+            SetHorizontalOffsetInternal(offset);
+        }
+
+        private void SetHorizontalOffsetInternal(double offset)
+        {
+//if (!ScrollOwner.IsLoaded)
             //{
             //    ScrollOwner.Loaded += (sender, args) =>
             //    {
@@ -408,8 +471,8 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
 
             if (_pageSize.Width > 0.0)
             {
-                int currentPage = _updating ? CurrentPage : (int)Math.Round(HorizontalOffset / _pageSize.Width);
-                double left = currentPage * _pageSize.Width - HorizontalOffset;
+                int currentPage = _updating ? CurrentPage : (int) Math.Round(HorizontalOffset/_pageSize.Width);
+                double left = currentPage*_pageSize.Width - HorizontalOffset;
                 var pageRect = CurrentPageRect;
                 if (!pageRect.Left.Equals(left))
                 {
@@ -440,26 +503,90 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
             return offset;
         }
 
-        public Rect MakeVisible(Visual visual, Rect rectangle)
+        Rect IScrollInfo.MakeVisible(Visual visual, Rect rectangle)
         {
             return rectangle;
         }
 
+        /// <summary>
+        /// Gets or sets a value that indicates whether scrolling on the vertical axis is possible. 
+        /// </summary>
+        /// <returns>
+        /// true if scrolling is possible; otherwise, false. This property has no default value.
+        /// </returns>
         public bool CanVerticallyScroll { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value that indicates whether scrolling on the horizontal axis is possible.
+        /// </summary>
+        /// <returns>
+        /// true if scrolling is possible; otherwise, false. This property has no default value.
+        /// </returns>
         public bool CanHorizontallyScroll { get; set; }
+
+        /// <summary>
+        /// Gets the horizontal size of the extent.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Double"/> that represents, in device independent pixels, the horizontal size of the extent. This property has no default value.
+        /// </returns>
         public double ExtentWidth { get; set; }
+
+        /// <summary>
+        /// Gets the vertical size of the extent.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Double"/> that represents, in device independent pixels, the vertical size of the extent.This property has no default value.
+        /// </returns>
         public double ExtentHeight { get; set; }
+
+        /// <summary>
+        /// Gets the horizontal size of the viewport for this content.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Double"/> that represents, in device independent pixels, the horizontal size of the viewport for this content. This property has no default value.
+        /// </returns>
         public double ViewportWidth { get; set; }
+
+        /// <summary>
+        /// Gets the vertical size of the viewport for this content.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Double"/> that represents, in device independent pixels, the vertical size of the viewport for this content. This property has no default value.
+        /// </returns>
         public double ViewportHeight { get; set; }
+
+        /// <summary>
+        /// Gets the horizontal offset of the scrolled content.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Double"/> that represents, in device independent pixels, the horizontal offset. This property has no default value.
+        /// </returns>
         public double HorizontalOffset { get; set; }
 
+        /// <summary>
+        /// Gets the vertical offset of the scrolled content.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Double"/> that represents, in device independent pixels, the vertical offset of the scrolled content. Valid values are between zero and the <see cref="P:System.Windows.Controls.Primitives.IScrollInfo.ExtentHeight"/> minus the <see cref="P:System.Windows.Controls.Primitives.IScrollInfo.ViewportHeight"/>. This property has no default value.
+        /// </returns>
         public double VerticalOffset { get; set; }
+
+        /// <summary>
+        /// Gets or sets a <see cref="T:System.Windows.Controls.ScrollViewer"/> element that controls scrolling behavior.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Windows.Controls.ScrollViewer"/> element that controls scrolling behavior. This property has no default value.
+        /// </returns>
         public ScrollViewer ScrollOwner { get; set; }
 
         #endregion
 
         #region IPageInfo
 
+        /// <summary>
+        /// Defines a <see cref="DependencyPropertyKey"/> for page count .
+        /// </summary>
         public static readonly DependencyPropertyKey PageCountPropertyKey =
             DependencyProperty.RegisterReadOnly(
                 "PageCount",
@@ -489,15 +616,27 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
             //}
         }
 
+        /// <summary>
+        /// Defines a <see cref="DependencyProperty"/> for page count.
+        /// </summary>
         public static readonly DependencyProperty PageCountProperty =
             PageCountPropertyKey.DependencyProperty;
 
+        /// <summary>
+        /// Gets the page count.
+        /// </summary>
+        /// <value>
+        /// The page count.
+        /// </value>
         public int PageCount
         {
             get { return (int)GetValue(PageCountProperty); }
             private set { SetValue(PageCountPropertyKey, value); }
         }
 
+        /// <summary>
+        /// Defines a <see cref="DependencyProperty"/> for current page.
+        /// </summary>
         public static readonly DependencyProperty CurrentPageProperty =
             DependencyProperty.Register(
                 "CurrentPage",
@@ -552,15 +691,24 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
                 return;
             }
 
-            SetHorizontalOffset(pageNumber * pageRect.Width);
+            SetHorizontalOffsetInternal(pageNumber * pageRect.Width);
         }
 
+        /// <summary>
+        /// Gets or sets the current page.
+        /// </summary>
+        /// <value>
+        /// The current page.
+        /// </value>
         public int CurrentPage
         {
             get { return (int)GetValue(CurrentPageProperty); }
             set { SetValue(CurrentPageProperty, value); }
         }
 
+        /// <summary>
+        /// Defines a <see cref="DependencyPropertyKey"/> for current page rectangle.
+        /// </summary>
         public static readonly DependencyPropertyKey CurrentPageRectPropertyKey =
             DependencyProperty.RegisterReadOnly(
                 "CurrentPageRect",
@@ -587,26 +735,41 @@ namespace LogoFX.Client.Mvvm.View.Extensions.Controls
             panel.ShowPage(panel.CurrentPage);
         }
 
+        /// <summary>
+        /// Defines a <see cref="DependencyProperty"/> for current page rectangle.
+        /// </summary>
         public static readonly DependencyProperty CurrentPageRectProperty =
             CurrentPageRectPropertyKey.DependencyProperty;
 
         private Size _pageSize;
 
+        /// <summary>
+        /// Gets the current page rectangle.
+        /// </summary>
+        /// <value>
+        /// The current page rectangle.
+        /// </value>
         public Rect CurrentPageRect
         {
             get { return (Rect)GetValue(CurrentPageRectProperty); }
             private set { SetValue(CurrentPageRectPropertyKey, value); }
         }
 
+        /// <summary>
+        /// Begins the update.
+        /// </summary>
         public void BeginUpdate()
         {
             _updating = true;
         }
 
+        /// <summary>
+        /// Ends the update.
+        /// </summary>
         public void EndUpdate()
         {
             _updating = false;
-            SetHorizontalOffset(_pageSize.Width * (int)Math.Round(HorizontalOffset / _pageSize.Width));
+            SetHorizontalOffsetInternal(_pageSize.Width * (int)Math.Round(HorizontalOffset / _pageSize.Width));
         }
 
         #endregion

@@ -7,6 +7,10 @@ using LogoFX.Client.Mvvm.View.Extensions.Controls;
 
 namespace LogoFX.Client.Mvvm.View.Extensions
 {
+    /// <summary>
+    /// This objects allows applying paging capabilities of the <see cref="VirtualizingSmartPanel"/> onto the given view model's view.
+    /// </summary>
+    /// <seealso cref="System.Windows.DependencyObject" />
     public class PagingViewModelHelper : DependencyObject
     {
         #region Fields
@@ -17,6 +21,9 @@ namespace LogoFX.Client.Mvvm.View.Extensions
 
         #region Attached Dependency Properties
 
+        /// <summary>
+        /// Defines a <see cref="DependencyProperty"/> for the stored view model.
+        /// </summary>
         public static readonly DependencyProperty ViewModelProperty =
             DependencyProperty.RegisterAttached(
                 "ViewModel",
@@ -25,11 +32,21 @@ namespace LogoFX.Client.Mvvm.View.Extensions
                     null,
                     ViewModel_Changed));
 
+        /// <summary>
+        /// Gets the view model.
+        /// </summary>
+        /// <param name="obj">The dependency object.</param>
+        /// <returns></returns>
         public static IPagingViewModel GetViewModel(DependencyObject obj)
         {
             return (IPagingViewModel)obj.GetValue(ViewModelProperty);
         }
 
+        /// <summary>
+        /// Sets the view model.
+        /// </summary>
+        /// <param name="obj">The dependency object.</param>
+        /// <param name="value">The value.</param>
         public static void SetViewModel(DependencyObject obj, IPagingViewModel value)
         {
             obj.SetValue(ViewModelProperty, value);
