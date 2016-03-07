@@ -126,8 +126,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
+    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.6\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -166,8 +166,8 @@
       <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.7\lib\net45\Solid.Practices.Composition.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.1.0.7\lib\net45\Solid.Practices.Composition.Platform.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition.Platform, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.1.0.8\lib\net45\Solid.Practices.Composition.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">

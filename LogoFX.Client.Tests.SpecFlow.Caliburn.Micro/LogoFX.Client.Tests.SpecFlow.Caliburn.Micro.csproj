@@ -75,8 +75,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.4\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
+    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.6\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Shim, Version=1.0.2.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
