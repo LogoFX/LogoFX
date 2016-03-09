@@ -35,6 +35,7 @@
     <DocumentationFile>..\Bin\Release\Client\LogoFX.Client.Bootstrapping.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="BootstrapperCreationOptions.cs" />
     <Compile Include="BootstrapperHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -47,8 +48,8 @@
       <HintPath>..\packages\LogoFX.Core.1.0.6.2\lib\portable-net45+wpa8+win8\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Core.1.0.7\lib\portable-net45+wpa8+win8\Solid.Practices.Composition.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Core.1.0.8\lib\portable-net45+wpa8+win8\Solid.Practices.Composition.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">

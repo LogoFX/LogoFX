@@ -4,7 +4,6 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Threading;
 using LogoFX.Core;
-using Solid.Practices.Composition;
 using Solid.Practices.IoC;
 using Solid.Practices.Modularity;
 
@@ -28,20 +27,22 @@ namespace LogoFX.Client.Bootstrapping
         }
 
         /// <summary>
-        /// Registers the core elements of the app: view models, IoC container and modules.
+        /// Registers the IoC container and root view model.
         /// </summary>
         /// <param name="iocContainerAdapter">The ioc container adapter.</param>
-        /// <param name="compositionInfo">The composition information.</param>
-        public static void RegisterCore(TIocContainerAdapter iocContainerAdapter, ICompositionInitializationInfo compositionInfo)                                    
+        public static void RegisterCore(TIocContainerAdapter iocContainerAdapter)                                    
         {
             iocContainerAdapter.RegisterSingleton<TRootViewModel, TRootViewModel>();
             iocContainerAdapter.RegisterInstance(iocContainerAdapter);
-            iocContainerAdapter.RegisterInstance<IIocContainer>(iocContainerAdapter);
-            RegisterViewsAndViewModels(iocContainerAdapter, compositionInfo.AssembliesResolver.GetAssemblies());
-            RegisterCompositionModules(iocContainerAdapter, compositionInfo.Modules);
+            iocContainerAdapter.RegisterInstance<IIocContainer>(iocContainerAdapter);            
         }
 
-        static void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer, IEnumerable<Assembly> assemblies)
+        /// <summary>
+        /// Registers the views and view models.
+        /// </summary>
+        /// <param name="iocContainer">The ioc container.</param>
+        /// <param name="assemblies">The assemblies.</param>
+        public static void RegisterViewsAndViewModels(IIocContainerRegistrator iocContainer, IEnumerable<Assembly> assemblies)
         {
             assemblies
                 .SelectMany(assembly => assembly.ExportedTypes)
@@ -54,9 +55,16 @@ namespace LogoFX.Client.Bootstrapping
                 .ForEach(a => iocContainer.RegisterTransient(a, a));
         }
 
-        static void RegisterCompositionModules(TIocContainerAdapter iocContainerAdapter, IEnumerable<ICompositionModule> modules)
+        /// <summary>
+        /// Registers the composition modules.
+        /// </summary>
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>
+        /// <param name="modules">The modules.</param>
+        public static void RegisterCompositionModules(
+            TIocContainerAdapter iocContainerAdapter, 
+            IEnumerable<ICompositionModule> modules)
         {
             new ModuleRegistrator(modules).RegisterModules(iocContainerAdapter);
-        }
+        }        
     }
 }

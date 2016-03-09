@@ -1,14 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Solid.Practices.Composition;
+using Solid.Practices.Composition.Desktop;
 using Solid.Practices.Modularity;
 
 namespace LogoFX.Client.Bootstrapping
 {
     partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter> : ICompositionModulesProvider
     {
-        private readonly bool _reuseCompositionInformation;
-        private ICompositionInitializationInfo _compositionInfo;
+        private readonly bool _reuseCompositionInformation;        
 
         /// <summary>
         /// Gets the path of composition modules that will be discovered during bootstrapper configuration.
@@ -36,10 +38,7 @@ namespace LogoFX.Client.Bootstrapping
         /// <value>
         /// The list of modules.
         /// </value>
-        public IEnumerable<ICompositionModule> Modules
-        {
-            get { return _compositionInfo.Modules; }
-        }
+        public IEnumerable<ICompositionModule> Modules { get; private set; }
 
         /// <summary>
         /// Override to tell the framework where to find assemblies to inspect for application components.
@@ -50,13 +49,29 @@ namespace LogoFX.Client.Bootstrapping
         protected override IEnumerable<Assembly> SelectAssemblies()
         {                       
             return Assemblies;
+        }        
+
+        protected virtual void OnConfigureAssemblyResolution()
+        {
         }
 
-        private void InitializeCompositionInfo()
+        private void InitializeCompositionModules()
         {
-            _compositionInfo = CompositionInfoHelper.GetCompositionInfo(ModulesPath, Prefixes,
-                    GetType(),
+            Modules = CompositionHelper.GetCompositionModules(ModulesPath, Prefixes,
                     _reuseCompositionInformation);
-        }        
+        }
+
+        private void InitializeInspectedAssemblies()
+        {
+            Assemblies = GetAssemblies();
+        }
+
+        private Assembly[] GetAssemblies()
+        {
+            OnConfigureAssemblyResolution();
+            var assembliesResolver = new AssembliesResolver(GetType(),
+                new ClientAssemblySourceProvider(Environment.CurrentDirectory));
+            return ((IAssembliesReadOnlyResolver)assembliesResolver).GetAssemblies().ToArray();
+        }
     }
 }

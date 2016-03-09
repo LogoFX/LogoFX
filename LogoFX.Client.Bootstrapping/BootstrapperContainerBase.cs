@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Windows;
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Adapters.Contracts;
@@ -39,11 +38,31 @@ namespace LogoFX.Client.Bootstrapping
             TIocContainerAdapter iocContainerAdapter, 
             bool useApplication = true, 
             bool reuseCompositionInformation = false)            
-            :base(useApplication)
+            :this(iocContainerAdapter, new BootstrapperCreationOptions
+            {
+                DiscoverCompositionModules = true,
+                InspectAssemblies = true,
+                ReuseCompositionInformation = reuseCompositionInformation,
+                UseApplication = useApplication
+            })
+        {           
+        }
+
+        protected BootstrapperContainerBase(
+            TIocContainerAdapter iocContainerAdapter,
+            BootstrapperCreationOptions creationOptions)
+            :base(creationOptions.UseApplication)
         {
             _iocContainerAdapter = iocContainerAdapter;
-            _reuseCompositionInformation = reuseCompositionInformation;            
-            InitializeCompositionInfo();
+            _reuseCompositionInformation = creationOptions.ReuseCompositionInformation;
+            if (creationOptions.DiscoverCompositionModules)
+            {
+                InitializeCompositionModules();
+            }
+            if (creationOptions.InspectAssemblies)
+            {
+                InitializeInspectedAssemblies();
+            }
             Initialize();
         }
 
@@ -67,11 +86,15 @@ namespace LogoFX.Client.Bootstrapping
         /// </summary>
         protected sealed override void Configure()
         {
-            base.Configure();
-            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.InitializeDispatcher();
-            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.RegisterCore(_iocContainerAdapter, _compositionInfo);            
+            base.Configure();            
+            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.RegisterCore(_iocContainerAdapter);            
+            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.RegisterViewsAndViewModels(_iocContainerAdapter,
+                Assemblies);
+            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.RegisterCompositionModules(_iocContainerAdapter,
+                Modules);
             InitializeViewLocator();
-            InitializeAdapter();            
+            InitializeAdapter();      
+            BootstrapperHelper<TRootViewModel, TIocContainerAdapter>.InitializeDispatcher();
             RegisterPlatformSpecificServices(_iocContainerAdapter);                        
             OnConfigure(_iocContainerAdapter);
         }
@@ -101,16 +124,13 @@ namespace LogoFX.Client.Bootstrapping
         {
             get { return _defaultLifetimeScope; }
         }
-
+        
         /// <summary>
         /// Gets the assemblies that will be inspected for the application components.
         /// </summary>
         /// <value>
         /// The assemblies.
         /// </value>
-        protected Assembly[] Assemblies
-        {
-            get { return _compositionInfo.AssembliesResolver.GetAssemblies().ToArray(); }
-        }
+        protected Assembly[] Assemblies { get; private set; }        
     }    
 }
