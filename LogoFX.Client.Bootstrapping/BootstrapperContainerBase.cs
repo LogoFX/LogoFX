@@ -14,7 +14,7 @@ namespace LogoFX.Client.Bootstrapping
     /// <typeparam name="TIocContainerAdapter">Type of IoC container adapter</typeparam>
     public partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter> :
 #if !WinRT
- BootstrapperBase
+        BootstrapperBase
 #else
         CaliburnApplication
 #endif               
@@ -26,29 +26,19 @@ namespace LogoFX.Client.Bootstrapping
         /// <summary>
         /// Initializes a new instance of the <see cref="BootstrapperContainerBase{TRootViewModel, TIocContainerAdapter}"/> class.
         /// </summary>
-        /// <param name="iocContainerAdapter">IoC container adapter</param>
-        /// <param name="useApplication">
-        /// True if there is an actual WPF application, false otherwise. 
-        /// Use false value for tests.
-        /// </param>
-        /// <param name="reuseCompositionInformation">
-        /// True if the composition information should be reused, false otherwise.
-        /// Use 'true' to boost the tests. Pay attention to cross-thread calls.</param>
-        protected BootstrapperContainerBase(
-            TIocContainerAdapter iocContainerAdapter, 
-            bool useApplication = true, 
-            bool reuseCompositionInformation = false)            
-            :this(iocContainerAdapter, new BootstrapperCreationOptions
-            {
-                DiscoverCompositionModules = true,
-                InspectAssemblies = true,
-                ReuseCompositionInformation = reuseCompositionInformation,
-                UseApplication = useApplication
-            })
-        {           
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>        
+        public BootstrapperContainerBase(
+            TIocContainerAdapter iocContainerAdapter)
+            :this(iocContainerAdapter, new BootstrapperCreationOptions())            
+        {            
         }
 
-        protected BootstrapperContainerBase(
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BootstrapperContainerBase{TRootViewModel, TIocContainerAdapter}"/> class.
+        /// </summary>
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>
+        /// <param name="creationOptions">The creation options.</param>
+        public BootstrapperContainerBase(
             TIocContainerAdapter iocContainerAdapter,
             BootstrapperCreationOptions creationOptions)
             :base(creationOptions.UseApplication)

@@ -36,7 +36,8 @@ namespace LogoFX.Client.Bootstrapping
         public bool ReuseCompositionInformation { get; set; }
 
         /// <summary>
-        /// Gets or sets a value indicating whether the bootstrapper should look for instances of <see cref="ICompositionModule"/>.
+        /// Gets or sets a value indicating whether the bootstrapper 
+        /// should look for instances of <see cref="ICompositionModule"/>.
         /// </summary>
         /// <value>
         /// <c>true</c> if the composition modules should be looked for; otherwise, <c>false</c>.

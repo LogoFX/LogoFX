@@ -111,6 +111,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootstrapperBuilder.cs" />
     <Compile Include="BootstrapperContainerBase.Adapter.cs">
       <DependentUpon>BootstrapperContainerBase.cs</DependentUpon>
     </Compile>

@@ -49,8 +49,11 @@ namespace LogoFX.Client.Bootstrapping
         protected override IEnumerable<Assembly> SelectAssemblies()
         {                       
             return Assemblies;
-        }        
+        }
 
+        /// <summary>
+        /// Override this to provide custom assembly namespaces collection.
+        /// </summary>
         protected virtual void OnConfigureAssemblyResolution()
         {
         }
