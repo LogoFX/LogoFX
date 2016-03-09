@@ -5,24 +5,18 @@ using LogoFX.Practices.Modularity;
 namespace LogoFX.Client.Bootstrapping.SimpleContainer
 {
     /// <summary>
-    /// Represents bootstrapper which uses Extended Simple Container adapter
+    /// Represents bootstrapper which uses Extended Simple Container adapter.
     /// </summary>
     /// <typeparam name="TRootViewModel"></typeparam>
-    public class SimpleBootstrapper<TRootViewModel> : BootstrapperContainerBase<TRootViewModel, ExtendedSimpleContainerAdapter> where TRootViewModel : class
+    public class SimpleBootstrapper<TRootViewModel> : 
+        BootstrapperContainerBase<TRootViewModel, ExtendedSimpleContainerAdapter> where TRootViewModel : class
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SimpleBootstrapper{TRootViewMode}"/> class.
+        /// Initializes a new instance of the <see cref="SimpleBootstrapper{TRootViewModel}"/> class.
         /// </summary>
-        /// <param name="containerAdapter">IoC container adapter</param>
-        /// <param name="useApplication">
-        /// True if there is an actual WPF application, false otherwise. 
-        /// Use false value for tests.
-        /// </param>
-        /// <param name="reuseCompositionInformation">
-        /// True if the composition information should be reused, false otherwise.
-        /// Use 'true' to boost the tests. Pay attention to cross-thread calls.</param>
-        public SimpleBootstrapper(ExtendedSimpleContainerAdapter containerAdapter, bool useApplication = true, bool reuseCompositionInformation = false)
-            :base(containerAdapter, useApplication, reuseCompositionInformation)
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>        
+        public SimpleBootstrapper(ExtendedSimpleContainerAdapter iocContainerAdapter)
+            :base(iocContainerAdapter)
         {
             
         }        
