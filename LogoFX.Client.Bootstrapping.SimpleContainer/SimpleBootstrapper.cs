@@ -16,10 +16,23 @@ namespace LogoFX.Client.Bootstrapping.SimpleContainer
         /// </summary>
         /// <param name="iocContainerAdapter">The ioc container adapter.</param>        
         public SimpleBootstrapper(ExtendedSimpleContainerAdapter iocContainerAdapter)
-            :base(iocContainerAdapter)
+            :this(iocContainerAdapter, new BootstrapperCreationOptions())
         {
             
-        }        
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SimpleBootstrapper{TRootViewModel}"/> class.
+        /// </summary>
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>
+        /// <param name="creationOptions">The creation options.</param>
+        public SimpleBootstrapper(
+            ExtendedSimpleContainerAdapter iocContainerAdapter,
+            BootstrapperCreationOptions creationOptions) :
+            base(iocContainerAdapter, creationOptions)
+        {
+            
+        }
 
         /// <summary>
         /// Override this method to inject custom logic during bootstrapper configuration.

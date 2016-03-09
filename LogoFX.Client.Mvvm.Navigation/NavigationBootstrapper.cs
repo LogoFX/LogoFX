@@ -21,16 +21,25 @@ namespace LogoFX.Client.Mvvm.Navigation
         private INavigationService NavigationService
         {
             get { return _navigationService ?? (_navigationService = new NavigationService()); }
-        }        
+        }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="NavigationBootstrapper{TRootViewModel, TIocContainer}"/> class.
+        /// Initializes a new instance of the <see cref="NavigationBootstrapper{TRootViewModel, TIocContainerAdapter}"/> class.
         /// </summary>
-        /// <param name="iocContainerAdapter">The ioc container.</param>
-        /// <param name="useApplication">if set to <c>true</c> [use application].</param>
-        /// <param name="reuseCompositionInformation">if set to <c>true</c> [reuse composition information].</param>
-        protected NavigationBootstrapper(TIocContainerAdapter iocContainerAdapter, bool useApplication=true, bool reuseCompositionInformation = false)
-            :base(iocContainerAdapter, useApplication, reuseCompositionInformation)
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>        
+        protected NavigationBootstrapper(TIocContainerAdapter iocContainerAdapter)
+            : this(iocContainerAdapter, new BootstrapperCreationOptions())
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="NavigationBootstrapper{TRootViewModel, TIocContainerAdapter}"/> class.
+        /// </summary>
+        /// <param name="iocContainerAdapter">The ioc container adapter.</param>
+        /// <param name="creationOptions">The creation options.</param>
+        protected NavigationBootstrapper(TIocContainerAdapter iocContainerAdapter, BootstrapperCreationOptions creationOptions)
+            :base(iocContainerAdapter, creationOptions)
         {
             
         }
