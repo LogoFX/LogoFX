@@ -46,8 +46,8 @@
       <HintPath>..\packages\Caliburn.Micro.3.0.0\lib\net45\Caliburn.Micro.Platform.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.Contracts, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.Contracts.1.0.3\lib\net451\LogoFX.Client.Bootstrapping.Adapters.Contracts.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping.Adapters.Contracts, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.Contracts.1.0.4\lib\portable-net45+wpa8+win8\LogoFX.Client.Bootstrapping.Adapters.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -135,9 +135,9 @@
       <Project>{c84e0089-7bc7-4f16-8a10-b09f7cc1db83}</Project>
       <Name>LogoFX.Client.Bootstrapping.Adapters.SimpleContainer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Client.Bootstrapping\LogoFX.Client.Bootstrapping.csproj">
+    <ProjectReference Include="..\LogoFX.Client.Bootstrapping.Platform\net45\LogoFX.Client.Bootstrapping.Platform.NET45.csproj">
       <Project>{51322595-4423-46D9-8AAD-7486FC87E15C}</Project>
-      <Name>LogoFX.Client.Bootstrapping</Name>
+      <Name>LogoFX.Client.Bootstrapping.Platform.NET45</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping")]
+[assembly: AssemblyTitle("LogoFX.Client.Bootstrapping.Platform")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LogoUI 2012")]
-[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping")]
+[assembly: AssemblyProduct("LogoFX.Client.Bootstrapping.Platform")]
 [assembly: AssemblyCopyright("Copyright LogoUI 2012 ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
