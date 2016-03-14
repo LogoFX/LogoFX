@@ -1,7 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+#if NET45
 using System.Windows.Controls;
+#endif
+#if NETFX_CORE || WINDOWS_UWP
+using Windows.UI.Xaml.Controls;
+#endif
+
 using Caliburn.Micro;
 
 namespace LogoFX.Client.Bootstrapping
@@ -30,9 +36,19 @@ namespace LogoFX.Client.Bootstrapping
                 if (!_typedic.TryGetValue(viewTypeName, out viewType))
                 {
                     _typedic[viewTypeName] = viewType = (from assembly in Assemblies
-                                                         from type in assembly.GetExportedTypes()
+                                                         from type in assembly
+#if NET45
+                                                         .GetExportedTypes()
+#endif
+#if WINDOWS_UWP || NETFX_CORE
+                                                         .DefinedTypes
+#endif
                                                          where type.FullName == viewTypeName
-                                                         select type).FirstOrDefault();
+                                                         select type
+#if WINDOWS_UWP || NETFX_CORE
+                                                         .AsType()
+#endif
+                                                         ).FirstOrDefault();
                 }
 
                 return viewType;

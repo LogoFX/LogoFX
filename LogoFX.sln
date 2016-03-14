@@ -195,6 +195,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Data.Fake.Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Platform.NET45", "LogoFX.Client.Bootstrapping.Platform\net45\LogoFX.Client.Bootstrapping.Platform.NET45.csproj", "{51322595-4423-46D9-8AAD-7486FC87E15C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogoFX.Client.Bootstrapping.Platform.UWP", "LogoFX.Client.Bootstrapping.Platform\uwp\LogoFX.Client.Bootstrapping.Platform.UWP.csproj", "{0AD221A9-460E-4E5A-8866-DF4EC33383BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1263,6 +1265,22 @@ Global
 		{51322595-4423-46D9-8AAD-7486FC87E15C}.Release|x64.Build.0 = Release|Any CPU
 		{51322595-4423-46D9-8AAD-7486FC87E15C}.Release|x86.ActiveCfg = Release|Any CPU
 		{51322595-4423-46D9-8AAD-7486FC87E15C}.Release|x86.Build.0 = Release|Any CPU
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|ARM.ActiveCfg = Debug|ARM
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|ARM.Build.0 = Debug|ARM
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|x64.ActiveCfg = Debug|x64
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|x64.Build.0 = Debug|x64
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|x86.ActiveCfg = Debug|x86
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Debug|x86.Build.0 = Debug|x86
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|ARM.ActiveCfg = Release|ARM
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|ARM.Build.0 = Release|ARM
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|x64.ActiveCfg = Release|x64
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|x64.Build.0 = Release|x64
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|x86.ActiveCfg = Release|x86
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1358,5 +1376,6 @@ Global
 		{0F78E18F-5480-4BF2-AEB7-EA6B2AE2D744} = {3CD5EE40-92FB-4E3B-95C9-BEE40E1131AB}
 		{1CE42C14-9D1D-4867-BDC5-D510DC513E3C} = {0F78E18F-5480-4BF2-AEB7-EA6B2AE2D744}
 		{51322595-4423-46D9-8AAD-7486FC87E15C} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
+		{0AD221A9-460E-4E5A-8866-DF4EC33383BF} = {2F7A6F31-65E2-483D-BEFE-43A581FABBEE}
 	EndGlobalSection
 EndGlobal

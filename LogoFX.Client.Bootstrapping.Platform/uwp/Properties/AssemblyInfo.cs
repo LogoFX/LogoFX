@@ -7,19 +7,11 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("LogoFX.Client.Bootstrapping.Platform")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("LogoUI 2012")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("LogoFX.Client.Bootstrapping.Platform")]
-[assembly: AssemblyCopyright("Copyright LogoUI 2012 ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
-
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b523c69f-5d08-4af1-9517-d75fa9586374")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -33,3 +25,4 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.1.0")]
 [assembly: AssemblyFileVersion("1.1.0")]
+[assembly: ComVisible(false)]

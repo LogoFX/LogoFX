@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Solid.Practices.Composition;
 using Solid.Practices.Modularity;
@@ -13,7 +13,7 @@ namespace LogoFX.Client.Bootstrapping
             string[] prefixes,
             bool reuseCompositionInformation)
         {
-            var rootPath = Environment.CurrentDirectory + modulesPath;
+            var rootPath = Directory.GetCurrentDirectory() + modulesPath;
             ICompositionModule[] compositionModules;
             if (reuseCompositionInformation == false)
             {

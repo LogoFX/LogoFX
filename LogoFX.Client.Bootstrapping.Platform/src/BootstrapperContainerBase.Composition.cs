@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Solid.Practices.Composition;
@@ -15,7 +15,11 @@ namespace LogoFX.Client.Bootstrapping
         /// <summary>
         /// Gets the path of composition modules that will be discovered during bootstrapper configuration.
         /// </summary>
-        public virtual string ModulesPath
+        public
+#if NET45
+            virtual 
+#endif
+            string ModulesPath
         {
             get { return "."; }
         }
@@ -73,7 +77,7 @@ namespace LogoFX.Client.Bootstrapping
         {
             OnConfigureAssemblyResolution();
             var assembliesResolver = new AssembliesResolver(GetType(),
-                new ClientAssemblySourceProvider(Environment.CurrentDirectory));
+                new ClientAssemblySourceProvider(Directory.GetCurrentDirectory()));
             return ((IAssembliesReadOnlyResolver)assembliesResolver).GetAssemblies().ToArray();
         }
     }

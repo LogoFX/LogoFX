@@ -1,5 +1,11 @@
 ﻿using System.Reflection;
+#if NET45
 using System.Windows;
+#endif
+#if NETFX_CORE || WINDOWS_UWP
+using Windows.ApplicationModel;
+using Windows.ApplicationModel.Activation;
+#endif
 using Caliburn.Micro;
 using LogoFX.Client.Bootstrapping.Adapters.Contracts;
 using Solid.Practices.IoC;
@@ -13,9 +19,10 @@ namespace LogoFX.Client.Bootstrapping
     /// <typeparam name="TRootViewModel">Type of Root ViewModel</typeparam>
     /// <typeparam name="TIocContainerAdapter">Type of IoC container adapter</typeparam>
     public partial class BootstrapperContainerBase<TRootViewModel, TIocContainerAdapter> :
-#if !WinRT
+#if NET45
         BootstrapperBase
-#else
+#endif
+#if WINDOWS_UWP || NETFX_CORE
         CaliburnApplication
 #endif               
         where TRootViewModel : class
@@ -41,7 +48,9 @@ namespace LogoFX.Client.Bootstrapping
         public BootstrapperContainerBase(
             TIocContainerAdapter iocContainerAdapter,
             BootstrapperCreationOptions creationOptions)
+#if NET45
             :base(creationOptions.UseApplication)
+#endif
         {
             _iocContainerAdapter = iocContainerAdapter;
             _reuseCompositionInformation = creationOptions.ReuseCompositionInformation;
@@ -56,11 +65,7 @@ namespace LogoFX.Client.Bootstrapping
             Initialize();
         }
 
-        private void DisplayRootView()
-        {
-            DisplayRootViewFor(typeof(TRootViewModel));
-        }
-
+#if NET45
         /// <summary>
         /// Override this to add custom behavior to execute after the application starts.
         /// </summary>
@@ -70,6 +75,42 @@ namespace LogoFX.Client.Bootstrapping
             base.OnStartup(sender, e);
             DisplayRootView();
         }
+#endif
+#if NETFX_CORE || WINDOWS_UWP
+        /// <param name="e">Details about the launch request and process.</param>
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        {
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                DebugSettings.EnableFrameRateCounter = true;
+            }
+#endif            
+            DisplayRootView();
+        }
+#endif
+
+        private void DisplayRootView()
+        {
+            DisplayRootViewFor<TRootViewModel>();
+        }
+
+#if NETFX_CORE || WINDOWS_UWP
+        ///<summary>
+        /// Invoked when application execution is being suspended.  Application state is saved
+        /// without knowing whether the application will be terminated or resumed with the contents
+        /// of memory still intact.
+        /// </summary>
+
+        /// <param name="sender">The source of the suspend request.</param>
+        /// <param name="e">Details about the suspend request.</param>
+        protected override void OnSuspending(object sender, SuspendingEventArgs e)
+        {
+            var deferral = e.SuspendingOperation.GetDeferral();
+            //TODO: Save application state and stop any background activity
+            deferral.Complete();
+        }
+#endif
 
         /// <summary>
         /// Configures the framework and executes boiler-plate registrations.
@@ -91,7 +132,9 @@ namespace LogoFX.Client.Bootstrapping
         
         private static void RegisterPlatformSpecificServices(TIocContainerAdapter iocContainerAdapter)
         {
-            iocContainerAdapter.RegisterSingleton<IWindowManager, WindowManager>();
+#if NET45
+                  iocContainerAdapter.RegisterSingleton<IWindowManager, WindowManager>();
+#endif
         }
 
         /// <summary>
