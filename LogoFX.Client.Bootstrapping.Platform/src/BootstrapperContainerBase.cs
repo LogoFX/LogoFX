@@ -78,6 +78,10 @@ namespace LogoFX.Client.Bootstrapping
 #endif
 #if NETFX_CORE || WINDOWS_UWP
 
+        /// <summary>
+        /// Override this method to inject custom functionality before the app is launched.
+        /// </summary>
+        /// <param name="e">The <see cref="LaunchActivatedEventArgs"/> instance containing the event data.</param>
         protected virtual void BeforeOnLaunched(LaunchActivatedEventArgs e)
         {
             
