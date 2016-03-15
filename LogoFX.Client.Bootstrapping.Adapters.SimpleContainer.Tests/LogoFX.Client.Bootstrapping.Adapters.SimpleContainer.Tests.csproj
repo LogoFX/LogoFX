@@ -78,10 +78,6 @@
       <HintPath>..\packages\Solid.Practices.Composition.Container.1.0.5\lib\portable-net45+wp8+wpa8\Solid.Practices.Composition.Container.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Desktop, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.8\lib\net45\Solid.Practices.Composition.Desktop.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Solid.Practices.Composition.Platform, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Practices.Composition.1.1.2\lib\net45\Solid.Practices.Composition.Platform.dll</HintPath>
       <Private>True</Private>
