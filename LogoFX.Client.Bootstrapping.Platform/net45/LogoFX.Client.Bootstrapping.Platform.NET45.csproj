@@ -24,11 +24,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Bin\net45\Release\Client\</OutputPath>
+    <OutputPath>..\..\Bin\net45\Release\Client\</OutputPath>
     <DefineConstants>TRACE;NET45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\Bin\net45\Release\Client\LogoFX.Client.Bootstrapping.Platform.xml</DocumentationFile>
+    <DocumentationFile>..\..\Bin\net45\Release\Client\LogoFX.Client.Bootstrapping.Platform.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro, Version=2.0.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
