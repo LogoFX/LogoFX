@@ -78,8 +78,8 @@
       <HintPath>..\packages\Solid.Practices.Composition.Desktop.1.0.8\lib\net45\Solid.Practices.Composition.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Solid.Practices.Composition.Platform, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Solid.Practices.Composition.1.1.1\lib\net45\Solid.Practices.Composition.Platform.dll</HintPath>
+    <Reference Include="Solid.Practices.Composition.Platform, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.1.1.2\lib\net45\Solid.Practices.Composition.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.IoC, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
@@ -124,7 +124,6 @@
   <ItemGroup>
     <Compile Include="ExtendedSimpleIocContainerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestBootstrapperContainer.cs" />
     <Compile Include="TestDependency.cs" />
     <Compile Include="TestLifetimeScopeProvider.cs" />
     <Compile Include="TestObject.cs" />
@@ -138,10 +137,6 @@
     <ProjectReference Include="..\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.csproj">
       <Project>{c84e0089-7bc7-4f16-8a10-b09f7cc1db83}</Project>
       <Name>LogoFX.Client.Bootstrapping.Adapters.SimpleContainer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Client.Bootstrapping.Platform\net45\LogoFX.Client.Bootstrapping.Platform.NET45.csproj">
-      <Project>{51322595-4423-46D9-8AAD-7486FC87E15C}</Project>
-      <Name>LogoFX.Client.Bootstrapping.Platform.NET45</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
