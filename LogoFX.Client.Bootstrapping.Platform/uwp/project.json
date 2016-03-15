@@ -4,7 +4,7 @@
     "LogoFX.Client.Bootstrapping.Adapters.Contracts": "1.0.4",
     "LogoFX.Client.Bootstrapping.Core": "1.0.8",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "Solid.Practices.Composition": "1.1.1",
+    "Solid.Practices.Composition": "1.1.2",
     "Solid.Practices.Composition.Client": "1.0.9",
     "Solid.Practices.Composition.Core": "1.0.9",
     "Solid.Practices.IoC": "1.0.8"

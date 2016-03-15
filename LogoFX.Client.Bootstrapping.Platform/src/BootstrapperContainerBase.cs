@@ -77,15 +77,16 @@ namespace LogoFX.Client.Bootstrapping
         }
 #endif
 #if NETFX_CORE || WINDOWS_UWP
+
+        protected virtual void BeforeOnLaunched(LaunchActivatedEventArgs e)
+        {
+            
+        }
+
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-#if DEBUG
-            if (Debugger.IsAttached)
-            {
-                DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif            
+            BeforeOnLaunched(e);          
             DisplayRootView();
         }
 #endif
