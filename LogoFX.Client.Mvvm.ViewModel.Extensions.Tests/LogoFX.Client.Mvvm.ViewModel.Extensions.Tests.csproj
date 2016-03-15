@@ -78,8 +78,8 @@
       <HintPath>..\packages\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.1.0.5\lib\net451\LogoFX.Client.Bootstrapping.Adapters.SimpleContainer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Bootstrapping.Platform, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.0.9\lib\net45\LogoFX.Client.Bootstrapping.Platform.dll</HintPath>
+    <Reference Include="LogoFX.Client.Bootstrapping.Platform, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Bootstrapping.1.1.0\lib\net45\LogoFX.Client.Bootstrapping.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
@@ -134,8 +134,8 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.6\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Core.1.0.6.2\lib\net45\LogoFX.Core.dll</HintPath>
+    <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Practices.IoC, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
@@ -164,6 +164,10 @@
     </Reference>
     <Reference Include="Solid.Practices.Composition, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Solid.Practices.Composition.Core.1.0.9\lib\portable-net45+wpa8+win8\Solid.Practices.Composition.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Solid.Practices.Composition.Client.Platform, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Solid.Practices.Composition.Client.1.0.9\lib\net45\Solid.Practices.Composition.Client.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Solid.Practices.Composition.Container.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
