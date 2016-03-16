@@ -42,12 +42,16 @@
       <HintPath>..\packages\LogoFX.Client.Core.1.0.7\lib\net45\LogoFX.Client.Core.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.0.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.3\lib\net451\LogoFX.Client.Mvvm.ViewModel.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.4\lib\portable-net45+wpa8+win8+uap10.0\LogoFX.Client.Mvvm.ViewModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Contracts, Version=1.0.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.3.3\lib\net451\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Contracts, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.Core.1.0.4\lib\portable-net45+wpa8+win8+uap10.0\LogoFX.Client.Mvvm.ViewModel.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LogoFX.Client.Mvvm.ViewModel.Platform, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.ViewModel.1.0.4\lib\net45\LogoFX.Client.Mvvm.ViewModel.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Core, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">

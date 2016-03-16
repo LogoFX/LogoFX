@@ -1,5 +1,5 @@
 ﻿using Attest.Tests.Core;
-using LogoFX.Client.Tests.Shared;
+using LogoFX.Client.Testing.Shared;
 using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Tests.SpecFlow
