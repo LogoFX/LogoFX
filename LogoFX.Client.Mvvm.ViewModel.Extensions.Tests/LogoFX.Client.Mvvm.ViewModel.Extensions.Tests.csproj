@@ -90,8 +90,8 @@
       <HintPath>..\packages\LogoFX.Client.Core.1.0.7\lib\net45\LogoFX.Client.Core.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Mvvm.Core, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.4\lib\net45\LogoFX.Client.Mvvm.Core.dll</HintPath>
+    <Reference Include="LogoFX.Client.Mvvm.Core.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Mvvm.Core.1.0.5\lib\net45\LogoFX.Client.Mvvm.Core.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="LogoFX.Client.Mvvm.Model, Version=1.0.8.0, Culture=neutral, processorArchitecture=MSIL">
