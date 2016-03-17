@@ -75,12 +75,12 @@
       <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.5\lib\net45\LogoFX.Client.Testing.Infra.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Testing.Shared.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.5\lib\net45\LogoFX.Client.Testing.Shared.Platform.dll</HintPath>
+    <Reference Include="LogoFX.Client.Testing.Shared.Caliburn.Micro.Platform, Version=1.0.7.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.7\lib\net45\LogoFX.Client.Testing.Shared.Caliburn.Micro.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="LogoFX.Client.Tests.Shared.Caliburn.Micro, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LogoFX.Client.Tests.Shared.Caliburn.Micro.1.0.6\lib\net45\LogoFX.Client.Tests.Shared.Caliburn.Micro.dll</HintPath>
+    <Reference Include="LogoFX.Client.Testing.Shared.Platform, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Shared.1.0.5\lib\net45\LogoFX.Client.Testing.Shared.Platform.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
@@ -116,12 +116,6 @@
     <Compile Include="IntegrationTestsBase.cs" />
     <Compile Include="IntegrationTestsBaseWithActivation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Client.Tests.NUnit\LogoFX.Client.Tests.NUnit.csproj">
-      <Project>{fc0c6b40-4a6d-4c55-bf2c-0c1a23e5fda5}</Project>
-      <Name>LogoFX.Client.Tests.NUnit</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
