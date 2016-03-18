@@ -1,4 +1,4 @@
-﻿using Attest.Tests.Core;
+﻿using Attest.Testing.Core;
 using LogoFX.Client.Tests.Contracts;
 using LogoFX.Client.Tests.EndToEnd.FakeData;
 using LogoFX.Client.Tests.EndToEnd.White;
@@ -9,7 +9,7 @@ namespace LogoFX.Client.Tests.SpecFlow
     /// Base class for client End-To-End tests.
     /// </summary>    
     public abstract class EndToEndTestsBase :
-        Attest.Tests.SpecFlow.EndToEndTestsBase        
+        Attest.Testing.SpecFlow.EndToEndTestsBase        
     {        
         /// <summary>
         /// Base class for client End-To-End tests which use fake data providers.

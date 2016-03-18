@@ -1,4 +1,4 @@
-﻿using Attest.Tests.Core;
+﻿using Attest.Testing.Core;
 using LogoFX.Client.Tests.Contracts;
 
 namespace LogoFX.Client.Tests.Integration
@@ -6,7 +6,7 @@ namespace LogoFX.Client.Tests.Integration
     /// <summary>
     /// Represents start application service for integration tests.
     /// </summary>
-    /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />    
+    /// <seealso cref="IStartApplicationService" />    
     public class StartApplicationServiceBase : IStartApplicationService
     {
         /// <summary>

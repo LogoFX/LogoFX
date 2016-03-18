@@ -1,5 +1,5 @@
 ﻿using Attest.Fake.Builders;
-using Attest.Tests.NUnit;
+using Attest.Testing.NUnit;
 using LogoFX.Client.Tests.Contracts;
 
 namespace LogoFX.Client.Tests.Integration.NUnit

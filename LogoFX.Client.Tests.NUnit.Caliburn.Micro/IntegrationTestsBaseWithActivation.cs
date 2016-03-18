@@ -1,16 +1,16 @@
-using Attest.Tests.Core;
+using Attest.Testing.Core;
 using Caliburn.Micro;
 using Solid.Practices.IoC;
 
 namespace LogoFX.Client.Tests.NUnit.Caliburn.Micro
 {
     /// <summary>
-    /// Base class for client integration tests which involve root object activation.
+    /// Base class for Caliburn.Micro and Nunit-based 
+    /// client integration tests which involve root object activation.
     /// </summary>
     /// <typeparam name="TContainer">The type of the container.</typeparam>
     /// <typeparam name="TRootViewModel">The type of the root view model.</typeparam>
-    /// <typeparam name="TBootstrapper">The type of the bootstrapper.</typeparam>
-    /// <seealso cref="LogoFX.Client.Tests.NUnit.IntegrationTestsBase{TContainer, TRootViewModel, TBootstrapper}" />
+    /// <typeparam name="TBootstrapper">The type of the bootstrapper.</typeparam>    
     public abstract class IntegrationTestsBaseWithActivation<TContainer, TRootViewModel, TBootstrapper> :
         IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper>
         where TContainer : IIocContainer, new() where TRootViewModel : class

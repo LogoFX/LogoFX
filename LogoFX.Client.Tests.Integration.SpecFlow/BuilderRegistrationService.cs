@@ -1,5 +1,5 @@
 ﻿using Attest.Fake.Builders;
-using Attest.Tests.SpecFlow;
+using Attest.Testing.SpecFlow;
 using LogoFX.Client.Tests.Contracts;
 
 namespace LogoFX.Client.Tests.Integration.SpecFlow

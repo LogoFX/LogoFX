@@ -1,4 +1,4 @@
-﻿using Attest.Tests.Core;
+﻿using Attest.Testing.Core;
 using LogoFX.Client.Testing.Shared;
 using Solid.Practices.IoC;
 
@@ -11,7 +11,7 @@ namespace LogoFX.Client.Tests.SpecFlow
     /// <typeparam name="TRootViewModel"></typeparam>
     /// <typeparam name="TBootstrapper"></typeparam>
     public abstract class IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper> : 
-        Attest.Tests.SpecFlow.IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper>
+        Attest.Testing.SpecFlow.IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper>
         where TContainer : IIocContainer, new() where TRootViewModel : class
     {
         /// <summary>
