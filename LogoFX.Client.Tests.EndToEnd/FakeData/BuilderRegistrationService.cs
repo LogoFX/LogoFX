@@ -1,5 +1,5 @@
 ﻿using Attest.Fake.Builders;
-using LogoFX.Client.Tests.Contracts;
+using LogoFX.Client.Testing.Contracts;
 using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 
 namespace LogoFX.Client.Tests.EndToEnd.FakeData

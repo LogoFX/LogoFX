@@ -1,5 +1,5 @@
 ﻿using Attest.Testing.Core;
-using LogoFX.Client.Tests.Contracts;
+using LogoFX.Client.Testing.Contracts;
 using LogoFX.Client.Tests.EndToEnd.FakeData;
 using LogoFX.Client.Tests.EndToEnd.White;
 

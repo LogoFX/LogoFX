@@ -1,4 +1,4 @@
-﻿using LogoFX.Client.Tests.Contracts;
+﻿using LogoFX.Client.Testing.Contracts;
 using LogoFX.Client.Tests.EndToEnd.FakeData.Shared;
 
 namespace LogoFX.Client.Tests.EndToEnd.White
@@ -6,13 +6,13 @@ namespace LogoFX.Client.Tests.EndToEnd.White
     /// <summary>
     /// Represents start application service for End-To-End tests.
     /// </summary>
-    /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
+    /// <seealso cref="IStartApplicationService" />
     public abstract class StartApplicationService : IStartApplicationService
     {
         /// <summary>
         /// Represents start application service for End-To-End tests which use fake data providers.
         /// </summary>
-        /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
+        /// <seealso cref="IStartApplicationService" />
         public class WithFakeProviders : StartApplicationService
         {
             /// <summary>
@@ -29,7 +29,7 @@ namespace LogoFX.Client.Tests.EndToEnd.White
         /// <summary>
         /// Represents start application service for End-To-End tests which use real data providers.
         /// </summary>
-        /// <seealso cref="LogoFX.Client.Tests.Contracts.IStartApplicationService" />
+        /// <seealso cref="IStartApplicationService" />
         public class WithRealProviders : StartApplicationService
         {
             /// <summary>

@@ -51,6 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Castle.Core.3.3.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="LogoFX.Client.Testing.Contracts, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Client.Tests.Contracts.1.0.5\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Client.Testing.Contracts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Shim, Version=1.0.2.0, Culture=neutral, PublicKeyToken=c55ec16d10c4b366, processorArchitecture=MSIL">
       <HintPath>..\packages\shim.1.0.2.50909\lib\net45\Shim.dll</HintPath>
       <Private>True</Private>
@@ -91,12 +95,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LogoFX.Client.Tests.Contracts\LogoFX.Client.Tests.Contracts.csproj">
-      <Project>{71C80D75-E55E-4EAC-BB5A-C3AFD2734B60}</Project>
-      <Name>LogoFX.Client.Tests.Contracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
