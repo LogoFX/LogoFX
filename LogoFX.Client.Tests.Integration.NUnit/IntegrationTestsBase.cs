@@ -2,16 +2,17 @@
 using LogoFX.Client.Testing.Shared;
 using Solid.Practices.IoC;
 
-namespace LogoFX.Client.Tests.SpecFlow
+namespace LogoFX.Client.Tests.Integration.NUnit
 {
     /// <summary>
     /// Base class for client integration tests.
     /// </summary>
-    /// <typeparam name="TContainer"></typeparam>
-    /// <typeparam name="TRootViewModel"></typeparam>
-    /// <typeparam name="TBootstrapper"></typeparam>
-    public abstract class IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper> : 
-        Attest.Testing.SpecFlow.IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper>
+    /// <typeparam name="TContainer">The type of the container.</typeparam>
+    /// <typeparam name="TRootViewModel">The type of the root view model.</typeparam>
+    /// <typeparam name="TBootstrapper">The type of the bootstrapper.</typeparam>
+    /// <seealso cref="Attest.Testing.NUnit.IntegrationTestsBase{TContainer, TRootViewModel, TBootstrapper}" />
+    public abstract class IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper> :
+        Attest.Testing.NUnit.IntegrationTestsBase<TContainer, TRootViewModel, TBootstrapper>
         where TContainer : IIocContainer, new() where TRootViewModel : class
     {
         /// <summary>
@@ -19,7 +20,7 @@ namespace LogoFX.Client.Tests.SpecFlow
         /// </summary>
         /// <param name="resolutionStyle">The resolution style.</param>
         protected IntegrationTestsBase(InitializationParametersResolutionStyle resolutionStyle = InitializationParametersResolutionStyle.PerRequest)
-            :base(resolutionStyle)
+            : base(resolutionStyle)
         {
         }
 
@@ -30,6 +31,6 @@ namespace LogoFX.Client.Tests.SpecFlow
         {
             base.SetupOverride();
             TestHelper.Setup();
-        }        
+        }
     }
 }
