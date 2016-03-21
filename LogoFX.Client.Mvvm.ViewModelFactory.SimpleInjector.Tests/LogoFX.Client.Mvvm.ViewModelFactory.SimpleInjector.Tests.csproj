@@ -54,6 +54,10 @@
       <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Practices.IoC.Extensions.SimpleInjector, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.IoC.Extensions.SimpleInjector.1.0.3\lib\net45\LogoFX.Practices.IoC.Extensions.SimpleInjector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -80,10 +84,6 @@
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector\LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector.csproj">
       <Project>{b779cf43-965d-4295-8756-d758438fc0f2}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModelFactory.SimpleInjector</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Practices.IoC.Extensions.SimpleInjector\LogoFX.Practices.IoC.Extensions.SimpleInjector.csproj">
-      <Project>{8731C339-27A8-43DD-AAB6-240D82F03BD7}</Project>
-      <Name>LogoFX.Practices.IoC.Extensions.SimpleInjector</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
