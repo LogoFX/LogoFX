@@ -54,6 +54,10 @@
       <HintPath>..\packages\LogoFX.Core.1.0.7\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch\LogoFX.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="LogoFX.Practices.IoC, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LogoFX.Practices.IoC.1.0.6\lib\portable-net45+wpa8+win8+MonoAndroid+MonoTouch+uap10.0\LogoFX.Practices.IoC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
       <Private>True</Private>
@@ -78,10 +82,6 @@
     <ProjectReference Include="..\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer\LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer.csproj">
       <Project>{50e9f62a-75dc-4ba0-8c35-712e64a1d16b}</Project>
       <Name>LogoFX.Client.Mvvm.ViewModelFactory.SimpleContainer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogoFX.Practices.IoC\LogoFX.Practices.IoC.csproj">
-      <Project>{c7ae389e-c13c-4d52-9926-be23e7ecaea7}</Project>
-      <Name>LogoFX.Practices.IoC</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
